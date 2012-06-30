@@ -1,4 +1,5 @@
 ---
+layout: default
 title: Test page
 category : lessons
 tags : [page, intro, beginner, jekyll, tutorial]

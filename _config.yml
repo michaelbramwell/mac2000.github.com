@@ -1,2 +1,10 @@
-safe: false
 permalink: /:title/
+
+title: My notes
+tagline: hello world
+author:
+    name: Marchenko Alexandr
+    email: marchenko.alexandr@gmail.com
+    github: mac2000
+    twitter: alexandrm
+
