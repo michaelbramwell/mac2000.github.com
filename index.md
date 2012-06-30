@@ -19,15 +19,32 @@ Posts
 Tags
 ----
 
-{% for tag in site.tags %} 
-  <b>{{tag[0]}}</b><br>
-  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
-{% endfor %}
+
+<div>
+    {% for tag in site.tags %} 
+      <div>
+          <b>{{tag[0]}}</b>
+      </div>
+      {% for post in tag[1]%}
+      <div>
+        {{post.title}}
+    </div>
+      {% endfor %}
+    {% endfor %}
+</div>
 
 Categories
 ----------
 
-{% for category in site.categories %} 
-  <b>{{category[0]}}</b><br>
-  {% for post in category[1]%}{{post.title}}<br>{% endfor %}
-{% endfor %}
+<div>
+    {% for category in site.categories %} 
+          <div>
+              <b>{{category[0]}}</b>
+          </div>
+          {% for post in category[1]%}
+          <div>
+            {{post.title}}
+        </div>
+          {% endfor %}
+    {% endfor %}
+</div>
