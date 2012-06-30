@@ -1,11 +1,10 @@
 ---
-title: Test page
-category : lessons
-tags : [page, intro, beginner, jekyll, tutorial]
+layout: base
 ---
 
-Test page
-=========
+Index
+=====
+
 
 Hello World
 
