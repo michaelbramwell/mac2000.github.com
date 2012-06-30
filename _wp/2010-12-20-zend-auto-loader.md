@@ -1,0 +1,69 @@
+---
+layout: post
+title: Zend Auto Loader
+permalink: /181
+tags: [php, zend]
+----
+
+Неободимо сделать  так чтобы папка Zend была доступна из **include_path**.
+
+
+В примерах используют следующее:
+
+    
+    <code>set_include_path(implode(PATH_SEPARATOR, array(
+        realpath(APPLICATION_PATH . '/../library'),
+        get_include_path(),
+    )));</code>
+
+
+Если используется **xampp** это дело можно пропустить, так как Zend лежит в
+**C:\xampp\php\PEAR** который виден для php.
+
+
+TODO: ссылка на доку по обновлению PEAR
+
+
+Использование автозагрузчика сводиться к следующему:
+
+    
+    <code>require_once 'Zend/Loader/Autoloader.php';
+    $autoloader = Zend_Loader_Autoloader::getInstance();
+    $autoloader->registerNamespace('Application_');</code>
+
+
+После этого можно загружать любые классы Zend’а, плюс свои классы из
+пространства имен Application_
+
+
+Подробнее:
+
+[http://framework.zend.com/manual/ru/zend.loader.autoloader.html](http://frame
+work.zend.com/manual/ru/zend.loader.autoloader.html)
+
+**Application.ini**
+
+
+    
+    <code>;resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+    resources.moduleController.controllerDirectory = APPLICATION_PATH "/modules"
+    autoloaderNamespaces.zc = "ZC_"
+    resources.frontController.plugins.AssetGrabber = "ZC_Controller_Plugin_AssetsGrabber"
+    
+    move controllers and views folders to /modules/default/ folder, also we can create, for example admin direcotry, with its own controllers and views
+    
+    resources.layout.layoutpath = APPLICATION_PATH “/layouts”
+    resources.layout.layout = default
+    
+    resources.frontController.plugins.LayoutPicker = "ZC_Controller_Plugin_LayoutPicker"</code>
+
+
+need /layouts/admin.phtml and layouts/default.phtml
+
+    
+    <code>ZF_Controller_Plugin_LayoutPicker extends Zend_Controller_Plugin_Abstract {
+    	public function preDispatch(Zend_Controller_Request_Abstract $request) {
+    	Zend_Layout::getMvcInstance()->setLayout($request->getModuleName());
+    }
+    }</code>
+

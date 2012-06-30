@@ -1,6 +1,6 @@
 permalink: /:title/
 
-exclude: ["scss", "README.md", "config.rb"]
+exclude: ["_wp", "scss", "README.md", "config.rb"]
 
 title: My notes
 tagline: hello world

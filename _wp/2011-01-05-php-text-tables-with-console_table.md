@@ -1,0 +1,52 @@
+---
+layout: post
+title: php text tables with Console_Table
+permalink: /288
+tags: [console, console_table, formatters, pear, php, table, text, wiki, wysiwyg]
+----
+
+[http://pear.php.net/package/Console_Table/](http://pear.php.net/package/Conso
+le_Table/)
+
+
+класс позволяющий выводить текстовые таблички, то что нужно для консоли
+
+    
+    <code><?php
+    require_once 'Console/Table.php';
+    
+    $tbl = new Console_Table();
+    $tbl->setHeaders(
+        array('Language', 'Year')
+    );
+    $tbl->addRow(array('PHP', 1994));
+    $tbl->addRow(array('C',   1970));
+    $tbl->addRow(array('C++', 1983));
+    
+    echo $tbl->getTable();
+    
+    $tbl = new Console_Table();
+    $tbl->setHeaders(
+        array('Language', 'Year')
+    );
+    $tbl->addData(
+    	array(
+    		array('PHP', 1994),
+    		array('C',   1970),
+    		array('C++', 1983)
+    	)
+    );
+    echo $tbl->getTable();</code>
+
+
+оба куска кода выведут вот такую красоту:
+
+    
+    <code>+----------+------+
+    | Language | Year |
+    +----------+------+
+    | PHP      | 1994 |
+    | C        | 1970 |
+    | C++      | 1983 |
+    +----------+------+</code>
+
