@@ -1,12 +1,10 @@
 ---
-layout: default
+layout: home
 ---
 
 Index
 =====
 
-[ya.ru](http://ya.ru)
-[relative](/one/)
 Hello World
 
 <ul class="posts">
@@ -14,3 +12,17 @@ Hello World
     <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+
+Tags
+----
+{% for tag in site.tags %} 
+  {{tag[0]}}<br>
+  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
+{% endfor %}
+
+Categories
+----------
+{% for category in site.categories %} 
+  {{category[0]}}<br>
+  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
+{% endfor %}
