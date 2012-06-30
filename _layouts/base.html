@@ -2,14 +2,18 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
-    <title>Hello</title>
-    <link rel="stylesheet" href="https://gist.github.com/stylesheets/gist/embed.css"/>
+    <title>{{page.title}}</title>
     <link rel="stylesheet" href="/css/styles.css">    
+    {% if page.tags %}
+        <meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">
+    {% endif %}
 </head>
 <body>
     <a href="/">Home</a>
     <hr>
     {{content}}
-    <img src="/images/mac.png">
+    <div>
+        <img src="/images/mac.png">
+    </div>
 </body>
 </html>

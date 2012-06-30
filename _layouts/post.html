@@ -3,26 +3,21 @@ layout: base
 ---
 
 {{ content }}
-<hr>
-<h2>Related</h2>
 
+{% if page.tags %}
+<h2>Tags</h2>
+{% for tag in page.tags %} 
+{{ tag }}<br>
+{% endfor %}
+{% endif %}
+
+{% if site.related_posts %}
+<h2>Related</h2>
 {% for post in site.related_posts %}
     <div><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></div>
 {% endfor %}
+{% endif %}
 
-<h2>Tags</h2>
-
-{% for tag in site.tags %} 
-<b>{{tag[0]}}</b><br>
-  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
-{% endfor %}
-
-<h2>Categories</h2>
-
-{% for category in site.categories %} 
-<b>{{category[0]}}</b><br>
-  {% for post in category[1]%}{{post.title}}<br>{% endfor %}
-{% endfor %}
-
-<hr>
-Template: post
+<div>
+    Template: post
+</div>
