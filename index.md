@@ -7,22 +7,27 @@ Index
 
 Hello World
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+Posts
+-----
+
+<div>
+{% for post in site.posts limit:20 %}
+    <div><a href="{{ post.url }}">{{ post.title }}</a></div>
+{% endfor %}
+</div>
 
 Tags
 ----
+
 {% for tag in site.tags %} 
-  {{tag[0]}}<br>
+  <b>{{tag[0]}}</b><br>
   {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
 {% endfor %}
 
 Categories
 ----------
+
 {% for category in site.categories %} 
-  {{category[0]}}<br>
-  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
+  <b>{{category[0]}}</b><br>
+  {% for post in category[1]%}{{post.title}}<br>{% endfor %}
 {% endfor %}

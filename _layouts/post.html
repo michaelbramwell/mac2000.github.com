@@ -6,24 +6,22 @@ layout: base
 <hr>
 <h2>Related</h2>
 
-<ul class="posts">
-  {% for post in site.related_posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+{% for post in site.related_posts %}
+    <div><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></div>
+{% endfor %}
 
-Tags
-----
+<h2>Tags</h2>
+
 {% for tag in site.tags %} 
-  {{tag[0]}}<br>
+<b>{{tag[0]}}</b><br>
   {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
 {% endfor %}
 
-Categories
-----------
+<h2>Categories</h2>
+
 {% for category in site.categories %} 
-  {{category[0]}}<br>
-  {% for post in tag[1]%}{{post.title}}<br>{% endfor %}
+<b>{{category[0]}}</b><br>
+  {% for post in category[1]%}{{post.title}}<br>{% endfor %}
 {% endfor %}
 
 <hr>
