@@ -8,6 +8,15 @@ Index
 
 Hello World
 
+Pages
+-----
+
+<div>
+{% for page in site.pages limit:20 %}
+    <div><a href="{{ page.url }}">{{ page.title }}</a></div>
+{% endfor %}
+</div>
+
 Posts
 -----
 
