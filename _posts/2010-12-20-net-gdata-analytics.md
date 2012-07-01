@@ -131,7 +131,7 @@ Reference to dlls `Client`, `Analytics`, `Extension`
 Zend Gdata Docs
 ---------------
 
-http://framework.zend.co m/manual/en/zend.gdata.html
+[Zend gData](http://framework.zend.com/manual/en/zend.gdata.html)
 
 [Client Login and Authentication for Zend gData](http://www.ngoprekweb.com/2006/11/04/clientlogin-authentication-for-zend-gdata/)
 

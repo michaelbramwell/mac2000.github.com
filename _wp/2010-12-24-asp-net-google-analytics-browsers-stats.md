@@ -5,24 +5,15 @@ permalink: /254
 tags: [.net, analytics, asp.net, c#, chart, gdata, google]
 ---
 
-Нужна была толковая аналитика по браузерам, analytics такой инфы не дает,
-пришлось набросать свое.
-
+Нужна была толковая аналитика по браузерам, analytics такой инфы не дает, пришлось набросать свое.
 
 Стандартный asp.net сайт.
 
+Для работы необходимо подключить: Google.GData.Analytics, Google.GData.Client, Google.GData.Extensions.
 
-Для работы необходимо подключить: Google.GData.Analytics, Google.GData.Client,
-Google.GData.Extensions.
-
-
-[http://code.google.com/intl/ru-
-RU/apis/gdata/articles/dotnet_client_lib.html](http://code.google.com/intl/ru-
-RU/apis/gdata/articles/dotnet_client_lib.html)
-
+[http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html](http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html)
 
 **Default.aspx**
-
 
     <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="browserstats._Default" %>
 
@@ -92,10 +83,7 @@ RU/apis/gdata/articles/dotnet_client_lib.html)
     </body>
     </html>
 
-
-
 **Default.aspx.cs**
-
 
     using System;
     using System.Collections.Generic;
@@ -354,7 +342,4 @@ RU/apis/gdata/articles/dotnet_client_lib.html)
         }
     }
 
-
 Собственно вот как это все выглядит:
-
-
