@@ -5,7 +5,7 @@ permalink: /226
 tags: [actionscript, chart, flash, google, javascript, online, service, tool]
 ---
 
-[http://code.google.com/intl/ru-RU/apis/visualization/documentation/gallery.html](http://code.google.com/intl/ru-RU/apis/visualization/documentation/gallery.html)
+<http://code.google.com/intl/ru-RU/apis/visualization/documentation/gallery.html>
 
 Визуализация, данных, очень просто и главное быстро. На странице показаны уже готовые к применению примеры.
 
