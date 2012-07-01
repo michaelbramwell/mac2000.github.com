@@ -5,7 +5,7 @@ permalink: /151
 tags: [diff, javascript]
 ---
 
-[javascript diff algorithm](http://ejohn.org/projects/javascript-diff-algorithm/)
+<http://ejohn.org/projects/javascript-diff-algorithm/>
 
 Пример использования:
 

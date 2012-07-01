@@ -114,4 +114,4 @@ tags: [.net, c#, convert, doc, docx, lib, microsoft, office, rtf, tool, word]
         //oDoc.Close();
     }
 
-Для работы необходимо добавить референсы на: _Microsoft.Office.Core_ и _Microsoft.Office.Interop.Word_
+Для работы необходимо добавить референсы на: `Microsoft.Office.Core` и `Microsoft.Office.Interop.Word`

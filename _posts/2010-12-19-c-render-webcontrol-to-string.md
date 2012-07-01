@@ -5,8 +5,7 @@ permalink: /23
 tags: [.net, asp.net, c#]
 ---
 
-Add reference to **System.Web**
-
+Add reference to `System.Web`
 
     StringBuilder sb = new StringBuilder();
     System.Web.UI.HtmlTextWriter tw = new System.Web.UI.HtmlTextWriter(new StringWriter(sb));

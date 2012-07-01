@@ -7,7 +7,7 @@ tags: [admin, iis, log, logparser, s-sitename, s-ip, cs-method, cs-uri-stem, cs-
 
 [Link to download logparser](http://www.microsoft.com/downloads/details.aspx?FamilyID=890cd06b-abf8-4c25-91b2-f8d975cf8c07&displaylang=en)
 
-[Functions](http://logparserplus.com/Functions)
+[Fundction description](http://logparserplus.com/Functions)
 
 **Fields**
 
@@ -47,9 +47,9 @@ tags: [admin, iis, log, logparser, s-sitename, s-ip, cs-method, cs-uri-stem, cs-
 
 **SOME LINKS**
 
-[http://habrahabr.ru/blogs/sql/85758/](http://habrahabr.ru/blogs/sql/85758/)
+[LogParser — привычный взгляд на непривычные вещи](http://habrahabr.ru/blogs/sql/85758/)
 
-[http://weblogs.asp.net/steveschofield/archive/2006/12/20/logparser-and-finding-information-between-two-dates.aspx](http://weblogs.asp.net/steveschofield/archive/2006/12/20/logparser-and-finding-information-between-two-dates.aspx)
+[Logparser and finding information between two dates](http://weblogs.asp.net/steveschofield/archive/2006/12/20/logparser-and-finding-information-between-two-dates.aspx)
 
 Some Examples From Log Parser Lizard
 

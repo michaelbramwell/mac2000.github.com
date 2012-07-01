@@ -5,9 +5,9 @@ permalink: /26
 tags: [.net, asp.net, c#, iis, logparser]
 ---
 
-Add reference **LogParser.dll**
+Add reference `LogParser.dll`
 
-Add **using MSUtil;**
+Add `using MSUtil;`
 
     DataSet ds = parseLog(@"SELECT TOP 10 c-ip AS IP, COUNT(*) AS RequestsCount FROM C:\Users\mac\Desktop\ex100811\ex100811.log GROUP BY c-ip ORDER BY RequestsCount DESC");
 

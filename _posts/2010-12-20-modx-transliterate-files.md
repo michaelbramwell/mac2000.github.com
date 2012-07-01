@@ -5,7 +5,7 @@ permalink: /114
 tags: [javascript, modx, php]
 ---
 
-Загрузить файл **FileUpload.php** в **manager/media/browser/mcpuk/connectors/php/Commands**
+Загрузить файл `FileUpload.php` в `manager/media/browser/mcpuk/connectors/php/Commands`
 
     <?php
     /*

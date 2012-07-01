@@ -9,6 +9,6 @@ tags: [analytics, statistics]
 
 Но все же очень интересно посмотреть на статистику использования (упоминания) о том или ином языке программирования.
 
-По данным сайта [langpop](http://langpop.com/) картинка выглядит следующим образом:
+По данным сайта <http://langpop.com/> картинка выглядит следующим образом:
 
 ![langpop](http://mac-blog.org.ua/wp-content/uploads/langpop-300x196.png)

@@ -5,7 +5,7 @@ permalink: /158
 tags: [.net, asp.net, c#, mssql, spell, sql]
 ---
 
-[Suggest corrected spelling text in pure PHP](http://www.phpclasses.org/package/4859-PHP-Suggest-corrected-spelling-text-in-pure-PHP.html)
+<http://www.phpclasses.org/package/4859-PHP-Suggest-corrected-spelling-text-in-pure-PHP.html>
 
     protected void btnGo_Click(object sender, EventArgs e)
     {

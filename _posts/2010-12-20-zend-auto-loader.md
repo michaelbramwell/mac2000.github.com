@@ -5,7 +5,7 @@ permalink: /181
 tags: [php, zend, set_include_path, path_separator, realpath, get_include_path, application_path, autoloader, registernamespace]
 ---
 
-Неободимо сделать  так чтобы папка Zend была доступна из **include_path**.
+Неободимо сделать  так чтобы папка Zend была доступна из `include_path`.
 
 В примерах используют следующее:
 
@@ -14,7 +14,7 @@ tags: [php, zend, set_include_path, path_separator, realpath, get_include_path, 
         get_include_path(),
     )));
 
-Если используется **xampp** это дело можно пропустить, так как Zend лежит в **C:\xampp\php\PEAR** который виден для php.
+Если используется **xampp** это дело можно пропустить, так как Zend лежит в `C:\xampp\php\PEAR` который виден для php.
 
 TODO: ссылка на доку по обновлению PEAR
 

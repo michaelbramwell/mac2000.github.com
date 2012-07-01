@@ -13,7 +13,7 @@ tags: [mysql, svn, sym, symlink, versioning]
 
 Итак, что необходимо сделать:
 
-1. Создать файл **my_data_base.sym** в папке **mysql/data**.
+1. Создать файл `my_data_base.sym` в папке `mysql/data`.
 2. Прописать в этом файле полный путь к папке с базой, например вот так: `D:\xampp\htdocs\my_project\my_data_base`.
 
 Теперь можно загонять базу в SVN.
