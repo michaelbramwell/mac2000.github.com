@@ -3,7 +3,7 @@ layout: post
 title: Yahoo pipes get one item per day
 permalink: /709
 tags: [pipes, rss, yahoo, yahoo_pipes]
-----
+---
 
 As example we have very big rss feed and want to get one item per day. All
 item in feed do not have any pudDate.
@@ -27,16 +27,16 @@ blog.org.ua/wp-content/uploads/117.png)
 
 We have xml like this one:
 
-    
-    <code><?xml version="1.0" encoding="UTF-8"?>
+
+    <?xml version="1.0" encoding="UTF-8"?>
     <items>
-    	<item>Some text 1</item>
-    	<item>Some text 2</item>
-    	<item>Some text 3</item>
-    	<item>Some text 4</item>
-    	...
-    	<item>Some text 1000</item>
-    </items></code>
+        <item>Some text 1</item>
+        <item>Some text 2</item>
+        <item>Some text 3</item>
+        <item>Some text 4</item>
+        ...
+        <item>Some text 1000</item>
+    </items>
 
 
 

@@ -3,7 +3,7 @@ layout: post
 title: WordPress custom post content widget
 permalink: /198
 tags: [php, plugin, widget, wordpress]
-----
+---
 
 ## Задача
 
@@ -17,15 +17,15 @@ tags: [php, plugin, widget, wordpress]
 
 В functions.php необходимо прописать следующее:
 
-    
-    <code>function register_post_type_txt() {
+
+    function register_post_type_txt() {
         register_post_type('txt',array(
                'label' => __('Text'),
                'public' => true,
                'supports' => array('title', 'editor')
         ));
     }
-    add_action('init', 'register_post_type_txt');</code>
+    add_action('init', 'register_post_type_txt');
 
 
 После чего в админке появится новосозданный кастомный тип записей
@@ -44,8 +44,8 @@ ter_post_type)
 Где угодно в файлах темы (я для примера прописал в header.php) прописать
 следующее:
 
-    
-    <code><?php
+
+    <?php
     $postId = 50;
     $queried_post = get_post($postId);
     $title = $queried_post->post_title;
@@ -53,7 +53,7 @@ ter_post_type)
     echo _e($title);
     echo '<br />';
     echo _e($content);
-    ?></code>
+    ?>
 
 
 Примечание: в функцию get_post - обязательно должна передаваться переменная,
@@ -77,18 +77,18 @@ post](http://codex.wordpress.org/Function_Reference/get_post)
 
 В файле functions.php необходимо прописать следующее:
 
-    
-    <code>if ( function_exists('register_sidebar') ) {
-    
-    	register_sidebar(array(
-    		'name'	=> 'home_page_text',
-    		'before_widget' => '',
-    		'after_widget' => '',
-    		'before_title' => '',
-    		'after_title' => '',
-    	));
-    
-    }</code>
+
+    if ( function_exists('register_sidebar') ) {
+
+        register_sidebar(array(
+            'name'  => 'home_page_text',
+            'before_widget' => '',
+            'after_widget' => '',
+            'before_title' => '',
+            'after_title' => '',
+        ));
+
+    }
 
 
 Тем самым мы добавляем новый сайтбар для размещения виджетов, соотв. в
@@ -124,8 +124,8 @@ widgets/](http://www.lonewolfdesigns.co.uk/create-wordpress-widgets/)
 
 Код /wp-content/plugins/custom-post-type-widget.php:
 
-    
-    <code><?php
+
+    <?php
     /**
      * Plugin Name: Custom Post Type Widget
      * Plugin URI: http://photowizard.com
@@ -134,62 +134,62 @@ widgets/](http://www.lonewolfdesigns.co.uk/create-wordpress-widgets/)
      * Author: mac
      * Author URI: http://photowizard.com.ua
      */
-    
+
     add_action( 'widgets_init', 'widgets_init_custom_post_type_widget' );
-    
+
     function widgets_init_custom_post_type_widget() {
-    	register_widget( 'Custom_Post_Type_Widget' );
+        register_widget( 'Custom_Post_Type_Widget' );
     }
-    
+
     class Custom_Post_Type_Widget extends WP_Widget {
-    
-    	function Custom_Post_Type_Widget() {
-    		parent::WP_Widget(false, $name = 'Custom_Post_Type_Widget');
-    	}
-    
-    	function widget( $args, $instance ) {
-    		extract( $args );
-    
-    		$txtId = isset($instance['txtId']) ? $instance['txtId'] : false;
-    
-    		echo $before_widget;
-    		if ( $txtId ) {
-    			$queried_post = get_post($txtId);			
-    			$content = $queried_post->post_content;
-    			echo _e($content);
-    		}
-    		echo $after_widget;
-    	}
-    
-    	function update( $new_instance, $old_instance ) {
-    		$instance = $old_instance;
-    		$instance['txtId'] = $new_instance['txtId'];
-    		return $instance;
-    	}
-    
-    	function form( $instance ) {
-    		$txtId = isset($instance['txtId']) ? $instance['txtId'] : 0;
-    		$opts = '';
-    		wp_reset_query();
-    		$my_query = null;
-    		$my_query = new WP_Query(array(
-    			'post_type' => 'txt',
-    			'post_status' => 'publish',
-    			'posts_per_page' => -1,
-    			'caller_get_posts'=> 1
-    		));
-    		if( $my_query->have_posts() ) {      
-    			while ($my_query->have_posts()) : $my_query->the_post();
-    				$sel = ($txtId == get_the_ID()) ? ' selected="selected" ' : '';
-    				$opts = $opts . '<option ' . $sel . ' value="' . get_the_ID() . '">' . get_the_title() . '</option>';
-    			endwhile;
-    		}
-    		wp_reset_query();
-    
-    		echo '<p><select id="' . $this->get_field_id( 'txtId' ) . '" name="' . $this->get_field_name( 'txtId' ) . '" class="widefat" style="width:100%;"><option value="0">- select -</option>' . $opts . '</select></p>';
-    	}
+
+        function Custom_Post_Type_Widget() {
+            parent::WP_Widget(false, $name = 'Custom_Post_Type_Widget');
+        }
+
+        function widget( $args, $instance ) {
+            extract( $args );
+
+            $txtId = isset($instance['txtId']) ? $instance['txtId'] : false;
+
+            echo $before_widget;
+            if ( $txtId ) {
+                $queried_post = get_post($txtId);
+                $content = $queried_post->post_content;
+                echo _e($content);
+            }
+            echo $after_widget;
+        }
+
+        function update( $new_instance, $old_instance ) {
+            $instance = $old_instance;
+            $instance['txtId'] = $new_instance['txtId'];
+            return $instance;
+        }
+
+        function form( $instance ) {
+            $txtId = isset($instance['txtId']) ? $instance['txtId'] : 0;
+            $opts = '';
+            wp_reset_query();
+            $my_query = null;
+            $my_query = new WP_Query(array(
+                'post_type' => 'txt',
+                'post_status' => 'publish',
+                'posts_per_page' => -1,
+                'caller_get_posts'=> 1
+            ));
+            if( $my_query->have_posts() ) {
+                while ($my_query->have_posts()) : $my_query->the_post();
+                    $sel = ($txtId == get_the_ID()) ? ' selected="selected" ' : '';
+                    $opts = $opts . '<option ' . $sel . ' value="' . get_the_ID() . '">' . get_the_title() . '</option>';
+                endwhile;
+            }
+            wp_reset_query();
+
+            echo '<p><select id="' . $this->get_field_id( 'txtId' ) . '" name="' . $this->get_field_name( 'txtId' ) . '" class="widefat" style="width:100%;"><option value="0">- select -</option>' . $opts . '</select></p>';
+        }
     }
-    ?></code>
+    ?>
 
 
 Примечание: Очень важно в форме правильно использовать методы

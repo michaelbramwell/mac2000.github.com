@@ -3,7 +3,7 @@ layout: post
 title: C# plurarize/singularize english word
 permalink: /733
 tags: [.net, c#, form, plural, plurarize, seo, singular, singularize, text, word]
-----
+---
 
 Found at:
 
@@ -20,13 +20,13 @@ for-c/)
 
 **Code:**
 
-    
-    <code>using System;
+
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
-    
+
     namespace DFP
     {
         public class Utils
@@ -53,7 +53,7 @@ for-c/)
                 { "(.+(s|x|sh|ch))$", @"$1es"},
                 { "(.+)", @"$1s" }
             };
-    
+
             private static readonly IDictionary<string, string> Singularizations = new Dictionary<string, string>
             {
                 // Start with the rarest cases, and move to the most common
@@ -81,17 +81,17 @@ for-c/)
                 {"(.+(s|x|sh|ch))es$", @"$1"},
                 {"(.+)s", @"$1"}
             };
-    
+
             public static string Pluralize(int count, string singular)
             {
                 if (count == 1)
                     return singular;
-    
+
                 if (Unpluralizables.Contains(singular))
                     return singular;
-    
+
                 var plural = "";
-    
+
                 foreach (var pluralization in Pluralizations)
                 {
                     if (Regex.IsMatch(singular, pluralization.Key))
@@ -100,17 +100,17 @@ for-c/)
                         break;
                     }
                 }
-    
+
                 return plural;
             }
-    
+
             public static string Singularize(string word)
             {
                 if (Unpluralizables.Contains(word.ToLowerInvariant()))
                 {
                     return word;
                 }
-    
+
                 foreach (var singularization in Singularizations)
                 {
                     if (Regex.IsMatch(word, singularization.Key))
@@ -118,17 +118,17 @@ for-c/)
                         return Regex.Replace(word, singularization.Key, singularization.Value);
                     }
                 }
-    
+
                 return word;
             }
-    
+
             public static bool IsPlural(string word)
             {
                 if (Unpluralizables.Contains(word.ToLowerInvariant()))
                 {
                     return true;
                 }
-    
+
                 foreach (var singularization in Singularizations)
                 {
                     if (Regex.IsMatch(word, singularization.Key))
@@ -136,10 +136,10 @@ for-c/)
                         return true;
                     }
                 }
-    
+
                 return false;
             }
         }
-    }</code>
+    }
 
 

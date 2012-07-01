@@ -3,7 +3,7 @@ layout: post
 title: PowerShell send email
 permalink: /140
 tags: [cmd, powershell, shell]
-----
+---
 
 <code>$emailFrom = "user@yourdomain.com"
 
@@ -12,5 +12,5 @@ tags: [cmd, powershell, shell]
     $body = "your body"
     $smtpServer = "your smtp server"
     $smtp = new-object Net.Mail.SmtpClient($smtpServer)
-    $smtp.Send($emailFrom, $emailTo, $subject, $body)</code>
+    $smtp.Send($emailFrom, $emailTo, $subject, $body)
 

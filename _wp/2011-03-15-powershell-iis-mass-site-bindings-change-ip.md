@@ -3,12 +3,12 @@ layout: post
 title: PowerShell IIS mass site bindings change ip
 permalink: /527
 tags: [admin, batch, binding, iis, ip, mass, network, powershell]
-----
+---
 
 If u do not do so before run:
 
-    
-    <code>Set-ExecutionPolicy remotesigned</code>
+
+    Set-ExecutionPolicy remotesigned
 
 
 Not right click on PowerShell and choose Import all modules.
@@ -16,9 +16,9 @@ Not right click on PowerShell and choose Import all modules.
 
 Or in powershell try this:
 
-    
-    <code>Import-Module WebAdministration
-    Get-Command WebAdministration\*</code>
+
+    Import-Module WebAdministration
+    Get-Command WebAdministration\*
 
 
 Here is some samples that was on my way to dzen
@@ -26,23 +26,23 @@ Here is some samples that was on my way to dzen
 
 Setting up bindings examples:
 
-    
-    <code>Set-WebConfigurationProperty "/system.applicationHost/sites/site[@name='local.rabota.ua']/bindings/binding[@protocol='http']" -name bindingInformation -value '127.0.0.1:80:local.rabota.ua'
-    Set-WebConfigurationProperty "/system.applicationHost/sites/site[@name='local.rabota.ua']/bindings/binding[@protocol='http']" -name bindingInformation -value '[::1]:80:local.rabota.ua'</code>
+
+    Set-WebConfigurationProperty "/system.applicationHost/sites/site[@name='local.rabota.ua']/bindings/binding[@protocol='http']" -name bindingInformation -value '127.0.0.1:80:local.rabota.ua'
+    Set-WebConfigurationProperty "/system.applicationHost/sites/site[@name='local.rabota.ua']/bindings/binding[@protocol='http']" -name bindingInformation -value '[::1]:80:local.rabota.ua'
 
 
 List domain <-> site
 
-    
-    <code>$sites = @{}
+
+    $sites = @{}
     Get-Website | foreach { $site_name = $_.name; Get-WebBinding -name $site_name | foreach { $sites.Add([regex]::replace($_.bindingInformation, '.*?:80:', ''), $site_name) } }
-    $sites</code>
+    $sites
 
 
 And here it is:
 
-    
-    <code>Get-WebConfigurationProperty -filter "/system.applicationHost/sites/site/bindings/binding[@protocol='http']" -name bindingInformation | foreach { $site_binding = [regex]::replace($_.itemXPath, ".*?@bindingInformation='.*?:80:(.*?)'.*", "`$1"); Set-WebConfigurationProperty $_.itemXPath -name bindingInformation -value "[::1]:80:$site_binding" }</code>
+
+    Get-WebConfigurationProperty -filter "/system.applicationHost/sites/site/bindings/binding[@protocol='http']" -name bindingInformation | foreach { $site_binding = [regex]::replace($_.itemXPath, ".*?@bindingInformation='.*?:80:(.*?)'.*", "`$1"); Set-WebConfigurationProperty $_.itemXPath -name bindingInformation -value "[::1]:80:$site_binding" }
 
 
 We are getting all bindings, then from xpath we getting domain name, and
@@ -54,8 +54,8 @@ Now u can make sheduled task on dhcp ip change to change all sites ip
 
 And here is sample how i change ip
 
-    
-    <code>net stop w3svc
+
+    net stop w3svc
     netsh http show iplisten
     netsh http delete iplisten ::1
     netsh http add iplisten ipaddress="192.168.56.1:80"
@@ -63,7 +63,7 @@ And here is sample how i change ip
     Get-WebBinding
     Get-WebConfigurationProperty -filter "/system.applicationHost/sites/site/bindings/binding[@protocol='http']" -name bindingInformation | foreach { $site_binding = [regex]::replace($_.itemXPath, ".*?@bindingInformation='.*?:80:(.*?)'.*", "`$1"); Set-WebConfigurationProperty $_.itemXPath -name bindingInformation -value "192.168.56.1:80:$site_binding" }
     Get-WebBinding
-    net start w3svc</code>
+    net start w3svc
 
 
 Do not forget to change your hosts file, but better setup DNS
@@ -71,15 +71,15 @@ Do not forget to change your hosts file, but better setup DNS
 
 When run power shell do not forget to run:
 
-    
-    <code>import-module webadministration</code>
+
+    import-module webadministration
 
 
 After some research noticed that there is no need to change webbinding, so
 script going to be more easier:
 
-    
-    <code>$connection_name = "lan"
+
+    $connection_name = "lan"
     Import-Module WebAdministration
     Get-Website | foreach { Stop-Website $_.name }
     net stop w3svc
@@ -91,7 +91,7 @@ script going to be more easier:
     netsh http add iplisten ipaddress=$new_ip
     netsh http show iplisten
     net start w3svc
-    Get-Website | foreach { Start-Website $_.name }</code>
+    Get-Website | foreach { Start-Website $_.name }
 
 
 All we do is change iplisten, and in IIS leave all binding listen *.

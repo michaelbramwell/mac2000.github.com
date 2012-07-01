@@ -3,7 +3,7 @@ layout: post
 title: Microsoft CRM web service
 permalink: /590
 tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
-----
+---
 
 Интеграция с MS CRM по средствам встроенного сервиса дает возможность
 получать\изменять данные в системе.
@@ -62,55 +62,55 @@ http://msdn.microsoft.com/en-us/library/cc151014.aspx
 
 **Пример получения информации и компании из CRM**
 
-    
-    <code>MetadataService ms = new MetadataService();
+
+    MetadataService ms = new MetadataService();
     CrmService s = new CrmService();
     s.Credentials = new NetworkCredential("LOGIN", "PASSWORD", "COMPANYNAME");
     s.Credentials = new NetworkCredential("LOGIN", "PASSWORD", "COMPANYNAME");
-    
+
     EntityMetadata em = ms.RetrieveEntityMetadata("organization", EntityFlags.All);
     List<string> attrs = new List<string>();
     foreach(AttributeMetadata am in em.Attributes) {
-    	attrs.Add(am.Name);
+        attrs.Add(am.Name);
     }
     //MessageBox.Show(string.Join("\r\n", attrs.ToArray()));
-    
+
     ColumnSet colSet = new ColumnSet();
     colSet.Attributes = new string[] { "accountid", "name", "new_notebookid", "createdon" };
     QueryExpression query = new QueryExpression();
     query.EntityName = EntityName.account.ToString();
     query.ColumnSet = colSet;
-    
+
     //////
     ConditionExpression condition = new ConditionExpression();
     condition.AttributeName = "createdon";
     condition.Operator = ConditionOperator.LastXDays;
     condition.Values = new object[] { 1 };
-    
+
     // Build the filter based on the condition.
     FilterExpression filter = new FilterExpression();
     filter.FilterOperator = LogicalOperator.And;
     filter.Conditions = new ConditionExpression[] { condition };
-    
+
     // Set the Criteria field.
     query.Criteria = filter;
     //////////////////////////
-    
+
     RetrieveMultipleRequest req = new RetrieveMultipleRequest();
     req.Query = query;
-    
+
     RetrieveMultipleResponse response = (RetrieveMultipleResponse)s.Execute(req);
-    
+
     string res = "";
     List<TMP> items = new List<TMP>();
     foreach (BusinessEntity item in response.BusinessEntityCollection.BusinessEntities)
     {
-    	account a = (account)item;
-    
-    	items.Add(new TMP(a.accountid.Value.ToString(), a.new_notebookid, a.name));
+        account a = (account)item;
+
+        items.Add(new TMP(a.accountid.Value.ToString(), a.new_notebookid, a.name));
     }
-    
-    dataGridView1.DataSource = items;</code>
+
+    dataGridView1.DataSource = items;
 
 
 Собственно вот как это может выглядеть:
@@ -122,8 +122,8 @@ blog.org.ua/wp-content/uploads/22.png)
 
 Чтобы не заморачиваться с ColumnSet - можно юзать вот такую штуку:
 
-    
-    <code>query.ColumnSet = new AllColumns();</code>
+
+    query.ColumnSet = new AllColumns();
 
 
 Взято отсюда: http://community.dynamics.com/roletailored/customerservice/b/csc
@@ -133,23 +133,23 @@ dynamics-crm-with-windows-presentation-foundation.aspx
 
 Пример выуживания данных сразу из двух сущностей:
 
-    
-    <code>String fetch = "<fetch mapping='logical'>" +
+
+    String fetch = "<fetch mapping='logical'>" +
     "<entity name='account'>" +
     "<attribute name='new_notebookid'/>" +
     "<attribute name='name'/>" +
-    
+
     "<link-entity name='systemuser' link-type='inner' from='systemuserid' to='ownerid'>" +
     "<attribute name='lastname'/>" +
     "</link-entity>" +
-    
+
     "<filter type='and'>" +
     "<condition attribute = 'name' operator='like' value='%Саша%'/>" +
     "</filter>" +
-    
+
     "</entity>" +
     "</fetch>";
-    String result = s.Fetch(fetch);</code>
+    String result = s.Fetch(fetch);
 
 
 Взято из этих мест:
@@ -172,8 +172,8 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
 
 Задачи за последние N дней плюс кастомное поле из account
 
-    
-    <code>string fetchXml = @"
+
+    string fetchXml = @"
     <fetch mapping=""logical"" count=""5"">
       <entity name=""activitypointer"">
         <attribute name=""subject"" />
@@ -187,7 +187,7 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
         </link-entity>
       </entity>
     </fetch>
-    ";</code>
+    ";
 
 
 выглядит вот так:
@@ -200,29 +200,8 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
 
 Вытягиваем количество действий для конкретного аккаунта:
 
-    
-    <code>string fetchXml = @"
-    <fetch mapping=""logical"" count=""50"" aggregate=""true"">
-      <entity name=""activitypointer"">
-        <attribute name=""activityid"" aggregate=""count"" alias=""activitypointer_count"" />
-        <link-entity name=""account"" from=""accountid"" to=""regardingobjectid"">
-          <attribute name=""new_notebookid"" />
-        <filter>
-          <condition attribute=""new_notebookid"" operator=""eq"" value=""99"" />
-        </filter>
-        </link-entity>
-      </entity>
-    </fetch>
-    ";</code>
 
-
-![](http://mac-blog.org.ua/wp-content/uploads/31.png)
-
-
-**fetchxml into datagridview**
-
-    
-    <code>string fetchXml = @"
+    string fetchXml = @"
     <fetch mapping=""logical"" count=""50"" aggregate=""true"">
       <entity name=""activitypointer"">
         <attribute name=""activityid"" aggregate=""count"" alias=""activitypointer_count"" />
@@ -235,12 +214,33 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
       </entity>
     </fetch>
     ";
-    
+
+
+![](http://mac-blog.org.ua/wp-content/uploads/31.png)
+
+
+**fetchxml into datagridview**
+
+
+    string fetchXml = @"
+    <fetch mapping=""logical"" count=""50"" aggregate=""true"">
+      <entity name=""activitypointer"">
+        <attribute name=""activityid"" aggregate=""count"" alias=""activitypointer_count"" />
+        <link-entity name=""account"" from=""accountid"" to=""regardingobjectid"">
+          <attribute name=""new_notebookid"" />
+        <filter>
+          <condition attribute=""new_notebookid"" operator=""eq"" value=""99"" />
+        </filter>
+        </link-entity>
+      </entity>
+    </fetch>
+    ";
+
     String result = s.Fetch(fetchXml);
-    
+
     StringReader lxmlStringReader = new StringReader(result);
     DataSet ds = new DataSet();
     ds.ReadXml(lxmlStringReader);
-    
-    dataGridView1.DataSource = ds.Tables[1];</code>
+
+    dataGridView1.DataSource = ds.Tables[1];
 

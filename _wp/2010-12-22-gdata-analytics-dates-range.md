@@ -3,7 +3,7 @@ layout: post
 title: Gdata analytics dates range
 permalink: /233
 tags: [analytics, gdata, google, service]
-----
+---
 
 Если необходимо получать данные в разрезе дат, необходимо использовать соотв.
 dimensions, напр.: ga:month, ga:date и т.п. чтобы не нужно было делать

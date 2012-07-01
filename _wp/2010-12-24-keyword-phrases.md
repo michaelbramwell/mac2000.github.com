@@ -3,7 +3,7 @@ layout: post
 title: Keyword phrases
 permalink: /243
 tags: [gdata, google, php, search, seo]
-----
+---
 
 Необходимо получить фразу(ы) для ключевого слова, и подменить в них ключевое
 слово на ссылку с необходимым адресом.
@@ -11,36 +11,36 @@ tags: [gdata, google, php, search, seo]
 
 Ф-я получения фраз для ключевого слова:
 
-    
-    <code>function getKeywordPhrases($keyword, $target_url) {
-    	$url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s';
-    	$url = sprintf($url_tpl, urlencode($keyword));
-    	$results = json_decode(file_get_contents($url));
-    	$results = $results->responseData->results;
-    	mb_regex_encoding('utf-8');
-    	mb_internal_encoding('utf-8');
-    	$phrases = array();
-    	foreach($results as $result) {
-    		$sentences = $result->content;
-    		$sentences = strip_tags($sentences);
-    		$sentences = explode(".", $sentences);
-    		foreach($sentences as $sentence) {
-    			$sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
-    			if(empty($sentence)) continue;
-    			$sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
-    			if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
-    			$sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
-    			$phrases[] = $sentence;
-    		}
-    	}
-    	return $phrases;
-    }</code>
+
+    function getKeywordPhrases($keyword, $target_url) {
+        $url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s';
+        $url = sprintf($url_tpl, urlencode($keyword));
+        $results = json_decode(file_get_contents($url));
+        $results = $results->responseData->results;
+        mb_regex_encoding('utf-8');
+        mb_internal_encoding('utf-8');
+        $phrases = array();
+        foreach($results as $result) {
+            $sentences = $result->content;
+            $sentences = strip_tags($sentences);
+            $sentences = explode(".", $sentences);
+            foreach($sentences as $sentence) {
+                $sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
+                if(empty($sentence)) continue;
+                $sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
+                if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
+                $sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
+                $phrases[] = $sentence;
+            }
+        }
+        return $phrases;
+    }
 
 
 И небольшой пример:
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,48 +59,48 @@ tags: [gdata, google, php, search, seo]
     ?>
     </head>
     <body>
-    	<form>
-    		<h3>Keyword phrases</h3>
-    		<label>Keyword:</label>
-    		<input type="text" name="keyword" value="<?php echo $keyword ?>" />
-    		<label>Target URL:</label>
-    		<input type="text" name="target_url" value="<?php echo $target_url ?>" />
-    		<button>Get phrases</button>
-    		<h3>Phrases:</h3>
-    		<ol>
-    		<?php
-    			$phrases = getKeywordPhrases($keyword, $target_url);
-    			foreach($phrases as $phrase) echo "<li>$phrase</li>";
-    		?>
-    		</ol>
-    	</form>
+        <form>
+            <h3>Keyword phrases</h3>
+            <label>Keyword:</label>
+            <input type="text" name="keyword" value="<?php echo $keyword ?>" />
+            <label>Target URL:</label>
+            <input type="text" name="target_url" value="<?php echo $target_url ?>" />
+            <button>Get phrases</button>
+            <h3>Phrases:</h3>
+            <ol>
+            <?php
+                $phrases = getKeywordPhrases($keyword, $target_url);
+                foreach($phrases as $phrase) echo "<li>$phrase</li>";
+            ?>
+            </ol>
+        </form>
     </body>
     </html>
     <?php
     function getKeywordPhrases($keyword, $target_url) {
-    	$url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s';
-    	$url = sprintf($url_tpl, urlencode($keyword));
-    	$results = json_decode(file_get_contents($url));
-    	$results = $results->responseData->results;
-    	mb_regex_encoding('utf-8');
-    	mb_internal_encoding('utf-8');
-    	$phrases = array();
-    	foreach($results as $result) {
-    		$sentences = $result->content;
-    		$sentences = strip_tags($sentences);
-    		$sentences = explode(".", $sentences);
-    		foreach($sentences as $sentence) {
-    			$sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
-    			if(empty($sentence)) continue;
-    			$sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
-    			if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
-    			$sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
-    			$phrases[] = $sentence;
-    		}
-    	}
-    	return $phrases;
+        $url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=%s';
+        $url = sprintf($url_tpl, urlencode($keyword));
+        $results = json_decode(file_get_contents($url));
+        $results = $results->responseData->results;
+        mb_regex_encoding('utf-8');
+        mb_internal_encoding('utf-8');
+        $phrases = array();
+        foreach($results as $result) {
+            $sentences = $result->content;
+            $sentences = strip_tags($sentences);
+            $sentences = explode(".", $sentences);
+            foreach($sentences as $sentence) {
+                $sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
+                if(empty($sentence)) continue;
+                $sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
+                if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
+                $sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
+                $phrases[] = $sentence;
+            }
+        }
+        return $phrases;
     }
-    ?></code>
+    ?>
 
 
 Ну и собственно вот как это выглядит:
@@ -120,15 +120,15 @@ RU/apis/websearch/docs/reference.html)
 
 Подправленный адрес для более адекватных результатов:
 
-    
-    <code>$url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&hl=ru&rsz=8&q=%s';</code>
+
+    $url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&hl=ru&rsz=8&q=%s';
 
 
 На последок подправленный вариант, которые идет по всем результатам и дает
 больше результатов:
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -147,61 +147,61 @@ RU/apis/websearch/docs/reference.html)
     ?>
     </head>
     <body>
-    	<form>
-    		<h3>Keyword phrases</h3>
-    		<label>Keyword:</label>
-    		<input type="text" name="keyword" value="<?php echo $keyword ?>" />
-    		<label>Target URL:</label>
-    		<input type="text" name="target_url" value="<?php echo $target_url ?>" />
-    		<button>Get phrases</button>
-    		<h3>Phrases:</h3>
-    		<ol>
-    		<?php
-    			$phrases = getKeywordPhrases($keyword, $target_url);
-    			foreach($phrases as $phrase) echo "<li>$phrase</li>";
-    		?>
-    		</ol>
-    	</form>
+        <form>
+            <h3>Keyword phrases</h3>
+            <label>Keyword:</label>
+            <input type="text" name="keyword" value="<?php echo $keyword ?>" />
+            <label>Target URL:</label>
+            <input type="text" name="target_url" value="<?php echo $target_url ?>" />
+            <button>Get phrases</button>
+            <h3>Phrases:</h3>
+            <ol>
+            <?php
+                $phrases = getKeywordPhrases($keyword, $target_url);
+                foreach($phrases as $phrase) echo "<li>$phrase</li>";
+            ?>
+            </ol>
+        </form>
     </body>
     </html>
     <?php
     function getKeywordPhrases($keyword, $target_url) {
-    	$url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&start=%d&hl=ru&rsz=8&q=%s';
-    
-    	$data = array();
-    	$url = sprintf($url_tpl, 0, urlencode($keyword));
-    	$results = json_decode(file_get_contents($url));
-    	$items = $results->responseData->results;
-    	foreach($items as $item) {
-    		$data[] = $item->content;
-    	}
-    	$pages = $results->responseData->cursor->pages;
-    	array_shift($pages);
-    	foreach($pages as $page) {
-    		$url = sprintf($url_tpl, $page->start, urlencode($keyword));
-    		$results = json_decode(file_get_contents($url));
-    		$items = $results->responseData->results;
-    		foreach($items as $item) {
-    			$data[] = $item->content;
-    		}
-    	}
-    
-    	mb_regex_encoding('utf-8');
-    	mb_internal_encoding('utf-8');
-    	$phrases = array();
-    	foreach($data as $item) {
-    		$sentences = strip_tags($item);
-    		$sentences = explode(".", $sentences);
-    		foreach($sentences as $sentence) {
-    			$sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
-    			if(empty($sentence)) continue;
-    			$sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
-    			if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
-    			$sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
-    			$phrases[] = $sentence;
-    		}
-    	}
-    	return $phrases;
+        $url_tpl = 'https://ajax.googleapis.com/ajax/services/search/web?v=1.0&start=%d&hl=ru&rsz=8&q=%s';
+
+        $data = array();
+        $url = sprintf($url_tpl, 0, urlencode($keyword));
+        $results = json_decode(file_get_contents($url));
+        $items = $results->responseData->results;
+        foreach($items as $item) {
+            $data[] = $item->content;
+        }
+        $pages = $results->responseData->cursor->pages;
+        array_shift($pages);
+        foreach($pages as $page) {
+            $url = sprintf($url_tpl, $page->start, urlencode($keyword));
+            $results = json_decode(file_get_contents($url));
+            $items = $results->responseData->results;
+            foreach($items as $item) {
+                $data[] = $item->content;
+            }
+        }
+
+        mb_regex_encoding('utf-8');
+        mb_internal_encoding('utf-8');
+        $phrases = array();
+        foreach($data as $item) {
+            $sentences = strip_tags($item);
+            $sentences = explode(".", $sentences);
+            foreach($sentences as $sentence) {
+                $sentence = trim($sentence, " ,.:;!?-_()[]\"'`");
+                if(empty($sentence)) continue;
+                $sentence = mb_strtoupper(mb_substr($sentence, 0, 1, "UTF-8"), "UTF-8").mb_substr($sentence, 1, mb_strlen($sentence), "UTF-8" ) . '.';
+                if(!preg_match('/'.$keyword.'/ui', $sentence)) continue;
+                $sentence = preg_replace('/'.$keyword.'/ui','<a href="'.$target_url.'" target="_blank">$0</a>', $sentence);
+                $phrases[] = $sentence;
+            }
+        }
+        return $phrases;
     }
-    ?></code>
+    ?>
 

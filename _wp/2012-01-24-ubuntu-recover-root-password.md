@@ -3,7 +3,7 @@ layout: post
 title: Ubuntu, recover root password
 permalink: /926
 tags: [linux, passwd, password, pwconv, pwd, recover, recovery, root, shadow, ubuntu]
-----
+---
 
 You need to load into recovery mode
 

@@ -3,15 +3,15 @@ layout: post
 title: iframe auto height
 permalink: /534
 tags: [auto, crossdomain, height, iframe, javascript, jquery, js]
-----
+---
 
 Found at: http://benalman.com/projects/jquery-postmessage-plugin/
 
 
 Code for iframe (http://site1.com/frame.html):
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -27,42 +27,42 @@ Code for iframe (http://site1.com/frame.html):
     <h4>TEST FRAME</h4>
     <p id="cnt">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras gravida mattis metus, id ullamcorper urna euismod vitae. Quisque quis felis vulputate mauris malesuada accumsan vel non mi. Ut fermentum tincidunt fermentum. Fusce pulvinar sagittis augue, a molestie nibh tincidunt ut. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla sodales nulla egestas lacus venenatis dictum euismod tellus suscipit. Proin enim justo, ultricies ac venenatis rutrum, lacinia vitae sapien. Duis pharetra viverra tortor, vehicula mollis sapien euismod quis. Mauris non dui tortor. Maecenas vestibulum vulputate metus, id sollicitudin eros malesuada quis. Donec feugiat aliquam dolor at ornare. Duis at magna nibh. Curabitur vestibulum accumsan volutpat. Donec id sem vitae elit ultricies blandit. In porttitor felis eget metus vulputate semper. Pellentesque suscipit erat nec est consequat laoreet vel nec nulla.</p>
     </div>
-    
+
     <script type="text/javascript">
     jQuery(document).ready(function($) {
-    	var parent_url = decodeURIComponent(document.location.hash.replace( /^#/, '' ));
-    	setInterval(function(){ 
-    		$.postMessage(
-    			{ ruacifh: $('body').outerHeight( true ) },
-    			parent_url,
-    			parent
-    		);
-    	}, 500);
-    
-    	setInterval(function(){
-    		var rnd = getRandom(5, 20);
-    		var cnt = '';
-    		for(var i = 0; i < rnd; i++) {
-    			cnt += 'Line ' + (i+1) + '<br />';
-    		}
-    		$('#cnt').html(cnt);
-    	}, 2000);
+        var parent_url = decodeURIComponent(document.location.hash.replace( /^#/, '' ));
+        setInterval(function(){
+            $.postMessage(
+                { ruacifh: $('body').outerHeight( true ) },
+                parent_url,
+                parent
+            );
+        }, 500);
+
+        setInterval(function(){
+            var rnd = getRandom(5, 20);
+            var cnt = '';
+            for(var i = 0; i < rnd; i++) {
+                cnt += 'Line ' + (i+1) + '<br />';
+            }
+            $('#cnt').html(cnt);
+        }, 2000);
     });
-    
-    function getRandom(min, max) {		
-    	var randomNum = Math.random() * (max-min);
-    	return (Math.round(randomNum) + min); 
+
+    function getRandom(min, max) {
+        var randomNum = Math.random() * (max-min);
+        return (Math.round(randomNum) + min);
     }
-    
+
     </script>
     </body>
-    </html></code>
+    </html>
 
 
 Code for page (example.com):
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -75,23 +75,23 @@ Code for page (example.com):
     <div id="frm"></div>
     <script type="text/javascript">
     jQuery(document).ready(function($) {
-    	var ruacifh = 30;
-    	var src = 'http://webdiz.com.ua/ift/frame.html#' + encodeURIComponent( document.location.href );
-    
-    	$('#frm').html('<iframe style="background:#fff" " src="' + src + '" width="300" height="'+ruacifh+'" scrolling="no" frameborder="0"></iframe>');
-    
-    	$.receiveMessage(
-    		function(e){
-    			var h = Number( e.data.replace( /.*ruacifh=(\d+)(?:&|$)/, '$1' ) );
-    			if ( !isNaN( h ) && h > 0 && h !== ruacifh ) {
-    				ruacifh = h;
-    				$('#frm iframe:first').height(ruacifh+'px');				
-    			}
-    		},
-    		'http://example.com' //!!! Site where frame is, will be http://rabota.ua
-    	);
+        var ruacifh = 30;
+        var src = 'http://webdiz.com.ua/ift/frame.html#' + encodeURIComponent( document.location.href );
+
+        $('#frm').html('<iframe style="background:#fff" " src="' + src + '" width="300" height="'+ruacifh+'" scrolling="no" frameborder="0"></iframe>');
+
+        $.receiveMessage(
+            function(e){
+                var h = Number( e.data.replace( /.*ruacifh=(\d+)(?:&|$)/, '$1' ) );
+                if ( !isNaN( h ) && h > 0 && h !== ruacifh ) {
+                    ruacifh = h;
+                    $('#frm iframe:first').height(ruacifh+'px');
+                }
+            },
+            'http://example.com' //!!! Site where frame is, will be http://rabota.ua
+        );
     });
     </script>
     </body>
-    </html></code>
+    </html>
 

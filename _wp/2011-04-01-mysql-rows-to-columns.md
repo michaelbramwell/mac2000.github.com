@@ -3,7 +3,7 @@ layout: post
 title: MySQL rows to columns
 permalink: /537
 tags: [TODO]
-----
+---
 
 Found at: [http://www.artfulsoftware.com/infotree/queries.php#78](http://www.a
 rtfulsoftware.com/infotree/queries.php#78)
@@ -18,42 +18,42 @@ blog.org.ua/wp-content/uploads/18.png)
 
 Script:
 
-    
-    <code>SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+
+    SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
     SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
     SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
-    
+
     DROP SCHEMA IF EXISTS `rows2cols` ;
     CREATE SCHEMA IF NOT EXISTS `rows2cols` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
     USE `rows2cols` ;
-    
+
     -- -----------------------------------------------------
     -- Table `rows2cols`.`products`
     -- -----------------------------------------------------
     DROP TABLE IF EXISTS `rows2cols`.`products` ;
-    
+
     CREATE  TABLE IF NOT EXISTS `rows2cols`.`products` (
       `id` INT NOT NULL AUTO_INCREMENT ,
       `name` VARCHAR(45) NULL ,
       PRIMARY KEY (`id`) )
     ENGINE = InnoDB;
-    
+
     -- -----------------------------------------------------
     -- Table `rows2cols`.`properties`
     -- -----------------------------------------------------
     DROP TABLE IF EXISTS `rows2cols`.`properties` ;
-    
+
     CREATE  TABLE IF NOT EXISTS `rows2cols`.`properties` (
       `id` INT NOT NULL ,
       `name` VARCHAR(45) NULL ,
       PRIMARY KEY (`id`) )
     ENGINE = InnoDB;
-    
+
     -- -----------------------------------------------------
     -- Table `rows2cols`.`product_properties`
     -- -----------------------------------------------------
     DROP TABLE IF EXISTS `rows2cols`.`product_properties` ;
-    
+
     CREATE  TABLE IF NOT EXISTS `rows2cols`.`product_properties` (
       `id` INT NOT NULL AUTO_INCREMENT ,
       `product_id` INT NOT NULL ,
@@ -73,11 +73,11 @@ Script:
         ON DELETE NO ACTION
         ON UPDATE NO ACTION)
     ENGINE = InnoDB;
-    
+
     SET SQL_MODE=@OLD_SQL_MODE;
     SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
     SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-    
+
     -- -----------------------------------------------------
     -- Data for table `rows2cols`.`products`
     -- -----------------------------------------------------
@@ -86,9 +86,9 @@ Script:
     INSERT INTO `rows2cols`.`products` (`id`, `name`) VALUES (1, 'prod1');
     INSERT INTO `rows2cols`.`products` (`id`, `name`) VALUES (2, 'prod2');
     INSERT INTO `rows2cols`.`products` (`id`, `name`) VALUES (3, 'prod3');
-    
+
     COMMIT;
-    
+
     -- -----------------------------------------------------
     -- Data for table `rows2cols`.`properties`
     -- -----------------------------------------------------
@@ -96,9 +96,9 @@ Script:
     USE `rows2cols`;
     INSERT INTO `rows2cols`.`properties` (`id`, `name`) VALUES (1, 'price');
     INSERT INTO `rows2cols`.`properties` (`id`, `name`) VALUES (2, 'weight');
-    
+
     COMMIT;
-    
+
     -- -----------------------------------------------------
     -- Data for table `rows2cols`.`product_properties`
     -- -----------------------------------------------------
@@ -110,15 +110,15 @@ Script:
     INSERT INTO `rows2cols`.`product_properties` (`id`, `product_id`, `property_id`, `value`) VALUES (4, 2, 2, '33');
     INSERT INTO `rows2cols`.`product_properties` (`id`, `product_id`, `property_id`, `value`) VALUES (5, 3, 1, '33');
     INSERT INTO `rows2cols`.`product_properties` (`id`, `product_id`, `property_id`, `value`) VALUES (6, 3, 2, '44');
-    
+
     COMMIT;
-    </code>
+
 
 
 Here is tables data:
 
-    
-    <code>mysql> use rows2cols;
+
+    mysql> use rows2cols;
     Database changed
     mysql> select * from products;
     +----+-------+
@@ -129,7 +129,7 @@ Here is tables data:
     |  3 | prod3 |
     +----+-------+
     3 rows in set (0.00 sec)
-    
+
     mysql> select * from properties;
     +----+--------+
     | id | name   |
@@ -138,7 +138,7 @@ Here is tables data:
     |  2 | weight |
     +----+--------+
     2 rows in set (0.00 sec)
-    
+
     mysql> select * from product_properties;
     +----+------------+-------------+-------+
     | id | product_id | property_id | value |
@@ -150,13 +150,13 @@ Here is tables data:
     |  5 |          3 |           1 | 33    |
     |  6 |          3 |           2 | 44    |
     +----+------------+-------------+-------+
-    6 rows in set (0.00 sec)</code>
+    6 rows in set (0.00 sec)
 
 
 Bad way to retrive data:
 
-    
-    <code>mysql> SELECT
+
+    mysql> SELECT
         ->     products.id,
         ->     products.name,
         ->     properties.name,
@@ -177,18 +177,18 @@ Bad way to retrive data:
     |  3 | prod3 | price  | 33    |
     |  3 | prod3 | weight | 44    |
     +----+-------+--------+-------+
-    6 rows in set (0.00 sec)</code>
+    6 rows in set (0.00 sec)
 
 
 Good way:
 
-    
-    <code>mysql> SELECT
+
+    mysql> SELECT
         ->     products.id,
         ->     products.name,
         ->     GROUP_CONCAT(if(properties.name = 'price', value, NULL)) AS 'price',
         ->     GROUP_CONCAT(if(properties.name = 'weight', value, NULL)) AS 'weight'
-    
+
         ->
         -> FROM products
         -> JOIN product_properties
@@ -203,22 +203,22 @@ Good way:
     |  2 | prod2 | 22    | 33     |
     |  3 | prod3 | 33    | 44     |
     +----+-------+-------+--------+
-    3 rows in set (0.00 sec)</code>
+    3 rows in set (0.00 sec)
 
 
 **So here is SQL:**
 
-    
-    <code>SELECT
+
+    SELECT
         products.id,
         products.name,
         GROUP_CONCAT(if(properties.name = 'price', value, NULL)) AS 'price',
         GROUP_CONCAT(if(properties.name = 'weight', value, NULL)) AS 'weight'
-    
+
     FROM products
     JOIN product_properties
     ON products.id = product_properties.product_id
     JOIN properties
     ON product_properties.property_id = properties.id
-    GROUP BY products.id</code>
+    GROUP BY products.id
 

@@ -3,7 +3,7 @@ layout: post
 title: ExtJs ajax request, json and masking
 permalink: /410
 tags: [ajax, beforerequest, ext, extjs, javascript, js, json, mask, request, requestcomplete, requestexception, response, responsetext]
-----
+---
 
 Links:
 
@@ -19,8 +19,8 @@ ajax-request-with-callback-and-json-to-object-deserialization/)
 
 Code:
 
-    
-    <code><%-- MASKING AJAX --%>
+
+    <%-- MASKING AJAX --%>
     <script type="text/javascript">
         var maskingAjax = new Ext.data.Connection({
             listeners: {
@@ -45,7 +45,7 @@ Code:
             }
         });
     </script>
-    
+
     <%-- GET RABOTA.UA COMPANY INFO --%>
     <script type="text/javascript">
         function getCompanyInfo(id) {
@@ -58,6 +58,6 @@ Code:
                 },
                 params: { NotebookId: id }
             });
-        }        
-    </script></code>
+        }
+    </script>
 

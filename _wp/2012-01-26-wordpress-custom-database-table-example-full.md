@@ -3,14 +3,14 @@ layout: post
 title: WordPress custom database table example (full)
 permalink: /942
 tags: [add_menu_page, add_meta_box, add_submenu_page, admin_menu, dbDelta, do_meta_boxes, gettext, i18n, l10n, load_plugin_textdomain, mo, plugin, plugins_loaded, po, register_activation_hook, wordpress, WP_List_Table]
-----
+---
 
 [![](http://mac-blog.org.ua/wp-content/uploads/cte1-300x179.png)](http://mac-
 blog.org.ua/wp-content/uploads/cte1.png) [![](http://mac-blog.org.ua/wp-
 content/uploads/cte2-300x178.png)](http://mac-blog.org.ua/wp-
 content/uploads/cte2.png)
 
-    
+
     <?php
     /*
     Plugin Name: Custom table example
@@ -21,7 +21,7 @@ content/uploads/cte2.png)
     License: Public Domain
     Version: 1.1
     */
-    
+
     /**
      * PART 1. Defining Custom Database Table
      * ============================================================================
@@ -38,14 +38,14 @@ content/uploads/cte2.png)
      *
      * to drop table and option
      */
-    
+
     /**
      * $custom_table_example_db_version - holds current database version
      * and used on plugin update to sync database tables
      */
     global $custom_table_example_db_version;
     $custom_table_example_db_version = '1.1'; // version changed from 1.0 to 1.1
-    
+
     /**
      * register_activation_hook implementation
      *
@@ -56,9 +56,9 @@ content/uploads/cte2.png)
     {
         global $wpdb;
         global $custom_table_example_db_version;
-    
+
         $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
-    
+
         // sql to create your table
         // NOTICE that:
         // 1. each field MUST be in separate line
@@ -66,21 +66,21 @@ content/uploads/cte2.png)
         //    Like this: PRIMARY KEY[space][space](id)
         // otherwise dbDelta will not work
         $sql = "CREATE TABLE " . $table_name . " (
-    	  id int(11) NOT NULL AUTO_INCREMENT,
-    	  name tinytext NOT NULL,
-    	  email VARCHAR(100) NOT NULL,
-    	  age int(11) NULL,
-    	  PRIMARY KEY  (id)
+          id int(11) NOT NULL AUTO_INCREMENT,
+          name tinytext NOT NULL,
+          email VARCHAR(100) NOT NULL,
+          age int(11) NULL,
+          PRIMARY KEY  (id)
         );";
-    
+
         // we do not execute sql directly
         // we are calling dbDelta which cant migrate database
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
-    
+
         // save current database version for later use (on upgrade)
         add_option('custom_table_example_db_version', $custom_table_example_db_version);
-    
+
         /**
          * [OPTIONAL] Example of updating to 1.1 version
          *
@@ -97,23 +97,23 @@ content/uploads/cte2.png)
         $installed_ver = get_option('custom_table_example_db_version');
         if ($installed_ver != $custom_table_example_db_version) {
             $sql = "CREATE TABLE " . $table_name . " (
-       	      id int(11) NOT NULL AUTO_INCREMENT,
-       	  	  name tinytext NOT NULL,
-       	  	  email VARCHAR(200) NOT NULL,
-       	  	  age int(11) NULL,
-       	  	  PRIMARY KEY  (id)
-          	);";
-    
+              id int(11) NOT NULL AUTO_INCREMENT,
+              name tinytext NOT NULL,
+              email VARCHAR(200) NOT NULL,
+              age int(11) NULL,
+              PRIMARY KEY  (id)
+            );";
+
             require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
             dbDelta($sql);
-    
+
             // notice that we are updating option, rather than adding it
             update_option('custom_table_example_db_version', $custom_table_example_db_version);
         }
     }
-    
+
     register_activation_hook(__FILE__, 'custom_table_example_install');
-    
+
     /**
      * register_activation_hook implementation
      *
@@ -124,9 +124,9 @@ content/uploads/cte2.png)
     function custom_table_example_install_data()
     {
         global $wpdb;
-    
+
         $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
-    
+
         $wpdb->insert($table_name, array(
             'name' => 'Alex',
             'email' => 'alex@example.com',
@@ -138,9 +138,9 @@ content/uploads/cte2.png)
             'age' => 22
         ));
     }
-    
+
     register_activation_hook(__FILE__, 'custom_table_example_install_data');
-    
+
     /**
      * Trick to update plugin database, see docs
      */
@@ -151,9 +151,9 @@ content/uploads/cte2.png)
             custom_table_example_install();
         }
     }
-    
+
     add_action('plugins_loaded', 'custom_table_example_update_db_check');
-    
+
     /**
      * PART 2. Defining Custom Table List
      * ============================================================================
@@ -164,11 +164,11 @@ content/uploads/cte2.png)
      * http://codex.wordpress.org/Class_Reference/WP_List_Table
      * http://wordpress.org/extend/plugins/custom-list-table-example/
      */
-    
+
     if (!class_exists('WP_List_Table')) {
         require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
     }
-    
+
     /**
      * Custom_Table_Example_List_Table class that will display our custom table
      * records in nice table
@@ -181,13 +181,13 @@ content/uploads/cte2.png)
         function __construct()
         {
             global $status, $page;
-    
+
             parent::__construct(array(
                 'singular' => 'person',
                 'plural' => 'persons',
             ));
         }
-    
+
         /**
          * [REQUIRED] this is a default column renderer
          *
@@ -199,7 +199,7 @@ content/uploads/cte2.png)
         {
             return $item[$column_name];
         }
-    
+
         /**
          * [OPTIONAL] this is example, how to render specific column
          *
@@ -212,7 +212,7 @@ content/uploads/cte2.png)
         {
             return '<em>' . $item['age'] . '</em>';
         }
-    
+
         /**
          * [OPTIONAL] this is example, how to render column with actions,
          * when you hover row "Edit | Delete" links showed
@@ -230,13 +230,13 @@ content/uploads/cte2.png)
                 'edit' => sprintf('<a href="?page=persons_form&id=%s">%s</a>', $item['id'], __('Edit', 'custom_table_example')),
                 'delete' => sprintf('<a href="?page=%s&action=delete&id=%s">%s</a>', $_REQUEST['page'], $item['id'], __('Delete', 'custom_table_example')),
             );
-    
+
             return sprintf('%s %s',
                 $item['name'],
                 $this->row_actions($actions)
             );
         }
-    
+
         /**
          * [REQUIRED] this is how checkbox column renders
          *
@@ -250,7 +250,7 @@ content/uploads/cte2.png)
                 $item['id']
             );
         }
-    
+
         /**
          * [REQUIRED] This method return columns to display in table
          * you can skip columns that you do not want to show
@@ -268,7 +268,7 @@ content/uploads/cte2.png)
             );
             return $columns;
         }
-    
+
         /**
          * [OPTIONAL] This method return columns that may be used to sort table
          * all strings in array - is column names
@@ -285,7 +285,7 @@ content/uploads/cte2.png)
             );
             return $sortable_columns;
         }
-    
+
         /**
          * [OPTIONAL] Return array of bult actions if has any
          *
@@ -298,7 +298,7 @@ content/uploads/cte2.png)
             );
             return $actions;
         }
-    
+
         /**
          * [OPTIONAL] This method processes bulk actions
          * it can be outside of class
@@ -310,17 +310,17 @@ content/uploads/cte2.png)
         {
             global $wpdb;
             $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
-    
+
             if ('delete' === $this->current_action()) {
                 $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : array();
                 if (is_array($ids)) $ids = implode(',', $ids);
-    
+
                 if (!empty($ids)) {
                     $wpdb->query("DELETE FROM $table_name WHERE id IN($ids)");
                 }
             }
         }
-    
+
         /**
          * [REQUIRED] This is the most important method
          *
@@ -330,31 +330,31 @@ content/uploads/cte2.png)
         {
             global $wpdb;
             $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
-    
+
             $per_page = 5; // constant, how much records will be shown per page
-    
+
             $columns = $this->get_columns();
             $hidden = array();
             $sortable = $this->get_sortable_columns();
-    
+
             // here we configure table headers, defined in our methods
             $this->_column_headers = array($columns, $hidden, $sortable);
-    
+
             // [OPTIONAL] process bulk action if any
             $this->process_bulk_action();
-    
+
             // will be used in pagination settings
             $total_items = $wpdb->get_var("SELECT COUNT(id) FROM $table_name");
-    
+
             // prepare query params, as usual current page, order by and order direction
             $paged = isset($_REQUEST['paged']) ? max(0, intval($_REQUEST['paged']) - 1) : 0;
             $orderby = (isset($_REQUEST['orderby']) && in_array($_REQUEST['orderby'], array_keys($this->get_sortable_columns()))) ? $_REQUEST['orderby'] : 'name';
             $order = (isset($_REQUEST['order']) && in_array($_REQUEST['order'], array('asc', 'desc'))) ? $_REQUEST['order'] : 'asc';
-    
+
             // [REQUIRED] define $items array
             // notice that last argument is ARRAY_A, so we will retrieve array
             $this->items = $wpdb->get_results($wpdb->prepare("SELECT * FROM $table_name ORDER BY $orderby $order LIMIT %d OFFSET %d", $per_page, $paged), ARRAY_A);
-    
+
             // [REQUIRED] configure pagination
             $this->set_pagination_args(array(
                 'total_items' => $total_items, // total items defined above
@@ -363,7 +363,7 @@ content/uploads/cte2.png)
             ));
         }
     }
-    
+
     /**
      * PART 3. Admin page
      * ============================================================================
@@ -372,7 +372,7 @@ content/uploads/cte2.png)
      *
      * http://codex.wordpress.org/Administration_Menus
      */
-    
+
     /**
      * admin_menu hook implementation, will add pages to list persons and to add new one
      */
@@ -383,9 +383,9 @@ content/uploads/cte2.png)
         // add new will be described in next part
         add_submenu_page('persons', __('Add new', 'custom_table_example'), __('Add new', 'custom_table_example'), 'activate_plugins', 'persons_form', 'custom_table_example_persons_form_page_handler');
     }
-    
+
     add_action('admin_menu', 'custom_table_example_admin_menu');
-    
+
     /**
      * List page handler
      *
@@ -399,32 +399,32 @@ content/uploads/cte2.png)
     function custom_table_example_persons_page_handler()
     {
         global $wpdb;
-    
+
         $table = new Custom_Table_Example_List_Table();
         $table->prepare_items();
-    
+
         $message = '';
         if ('delete' === $table->current_action()) {
             $message = '<div class="updated below-h2" id="message"><p>' . sprintf(__('Items deleted: %d', 'custom_table_example'), count($_REQUEST['id'])) . '</p></div>';
         }
         ?>
     <div class="wrap">
-    
+
         <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
         <h2><?php _e('Persons', 'custom_table_example')?> <a class="add-new-h2"
                                      href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=persons_form');?>"><?php _e('Add new', 'custom_table_example')?></a>
         </h2>
         <?php echo $message; ?>
-    
+
         <form id="persons-table" method="GET">
             <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>"/>
             <?php $table->display() ?>
         </form>
-    
+
     </div>
     <?php
     }
-    
+
     /**
      * PART 4. Form for adding andor editing row
      * ============================================================================
@@ -437,7 +437,7 @@ content/uploads/cte2.png)
      * http://codex.wordpress.org/Data_Validation
      * http://codex.wordpress.org/Function_Reference/selected
      */
-    
+
     /**
      * Form page handler checks is there some data posted and tries to save it
      * Also it renders basic wrapper in which we are callin meta box render
@@ -446,10 +446,10 @@ content/uploads/cte2.png)
     {
         global $wpdb;
         $table_name = $wpdb->prefix . 'cte'; // do not forget about tables prefix
-    
+
         $message = '';
         $notice = '';
-    
+
         // this is default $item which will be used for new records
         $default = array(
             'id' => 0,
@@ -457,7 +457,7 @@ content/uploads/cte2.png)
             'email' => '',
             'age' => null,
         );
-    
+
         // here we are verifying does this request is post back and have correct nonce
         if (wp_verify_nonce($_REQUEST['nonce'], basename(__FILE__))) {
             // combine our default item with request params
@@ -498,29 +498,29 @@ content/uploads/cte2.png)
                 }
             }
         }
-    
+
         // here we adding our custom meta box
         add_meta_box('persons_form_meta_box', 'Person data', 'custom_table_example_persons_form_meta_box_handler', 'person', 'normal', 'default');
-    
+
         ?>
     <div class="wrap">
         <div class="icon32 icon32-posts-post" id="icon-edit"><br></div>
         <h2><?php _e('Person', 'custom_table_example')?> <a class="add-new-h2"
                                     href="<?php echo get_admin_url(get_current_blog_id(), 'admin.php?page=persons');?>"><?php _e('back to list', 'custom_table_example')?></a>
         </h2>
-    
+
         <?php if (!empty($notice)): ?>
         <div id="notice" class="error"><p><?php echo $notice ?></p></div>
         <?php endif;?>
         <?php if (!empty($message)): ?>
         <div id="message" class="updated"><p><?php echo $message ?></p></div>
         <?php endif;?>
-    
+
         <form id="form" method="POST">
             <input type="hidden" name="nonce" value="<?php echo wp_create_nonce(basename(__FILE__))?>"/>
             <?php /* NOTICE: here we storing id to determine will be item added or updated */ ?>
             <input type="hidden" name="id" value="<?php echo $item['id'] ?>"/>
-    
+
             <div class="metabox-holder" id="poststuff">
                 <div id="post-body">
                     <div id="post-body-content">
@@ -534,7 +534,7 @@ content/uploads/cte2.png)
     </div>
     <?php
     }
-    
+
     /**
      * This function renders our custom meta box
      * $item is row
@@ -544,7 +544,7 @@ content/uploads/cte2.png)
     function custom_table_example_persons_form_meta_box_handler($item)
     {
         ?>
-    
+
     <table cellspacing="2" cellpadding="5" style="width: 100%;" class="form-table">
         <tbody>
         <tr class="form-field">
@@ -578,7 +578,7 @@ content/uploads/cte2.png)
     </table>
     <?php
     }
-    
+
     /**
      * Simple function that validates data and retrieve bool on success
      * and error message(s) on error
@@ -589,18 +589,18 @@ content/uploads/cte2.png)
     function custom_table_example_validate_person($item)
     {
         $messages = array();
-    
+
         if (empty($item['name'])) $messages[] = __('Name is required', 'custom_table_example');
         if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'custom_table_example');
         if (!ctype_digit($item['age'])) $messages[] = __('Age in wrong format', 'custom_table_example');
         //if(!empty($item['age']) && !absint(intval($item['age'])))  $messages[] = __('Age can not be less than zero');
         //if(!empty($item['age']) && !preg_match('/[0-9]+/', $item['age'])) $messages[] = __('Age must be number');
         //...
-    
+
         if (empty($messages)) return true;
         return implode('<br />', $messages);
     }
-    
+
     /**
      * Do not forget about translating your plugin, use __('english string', 'your_uniq_plugin_name') to retrieve translated string
      * and _e('english string', 'your_uniq_plugin_name') to echo it
@@ -619,6 +619,6 @@ content/uploads/cte2.png)
     {
         load_plugin_textdomain('custom_table_example', false, dirname(plugin_basename(__FILE__)));
     }
-    
+
     add_action('init', 'custom_table_example_languages');
 

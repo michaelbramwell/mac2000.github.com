@@ -3,13 +3,13 @@ layout: post
 title: Php tabbed text tree parser
 permalink: /487
 tags: [dom, DOMDocument, domelement, lib, list, nodes, parser, php, tree]
-----
+---
 
 This code parses tabbed text trees into DomDocument xml tree
 
-    
-    <code><?php
-    
+
+    <?php
+
     /**
      * Parses tabbed lines to xml tree
      *
@@ -26,24 +26,24 @@ This code parses tabbed text trees into DomDocument xml tree
         public static function parse($text, $delimiter = "\t") {
             $delimiterRE = '/' . preg_quote($delimiter, "/") . '/';
             $lines = explode(PHP_EOL, trim($text));
-    
+
             $dom = new DomDocument('1.0', 'utf-8');
             $dom->formatOutput = true;
             $root = $dom->createElement('items');
             $dom->appendChild($root);
-    
+
             $parent = $root;
             $prev_depth = 0;
             $prev_parent = $root;
             $prev_item = NULL;
-    
+
             foreach($lines as $line) {
                 $value = trim($line);
-    
+
                 if (!empty($value)) { // escape empty items
-    
+
                     $depth = preg_match_all($delimiterRE, $line, $matches);
-    
+
                     // if depth is bigger that in previous step then it is child
                     if ($depth > $prev_depth) {
                         $prev_depth = $depth;
@@ -60,38 +60,38 @@ This code parses tabbed text trees into DomDocument xml tree
                         $prev_parent = $root;
                         $prev_item = NULL;
                     }
-    
+
                     $item = $dom->createElement('item');
                     $item->setAttribute('value', $value);
                     $parent->appendChild($item);
                     $prev_item = $item;
                 }
             }
-    
+
             return $dom;
         }
-    
-    }</code>
+
+    }
 
 
 Here is usage example:
 
-    
-    <code><?php
+
+    <?php
     require_once 'TabbedLinesTree.php';
-    
+
     $text = "Line 1
     Line 2
-    	Line 2.1
-    	Line 2.2
-    
+        Line 2.1
+        Line 2.2
+
     Line 3";
-    
+
     $dom = TabbedLinesTree::parse($text);
-    
+
     echo $dom->saveXML();
     /* Will output:
-    
+
     <?xml version="1.0" encoding="utf-8"?>
     <items>
       <item value="Line 1"/>
@@ -101,7 +101,7 @@ Here is usage example:
       </item>
       <item value="Line 3"/>
     </items>
-     */</code>
+     */
 
 
 Code with tests [TabbedLinesTree.tar](http://mac-blog.org.ua/wp-

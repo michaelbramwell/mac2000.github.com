@@ -3,7 +3,7 @@ layout: post
 title: Using google charts to display email as image
 permalink: /813
 tags: [charts, email, google, image, mail, security, static]
-----
+---
 
 [http://chart.apis.google.com/chart?chst=d_text_outline&chld=000000|14|h|FFFFF
 F|_|mac@example.com](http://chart.apis.google.com/chart?chst=d_text_outline&ch

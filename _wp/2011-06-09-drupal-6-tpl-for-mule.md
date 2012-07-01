@@ -3,21 +3,21 @@ layout: post
 title: drupal 6 tpl for mule
 permalink: /612
 tags: [drupal, hook_theme, module, template, theme, tpl]
-----
+---
 
 **cust.info**
 
-    
-    <code>name = cust
+
+    name = cust
     description = cust
     package = Other
-    core = 6.x</code>
+    core = 6.x
 
 
 **cust.module**
 
-    
-    <code><?php
+
+    <?php
     function cust_theme() {
         return array(
                 'moe_example' => array(
@@ -28,23 +28,23 @@ tags: [drupal, hook_theme, module, template, theme, tpl]
                 ),
         );
     }
-    ?></code>
+    ?>
 
 
 **moe-example.tpl.php**
 
-    
-    <code>start<br />
+
+    start<br />
     <?php var_dump($some_data);?>
-    end<br /></code>
+    end<br />
 
 
 somewhere in **node.tpl.php**
 
-    
-    <code><?php echo 'xx';
+
+    <?php echo 'xx';
     print theme('moe_example', array(1,2,3));
-    ?></code>
+    ?>
 
 
 http://www.captaincodemonkey.com/blog/2010/12/26/drupal-6x-skeleton-module-
@@ -56,94 +56,94 @@ And more complex example:
 
 **catalog.info**
 
-    
-    <code>name = catalog
+
+    name = catalog
     description = "custom catalog module."
-    core = 6.x</code>
+    core = 6.x
 
 
 **catalog.module**
 
-    
-    <code><?php
+
+    <?php
     //pull in our include file
     module_load_include('inc', 'catalog');
-    
+
     function catalog_perm() {
-    	return array('add items');
+        return array('add items');
     }
-    
+
     //lets get some sweet sweet menu action going
     function catalog_menu() {
-    
-    	$items['catalog'] = array(
-    		'title' => 'My catalog example',
-    		'description' => t('My catalog example desc'),		
-    		'page callback' => 'catalog_page', // 
-    		'access callback' => 'user_access',
-    		'access arguments' => array('access content'), // or use hook_perm() to make your own
-    		'type' => MENU_CALLBACK,
-    	);
-    	return $items;
+
+        $items['catalog'] = array(
+            'title' => 'My catalog example',
+            'description' => t('My catalog example desc'),
+            'page callback' => 'catalog_page', //
+            'access callback' => 'user_access',
+            'access arguments' => array('access content'), // or use hook_perm() to make your own
+            'type' => MENU_CALLBACK,
+        );
+        return $items;
     }
-    
+
     //function
     function catalog_page() {
-    	$output = theme('catalog_catalog', _catalog_get_items());
-    
-    	if(user_access('add item')) {
-    		$output = $output . theme('catalog_form');
-    	}
-    	return $output;
+        $output = theme('catalog_catalog', _catalog_get_items());
+
+        if(user_access('add item')) {
+            $output = $output . theme('catalog_form');
+        }
+        return $output;
     }
-    
+
     //hook_theme
     function catalog_theme($existing, $type, $theme, $path) {
-    	return array(
-    		'catalog_catalog' => array(
-    			'arguments' => array('items' => NULL),
-    			'template' => 'catalog-catalog',
-    		),
-    		'catalog_form' => array(
-    			'template' => 'catalog-form',
-    		),
-    	);
+        return array(
+            'catalog_catalog' => array(
+                'arguments' => array('items' => NULL),
+                'template' => 'catalog-catalog',
+            ),
+            'catalog_form' => array(
+                'template' => 'catalog-form',
+            ),
+        );
     }
-    </code>
+
 
 
 **catalog.inc**
 
-    
-    <code><?php
-    
+
+    <?php
+
     /* Put any helper functions or other stuff you want in here */
     function _catalog_get_items() {
-    	return array(
-    		array(
-    			'id' => 1,
-    			'name' => 'one'
-    		),
-    		array(
-    			'id' => 2,
-    			'name' => 'two'
-    		)
-    	);
+        return array(
+            array(
+                'id' => 1,
+                'name' => 'one'
+            ),
+            array(
+                'id' => 2,
+                'name' => 'two'
+            )
+        );
     }
-    
-    ?></code>
+
+    ?>
 
 
 **catalog-catalog.tpl.php**
 
-    
-    <code>hello from catalog.tpl.php</code>
+
+    hello from catalog.tpl.php
 
 
 **catalog-form.tpl.php**
 
-    
-    <code>hello from catalog-form.tpl.php</code>
+
+    hello from catalog-form.tpl.php
 
 
 Now if you will go to example.com/catalog - you will see both templates if you

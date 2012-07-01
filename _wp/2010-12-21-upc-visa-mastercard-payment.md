@@ -3,7 +3,7 @@ layout: post
 title: UPC &#8212; visa/mastercard payment
 permalink: /191
 tags: [online, pay, php, plugin, service, upc, visa]
-----
+---
 
 Номер тестовой карточки: 4999999999990011
 
@@ -143,15 +143,15 @@ test-server.cert - файл который они выслали в письм�
 
 Код страницы заказа:
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Buy</title>
     </head>
     <body>
-    
+
     <?php
     $MerchantID = '1753019';
     $TerminalID = 'E7881019';
@@ -168,7 +168,7 @@ test-server.cert - файл который они выслали в письм�
     openssl_free_key($pkeyid);
     $b64sign = base64_encode($signature);
     ?>
-    
+
     <form action="https://secure.upc.ua/ecgtest/enter" method="post" >
        <input name="Version" type="hidden" value="1" />
        <input name="MerchantID" type="hidden" value="<?php echo $MerchantID?>" />
@@ -181,9 +181,9 @@ test-server.cert - файл который они выслали в письм�
        <input name="Signature" type="hidden" value="<?php echo "$b64sign" ?>"/>
        Sum: <?php echo $TotalAmount?> <input type="submit"/>
     </form>
-    
+
     </body>
-    </html></code>
+    </html>
 
 
 Примечание:
@@ -239,25 +239,25 @@ MerchantId;TerminalId;PurchaseTime;OrderId;CurrencyId;Amount;;
 
 Код страницы:
 
-    
-    <code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Buy</title>
     </head>
-    
+
     <body>
-    
+
     <h1>SUCCESS</h1>
-    
+
     <h2>$_POST</h2>
-    <pre><code><?php print_r($_POST)?></code></pre>
-    
+    <pre><code><?php print_r($_POST)?></pre>
+
     <h2>Proccessing</h2>
-    
+
     <?php
-    
+
     $MerchantID = $_POST['MerchantID'];
     $TerminalID = $_POST['TerminalID'];
     $OrderID = $_POST['OrderID'];
@@ -268,18 +268,18 @@ MerchantId;TerminalId;PurchaseTime;OrderId;CurrencyId;Amount;;
     $SD = $_POST['SD'];
     $TranCode = $_POST['TranCode'];
     $ApprovalCode = $_POST['ApprovalCode'];
-    
+
     $data = "$MerchantID;$TerminalID;$PurchaseTime;$OrderID;$XID;$CurrencyID;$TotalAmount;$SD;$TranCode;$ApprovalCode;";
-    
+
     echo 'data: '.$data.'<br />';
-    
+
     $signature = $HTTP_POST_VARS["Signature"];
     $signature = base64_decode($signature) ;
     $fp = fopen("test-server.cert", "r");
     $cert = fread($fp, 8192);
     fclose($fp);
     $pubkeyid = openssl_get_publickey($cert);
-    
+
     $ok = openssl_verify($data, $signature, $pubkeyid);
     if ($ok == 1) {
        echo "good";
@@ -290,9 +290,9 @@ MerchantId;TerminalId;PurchaseTime;OrderId;CurrencyId;Amount;;
     }
     openssl_free_key($pubkeyid);
     ?>
-    
+
     </body>
-    </html></code>
+    </html>
 
 
 Если все прошло успешно скрипт вернет good что говорит о том что проплата
@@ -305,8 +305,8 @@ MerchantId;TerminalId;PurchaseTime;OrderId;CurrencyId;Amount;;
 Тут тоже очень важно не напортачить с переменной $data, которая генериться
 следующим образом:
 
-    
-    <code>MerchantId;TerminalId;PurchaseTime;OrderId,Delay;Xid;CurrencyId,AltCurrencyId;Amount,AltAmount;SessionData;TranCode;ApprovalCode;</code>
+
+    MerchantId;TerminalId;PurchaseTime;OrderId,Delay;Xid;CurrencyId,AltCurrencyId;Amount,AltAmount;SessionData;TranCode;ApprovalCode;
 
 
 Правила те же самые если полей типа Delay, AltCurrencyId, AltAmount нет -
@@ -739,8 +739,8 @@ Delay
 
 Примечание: Генерация сигнатуры
 
-    
-    <code><?php
+
+    <?php
     $MerchantID = '1753019';
     $TerminalID = 'E7881019';
     $OrderID = 19;
@@ -755,7 +755,7 @@ Delay
     openssl_sign( $data , $signature, $pkeyid);
     openssl_free_key($pkeyid);
     $b64sign = base64_encode($signature);
-    ?></code>
+    ?>
 
 
 Данные которые получаем в ответ
@@ -945,9 +945,9 @@ Email – введенный пользователем на странице ш
 
 Проверка данный ответа
 
-    
-    <code><?php
-    
+
+    <?php
+
     $MerchantID = $_POST['MerchantID'];
     $TerminalID = $_POST['TerminalID'];
     $OrderID = $_POST['OrderID'];
@@ -958,18 +958,18 @@ Email – введенный пользователем на странице ш
     $SD = $_POST['SD'];
     $TranCode = $_POST['TranCode'];
     $ApprovalCode = $_POST['ApprovalCode'];
-    
+
     $data = "$MerchantID;$TerminalID;$PurchaseTime;$OrderID;$XID;$CurrencyID;$TotalAmount;$SD;$TranCode;$ApprovalCode;";
-    
+
     echo 'data: '.$data.'<br />';
-    
+
     $signature = $HTTP_POST_VARS["Signature"];
     $signature = base64_decode($signature) ;
     $fp = fopen("test-server.cert", "r");
     $cert = fread($fp, 8192);
     fclose($fp);
     $pubkeyid = openssl_get_publickey($cert);
-    
+
     $ok = openssl_verify($data, $signature, $pubkeyid);
     if ($ok == 1) {
        echo "good";
@@ -979,5 +979,5 @@ Email – введенный пользователем на странице ш
        echo "ugly, error checking signature";
     }
     openssl_free_key($pubkeyid);
-    ?></code>
+    ?>
 

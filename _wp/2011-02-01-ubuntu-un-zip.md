@@ -3,25 +3,25 @@ layout: post
 title: Ubuntu (un)zip
 permalink: /403
 tags: [admin, administration, arch, archive, cmd, dump, howto, linux, shell, ubuntu, unzip, zip]
-----
+---
 
 Install zip:
 
-    
-    <code>sudo apt-get install zip
-    sudo apt-get install unzip</code>
+
+    sudo apt-get install zip
+    sudo apt-get install unzip
 
 
 Unzip:
 
-    
-    <code>unzip myarchive.zip</code>
+
+    unzip myarchive.zip
 
 
 Zip folder:
 
-    
-    <code>zip -r myarchive.zip /path/to/my/folder</code>
+
+    zip -r myarchive.zip /path/to/my/folder
 
 
 [https://help.ubuntu.com/community/FileCompression](https://help.ubuntu.com/co

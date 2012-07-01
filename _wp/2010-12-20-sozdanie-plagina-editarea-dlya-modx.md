@@ -3,7 +3,7 @@ layout: post
 title: Создание плагина EditArea для ModX
 permalink: /92
 tags: [modx, php]
-----
+---
 
 ## Аннотация
 
@@ -44,28 +44,28 @@ OnChunkFormPreRender, OnSnipFormRender, OnPluginFormRender (почему для 
 
 Не долго думая, код был скопирован, получилось вот такое:
 
-    
-    <code>$e = &$modx->Event;
+
+    $e = &$modx->Event;
     switch ($e->name) {
-    	case "OnRichTextEditorRegister":
-    		$e->output("EditArea");
-    		break;
-    
-    	case "OnRichTextEditorInit":
-    		if($editor=="EditArea") {
-    			$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
-    			$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
-    			foreach($elements as $element) {
-    				$e->output('<script type="text/javascript">initEditArea("'.$element.'", "'.$modx->config['manager_language'].'", "html")</script>');
-    			}
-    		}
-    		break;
-    
-    	default :
-    		return;
-    		break;
+        case "OnRichTextEditorRegister":
+            $e->output("EditArea");
+            break;
+
+        case "OnRichTextEditorInit":
+            if($editor=="EditArea") {
+                $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
+                $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
+                foreach($elements as $element) {
+                    $e->output('<script type="text/javascript">initEditArea("'.$element.'", "'.$modx->config['manager_language'].'", "html")</script>');
+                }
+            }
+            break;
+
+        default :
+            return;
+            break;
     }
-    </code>
+
 
 
 Что мы делаем:
@@ -77,46 +77,46 @@ OnChunkFormPreRender, OnSnipFormRender, OnPluginFormRender (почему для 
 
 Собственно содержимое файла **ea-functions.js**:
 
-    
-    <code>function onEditAreaChanged(id) {
+
+    function onEditAreaChanged(id) {
         document.getElementById(id).value = editAreaLoader.getValue(id);
     }
-    
+
     function getLangName( lang ) {
-    	var res = '';
-    
-    	switch(lang)
-    	{
-    		case 'english':		res = 'en'; break;
-    		case 'russian':		res = 'ru'; break;
-    		case 'russian-UTF8':	res = 'ru'; break;
-    		default: res = 'en';
-    	}
-    
-    	return res;
+        var res = '';
+
+        switch(lang)
+        {
+            case 'english':     res = 'en'; break;
+            case 'russian':     res = 'ru'; break;
+            case 'russian-UTF8':    res = 'ru'; break;
+            default: res = 'en';
+        }
+
+        return res;
     }
-    
+
     function initEditArea(el_name, lang, syntax) {
-    	var elements = document.getElementsByName(el_name);
-    	if(!elements) return;
-    	var el = elements.item(0);
-    
-    	if(!el.id) el.id = el.name;
-    
-    	editAreaLoader.init({
-    		id: el.id,
-    		change_callback: 'onEditAreaChanged',
-    		language: 'ru',
-    		start_highlight: true,
-    		allow_resize: 'y',
-    		allow_toggle: true,
-    		word_wrap: true,
-    		syntax: syntax,
-    		toolbar: 'undo, redo, |, select_font, |, syntax_selection, |, change_smooth_selection, highlight, reset_highlight, word_wrap',
-    		syntax_selection_allow: 'css,html,js,php,xml,sql'
-    	});
+        var elements = document.getElementsByName(el_name);
+        if(!elements) return;
+        var el = elements.item(0);
+
+        if(!el.id) el.id = el.name;
+
+        editAreaLoader.init({
+            id: el.id,
+            change_callback: 'onEditAreaChanged',
+            language: 'ru',
+            start_highlight: true,
+            allow_resize: 'y',
+            allow_toggle: true,
+            word_wrap: true,
+            syntax: syntax,
+            toolbar: 'undo, redo, |, select_font, |, syntax_selection, |, change_smooth_selection, highlight, reset_highlight, word_wrap',
+            syntax_selection_allow: 'css,html,js,php,xml,sql'
+        });
     }
-    </code>
+
 
 
 Собственно основная функция **initEditArea** только тем и занимается что
@@ -136,12 +136,12 @@ EditArea и будет счастье, я уже думал радоваться
 умолчанию редактор не используется, а я хочу чтобы использовался, вот именно
 для этого мы и вешаемся на событие **OnChunkFormPrerender**.
 
-    
-    <code>case "OnChunkFormPrerender":
-    	global $which_editor;
-    	$which_editor = 'EditArea';
-    	break;
-    </code>
+
+    case "OnChunkFormPrerender":
+        global $which_editor;
+        $which_editor = 'EditArea';
+        break;
+
 
 
 Вот так все просто оказалось. Как нашел – в файле **manager****/****actions***
@@ -152,14 +152,14 @@ EditArea и будет счастье, я уже думал радоваться
 
 Для сниппетов и плагинов, код одинаковый и выглядит так:
 
-    
-    <code>	case "OnSnipFormRender":
-    	case "OnPluginFormRender":
-    		$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
-    		$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
-    		$e->output('<script type="text/javascript">initEditArea("post", "'.$modx->config['manager_language'].'", "php")</script>');
-    		break;
-    </code>
+
+      case "OnSnipFormRender":
+        case "OnPluginFormRender":
+            $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
+            $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
+            $e->output('<script type="text/javascript">initEditArea("post", "'.$modx->config['manager_language'].'", "php")</script>');
+            break;
+
 
 
 Мы просто добавляем наши скрипты, и вызываем инициализацию редактора.
@@ -170,90 +170,90 @@ EditArea и будет счастье, я уже думал радоваться
 ## Исходник плагина
 
 
-    
-    <code>/*	EVENTS
-    	OnRichTextEditorRegister
-    	OnRichTextEditorInit
-    	OnChunkFormPrerender
-    	OnSnipFormRender
-    	OnPluginFormRender
+
+    /*    EVENTS
+        OnRichTextEditorRegister
+        OnRichTextEditorInit
+        OnChunkFormPrerender
+        OnSnipFormRender
+        OnPluginFormRender
     */
     $e = &$modx->Event;
     switch ($e->name) {
-    	case "OnRichTextEditorRegister":
-    		$e->output("EditArea");
-    		break;
-    
-    	case "OnRichTextEditorInit":
-    		if($editor=="EditArea") {
-    			$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
-    			$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
-    			foreach($elements as $element) {
-    				$e->output('<script type="text/javascript">initEditArea("'.$element.'", "'.$modx->config['manager_language'].'", "html")</script>');
-    			}
-    		}
-    		break;
-    
-    	case "OnChunkFormPrerender":
-    		global $which_editor;
-    		$which_editor = 'EditArea';
-    		break;
-    
-    	case "OnSnipFormRender":
-    	case "OnPluginFormRender":
-    		$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
-    		$e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
-    		$e->output('<script type="text/javascript">initEditArea("post", "'.$modx->config['manager_language'].'", "php")</script>');
-    		break;
-    
-    	default :
-    		return; // stop here - this is very important.
-    		break;
+        case "OnRichTextEditorRegister":
+            $e->output("EditArea");
+            break;
+
+        case "OnRichTextEditorInit":
+            if($editor=="EditArea") {
+                $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
+                $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
+                foreach($elements as $element) {
+                    $e->output('<script type="text/javascript">initEditArea("'.$element.'", "'.$modx->config['manager_language'].'", "html")</script>');
+                }
+            }
+            break;
+
+        case "OnChunkFormPrerender":
+            global $which_editor;
+            $which_editor = 'EditArea';
+            break;
+
+        case "OnSnipFormRender":
+        case "OnPluginFormRender":
+            $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/edit_area/edit_area_full.js"></script>');
+            $e->output('<script type="text/javascript" src="'.$modx->config['base_url'].'assets/plugins/editarea/ea_functions.js"></script>');
+            $e->output('<script type="text/javascript">initEditArea("post", "'.$modx->config['manager_language'].'", "php")</script>');
+            break;
+
+        default :
+            return; // stop here - this is very important.
+            break;
     }
-    </code>
+
 
 
 ## JavaScript
 
 
-    
-    <code>function onEditAreaChanged(id) {
+
+    function onEditAreaChanged(id) {
         document.getElementById(id).value = editAreaLoader.getValue(id);
     }
-    
+
     function getLangName( lang ) {
-    	var res = '';
-    
-    	switch(lang)
-    	{
-    		case 'english':		res = 'en'; break;
-    		case 'russian':		res = 'ru'; break;
-    		case 'russian-UTF8':	res = 'ru'; break;
-    		default: res = 'en';
-    	}
-    
-    	return res;
+        var res = '';
+
+        switch(lang)
+        {
+            case 'english':     res = 'en'; break;
+            case 'russian':     res = 'ru'; break;
+            case 'russian-UTF8':    res = 'ru'; break;
+            default: res = 'en';
+        }
+
+        return res;
     }
-    
+
     function initEditArea(el_name, lang, syntax) {
-    	var elements = document.getElementsByName(el_name);
-    	if(!elements) return;
-    	var el = elements.item(0);
-    
-    	if(!el.id) el.id = el.name;
-    
-    	editAreaLoader.init({
-    		id: el.id,
-    		change_callback: 'onEditAreaChanged',
-    		language: 'ru',
-    		start_highlight: true,
-    		allow_resize: 'y',
-    		allow_toggle: true,
-    		word_wrap: true,
-    		syntax: syntax,
-    		toolbar: 'undo, redo, |, select_font, |, syntax_selection, |, change_smooth_selection, highlight, reset_highlight, word_wrap',
-    		syntax_selection_allow: 'css,html,js,php,xml,sql'
-    	});
+        var elements = document.getElementsByName(el_name);
+        if(!elements) return;
+        var el = elements.item(0);
+
+        if(!el.id) el.id = el.name;
+
+        editAreaLoader.init({
+            id: el.id,
+            change_callback: 'onEditAreaChanged',
+            language: 'ru',
+            start_highlight: true,
+            allow_resize: 'y',
+            allow_toggle: true,
+            word_wrap: true,
+            syntax: syntax,
+            toolbar: 'undo, redo, |, select_font, |, syntax_selection, |, change_smooth_selection, highlight, reset_highlight, word_wrap',
+            syntax_selection_allow: 'css,html,js,php,xml,sql'
+        });
     }
-    </code>
+
 

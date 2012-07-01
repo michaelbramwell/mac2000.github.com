@@ -3,7 +3,7 @@ layout: post
 title: DoubleClick
 permalink: /552
 tags: [ad, adsense, commercial, dc, doubleclick, google, service]
-----
+---
 
 [![](http://mac-blog.org.ua/wp-content/uploads/DoubleClick-300x154.png)](http
 ://mac-blog.org.ua/wp-content/uploads/DoubleClick.png)
@@ -13,8 +13,8 @@ tags: [ad, adsense, commercial, dc, doubleclick, google, service]
 
 header:
 
-    
-    <code><script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js"></script>
+
+    <script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js"></script>
     <script type='text/javascript'>
         GS_googleAddAdSenseService("ca-pub-5675491672212760");
         GS_googleEnableAllServices();
@@ -25,26 +25,26 @@ header:
     <script type='text/javascript'>
         //GA_googleAddAttr("Interests", "Sports");
         GA_googleFetchAds();
-    </script></code>
+    </script>
 
 
 inplace:
 
-    
-    <code><div style="width:240px;height:400px;background:#ccc;">
+
+    <div style="width:240px;height:400px;background:#ccc;">
     <!-- Marketing_Home_240x400 -->
     <script type='text/javascript'>
         GA_googleFillSlot("Marketing_Home_240x400");
     </script>
-    </div></code>
+    </div>
 
 
 **Sample code for search results page:**
 
 header:
 
-    
-    <code><script type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'>
+
+    <script type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'>
     </script>
     <script type='text/javascript'>
         GS_googleAddAdSenseService("ca-pub-5675491672212760");
@@ -59,18 +59,18 @@ header:
     </script>
     <script type='text/javascript'>
         GA_googleFetchAds();
-    </script></code>
+    </script>
 
 
 in place:
 
-    
-    <code><div style="width:240px;height:400px;background:#ccc;margin:10px auto;">
+
+    <div style="width:240px;height:400px;background:#ccc;margin:10px auto;">
     <!-- Marketing_VacList_240x400 -->
     <script type='text/javascript'>
         GA_googleFillSlot("Marketing_VacList_240x400");
     </script>
-    </div></code>
+    </div>
 
 
 If u have more slots just copy paste their desc
@@ -79,8 +79,8 @@ If u have more slots just copy paste their desc
 For design purpuses u can use div#google_ad_div_SLOTNAME_ad_container - this
 div creates if there is ad, so u can do something like:
 
-    
-    <code><!-- Marketing_VacList_240x400 -->
+
+    <!-- Marketing_VacList_240x400 -->
     <script type='text/javascript'>
         GA_googleFillSlot("Marketing_VacList_240x400");
     </script>
@@ -91,7 +91,7 @@ div creates if there is ad, so u can do something like:
         padding:10px;
         margin:auto;
     }
-    </style></code>
+    </style>
 
 
 Or even use js to do whatever u want
@@ -99,9 +99,9 @@ Or even use js to do whatever u want
 
 To post multiple values to key:
 
-    
-    <code>GA_googleAddAttr("region", "kiev");
-    GA_googleAddAttr("region", "lviv");</code>
+
+    GA_googleAddAttr("region", "kiev");
+    GA_googleAddAttr("region", "lviv");
 
 
 Notice:

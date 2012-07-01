@@ -3,7 +3,7 @@ layout: post
 title: Превью рисунки в WordPress 2.9+
 permalink: /90
 tags: [php, wordpress]
-----
+---
 
 В wordpress 2.9 появилась чудная возможность добавлять к статье превью
 рисунки, прямо из коробки, без использования сторонних плагинов.
@@ -16,14 +16,14 @@ tags: [php, wordpress]
 Включить их. Для этого достаточно где ни буть в файле **functions.php**
 прописать вот такую строчку кода:
 
-    
-    <code>add_theme_support( 'post-thumbnails' );</code>
+
+    add_theme_support( 'post-thumbnails' );
 
 
 В необходимых файлах темы прописать их вывод, паример так:
 
-    
-    <code><?php the_post_thumbnail( 'thumbnail', array('class' => 'alignleft') ); ?></code>
+
+    <?php the_post_thumbnail( 'thumbnail', array('class' => 'alignleft') ); ?>
 
 
 В функцию не обязательно передавать какие либо параметры. Так же вместо

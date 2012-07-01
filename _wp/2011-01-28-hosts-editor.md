@@ -3,12 +3,12 @@ layout: post
 title: Hosts editor
 permalink: /384
 tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system32, uac]
-----
+---
 
 ![](http://mac-blog.org.ua/wp-content/uploads/hosts.png)
 
-    
-    <code>using System;
+
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
@@ -18,13 +18,13 @@ tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system3
     using System.Windows.Forms;
     using System.IO;
     using System.Text.RegularExpressions;
-    
+
     namespace Hosts
     {
         public partial class Form1 : Form
         {
             private string _hostsFilePath = string.Format("{0}\\drivers\\etc\\hosts", System.Environment.SystemDirectory);
-    
+
             public Form1()
             {
                 if (!File.Exists(_hostsFilePath))
@@ -32,10 +32,10 @@ tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system3
                     MessageBox.Show("Hosts file not found at: " + _hostsFilePath, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Exit();
                 }
-    
+
                 InitializeComponent();
             }
-    
+
             private void Form1_Load(object sender, EventArgs e)
             {
                 try
@@ -55,9 +55,9 @@ tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system3
                     Application.Exit();
                 }
             }
-    
+
             private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-            { 
+            {
                  try
                 {
                 if (hostsDataSet.HasChanges())
@@ -69,9 +69,9 @@ tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system3
                         {
                             hosts.Add(string.Format("{0,-16}{1}", row[0], row[1]));
                         }
-    
+
                         string newHostsFileText = string.Join(Environment.NewLine, hosts.ToArray());
-    
+
                         File.WriteAllText(_hostsFilePath, newHostsFileText);
                     }
                 }
@@ -84,13 +84,13 @@ tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system3
             }
         }
     }
-    </code>
+
 
 
 For UAC. You must add application manifest file, and change there
 
-    
-    <code><requestedExecutionLevel level="requireAdministrator" uiAccess="false" /></code>
+
+    <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
 
 
 [Hosts](http://mac-blog.org.ua/wp-content/uploads/Hosts.zip)

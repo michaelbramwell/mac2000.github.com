@@ -3,35 +3,35 @@ layout: post
 title: Zend simplest auth
 permalink: /392
 tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, identity, login, noautoincrement, noid, php, sequence, zend]
-----
+---
 
 **Data base:**
 
-    
-    <code>CREATE TABLE IF NOT EXISTS credential (
+
+    CREATE TABLE IF NOT EXISTS credential (
       email varchar(100) NOT NULL,
       password varchar(100) NOT NULL,
       PRIMARY KEY (email)
     ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-    
-    INSERT INTO credential VALUES('alexandrm@rabota.ua', '123');</code>
+
+    INSERT INTO credential VALUES('alexandrm@rabota.ua', '123');
 
 
 **Application.ini:**
 
-    
-    <code>resources.db.adapter = "PDO_MYSQL"
+
+    resources.db.adapter = "PDO_MYSQL"
     resources.db.params.host = "localhost"
     resources.db.params.username = "root"
     resources.db.params.password = ""
     resources.db.params.dbname = "simpleauth_zf"
-    resources.db.isDefaultTableAdapter = true</code>
+    resources.db.isDefaultTableAdapter = true
 
 
 **User Controller:**
 
-    
-    <code><?php
+
+    <?php
     class UserController extends Zend_Controller_Action
     {
         public function preDispatch()
@@ -44,35 +44,35 @@ tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, 
                 }
             }
         }
-    
+
         public function indexAction()
         {
             // action body
         }
-    
+
         public function loginAction()
         {
             $form = new Application_Form_Login(array(
                 'action' => '/user/login',
                 'method' => 'post',
             ));
-    
+
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($_POST)) {
-    
+
                     $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter(), 'credential', 'email', 'password');
-    
+
                     $authAdapter->setIdentity($form->getValue('email'));
                     $authAdapter->setCredential($form->getValue('password'));
-    
+
                     $result = Zend_Auth::getInstance()->authenticate($authAdapter);
-    
+
                     if (!$result->isValid()) {
                         var_dump('FAILURE');
                     } else {
                         $this->_helper->redirector('index','index');
                     }
-    
+
                     /*switch ($result->getCode()) {
                         case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
                             var_dump('FAILURE_IDENTITY_NOT_FOUND');
@@ -88,26 +88,26 @@ tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, 
                     }*/
                 }
             }
-    
+
             $this->view->form = $form;
         }
-    
+
         public function logoutAction()
         {
             Zend_Auth::getInstance()->clearIdentity();
             $this->_helper->redirector('index','index');
         }
-    
+
     }
-    
-    </code>
+
+
 
 
 **Index Controoler:**
 
-    
-    <code><?php
-    
+
+    <?php
+
     class IndexController extends Zend_Controller_Action
     {
         public function indexAction()
@@ -118,23 +118,23 @@ tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, 
             } else {
                 $profile = '<a href="/user/login">Login</a>';
             }
-    
+
             $this->view->profile = $profile;
         }
     }
-    
-    </code>
+
+
 
 
 **Login form:**
 
-    
-    <code><?php
-    
+
+    <?php
+
     //zf create form Login
     class Application_Form_Login extends Zend_Form
     {
-    
+
         public function init()
         {
             $email = new Zend_Form_Element_Text('email');
@@ -147,7 +147,7 @@ tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, 
             ));
             $email->setAttrib('size', 30);
             $this->addElement($email);
-    
+
             $password = new Zend_Form_Element_Password('password');
             $password->setLabel('Password:');
             $password->setRequired();
@@ -156,29 +156,29 @@ tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, 
             ));
             $password->setAttrib('size', 30);
             $this->addElement($password);
-    
+
             $this->addElement('submit', 'submit', array('label' => 'Submit'));
         }
-    
+
     }
-    
-    </code>
+
+
 
 
 User/login view:
 
-    
-    <code><h3>login</h3>
-    
-    <?php echo $this->form->render()?></code>
+
+    <h3>login</h3>
+
+    <?php echo $this->form->render()?>
 
 
 Index/index view:
 
-    
-    <code><h3>Hello World</h3>
-    
-    <?php echo $this->profile?></code>
+
+    <h3>Hello World</h3>
+
+    <?php echo $this->profile?>
 
 
 Examples copy pasted from:
@@ -195,8 +195,8 @@ amework.zend.com/manual/en/zend.auth.adapter.dbtable.html)
 
 If you want create data table adapter, do not forget to add
 
-    
-    <code>protected $_sequence = false;</code>
+
+    protected $_sequence = false;
 
 
 to it.
@@ -205,6 +205,6 @@ to it.
 Passwords should be encrypted with some functions like MD5. To do it change
 code like this:
 
-    
-    <code>$authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter(), 'credential', 'email', 'password', 'MD5(?)');</code>
+
+    $authAdapter = new Zend_Auth_Adapter_DbTable(Zend_Db_Table::getDefaultAdapter(), 'credential', 'email', 'password', 'MD5(?)');
 

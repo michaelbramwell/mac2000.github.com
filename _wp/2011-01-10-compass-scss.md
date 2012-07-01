@@ -3,21 +3,21 @@ layout: post
 title: Compass &#038; SCSS
 permalink: /300
 tags: [compass, css, css3, gem, ruby, sass, scss]
-----
+---
 
 Рульная штука с целой кучей примочек.
 
 
 Установка
 
-    
-    <code>gem install compass</code>
+
+    gem install compass
 
 
 Создание проекта
 
-    
-    <code>compass create my1</code>
+
+    compass create my1
 
 
 В созданном проекте в папке src, лежат сырки scss.
@@ -25,8 +25,8 @@ tags: [compass, css, css3, gem, ruby, sass, scss]
 
 Компиляция
 
-    
-    <code>compass compile my1</code>
+
+    compass compile my1
 
 
 Плюшки
@@ -38,23 +38,23 @@ style.org/docs/reference/compass/)
 
 Например в SCSS
 
-    
-    <code>@import "compass/css3/border-radius";
-    
-    .simple   { @include border-radius(5px); }</code>
+
+    @import "compass/css3/border-radius";
+
+    .simple   { @include border-radius(5px); }
 
 
 На выходе:
 
-    
-    <code>.simple {
+
+    .simple {
       -moz-border-radius: 5px;
       -webkit-border-radius: 5px;
       -o-border-radius: 5px;
       -ms-border-radius: 5px;
       -khtml-border-radius: 5px;
       border-radius: 5px;
-    }</code>
+    }
 
 
 И там такого добра целая куча.
@@ -62,14 +62,14 @@ style.org/docs/reference/compass/)
 
 Компиляция для продакшена
 
-    
-    <code>compass compile -e production --force my1</code>
+
+    compass compile -e production --force my1
 
 
 Компиляция с полным ужатием
 
-    
-    <code>compass compile --output-style compressed --force my1</code>
+
+    compass compile --output-style compressed --force my1
 
 
 В самом простом случае, если нужно что то добавить идем в доки ([http
@@ -79,14 +79,14 @@ style.org/docs/reference/compass/))
 
 смотрим что надо заимпортить, наприм.:
 
-    
-    <code>@import "compass/css3/inline-block"</code>
+
+    @import "compass/css3/inline-block"
 
 
 потом уже можно писать
 
-    
-    <code>.test {@include inline-block;}</code>
+
+    .test {@include inline-block;}
 
 
 Спека по SASS/SCSS: [http://sass-lang.com/](http://sass-lang.com/)
@@ -94,12 +94,12 @@ style.org/docs/reference/compass/))
 
 Пожалуй самое прикольное:
 
-    
-    <code>@import "compass/reset/utilities";
-    
+
+    @import "compass/reset/utilities";
+
     .my {
-    	@include nested-reset;
-    }</code>
+        @include nested-reset;
+    }
 
 
 и можно начинать действительно блочную и абсолютно не зависимую верстку
@@ -107,8 +107,8 @@ style.org/docs/reference/compass/))
 
 Для беспрерывной компиляции используем:
 
-    
-    <code>compass watch my1</code>
+
+    compass watch my1
 
 
 

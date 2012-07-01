@@ -3,19 +3,19 @@ layout: post
 title: C# custom App.config sections
 permalink: /721
 tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, NameValueSectionHandler, section, SingleTagSectionHandler]
-----
+---
 
 **Code:**
 
-    
-    <code>using System;
+
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Configuration;
     using System.Collections.Specialized;
     using System.Collections;
-    
+
     namespace custom_app_config
     {
         class Program
@@ -26,7 +26,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 string appsettings_login = ConfigurationManager.AppSettings.Get("login");
                 Console.WriteLine("appSettings/login: " + appsettings_login);
                 Console.WriteLine();
-    
+
                 //one tag section
                 IDictionary oneTag = (IDictionary)ConfigurationManager.GetSection("auth");
                 string auth_login = (string)oneTag["login"];
@@ -34,7 +34,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 Console.WriteLine("auth/login: " + auth_login);
                 Console.WriteLine("auth/password: " + auth_password);
                 Console.WriteLine();
-    
+
                 //name value collection section (the same as appSettings)
                 NameValueCollection faurls = (NameValueCollection)ConfigurationManager.GetSection("FavoriteUrls");
                 foreach (string key in faurls.AllKeys)
@@ -42,7 +42,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                     Console.WriteLine("FavoriteUrls/" + key + ": " + faurls[key]);
                 }
                 Console.WriteLine();
-    
+
                 //custom section
                 StartupFoldersConfigSection section = (StartupFoldersConfigSection)ConfigurationManager.GetSection("StartupFolders");
                 foreach (FolderElement item in section.FolderItems)
@@ -50,11 +50,11 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                     Console.WriteLine("StartupFolders/Folders/" + item.FolderType + ": " + item.Path);
                 }
                 Console.WriteLine();
-    
+
                 Console.ReadKey();
             }
         }
-    
+
         public class StartupFoldersConfigSection : ConfigurationSection
         {
             [ConfigurationProperty("Folders")]
@@ -63,7 +63,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 get { return ((FoldersCollection)(base["Folders"])); }
             }
         }
-    
+
         [ConfigurationCollection(typeof(FolderElement))]
         public class FoldersCollection : ConfigurationElementCollection
         {
@@ -80,7 +80,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 get { return (FolderElement)BaseGet(idx); }
             }
         }
-    
+
         public class FolderElement : ConfigurationElement
         {
             [ConfigurationProperty("folderType", DefaultValue = "", IsKey = true, IsRequired = true)]
@@ -89,7 +89,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 get { return ((string)(base["folderType"])); }
                 set { base["folderType"] = value; }
             }
-    
+
             [ConfigurationProperty("path", DefaultValue = "", IsKey = false, IsRequired = false)]
             public string Path
             {
@@ -97,15 +97,15 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
                 set { base["path"] = value; }
             }
         }
-    }</code>
+    }
 
 
 
 
 **App.config:**
 
-    
-    <code><?xml version="1.0" encoding="utf-8" ?>
+
+    <?xml version="1.0" encoding="utf-8" ?>
     <configuration>
       <configSections>
         <!-- one tag config section with attributes -->
@@ -115,27 +115,27 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
         <!-- custom section -->
         <section name="StartupFolders" type="custom_app_config.StartupFoldersConfigSection, custom_app_config"/>
       </configSections>
-    
+
       <appSettings>
         <add key="login" value="admin"/>
       </appSettings>
-    
+
       <auth login="admin" password="123" />
-    
+
       <FavoriteUrls>
         <add key="Microsoft" value="http://www.microsoft.com/" />
         <add key="DotNetSpider" value="http://www.DotNetSpider.com/" />
         <add key="AsianSpider" value="http://www.AsianSpider.com/" />
       </FavoriteUrls>
-    
+
       <StartupFolders>
         <Folders>
           <add folderType="A" path="c:\foo" />
           <add folderType="B" path="C:\foo1" />
         </Folders>
       </StartupFolders>
-    
-    </configuration></code>
+
+    </configuration>
 
 
 

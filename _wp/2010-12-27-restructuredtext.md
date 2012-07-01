@@ -3,7 +3,7 @@ layout: post
 title: reStructuredText
 permalink: /259
 tags: [docutils, markdown, markup, php, rest, restructuredtext, syntax, wiki]
-----
+---
 
 Классная штука reStructuredText (reST), очень похоже на Markdown но намного
 более продвинутей, тут и таблицы и другие полезности.
@@ -18,19 +18,19 @@ sourceforge.net/docs/user/rst/quickref.html)
 
 Небольшой пример вызова API для преобразования в HTML:
 
-    
-    <code><?php
-    
+
+    <?php
+
     $rst = 'Hello
     =====
-    
+
     mac was here
-    
+
     * list item
     * list item
-    
+
     lalla
-    
+
     +------------------------+------------+----------+----------+
     | Header row, column 1   | Header 2   | Header 3 | Header 4 |
     | (header rows optional) |            |          |          |
@@ -44,24 +44,24 @@ sourceforge.net/docs/user/rst/quickref.html)
     | body row 4             |            | - body elements.    |
     +------------------------+------------+---------------------+
     ';
-    
+
     $url = 'http://api.rst2a.com/1.0/rst2/html';
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_POST, true);
-    
+
     $data = array(
         'rst' => $rst
     );
-    
+
     curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
     $output = curl_exec($ch);
     $info = curl_getinfo($ch);
     curl_close($ch);
-    
-    echo $output;</code>
+
+    echo $output;
 
 
 TODO: проверить наличие php либы, а так же либы для перегона html в reST.

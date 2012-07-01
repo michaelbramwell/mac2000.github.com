@@ -3,7 +3,7 @@ layout: post
 title: nginx, php-cgi on windows
 permalink: /882
 tags: [cgi, nginx, php, php-cgi, win, windows]
-----
+---
 
 [http://nginx.org/en/download.html](http://nginx.org/en/download.html)
 
@@ -21,20 +21,20 @@ safe или not thread safe значения не имеет.
 
 **start.cmd**
 
-    
-    <code>@ECHO OFF
+
+    @ECHO OFF
     start C:\nginx\nginx.exe
     start C:\nginx\RunHiddenConsole.exe C:\PHP\php-cgi.exe -b 127.0.0.1:9000 -c C:\PHP\php.ini
-    EXIT</code>
+    EXIT
 
 
 **stop.cmd**
 
-    
-    <code>@ECHO OFF
+
+    @ECHO OFF
     taskkill /f /IM nginx.exe
     taskkill /f /IM php-cgi.exe
-    EXIT</code>
+    EXIT
 
 
 
@@ -49,35 +49,35 @@ Windows)
 
 **nginx.conf**
 
-    
-    <code>worker_processes  1;
+
+    worker_processes  1;
     events {
         worker_connections  1024;
     }
-    
+
     http {
         include       mime.types;
         default_type  application/octet-stream;
         sendfile        on;
         keepalive_timeout  65;
         gzip  on;
-    
+
         server {
             listen       85;
             server_name  localhost;
             charset utf-8;
-    		root   html;
-    		index  index.php index.html index.htm;
-    
+            root   html;
+            index  index.php index.html index.htm;
+
             location / {
-    			try_files $uri $uri/ /index.php?q=$uri&$args;
-    		}
-    
-    		# wordpress example
-    		#location /blog {
-    		#	try_files $uri $uri/ /blog/index.php?q=$uri&$args;
-    		#}
-    
+                try_files $uri $uri/ /index.php?q=$uri&$args;
+            }
+
+            # wordpress example
+            #location /blog {
+            #   try_files $uri $uri/ /blog/index.php?q=$uri&$args;
+            #}
+
             location ~ \.php$ {
                 root           html;
                 fastcgi_pass   127.0.0.1:9000;
@@ -85,9 +85,9 @@ Windows)
                 fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
                 include        fastcgi_params;
             }
-    
+
         }
-    }</code>
+    }
 
 
 Отличная статья на примере Wordpress'а показывающая как бороться с ЧПУ

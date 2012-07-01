@@ -3,7 +3,7 @@ layout: post
 title: Статистика использования кодировок
 permalink: /95
 tags: [analytics, statistics]
-----
+---
 
 Google опубликовала в своем [блоге](http://googleblog.blogspot.com/2010/01
 /unicode-nearing-50-of-web.html) статистику использования кодировок на сайтах.

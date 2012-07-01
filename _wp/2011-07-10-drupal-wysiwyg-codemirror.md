@@ -3,7 +3,7 @@ layout: post
 title: Drupal wysiwyg CodeMirror
 permalink: /692
 tags: [codemirror, d6, drupal, editarea, hook_editor, wysiwyg]
-----
+---
 
 To add CodeMirror editor to wysiwyg drupal module, u need create following
 files:
@@ -11,13 +11,13 @@ files:
 
 **/sites/all/modules/wysiwyg/editors/codemirror.inc**
 
-    
-    <code><?php
+
+    <?php
     /**
      * @file
      * Editor integration functions for CodeMirror.
      */
-    
+
     /**
      * Plugin implementation of hook_editor().
      */
@@ -47,7 +47,7 @@ files:
       );
       return $editor;
     }
-    
+
     /**
      * Detect editor version.
      *
@@ -58,19 +58,19 @@ files:
      *   The installed editor version.
      */
     function wysiwyg_codemirror_version($editor) {
-    	$fp = $editor['library path'] . '/README.md';
-    	if (!file_exists($fp)) {
-    		return;
-    	}
-    	$fp = fopen($fp, 'r');
-    	$line = fgets($fp);
-    	if (preg_match('@([0-9\.]+)$@', $line, $version)) {
-    		fclose($fp);
-    		return $version[1];
-    	}
-    	fclose($fp);
+        $fp = $editor['library path'] . '/README.md';
+        if (!file_exists($fp)) {
+            return;
+        }
+        $fp = fopen($fp, 'r');
+        $line = fgets($fp);
+        if (preg_match('@([0-9\.]+)$@', $line, $version)) {
+            fclose($fp);
+            return $version[1];
+        }
+        fclose($fp);
     }
-    
+
     /**
      * Determine available editor themes or check/reset a given one.
      *
@@ -84,21 +84,21 @@ files:
      *   theme name.
      */
     function wysiwyg_codemirror_themes($editor, $profile) {
-    	$themes = array('default');
-    	//TODO: no need in this, i do not found way to use themes with wysiwyg module
-    	/*if ($handle = opendir($editor['library path'] . '/theme')) {
-    		while (false !== ($file = readdir($handle))) {
-    			if ($file != "." && $file != ".." && $file != "default.css") {
-    				if(pathinfo($file, PATHINFO_EXTENSION) == "css") {
-    					$themes[] = pathinfo($file, PATHINFO_FILENAME);
-    				}
-    			}
-    		}
-    		closedir($handle);
-    	}*/
-    	return $themes;
+        $themes = array('default');
+        //TODO: no need in this, i do not found way to use themes with wysiwyg module
+        /*if ($handle = opendir($editor['library path'] . '/theme')) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != "." && $file != ".." && $file != "default.css") {
+                    if(pathinfo($file, PATHINFO_EXTENSION) == "css") {
+                        $themes[] = pathinfo($file, PATHINFO_FILENAME);
+                    }
+                }
+            }
+            closedir($handle);
+        }*/
+        return $themes;
     }
-    
+
     /**
      * Perform additional actions upon loading this editor.
      *
@@ -108,17 +108,17 @@ files:
      *   The internal library name (array key) to use.
      */
     function wysiwyg_codemirror_load($editor, $library) {
-    	drupal_add_css($editor['library path'] . '/lib/codemirror.css');
-    	drupal_add_css($editor['library path'] . '/theme/default.css'); //TODO: load apropriate theme file here, when wysiwyg will support this feature
-    
-    	drupal_add_js($editor['library path'] . '/lib/codemirror.js');
-    	drupal_add_js($editor['library path'] . '/mode/xml/xml.js');
-    	drupal_add_js($editor['library path'] . '/mode/javascript/javascript.js');
-    	drupal_add_js($editor['library path'] . '/mode/css/css.js');
-    	drupal_add_js($editor['library path'] . '/mode/clike/clike.js');
-    	drupal_add_js($editor['library path'] . '/mode/php/php.js');
+        drupal_add_css($editor['library path'] . '/lib/codemirror.css');
+        drupal_add_css($editor['library path'] . '/theme/default.css'); //TODO: load apropriate theme file here, when wysiwyg will support this feature
+
+        drupal_add_js($editor['library path'] . '/lib/codemirror.js');
+        drupal_add_js($editor['library path'] . '/mode/xml/xml.js');
+        drupal_add_js($editor['library path'] . '/mode/javascript/javascript.js');
+        drupal_add_js($editor['library path'] . '/mode/css/css.js');
+        drupal_add_js($editor['library path'] . '/mode/clike/clike.js');
+        drupal_add_js($editor['library path'] . '/mode/php/php.js');
     }
-    
+
     /**
      * Return runtime editor settings for a given wysiwyg profile.
      *
@@ -134,20 +134,20 @@ files:
      *   Drupal.settings.wysiwyg.configs.{editor}
      */
     function wysiwyg_codemirror_settings($editor, $config, $theme) {
-    	$settings = array(
-    		'theme' => $theme,
-    	);
-    
-    	if (isset($config['buttons']['default']['lineNumbers'])) {
-    		$settings['lineNumbers'] = (bool)$config['buttons']['default']['lineNumbers'];
-    	}
-    	if (isset($config['buttons']['default']['indentWithTabs'])) {
-    		$settings['indentWithTabs'] = (bool)$config['buttons']['default']['indentWithTabs'];
-    	}
-    
-    	return $settings;
+        $settings = array(
+            'theme' => $theme,
+        );
+
+        if (isset($config['buttons']['default']['lineNumbers'])) {
+            $settings['lineNumbers'] = (bool)$config['buttons']['default']['lineNumbers'];
+        }
+        if (isset($config['buttons']['default']['indentWithTabs'])) {
+            $settings['indentWithTabs'] = (bool)$config['buttons']['default']['indentWithTabs'];
+        }
+
+        return $settings;
     }
-    
+
     /**
      * Return internal plugins for this editor; semi-implementation of hook_wysiwyg_plugin().
      */
@@ -162,60 +162,60 @@ files:
         ),
       );
       return $plugins;
-    }</code>
+    }
 
 
 
 
 **/sites/all/modules/wysiwyg/editors/js/codemirror.js**
 
-    
-    <code>(function($) {
-    
+
+    (function($) {
+
     Drupal.wysiwyg.codemirror = {}; // CodeMirror instances storage
-    
+
     /**
      * Attach this editor to a target element.
      *
      * See Drupal.wysiwyg.editor.attach.none() for a full desciption of this hook.
      */
     Drupal.wysiwyg.editor.attach.codemirror = function(context, params, settings) {
-    	if(typeof params != 'undefined') {
-    		Drupal.wysiwyg.codemirror[params.field] = CodeMirror.fromTextArea(document.getElementById(params.field), {
-    			lineNumbers: Drupal.settings.wysiwyg.configs.codemirror.format5.lineNumbers,//true,
-    			matchBrackets: true,
-    			mode: "application/x-httpd-php",
-    			indentUnit: 4,
-    			indentWithTabs: Drupal.settings.wysiwyg.configs.codemirror.format5.indentWithTabs,//true,
-    			enterMode: "keep",
-    			tabMode: "shift"
-    		});
-    	}
+        if(typeof params != 'undefined') {
+            Drupal.wysiwyg.codemirror[params.field] = CodeMirror.fromTextArea(document.getElementById(params.field), {
+                lineNumbers: Drupal.settings.wysiwyg.configs.codemirror.format5.lineNumbers,//true,
+                matchBrackets: true,
+                mode: "application/x-httpd-php",
+                indentUnit: 4,
+                indentWithTabs: Drupal.settings.wysiwyg.configs.codemirror.format5.indentWithTabs,//true,
+                enterMode: "keep",
+                tabMode: "shift"
+            });
+        }
     };
-    
+
     /**
      * Detach a single or all editors.
      *
      * See Drupal.wysiwyg.editor.detach.none() for a full desciption of this hook.
      */
     Drupal.wysiwyg.editor.detach.codemirror = function(context, params) {
-    	if(typeof params != 'undefined') {
-    		Drupal.wysiwyg.codemirror[params.field].toTextArea();
-    		delete Drupal.wysiwyg.codemirror[params.field];
-    	}
+        if(typeof params != 'undefined') {
+            Drupal.wysiwyg.codemirror[params.field].toTextArea();
+            delete Drupal.wysiwyg.codemirror[params.field];
+        }
     };
-    
-    })(jQuery);</code>
+
+    })(jQuery);
 
 
 
 
 **/sites/all/modules/wysiwyg/editors/css/codemirror.css**
 
-    
-    <code>.CodeMirror {
-    	border: 1px solid #999;
-    }</code>
+
+    .CodeMirror {
+        border: 1px solid #999;
+    }
 
 
 

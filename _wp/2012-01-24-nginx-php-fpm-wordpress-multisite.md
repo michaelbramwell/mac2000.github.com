@@ -3,7 +3,7 @@ layout: post
 title: Nginx, php-fpm, wordpress multisite
 permalink: /930
 tags: [fpm, multilingual, multisite, nginx, wordpress, wp]
-----
+---
 
 apt-get install mysql-server mysql-client
 
@@ -15,52 +15,52 @@ apt-get install mysql-server mysql-client
 
 **/etc/nginx/sites-available/example.com**:
 
-    
+
     server {
-    	server_name *.example.com;
-    	index  index.php index.html index.htm;
-    	charset utf-8;
-    	root /var/www;
-    
-    	location / {
-    		try_files $uri $uri/ /index.php?$args;
-    	}
-    
-    	rewrite /wp-admin$ $scheme://$host$uri/ permanent;
-    
-    	location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
-    		expires max;
-    		log_not_found off;
-    	}
-    
-    	rewrite /files/$ /index.php last;
-    
-    	set $cachetest "$document_root/wp-content/ms-filemap/${host}${uri}";
-    	if ($uri ~ /$) {
-    		set $cachetest "";
-    	}
-    	if (-f $cachetest) {
-    		rewrite ^ /wp-content/ms-filemap/${host}${uri} break;
-    	}
-    
-    	if ($uri !~ wp-content/plugins) {
-    		rewrite /files/(.+)$ /wp-includes/ms-files.php?file=$1 last;
-    	}
-    
-    	if (!-e $request_filename) {
-    		rewrite ^/[_0-9a-zA-Z-]+(/wp-.*) $1 last;
-    		rewrite ^/[_0-9a-zA-Z-]+.*(/wp-admin/.*\.php)$ $1 last;
-    		rewrite ^/[_0-9a-zA-Z-]+(/.*\.php)$ $1 last;
-    	}
-    
-    	location ~ \.php$ {
-    		try_files $uri =404;
-    		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-    		include fastcgi_params;
-    		fastcgi_index index.php;
-    		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    		fastcgi_pass 127.0.0.1:9000;
-    	}
+        server_name *.example.com;
+        index  index.php index.html index.htm;
+        charset utf-8;
+        root /var/www;
+
+        location / {
+            try_files $uri $uri/ /index.php?$args;
+        }
+
+        rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+            expires max;
+            log_not_found off;
+        }
+
+        rewrite /files/$ /index.php last;
+
+        set $cachetest "$document_root/wp-content/ms-filemap/${host}${uri}";
+        if ($uri ~ /$) {
+            set $cachetest "";
+        }
+        if (-f $cachetest) {
+            rewrite ^ /wp-content/ms-filemap/${host}${uri} break;
+        }
+
+        if ($uri !~ wp-content/plugins) {
+            rewrite /files/(.+)$ /wp-includes/ms-files.php?file=$1 last;
+        }
+
+        if (!-e $request_filename) {
+            rewrite ^/[_0-9a-zA-Z-]+(/wp-.*) $1 last;
+            rewrite ^/[_0-9a-zA-Z-]+.*(/wp-admin/.*\.php)$ $1 last;
+            rewrite ^/[_0-9a-zA-Z-]+(/.*\.php)$ $1 last;
+        }
+
+        location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            include fastcgi_params;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass 127.0.0.1:9000;
+        }
     }
 
 
@@ -76,7 +76,7 @@ http://mac-blog.org.ua/663
 
 Добавление еще одного языка:
 
-    
+
     cd /var/www/wp-content/languages/
     wget http://svn.automattic.com/wordpress-i18n/uk/tags/3.3.1/messages/uk.mo
     cd /var/www/wp-content/themes/twentyeleven/languages/
@@ -88,7 +88,7 @@ http://mac-blog.org.ua/663
 
 Создать базу для wordpress'а из консоли:
 
-    
+
     mysqladmin -u root -p -v create example
 
 

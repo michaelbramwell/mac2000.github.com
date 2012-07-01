@@ -3,7 +3,7 @@ layout: post
 title: Ubuntu настройки питания
 permalink: /824
 tags: [acpi, hibernate, power, sleep, suspend, ubuntu]
-----
+---
 
 При таких настройках на ASUS AH8e полноценно заработал спящий режим.
 

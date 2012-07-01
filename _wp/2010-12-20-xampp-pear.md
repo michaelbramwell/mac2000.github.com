@@ -3,30 +3,30 @@ layout: post
 title: XAMPP Pear
 permalink: /39
 tags: [admin, develop, pear, php]
-----
+---
 
 **List installed packages**
 
-    
-    <code>C:\xampp\php\pear.bat list</code>
+
+    C:\xampp\php\pear.bat list
 
 
 **Install package with all dependencies**
 
-    
-    <code>C:\xampp\php\pear.bat install PACKAGE -a</code>
+
+    C:\xampp\php\pear.bat install PACKAGE -a
 
 
 **Help**
 
-    
-    <code>C:\xampp\php\pear.bat help COMMAND</code>
+
+    C:\xampp\php\pear.bat help COMMAND
 
 
 **Upgrade**
 
-    
-    <code>C:\xampp\php\pear.bat upgrade-all</code>
+
+    C:\xampp\php\pear.bat upgrade-all
 
 
 **Channels**
@@ -45,12 +45,12 @@ Add **PHP_PEAR_SYSCONF_DIR** sys variable that point to php’s dir
 
 To install beta use something like this:
 
-    
-    <code>pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5</code>
+
+    pear install channel://pear.php.net/PEAR_Frontend_Web-0.7.5
 
 
 **Pear webinstaller**
 
-    
-    <code>pear install pear/PEAR#webinstaller</code>
+
+    pear install pear/PEAR#webinstaller
 

@@ -3,7 +3,7 @@ layout: post
 title: mysql from c#
 permalink: /351
 tags: [.net, c#, connector, dll, lib, mysql]
-----
+---
 
 [http://dev.mysql.com/downloads/connector/net/5.2.html](http://dev.mysql.com/d
 ownloads/connector/net/5.2.html)
@@ -11,39 +11,39 @@ ownloads/connector/net/5.2.html)
 
 Sample code:
 
-    
-    <code>MySqlConnectionStringBuilder connBuilder = new MySqlConnectionStringBuilder();
+
+    MySqlConnectionStringBuilder connBuilder = new MySqlConnectionStringBuilder();
     connBuilder.Add("Database", "wp4dev");
     connBuilder.Add("Data Source", "localhost");
     connBuilder.Add("User Id", "root");
     connBuilder.Add("Password", "");
-    
+
     MySqlConnection connection = new MySqlConnection(connBuilder.ConnectionString);
     MySqlCommand cmd = connection.CreateCommand();
-    
+
     connection.Open();
-    
+
     //SELECT
     StringBuilder tmp = new StringBuilder();
     cmd.CommandText = "SELECT * FROM wp_posts";
     cmd.CommandType = CommandType.Text;
-    
+
     MySqlDataReader reader = cmd.ExecuteReader();
-    
+
     while (reader.Read())
-    {   
+    {
         tmp.AppendLine(String.Format("({0}) {1}",
             reader.GetInt32("ID"),reader.GetString("post_title")
         ));
     }
-    
+
     reader.Close();
     MessageBox.Show(tmp.ToString());
-    
+
     //MySqlTransaction tran = connection.BeginTransaction();
     //MySqlCommand cmd2 = tran.Connection.CreateCommand();
-    
-    connection.Close();</code>
+
+    connection.Close();
 
 
 For program work you need add reference to **C:\Program Files

@@ -3,11 +3,11 @@ layout: post
 title: Php include file but do not print anything
 permalink: /462
 tags: [include, ob, php, print, require]
-----
+---
 
 <code>$string = get_include_contents('somefile.php');
 
-    
+
     function get_include_contents($filename) {
         if (is_file($filename)) {
             ob_start();
@@ -17,5 +17,5 @@ tags: [include, ob, php, print, require]
             return $contents;
         }
         return false;
-    }</code>
+    }
 

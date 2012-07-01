@@ -3,7 +3,7 @@ layout: post
 title: Windows 7 add virtual network cards
 permalink: /442
 tags: [.net, adapter, admin, administration, eth, hdwwiz, lo, loopback, microsoft, virtual, virtualnetwork, windows]
-----
+---
 
 Run cmd as Administrator and run hdwwiz.exe
 

@@ -3,7 +3,7 @@ layout: post
 title: Google apps engine + KnockoutJs + REST
 permalink: /853
 tags: [gae, knockout, knockoutjs, python, rest, restful]
-----
+---
 
 Simple example, demonstates how to create app with knockoutjs that will use
 RESTfull google apps engine service.
@@ -19,20 +19,20 @@ blog.org.ua/wp-content/uploads/214.png)
 
 **main.py:**
 
-    
-    <code>from google.appengine.ext import webapp
+
+    from google.appengine.ext import webapp
     from google.appengine.ext.webapp import util
     from google.appengine.ext import db
     from google.appengine.ext.webapp import template
     from google.appengine.api import mail
     from google.appengine.api import users
     from django.utils import simplejson
-    
+
     class ServerModel(db.Model):
         name = db.StringProperty(required=True)
         active = db.BooleanProperty()
         host = db.StringProperty(required=True)
-    
+
     class ServerHandler(webapp.RequestHandler):
         def get(self, id = None):
             self.response.headers['Content-Type'] = 'application/json'
@@ -45,9 +45,9 @@ blog.org.ua/wp-content/uploads/214.png)
                     'name': server.name,
                     'host': server.host,
                     })
-    
+
             self.response.out.write(simplejson.dumps(data))
-    
+
         def post(self, id = None):
             self.response.headers['Content-Type'] = 'application/json'
             args = simplejson.loads(self.request.body)
@@ -57,11 +57,11 @@ blog.org.ua/wp-content/uploads/214.png)
                 host = args.get('host'),
             )
             server.save()
-    
+
             self.response.out.write(simplejson.dumps({
                 'id': server.key().id(),
             }))
-    
+
         def put(self, id = None):
             self.response.headers['Content-Type'] = 'application/json'
             args = simplejson.loads(self.request.body)
@@ -70,33 +70,33 @@ blog.org.ua/wp-content/uploads/214.png)
             server.name = args.get('name')
             server.host = args.get('host')
             self.response.out.write('')
-    
+
         def delete(self, id = None):
             self.response.headers['Content-Type'] = 'application/json'
             args = simplejson.loads(self.request.body)
             server = ServerModel.get_by_id(args.get('id'))
             server.delete()
             self.response.out.write('')
-    
+
         def handle_exception(self, exception, debug_mode):
             self.error(500);
             self.response.headers['Content-Type'] = 'application/json'
             self.response.out.write(exception.message)
-    
+
     class MainHandler(webapp.RequestHandler):
         def get(self):
             values = {}
             self.response.out.write(template.render('templates/index.html', values))
-    
+
     def main():
         application = webapp.WSGIApplication([
             ('/', MainHandler),
             (r'/servers(?:/(.*))?', ServerHandler)
         ], debug=True)
         util.run_wsgi_app(application)
-    
+
     if __name__ == '__main__':
-        main()</code>
+        main()
 
 
 
@@ -106,8 +106,8 @@ Note, that there is no validations etc, but hey this is just example.
 
 **index.html:**
 
-    
-    <code><!DOCTYPE html>
+
+    <!DOCTYPE html>
     <html lang="en">
     <head>
         <title>Knock</title>
@@ -127,7 +127,7 @@ Note, that there is no validations etc, but hey this is just example.
             html, body {
                 background-color: #eee;
             }
-    
+
             .content {
                 margin: 40px auto;
                 background-color: #fff;
@@ -145,9 +145,9 @@ Note, that there is no validations etc, but hey this is just example.
         </div>
     </div>
     <div class="container">
-    
+
         <div class="content">
-    
+
             <table id="servers">
                 <thead>
                 <tr>
@@ -163,7 +163,7 @@ Note, that there is no validations etc, but hey this is just example.
                 </thead>
                 <tbody data-bind="template: {name:'serverTemplate', foreach: servers}"></tbody>
             </table>
-    
+
             <script type="text/x-jquery-tmpl" id="serverTemplate">
                 <tr>
                     <td data-bind="html: active"></td>
@@ -178,20 +178,20 @@ Note, that there is no validations etc, but hey this is just example.
                     </td>
                 </tr>
             </script>
-    
+
             <div id="serverForm" class="modal hide fade">
                 <div class="modal-header">
                     <a href="#" class="close">&times;</a>
-    
+
                     <h3>Add/Edit serve</h3>
                 </div>
                 <div class="modal-body">
                     <form action="">
                         <input data-bind="value: id" type="hidden" id="id" name="id"/>
-    
+
                         <div class="clearfix">
                             <label for="active">Active</label>
-    
+
                             <div class="input">
                                 <ul class="inputs-list">
                                     <li>
@@ -205,20 +205,20 @@ Note, that there is no validations etc, but hey this is just example.
                                 </ul>
                             </div>
                         </div>
-    
+
                         <div class="clearfix">
                             <label for="name">Name</label>
-    
+
                             <div class="input">
                                 <input data-bind="value: name" type="text" size="30" name="name"
                                        id="name"
                                        class="xlarge">
                             </div>
                         </div>
-    
+
                         <div class="clearfix">
                             <label for="host">Host</label>
-    
+
                             <div class="input">
                                 <input data-bind="value: host" type="text" size="30" name="host"
                                        id="host"
@@ -231,10 +231,10 @@ Note, that there is no validations etc, but hey this is just example.
                     <button data-bind="click: save" class="btn primary">Save</button>
                 </div>
             </div>
-    
+
         </div>
     </div>
-    
+
     <!-- VIEW MODEL -->
     <script type="text/javascript">
         var ServerHandler = {
@@ -281,22 +281,22 @@ Note, that there is no validations etc, but hey this is just example.
                 });
             }
         };
-    
+
         var ServerModel = function(id, name, active, host) {
             this.id = ko.observable(id);
             this.name = ko.observable(name);
             this.active = ko.observable(active);
             this.host = ko.observable(host);
-    
+
             this.remove = function() {
-    
+
             }
-    
+
             this.save = function() {
                 if (this.id() == 0) ServerCollection.items.push(this);
                 console.log('ajax save for server');
             }
-    
+
             this.fillForm = function() {
                 serverForm.id(this.id());
                 serverForm.name(this.name());
@@ -304,20 +304,20 @@ Note, that there is no validations etc, but hey this is just example.
                 serverForm.host(this.host());
             }
         }
-    
+
         var ServerCollection = {
             servers: ko.observableArray([]),
-    
+
             getById: function(id) {
                 for (i = 0;  i < this.servers().length; i++)
                     if (this.servers()[i].id() == id) return this.servers()[i];
                 return false;
             },
-    
+
             add: function() {
                 ServerForm.peak(new ServerModel(0, '', true, ''));
             },
-    
+
             read: function() {
                 jQuery.ajax({
                     dataTypeString: 'json',
@@ -337,31 +337,31 @@ Note, that there is no validations etc, but hey this is just example.
         }
         ko.applyBindings(ServerCollection, $('#servers').get(0));
         ServerCollection.read();
-    
+
         var ServerForm = {
             id: ko.observable(0),
             name: ko.observable(''),
             active: ko.observable(false),
             host: ko.observable(''),
-    
+
             peak: function(server) {
                 this.id(server.id());
                 this.name(server.name());
                 this.active(server.active());
                 this.host(server.host());
             },
-    
+
             save: function() {
                 ServerHandler.save(new ServerModel(this.id(), this.name(), this.active(), this.host()));
                 $('#serverForm').modal('hide');
             }
         }
-    
+
         ko.applyBindings(ServerForm, $('#serverForm').get(0));
     </script>
-    
+
     </body>
-    </html></code>
+    </html>
 
 
 

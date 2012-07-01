@@ -3,7 +3,7 @@ layout: post
 title: WordPress multisite
 permalink: /663
 tags: [farm, multisite, wordpress, wp, wpmu]
-----
+---
 
 Необходимо реализовать ферму сайтов на wordpress.
 
@@ -17,8 +17,8 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Если домен уже где то припаркова просто добавляем запись:
 
-    
-    <code>* A 192.168.5.11</code>
+
+    * A 192.168.5.11
 
 
 
@@ -28,19 +28,19 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 **/etc/bind/named.conf.local**:
 
-    
-    <code>zone "multi.com" {
+
+    zone "multi.com" {
             type master;
             file "/etc/bind/db.multi.com";
-    };</code>
+    };
 
 
 
 
 **/etc/bind/db.multi.com**:
 
-    
-    <code>$TTL    604800
+
+    $TTL    604800
     @       IN      SOA     multi.com. root.multi.com. (
                                   2         ; Serial
                              604800         ; Refresh
@@ -51,7 +51,7 @@ tags: [farm, multisite, wordpress, wp, wpmu]
     @       IN      NS      multi.com.
     @       IN      A       192.168.5.11
     @       IN      AAAA    ::1
-    *.multi.com. IN A 192.168.5.11</code>
+    *.multi.com. IN A 192.168.5.11
 
 
 
@@ -60,8 +60,8 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Теперь настройка apache. Во первых надо убедиться что включен mod_rewrite
 
-    
-    <code>sudo a2enmod rewrite</code>
+
+    sudo a2enmod rewrite
 
 
 
@@ -71,8 +71,8 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 **/etc/apache2/sites-available/default**:
 
-    
-    <code><VirtualHost *:80>
+
+    <VirtualHost *:80>
             ServerName multi.com
             ServerAlias *.multi.com
             DocumentRoot /var/www
@@ -82,38 +82,38 @@ tags: [farm, multisite, wordpress, wp, wpmu]
                     Order allow,deny
                     allow from all
             </Directory>
-    </VirtualHost></code>
+    </VirtualHost>
 
 
 
 
 **/etc/apache2/sites-available/test1.ru**:
 
-    
-    <code><VirtualHost *:80>
+
+    <VirtualHost *:80>
             ServerName test1.ru
             ServerAlias www.test1.ru
-    </VirtualHost></code>
+    </VirtualHost>
 
 
 
 
 **/etc/apache2/sites-available/test2.ru**:
 
-    
-    <code><VirtualHost *:80>
+
+    <VirtualHost *:80>
             ServerName test2.ru
             ServerAlias www.test2.ru
-    </VirtualHost></code>
+    </VirtualHost>
 
 
 
 
 Включаем сайты:
 
-    
-    <code>a2ensite test1.ru
-    a2ensite test2.ru</code>
+
+    a2ensite test1.ru
+    a2ensite test2.ru
 
 
 
@@ -130,8 +130,8 @@ test1.ru, test2.ru.
 
 После чего, в файл **wp-config.php**, в самое начало, добавляем:
 
-    
-    <code>define('WP_ALLOW_MULTISITE', true);</code>
+
+    define('WP_ALLOW_MULTISITE', true);
 
 
 Теперь в админке в разделе **Инструменты** должен появиться новый пункт
@@ -216,11 +216,11 @@ content/plugins**, файл **sunrise.php** - в **/wp-content**.
 В самый конец файла **wp-config.php** перед последним **require_once**
 добавляем, чтобы получилось так:
 
-    
-    <code>define( 'SUNRISE', 'on' );
-    
+
+    define( 'SUNRISE', 'on' );
+
     /** Инициализирует переменные WordPress и подключает файлы. */
-    require_once(ABSPATH . 'wp-settings.php');</code>
+    require_once(ABSPATH . 'wp-settings.php');
 
 
 

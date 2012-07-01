@@ -3,7 +3,7 @@ layout: post
 title: TortoiseSvn and Jira
 permalink: /394
 tags: [code, jira, scm, svn, tortoisesvn]
-----
+---
 
 [https://plugins.atlassian.com/plugin/details/10017](https://plugins.atlassian
 .com/plugin/details/10017)
@@ -49,30 +49,30 @@ hook/](http://justaddwater.dk/2010/06/10/windows-svn-pre-commit-hook/)
 
 Создаем файл D:\SVN\Rabota.UA\hooks\pre-commit.bat с таким содержимым:
 
-    
-    <code>REM Subversion pre-commit hook for Windows machine
+
+    REM Subversion pre-commit hook for Windows machine
     REM put this in your SVN repository folder /hooks/pre-commit.bat
     REM we use it with svn version
     REM http://stackoverflow.com/questions/869248/windows-pre-commit-hook-for-comment-length-subversion
-    
+
     @echo off
     :: Stops commits that have empty log messages.
-    @echo off  
-    
-    setlocal  
-    
+    @echo off
+
+    setlocal
+
     rem Subversion sends through the path to the repository and transaction id
     set REPOS=%1
-    set TXN=%2           
-    
+    set TXN=%2
+
     rem line below ensures at least one character ".", 5 characters require change to "....."
     svnlook log %REPOS% -t %TXN% | findstr . > nul
-    if %errorlevel% gtr 0 (goto err) else exit 0  
-    
+    if %errorlevel% gtr 0 (goto err) else exit 0
+
     :err
     echo. 1>&2
     echo ADD JIRA TASK NUMBER BEFORE COMMIT 1>&2
-    exit 1</code>
+    exit 1
 
 
 Если нужно сделать client side pre-commit hook
@@ -80,8 +80,8 @@ hook/](http://justaddwater.dk/2010/06/10/windows-svn-pre-commit-hook/)
 
 тогда батник будет выглядеть вот так:
 
-    
-    <code>@echo off
+
+    @echo off
     setlocal
     set REPOS=%1
     set TXN=%2
@@ -92,7 +92,7 @@ hook/](http://justaddwater.dk/2010/06/10/windows-svn-pre-commit-hook/)
     exit 0
     :err
     echo Empty log message not allowed. Commit aborted! 1>&2
-    exit 1</code>
+    exit 1
 
 
 Суть изменений в следующем: третьим параметром идет путь к файлу в котором

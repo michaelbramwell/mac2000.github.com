@@ -3,11 +3,11 @@ layout: post
 title: htaccess remove (not hide) query string
 permalink: /787
 tags: [htaccess, mod_rewrite, query_string, request_uri, rewrite, rewritecond, rewriterule]
-----
+---
 
 <code>RewriteEngine On
 
-    
+
     RewriteCond %{REQUEST_URI} ^/index.php$ [NC,OR]
     #RewriteCond %{REQUEST_URI} ^/index.html$ [NC,OR]
     #RewriteCond %{REQUEST_URI} ^/index.htm$ [NC,OR]
@@ -16,7 +16,7 @@ tags: [htaccess, mod_rewrite, query_string, request_uri, rewrite, rewritecond, r
     RewriteCond %{REQUEST_URI} ^/$
     RewriteCond %{QUERY_STRING} .
     RewriteCond %{QUERY_STRING} !q=
-    RewriteRule .* /? [R=301,L]</code>
+    RewriteRule .* /? [R=301,L]
 
 
 This will redirect all requests like:

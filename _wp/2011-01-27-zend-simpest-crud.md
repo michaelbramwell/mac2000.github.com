@@ -3,12 +3,12 @@ layout: post
 title: zend simplest crud
 permalink: /379
 tags: [admin, create, crud, database, db, dbadapter, delete, edit, mysql, php, sql, update, zend]
-----
+---
 
 Here is table:
 
-    
-    <code>CREATE TABLE customer (
+
+    CREATE TABLE customer (
       id int(11) NOT NULL AUTO_INCREMENT,
       first_name varchar(100) NOT NULL,
       last_name varchar(100) NOT NULL,
@@ -16,32 +16,32 @@ Here is table:
       email varchar(100) NOT NULL,
       active int(1) NOT NULL,
       PRIMARY KEY (id)
-    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;</code>
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 Models:
 
-    
-    <code>zf create db-table Customer customer
+
+    zf create db-table Customer customer
     zf create model CustomerMapper
-    zf create model Customer</code>
+    zf create model Customer
 
 
 Controller and its actions:
 
-    
-    <code>zf create controller Customer
+
+    zf create controller Customer
     zf create action list Customer
     zf create action view Customer
     zf create action create Customer
     zf create action edit Customer
-    zf create action delete Customer</code>
+    zf create action delete Customer
 
 
 Form:
 
-    
-    <code>zf create form customerForm</code>
+
+    zf create form customerForm
 
 
 Almost all code was copy pasted from [http://framework.zend.com/manual/en/lear
@@ -51,33 +51,33 @@ start.intro.html)
 
 **Application.ini config for mysql connection:**
 
-    
-    <code>resources.db.adapter = "PDO_MYSQL"
+
+    resources.db.adapter = "PDO_MYSQL"
     resources.db.params.host = "localhost"
     resources.db.params.username = "root"
     resources.db.params.password = ""
     resources.db.params.dbname = "simplecrud_zf"
-    resources.db.isDefaultTableAdapter = true </code>
+    resources.db.isDefaultTableAdapter = true
 
 
 **models/DbTable/Customer.php**
 
-    
-    <code><?php
+
+    <?php
     //zf create db-table Customer customer
     class Application_Model_DbTable_Customer extends Zend_Db_Table_Abstract
     {
-    
+
         protected $_name = 'customer';
-    
-    }</code>
+
+    }
 
 
 **models/Customer.php**
 
-    
-    <code><?php
-    
+
+    <?php
+
     //zf create model Customer
     class Application_Model_Customer
     {
@@ -117,7 +117,7 @@ start.intro.html)
          * @var bool
          */
         protected $_active;
-    
+
         /**
          * Get customer ID
          *
@@ -127,7 +127,7 @@ start.intro.html)
         {
             return $this->_id;
         }
-    
+
         /**
          * Set customer ID
          *
@@ -139,7 +139,7 @@ start.intro.html)
             $this->_id = $id;
             return $this;
         }
-    
+
         /**
          * Get customer first name
          *
@@ -149,7 +149,7 @@ start.intro.html)
         {
             return $this->_firstName;
         }
-    
+
         /**
          * Set customer first name
          *
@@ -161,7 +161,7 @@ start.intro.html)
             $this->_firstName = $firstName;
             return $this;
         }
-    
+
         /**
          * Get customer last name
          *
@@ -171,7 +171,7 @@ start.intro.html)
         {
             return $this->_lastName;
         }
-    
+
         /**
          * Set customer last name
          *
@@ -183,7 +183,7 @@ start.intro.html)
             $this->_lastName = $lastName;
             return $this;
         }
-    
+
         /**
          * Get customer email
          *
@@ -193,7 +193,7 @@ start.intro.html)
         {
             return $this->_email;
         }
-    
+
         /**
          * Set customer email
          *
@@ -205,7 +205,7 @@ start.intro.html)
             $this->_email = $email;
             return $this;
         }
-    
+
         /**
          * Get customer age
          *
@@ -215,7 +215,7 @@ start.intro.html)
         {
             return $this->_age;
         }
-    
+
         /**
          * Set customer age
          *
@@ -227,7 +227,7 @@ start.intro.html)
             $this->_age = $age;
             return $this;
         }
-    
+
         /**
          * Get customer active status
          *
@@ -237,7 +237,7 @@ start.intro.html)
         {
             return $this->_active;
         }
-    
+
         /**
          * Set customer active status
          *
@@ -249,14 +249,14 @@ start.intro.html)
             $this->_active = $active;
             return $this;
         }
-    }</code>
+    }
 
 
 **models/CustomerMapper.php**
 
-    
-    <code><?php
-    
+
+    <?php
+
     //zf create model CustomerMapper
     class Application_Model_CustomerMapper
     {
@@ -266,7 +266,7 @@ start.intro.html)
          * @var Application_Model_DbTable_Customer
          */
         protected $_dbTable;
-    
+
         /**
          * Get customer table
          *
@@ -277,10 +277,10 @@ start.intro.html)
             if (null === $this->_dbTable) {
                 $this->setDbTable('Application_Model_DbTable_Customer');
             }
-    
+
             return $this->_dbTable;
         }
-    
+
         /**
          * Set customer table
          *
@@ -292,16 +292,16 @@ start.intro.html)
             if (is_string($dbTable)) {
                 $dbTable = new $dbTable();
             }
-    
+
             if (!$dbTable instanceof Zend_Db_Table_Abstract) {
                 throw new Exception('Invalid table data gateway provided');
             }
-    
+
             $this->_dbTable = $dbTable;
-    
+
             return $this;
         }
-    
+
         public function save(Application_Model_Customer $customer)
         {
             $data = array(
@@ -312,7 +312,7 @@ start.intro.html)
                 'age' => $customer->getAge(),
                 'active' => $customer->getActive(),
             );
-    
+
             if (null === ($id = $customer->getId())) {
                 unset($data['id']);
                 $id = $this->getDbTable()->insert($data);
@@ -321,7 +321,7 @@ start.intro.html)
                 $this->getDbTable()->update($data, array('id = ?' => $id));
             }
         }
-    
+
         public function delete($id)
         {
             $row = $this->getDbTable()->find($id)->current();
@@ -332,7 +332,7 @@ start.intro.html)
                 throw new Zend_Exception("Delete function failed; could not find row!");
             }
         }
-    
+
         /**
          * Find customer by ID
          *
@@ -345,9 +345,9 @@ start.intro.html)
             if (0 == count($result)) {
                 return;
             }
-    
+
             $row = $result->current();
-    
+
             $entry = new Application_Model_Customer();
             $entry->setId($row->id)
                     ->setFirstName($row->first_name)
@@ -355,10 +355,10 @@ start.intro.html)
                     ->setEmail($row->email)
                     ->setAge($row->age)
                     ->setActive($row->active);
-    
+
             return $entry;
         }
-    
+
         /**
          * Fetch all customers
          *
@@ -378,41 +378,41 @@ start.intro.html)
                         ->setActive($row->active);
                 $entries[] = $entry;
             }
-    
+
             return $entries;
         }
-    
+
     }
-    
-    </code>
+
+
 
 
 **Application/controllers/CustomerController.php**
 
-    
-    <code><?php
-    
+
+    <?php
+
     //zf create controller Customer
     class CustomerController extends Zend_Controller_Action
     {
-    
+
         public function init()
         {
             /* Initialize action controller here */
         }
-    
+
         public function indexAction()
         {
             $this->_redirect('/customer/list');
         }
-    
+
         //zf create action list Customer
         public function listAction()
         {
             $customerMapper = new Application_Model_CustomerMapper();
             $this->view->entries = $customerMapper->fetchAll();
         }
-    
+
         //zf create action view Customer
         public function viewAction()
         {
@@ -420,65 +420,65 @@ start.intro.html)
             $customerMapper = new Application_Model_CustomerMapper();
             $this->view->entry = $customerMapper->find($id);
         }
-    
+
         //zf create action create Customer
         public function createAction()
         {
             $form = new Application_Form_CustomerForm();
             $form->setAction('/customer/create');
             $form->setMethod('post');
-    
+
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($_POST)) {
-    
+
                     $customerMapper = new Application_Model_CustomerMapper();
-    
+
                     $customer = new Application_Model_Customer();
                     $customer->setActive($form->getValue('active'))
                             ->setAge($form->getValue('age'))
                             ->setEmail($form->getValue('email'))
                             ->setFirstName($form->getValue('firstName'))
                             ->setLastName($form->getValue('lastName'));
-    
+
                     $customerMapper->save($customer);
-    
+
                     if ($customer->getId()) {
                         $this->_forward('list');
                     }
                 }
             }
-    
+
             $this->view->form = $form;
         }
-    
+
         //zf create action edit Customer
         public function editAction()
         {
             $form = new Application_Form_CustomerForm();
             $form->setAction('/customer/edit');
             $form->setMethod('post');
-    
+
             $customerMapper = new Application_Model_CustomerMapper();
-    
+
             if ($this->getRequest()->isPost()) {
                 if ($form->isValid($_POST)) {
                     $customer = new Application_Model_Customer();
-    
+
                     $customer->setId($form->getValue('id'))
                             ->setActive($form->getValue('active'))
                             ->setAge($form->getValue('age'))
                             ->setEmail($form->getValue('email'))
                             ->setFirstName($form->getValue('firstName'))
                             ->setLastName($form->getValue('lastName'));
-    
+
                     $customerMapper->save($customer);
-    
+
                     $this->_forward('list');
                 }
             } else {
                 $id = $this->getRequest()->getParam('id');
                 $customer = $customerMapper->find($id);
-    
+
                 $values = array(
                     'id' => $customer->getId(),
                     'firstName' => $customer->getFirstName(),
@@ -487,13 +487,13 @@ start.intro.html)
                     'age' => $customer->getAge(),
                     'active' => $customer->getActive(),
                 );
-    
+
                 $form->populate($values);
             }
-    
+
             $this->view->form = $form;
         }
-    
+
         //zf create action delete Customer
         public function deleteAction()
         {
@@ -502,36 +502,36 @@ start.intro.html)
             $customerMapper->delete($id);
             $this->_redirect('/customer/list');
         }
-    
-    }</code>
+
+    }
 
 
 **Application/forms/CustomerForm.php**
 
-    
-    <code><?php
-    
+
+    <?php
+
     //zf create form customerForm
     class Application_Form_CustomerForm extends Zend_Form
     {
-    
+
         public function init()
         {
             $id = $this->createElement('hidden', 'id');
             $this->addElement($id);
-    
+
             $firstName = $this->createElement('text', 'firstName');
             $firstName->setLabel('First name:');
             $firstName->setRequired();
             $firstName->setAttrib('size', 30);
             $this->addElement($firstName);
-    
+
             $lastName = $this->createElement('text', 'lastName');
             $lastName->setLabel('Last name:');
             $lastName->setRequired();
             $lastName->setAttrib('size', 30);
             $this->addElement($lastName);
-    
+
             $email = $this->createElement('text', 'email');
             $email->setLabel('Email:');
             $email->setRequired();
@@ -542,29 +542,29 @@ start.intro.html)
             ));
             $email->setAttrib('size', 30);
             $this->addElement($email);
-    
+
             $age = $this->createElement('text', 'age');
             $age->setLabel('Age:');
             $age->setRequired();
             $age->addValidator(new Zend_Validate_Int());
             $age->setAttrib('size', 30);
             $this->addElement($age);
-    
+
             $active = $this->createElement('checkbox', 'active');
             $active->setLabel('Active:');
             $this->addElement($active);
-    
+
             $this->addElement('submit', 'submit', array('label' => 'Submit'));
         }
-    
-    }</code>
+
+    }
 
 
 **views/scripts/customer/list.phtml**
 
-    
-    <code><?php /* @var $this Zend_View */ ?>
-    
+
+    <?php /* @var $this Zend_View */ ?>
+
     <a href="/customer/create">create customer</a>
     <table cellpadding="2" cellspacing="0" border="1">
         <caption>Customers list</caption>
@@ -593,19 +593,19 @@ start.intro.html)
             </tr>
         <?php endforeach; ?>
     </table>
-    <a href="/customer/create">create customer</a></code>
+    <a href="/customer/create">create customer</a>
 
 
 **views/scripts/customer/view.phtml**
 
-    
-    <code><?php /* @var $this Zend_View */ ?>
+
+    <?php /* @var $this Zend_View */ ?>
     <?php /* @var $entry Application_Model_Customer */ $entry = $this->entry; ?>
-    
+
     <a href="/customer/list">back to list</a>
     <table cellpadding="2" cellspacing="0" border="1">
         <caption>Customer info</caption>
-    
+
         <tr>
             <th>id</th>
             <td><?php echo $this->escape($entry->getId()); ?></td>
@@ -631,18 +631,18 @@ start.intro.html)
             <td><?php echo $this->escape($entry->getActive()); ?></td>
         </tr>
     </table>
-    <a href="/customer/list">back to list</a></code>
+    <a href="/customer/list">back to list</a>
 
 
 **views/scripts/customer/create.phtml & views/scripts/customer/edit.phtml**
 
-    
-    <code><?php /* @var $this Zend_View */ ?>
+
+    <?php /* @var $this Zend_View */ ?>
     <?php /* @var $form Application_Form_CustomerForm */ $form = $this->form;?>
-    
+
     <a href="/customer/list">back to list</a>
     <?php echo $form->render()?>
-    <a href="/customer/list">back to list</a></code>
+    <a href="/customer/list">back to list</a>
 
 
 [simplecrud](http://mac-blog.org.ua/wp-content/uploads/simplecrud.zip)

@@ -3,7 +3,7 @@ layout: post
 title: Asp.Net move all Javascript to page closure and css to head
 permalink: /971
 tags: [.net, asp.net, c#, ControlDesigner, css, DefaultProperty, GetDesignTimeHtml, HtmlGenericControl, HtmlTextWriter, InitComplete, javascript, OnPreRender, RenderControl, StringWriter, ToolboxData]
-----
+---
 
 Here is my use case:
 
@@ -26,9 +26,9 @@ head (for css).
 
 Here is how its look like:
 
-    
+
     <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AssetsPlaceHolder._Default" %>
-    
+
     <%@ Register Assembly="Rabota2.Controls" Namespace="Rabota2.Controls" TagPrefix="rua" %>
     <%@ Register src="Control1.ascx" tagname="Control1" tagprefix="uc1" %>
     <!DOCTYPE HTML>
@@ -54,10 +54,10 @@ Here is how its look like:
 
 And here is example of control code:
 
-    
+
     <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Control1.ascx.cs" Inherits="AssetsPlaceHolder.Control1" %>
     <%@ Register Assembly="Rabota2.Controls" Namespace="Rabota2.Controls" TagPrefix="rua" %>
-    
+
     <p>Hello From Control 1</p>
     <rua:JavaScriptPlaceHolder ID="JavaScriptPlaceHolder1" runat="server">
     <script>
@@ -70,47 +70,47 @@ Without our custom placeholder styles and scripts will be rendrered in their
 places, but with our code they will be rendered in page closere and header,
 here is rendered html:
 
-    
+
     <!DOCTYPE HTML>
-    
+
     <html lang="ru">
-    
+
     <head><title>
-    
-    	AssetsPlaceHolder
-    
+
+        AssetsPlaceHolder
+
     </title><style id="rua-css-js">
-    
+
                     body, .Control11 {
-    
+
                         color:#f00;
-    
+
                     }
-    
+
             </style><script id="rua-head-js"></script></head>
-    
+
     <body>
-    
+
         <form name="form1" method="post" action="" id="form1">
-    
+
     <div>
-    
+
     <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwMDgxNjI2MDEPZBYEAgEPZBYCAgEPFgIeCWlubmVyaHRtbAV+DQogICAgICAgICAgICANCiAgICAgICAgICAgICAgICBib2R5LCAuQ29udHJvbDExIHsNCiAgICAgICAgICAgICAgICAgICAgY29sb3I6I2YwMDsNCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICANCiAgICAgICAgZAIDD2QWAgIFDxYCHwAFJQ0KDQogICAgYWxlcnQoJ2hlbGxvIENvbnRyb2wxMScpOw0KDQpkZOBnZ28jerbTEhM0uBSmjX6KuQCa6Co5bwXXdVV5yALk" />
-    
+
     </div>
-    
+
             <h3>Assets Place Holder</h3>
-    
+
     <p>Hello From Control 1</p>
-    
+
         <script id="rua-closure-js">
-    
+
         alert('hello Control11');
-    
+
     </script></form>
-    
+
     </body>
-    
+
     </html>
 
 
@@ -123,7 +123,7 @@ And here is how this will look like in VisualStudio:
 
 And here is code doing all this:
 
-    
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -136,7 +136,7 @@ And here is code doing all this:
     using System.Web.UI.Design;
     using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
-    
+
     namespace Rabota2.Controls
     {
         [ToolboxData("<{0}:JavaScriptPlaceHolder runat=\"server\"><script type=\"text/javascript\"></script></{0}:JavaScriptPlaceHolder>")]
@@ -155,13 +155,13 @@ And here is code doing all this:
                 get { return _holder; }
                 set { _holder = value; }
             }
-    
+
             protected override HtmlGenericControl GetHolder()
             {
                 return Holder == AssetHolder.Header ? JS_HEAD : JS_CLOSURE;
             }
         }
-    
+
         [ToolboxData("<{0}:CssPlaceHolder runat=\"server\"><style type=\"text/css\"></style></{0}:CssPlaceHolder>")]
         public class CssPlaceHolder : AssetsPlaceHolder
         {
@@ -170,7 +170,7 @@ And here is code doing all this:
                 return CSS_HEAD;
             }
         }
-    
+
         #region Abstract AssetsPlaceHolder
         [Designer(typeof(AssetsPlaceHolderDesigner))]
         public abstract class AssetsPlaceHolder : PlaceHolder
@@ -181,20 +181,20 @@ And here is code doing all this:
             protected readonly string JS_HEAD_ID = "rua-head-js";
             protected readonly string JS_CLOSURE_ID = "rua-closure-js";
             protected readonly string CSS_HEAD_ID = "rua-css-js";
-    
+
             /// <summary>
             /// Elements that will contain all css and javascript from page
             /// </summary>
             protected HtmlGenericControl JS_HEAD;
             protected HtmlGenericControl JS_CLOSURE;
             protected HtmlGenericControl CSS_HEAD;
-    
+
             /// <summary>
             /// Abstract method to get one of elements defined above, look into implementation in JavaScriptPlaceHolder and CssPlaceHolder
             /// </summary>
             /// <returns>HtmlGenericControl</returns>
             protected abstract HtmlGenericControl GetHolder();
-    
+
             /// <summary>
             /// On constructor we're going to attach to page init complete event out custom handler that will create holders for code
             /// </summary>
@@ -208,7 +208,7 @@ And here is code doing all this:
                     page.InitComplete += new EventHandler(page_InitComplete);
                 }
             }
-    
+
             private void page_InitComplete(object sender, EventArgs e)
             {
                 //Run this code only if we have context (this will prevent visual studio desing mode errors)
@@ -222,7 +222,7 @@ And here is code doing all this:
                         CSS_HEAD.ID = CSS_HEAD_ID;
                         Page.Header.Controls.Add(CSS_HEAD);
                     }
-    
+
                     //Add js holder to head, if it already not here
                     JS_HEAD = (HtmlGenericControl)Page.Header.FindControl(JS_HEAD_ID);
                     if (JS_HEAD == null)
@@ -231,7 +231,7 @@ And here is code doing all this:
                         JS_HEAD.ID = JS_HEAD_ID;
                         Page.Header.Controls.Add(JS_HEAD);
                     }
-    
+
                     //Add js holder to page closure, if it already not here
                     JS_CLOSURE = (HtmlGenericControl)Page.FindControl(JS_CLOSURE_ID);
                     if (JS_CLOSURE == null)
@@ -242,13 +242,13 @@ And here is code doing all this:
                     }
                 }
             }
-    
+
             /// <summary>
             /// Here is magic starts - override RenderControl to do nothing, so in place where out control lives will be print nothing
             /// </summary>
             /// <param name="writer"></param>
             public override void RenderControl(HtmlTextWriter writer) { }
-    
+
             /// <summary>
             /// Magic end - override OnPreRender event to move rendered control content to selected holder
             /// </summary>
@@ -256,10 +256,10 @@ And here is code doing all this:
             protected override void OnPreRender(EventArgs e)
             {
                 HtmlGenericControl holder = GetHolder(); // GetHolder() must be implemented in child classes
-    
+
                 //Run this code only if we have context (this will prevent visual studio desing mode errors)
                 if (Context != null)
-                {   
+                {
                     if (holder != null)
                     {
                         //We're using base.RenderControl() to render control into string rather than page
@@ -272,10 +272,10 @@ And here is code doing all this:
                                 innerHtml = stringWriter.ToString();
                             }
                         }
-    
+
                         //For normal VisualStudio syntax highlighting we're using <scrtip>...</script> and <style>...</style> tags inside our placeholders, and must strip them here
                         innerHtml = Regex.Replace(innerHtml, @"<\/?(script|style)[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-    
+
                         holder.InnerHtml += innerHtml;
                     }
                 }
@@ -283,11 +283,11 @@ And here is code doing all this:
             }
         }
         #endregion
-    
+
         #region Designer
         /// <summary>
         /// Assets PlaceHolder ControlDesigner
-        /// 
+        ///
         /// This designer simply renders label indicating which assets placeholder used
         /// </summary>
         public class AssetsPlaceHolderDesigner : ControlDesigner
@@ -296,20 +296,20 @@ And here is code doing all this:
             {
                 Label label = new Label();
                 label.Text = "asset";
-    
+
                 if (Component.GetType() == typeof(JavaScriptPlaceHolder)) label.Text = "js";
                 else if (Component.GetType() == typeof(CssPlaceHolder)) label.Text = "css";
-    
+
                 label.BackColor = ColorTranslator.FromHtml("#444444");
                 if (Component.GetType() == typeof(JavaScriptPlaceHolder)) label.BackColor = ColorTranslator.FromHtml("#CC0000");
                 else if (Component.GetType() == typeof(CssPlaceHolder)) label.BackColor = ColorTranslator.FromHtml("#006E2E");
-    
+
                 label.ForeColor = ColorTranslator.FromHtml("#EEEEEE");
                 if (Component.GetType() == typeof(JavaScriptPlaceHolder)) label.BackColor = ColorTranslator.FromHtml("#CC0000");
                 else if (Component.GetType() == typeof(CssPlaceHolder)) label.BackColor = ColorTranslator.FromHtml("#006E2E");
-    
+
                 label.Style.Add("padding", "0 0.5em");
-    
+
                 string html = string.Empty;
                 using (StringWriter stringWriter = new StringWriter())
                 {
@@ -319,7 +319,7 @@ And here is code doing all this:
                         html = stringWriter.ToString();
                     }
                 }
-    
+
                 return html;
             }
         }

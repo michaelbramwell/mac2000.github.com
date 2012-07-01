@@ -3,7 +3,7 @@ layout: post
 title: Word.Application из под Powershell и/или Asp.Net
 permalink: /866
 tags: [asp.net, automate, batch, com, dcomcnfg, powershell, word]
-----
+---
 
 Если написать простенькую программку или скрипт которая будет что либо делать
 с word'ом или любым другим продуктом из пакета Microsoft Office - все будет

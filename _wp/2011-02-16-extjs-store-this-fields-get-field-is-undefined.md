@@ -3,22 +3,22 @@ layout: post
 title: ExtJs store this.fields.get(field) is undefined
 permalink: /446
 tags: [applysort, ext, extjs, javascript, js, jsonreader, jsonstore, metadata, sortinfo, store]
-----
+---
 
 Here is simple example of store:
 
-    
-    <code>var cityStore = new Ext.data.JsonStore({
-    	url: '<%= ResolveUrl("~/json/Dictionaries/Cities.ashx")%>',
-    	//remoteSort: true,
-    	autoLoad: true
-    });</code>
+
+    var cityStore = new Ext.data.JsonStore({
+        url: '<%= ResolveUrl("~/json/Dictionaries/Cities.ashx")%>',
+        //remoteSort: true,
+        autoLoad: true
+    });
 
 
 And here is responce from cities.ashx:
 
-    
-    <code>{
+
+    {
       "total": 34,
       "metaData": {
         "idProperty": "Id",
@@ -58,11 +58,11 @@ And here is responce from cities.ashx:
       ],
       "success": true,
       "message": "ok"
-    }</code>
+    }
 
 
 If  u will not add remoteSort:true u will get error:
 
-    
-    <code>this.fields.get(field) is undefined</code>
+
+    this.fields.get(field) is undefined
 

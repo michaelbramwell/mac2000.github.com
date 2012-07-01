@@ -3,7 +3,7 @@ layout: post
 title: Retrive YouTube video screenshot by its id
 permalink: /576
 tags: [api, code, screenshot, video, youtube]
-----
+---
 
 Here is simples ever way to get screenshot from youtube video:
 

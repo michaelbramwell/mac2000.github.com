@@ -3,7 +3,7 @@ layout: post
 title: WordPress /feed to rss.xml
 permalink: /880
 tags: [301, 302, feed, feedburner, htaccess, redirect, rewrite, rss, wordpress]
-----
+---
 
 <code><IfModule mod_rewrite.c>
 
@@ -14,6 +14,6 @@ tags: [301, 302, feed, feedburner, htaccess, redirect, rewrite, rss, wordpress]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . /index.php [L]
-    </IfModule></code>
+    </IfModule>
 
 

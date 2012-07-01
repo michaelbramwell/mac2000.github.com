@@ -3,7 +3,7 @@ layout: post
 title: Drupal wysiwyg with imagebrowser and shadowbox
 permalink: /754
 tags: [d6, drupal, imagebrowser, shadowbox, tinymce, wysiwyg]
-----
+---
 
 Note about configuring content manager friendly backend.
 
@@ -94,8 +94,8 @@ blog.org.ua/wp-content/uploads/83.png)
 
 At moment must be:
 
-    
-    <code>projects[shadowbox][version] = "4.x-dev"</code>
+
+    projects[shadowbox][version] = "4.x-dev"
 
 
 

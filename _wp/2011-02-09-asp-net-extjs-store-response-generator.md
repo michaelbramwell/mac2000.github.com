@@ -3,7 +3,7 @@ layout: post
 title: Asp.net ExtJs store response generator
 permalink: /436
 tags: [.net, asp.net, c#, ext, extjs, grid, gridpanel, javascript, js, jsonreader, meta, metadata, reader, store]
-----
+---
 
 When using ExtJs grids we always describe the same handlers to retrive data,
 wich contains some metadata and properties like: success, total etc...
@@ -21,14 +21,14 @@ blog.org.ua/wp-content/uploads/15.png)
 
 And here is how now my ashx looks like:
 
-    
-    <code>using System;
+
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
     using RabotaUA.Model;
     using ExtJs;
-    
+
     namespace RabotaUA.Sales.json.Manager
     {
         /// <summary>
@@ -36,11 +36,11 @@ And here is how now my ashx looks like:
         /// </summary>
         public class read : IHttpHandler
         {
-    
+
             public void ProcessRequest(HttpContext context)
             {
                 context.Response.ContentType = "application/json";
-    
+
                 try
                 {
                     List<DataInfo> itemsList = CacheHelper.GetCachedList(CacheHelper.CachedList.ManagerList, false);
@@ -53,7 +53,7 @@ And here is how now my ashx looks like:
                     context.Response.Write(resp);
                 }
             }
-    
+
             public bool IsReusable
             {
                 get
@@ -62,7 +62,7 @@ And here is how now my ashx looks like:
                 }
             }
         }
-    }</code>
+    }
 
 
 Now I dont care if some fields changed etc, all metadata will be regenerated,
@@ -74,67 +74,67 @@ Code of classes:
 
 **MetaDataFieldBase**
 
-    
-    <code>public class MetaDataFieldBase
+
+    public class MetaDataFieldBase
     {
         public string name;
         public string type;
-    }</code>
+    }
 
 
 **MetaDataFieldFactory**
 
-    
-    <code>public static class MetaDataFieldFactory
+
+    public static class MetaDataFieldFactory
     {
         public static MetaDataFieldBase Create(string name, string type)
         {
             MetaDataFieldBase field = new MetaDataFieldBase();
             field.name = name;
             field.type = type;
-    
+
             return field;
         }
-    
+
         public static MetaDataFieldBase Create(string name, Type type)
         {
             MetaDataFieldBase field = new MetaDataFieldBase();
             field.name = name;
             field.type = TypeMapper.Convert(type);
-    
+
             return field;
         }
-    
+
         public static MetaDataFieldBase Create(System.Reflection.PropertyInfo info)
         {
             MetaDataFieldBase field = new MetaDataFieldBase();
             field.name = info.Name;
             field.type = TypeMapper.Convert(info.PropertyType);
-    
+
             return field;
         }
-    
+
         public static List<MetaDataFieldBase> CreateListFromType(Type type)
         {
             List<MetaDataFieldBase> fields = new List<MetaDataFieldBase>();
-    
+
             System.Reflection.PropertyInfo[] propInfo = type.GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
             foreach (System.Reflection.PropertyInfo info in propInfo)
             {
                 if (!info.PropertyType.IsPrimitive && !info.PropertyType.Equals(typeof(string)) && !info.PropertyType.Equals(typeof(DateTime))) continue;
-    
+
                 fields.Add(MetaDataFieldFactory.Create(info));
             }
-    
+
             return fields;
         }
-    }</code>
+    }
 
 
 **TypeMapper**
 
-    
-    <code>public static class TypeMapper
+
+    public static class TypeMapper
     {
         public static string Convert(Type type)
         {
@@ -142,7 +142,7 @@ Code of classes:
             {
                 case TypeCode.Byte:
                 case TypeCode.Boolean: return "bool";
-    
+
                 case TypeCode.Int16:
                 case TypeCode.Int32:
                 case TypeCode.Int64:
@@ -153,29 +153,29 @@ Code of classes:
                 case TypeCode.SByte:
                 case TypeCode.Single:
                 case TypeCode.Double: return "number";
-    
+
                 case TypeCode.DateTime: return "date";
-    
+
                 case TypeCode.Char:
                 case TypeCode.String: return "string";
-    
+
                 //case TypeCode.Empty:
                 //    break;
                 //case TypeCode.Object:
                 //    break;
                 //case TypeCode.DBNull:
                 //    break;
-    
+
                 default: return "string";
             }
         }
-    }</code>
+    }
 
 
 **MetaData**
 
-    
-    <code>public class MetaData
+
+    public class MetaData
     {
         public string idProperty;
         public string root = "data";
@@ -185,11 +185,11 @@ Code of classes:
         public string sortInfo;
         public string direction;
         public List<MetaDataFieldBase> fields;
-    
+
         public MetaData()
         {
         }
-    
+
         public MetaData(Type type, string id_column_name, string order_by_column_name, string order_by_direction)
         {
             this.idProperty = id_column_name;
@@ -197,52 +197,52 @@ Code of classes:
             this.direction = order_by_direction;
             this.fields = MetaDataFieldFactory.CreateListFromType(type);
         }
-    }</code>
+    }
 
 
 **ResponseBase**
 
-    
-    <code>public class ResponseBase
+
+    public class ResponseBase
     {
         public bool success = true;
         public string message = "ok";
-    
+
         public ResponseBase()
         {
             this.success = true;
             this.message = "ok";
         }
-    
+
         public ResponseBase(bool success, string message)
         {
             this.success = success;
             this.message = message;
         }
-    
+
         public override string ToString()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented, new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
         }
-    }</code>
+    }
 
 
 **ResponseReader**
 
-    
-    <code>public class ResponseReader<T> : ResponseBase
+
+    public class ResponseReader<T> : ResponseBase
     {
         public int total;
         public MetaData metaData;
         public List<T> data;
-    
+
         public ResponseReader(List<T> items, int total_rows, string id_column_name, string order_by_column_name, string order_by_direction)
         {
             this.total = total_rows;
             this.metaData = new MetaData(typeof(T), id_column_name, order_by_column_name, order_by_direction);
             this.data = items;
         }
-    }</code>
+    }
 
 
 And yep this is not ideal, but hey it works :)

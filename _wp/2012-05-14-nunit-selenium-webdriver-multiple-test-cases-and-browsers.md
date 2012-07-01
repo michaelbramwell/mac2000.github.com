@@ -3,7 +3,7 @@ layout: post
 title: NUnit, Selenium WebDriver multiple Test Cases and Browsers
 permalink: /1012
 tags: [category, ChromeDriver, CurrentContext, FirefoxDriver, FullName, GetScreenshot, InternetExplorerDriver, ITakesScreenshot, IWebDriver, NUnit, OpenQA, result, SaveAsFile, screenshot, Selenium, Test, TestCase, TestContext, TestFixture, TestFixtureSetUp, TestFixtureTearDown, transform, WebDriver, xslt]
-----
+---
 
 
 
@@ -32,7 +32,7 @@ tags: [category, ChromeDriver, CurrentContext, FirefoxDriver, FullName, GetScree
 
 Here is example code that runs on multiple browsers with multiple test cases:
 
-    
+
     using System;
     using System.Text.RegularExpressions;
     using System.Threading;
@@ -41,77 +41,77 @@ Here is example code that runs on multiple browsers with multiple test cases:
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
-    
+
     namespace Example
     {
-    	[TestFixture(typeof(FirefoxDriver))]
-    	[TestFixture(typeof(InternetExplorerDriver))]
-    	[TestFixture(typeof(ChromeDriver))]
-    	public class TestWithMultipleBrowsers<TWebDriver> where TWebDriver : IWebDriver, new()
-    	{
-    		#region Setup
-    		private IWebDriver driver;
-    
-    		[TestFixtureSetUp]
-    		public void CreateDriver()
-    		{
-    			if (typeof(TWebDriver).Name == "ChromeDriver")
-    			{
-    				// http://code.google.com/p/chromedriver/downloads/list
-    				driver = new ChromeDriver("C:\\chromedriver");
-    			}
-    			else
-    			{
-    				driver = new TWebDriver();
-    			}
-    		}
-    
-    		[TearDown]
-    		public void TearDown()
-    		{
-    			// Take screen on failure
-    			if (TestContext.CurrentContext.Result.Status == TestStatus.Failed)
-    			{
-    				string fileName = Regex.Replace(TestContext.CurrentContext.Test.FullName, "[^a-z0-9\\-_]+", "_", RegexOptions.IgnoreCase);
-    				((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("C:\\Users\\AlexandrM\\Desktop\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
-    			}
-    		}
-    
-    		[TestFixtureTearDown]
-    		public void FixtureTearDown()
-    		{
-    			if (driver != null) driver.Quit();
-    		}
-    		#endregion
-    
-    		#region Tests
-    		[Test]
-    		[Description("This test will always fail")]
-    		public void FailTest()
-    		{
-    			driver.Navigate().GoToUrl("http://www.google.com/");
-    			Thread.Sleep(1000);
-    			Assert.IsTrue(driver.Title.Contains("rabota.ua"));
-    		}
-    
-    		[Test]
-    		[Description("Test google search")]
-    		[Category("google"), Category("search")]
-    		[TestCase("jobsearch")]
-    		[TestCase("employer")]
-    		public void GoogleTest(string search)
-    		{
-    
-    			driver.Navigate().GoToUrl("http://www.google.com/");
-    			IWebElement query = driver.FindElement(By.Name("q"));
-    			query.SendKeys(search + Keys.Enter);
-    
-    			Thread.Sleep(1000);
-    
-    			Assert.AreEqual(search + " - Поиск в Google", driver.Title);
-    		}
-    		#endregion
-    	}
+        [TestFixture(typeof(FirefoxDriver))]
+        [TestFixture(typeof(InternetExplorerDriver))]
+        [TestFixture(typeof(ChromeDriver))]
+        public class TestWithMultipleBrowsers<TWebDriver> where TWebDriver : IWebDriver, new()
+        {
+            #region Setup
+            private IWebDriver driver;
+
+            [TestFixtureSetUp]
+            public void CreateDriver()
+            {
+                if (typeof(TWebDriver).Name == "ChromeDriver")
+                {
+                    // http://code.google.com/p/chromedriver/downloads/list
+                    driver = new ChromeDriver("C:\\chromedriver");
+                }
+                else
+                {
+                    driver = new TWebDriver();
+                }
+            }
+
+            [TearDown]
+            public void TearDown()
+            {
+                // Take screen on failure
+                if (TestContext.CurrentContext.Result.Status == TestStatus.Failed)
+                {
+                    string fileName = Regex.Replace(TestContext.CurrentContext.Test.FullName, "[^a-z0-9\\-_]+", "_", RegexOptions.IgnoreCase);
+                    ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("C:\\Users\\AlexandrM\\Desktop\\" + fileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
+
+            [TestFixtureTearDown]
+            public void FixtureTearDown()
+            {
+                if (driver != null) driver.Quit();
+            }
+            #endregion
+
+            #region Tests
+            [Test]
+            [Description("This test will always fail")]
+            public void FailTest()
+            {
+                driver.Navigate().GoToUrl("http://www.google.com/");
+                Thread.Sleep(1000);
+                Assert.IsTrue(driver.Title.Contains("rabota.ua"));
+            }
+
+            [Test]
+            [Description("Test google search")]
+            [Category("google"), Category("search")]
+            [TestCase("jobsearch")]
+            [TestCase("employer")]
+            public void GoogleTest(string search)
+            {
+
+                driver.Navigate().GoToUrl("http://www.google.com/");
+                IWebElement query = driver.FindElement(By.Name("q"));
+                query.SendKeys(search + Keys.Enter);
+
+                Thread.Sleep(1000);
+
+                Assert.AreEqual(search + " - Поиск в Google", driver.Title);
+            }
+            #endregion
+        }
     }
 
 
@@ -119,7 +119,7 @@ Also you can run [tests via
 console](http://www.nunit.org/index.php?p=consoleCommandLine&r=2.6), like
 this:
 
-    
+
     "C:\Program Files (x86)\NUnit 2.6\bin\nunit-console" "C:\Users\AlexandrM\Documents\Visual Studio 11\Projects\Example\Example\Example.csproj"  /result:"C:\Users\AlexandrM\Desktop\result.xml"
 
 
@@ -127,7 +127,7 @@ Notice that result will be saved as XML file, which can be transformed with
 old [Summary.xslt](http://www.nunit.org/docs/2.2.5/files/Summary.xslt)  () by
 adding
 
-    
+
     <?xml-stylesheet type="text/xsl" href="Summary.xslt"?>
 
 
@@ -136,27 +136,27 @@ right after xml declaration or you can write your own xslt file.
 
 Here is code from nunit.xslt (can not find link where found it):
 
-    
+
     <?xml version="1.0" encoding="UTF-8" ?>
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method='html' indent='yes'/>
     <xsl:template match="/">
-    	<html>
-    		<xsl:apply-templates/>
-    	</html>
+        <html>
+            <xsl:apply-templates/>
+        </html>
     </xsl:template>
     <xsl:template match="test-results">
     <head>
     <script type="text/javascript">
     function ShowHideDetails(contentControlId) {
-    	var contentControl = document.getElementById(contentControlId);
-    	if(contentControl) {
-    		if(contentControl.style.display == 'none') {
-    			contentControl.style.display = '';
-    		} else {
-    			contentControl.style.display = 'none';
-    		}
-    	}
+        var contentControl = document.getElementById(contentControlId);
+        if(contentControl) {
+            if(contentControl.style.display == 'none') {
+                contentControl.style.display = '';
+            } else {
+                contentControl.style.display = 'none';
+            }
+        }
     }
     </script>
     </head>
@@ -257,52 +257,52 @@ content/uploads/217.png)
 
 As of making nice reports, here is starter kit:
 
-    
+
     <?xml version="1.0"?>
     <!-- http://www.bizcoder.com/index.php/2010/02/12/convert-xml-to-json-using-xslt/ -->
     <!-- http://xmlplease.com/whitespace -->
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <xsl:output method="html"  indent="yes"/>
-    
+
         <xsl:template match="/">
-    		<html>
-    			<head>
-    				<meta charset="UTF-8" />
-    				<title>Test Results</title>
-    				<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
-    				<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    			</head>
-    			<body>
-    				<div data-bind="with: test_results">
-    					<p>Date: <span data-bind="text: date"></span></p>
-    					<p>Tests: <span data-bind="text: success"></span> of <span data-bind="text: total"></span></p>
-    				</div>
-    
-    				<script type="text/javascript" src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.1.0.js"></script>
-    				<script type="text/javascript" src="https://raw.github.com/SteveSanderson/knockout.mapping/master/build/output/knockout.mapping-latest.js"></script>
-    				<script type="text/javascript">
-    					var data ={<xsl:apply-templates select="*"/>};
-    					data.test_results.success = parseInt(data.test_results.total) - parseInt(data.test_results.errors) - parseInt(data.test_results.failures) - parseInt(data.test_results.ignored) - parseInt(data.test_results.inconclusive) - parseInt(data.test_results.invalid) - parseInt(data.test_results.not_run) - parseInt(data.test_results.skipped);
-    
-    					//TODO: do something with data here
-    					var results = ko.mapping.fromJS(data);
-    
-    					ko.applyBindings(results);
-    				</script>
-    			</body>
-    		</html>
+            <html>
+                <head>
+                    <meta charset="UTF-8" />
+                    <title>Test Results</title>
+                    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" />
+                    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+                </head>
+                <body>
+                    <div data-bind="with: test_results">
+                        <p>Date: <span data-bind="text: date"></span></p>
+                        <p>Tests: <span data-bind="text: success"></span> of <span data-bind="text: total"></span></p>
+                    </div>
+
+                    <script type="text/javascript" src="http://cloud.github.com/downloads/SteveSanderson/knockout/knockout-2.1.0.js"></script>
+                    <script type="text/javascript" src="https://raw.github.com/SteveSanderson/knockout.mapping/master/build/output/knockout.mapping-latest.js"></script>
+                    <script type="text/javascript">
+                        var data ={<xsl:apply-templates select="*"/>};
+                        data.test_results.success = parseInt(data.test_results.total) - parseInt(data.test_results.errors) - parseInt(data.test_results.failures) - parseInt(data.test_results.ignored) - parseInt(data.test_results.inconclusive) - parseInt(data.test_results.invalid) - parseInt(data.test_results.not_run) - parseInt(data.test_results.skipped);
+
+                        //TODO: do something with data here
+                        var results = ko.mapping.fromJS(data);
+
+                        ko.applyBindings(results);
+                    </script>
+                </body>
+            </html>
         </xsl:template>
-    
+
         <!-- Object or Element Property-->
         <xsl:template match="*">
             "<xsl:value-of select="translate(name(), '-', '_')"/>" : <xsl:call-template name="Properties"/>
         </xsl:template>
-    
+
         <!-- Array Element -->
         <xsl:template match="*" mode="ArrayElement">
             <xsl:call-template name="Properties"/>
         </xsl:template>
-    
+
         <!-- Object Properties -->
         <xsl:template name="Properties">
             <xsl:variable name="childName" select="name(*[1])"/>
@@ -316,10 +316,10 @@ As of making nice reports, here is starter kit:
             </xsl:choose>
             <xsl:if test="following-sibling::*">,</xsl:if>
         </xsl:template>
-    
+
         <!-- Attribute Property -->
         <xsl:template match="@*">"<xsl:value-of select="translate(name(), '-', '_')"/>" : "<xsl:value-of select="translate(., '&quot;', '\')"/>",
-    	</xsl:template>
+        </xsl:template>
     </xsl:stylesheet>
 
 

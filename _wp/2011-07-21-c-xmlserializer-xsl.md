@@ -3,11 +3,11 @@ layout: post
 title: C# XmlSerializer XSL
 permalink: /730
 tags: [.net, c#, serialize, StreamWriter, xml, xmlserializer, XmlTextWriter, xsl]
-----
+---
 
 <code>XmlSerializer serializer = new XmlSerializer(typeof(List<ReportItem>));
 
-    
+
     using (StreamWriter streamWriter = new StreamWriter("reportItems.xml"))
     {
         using (XmlTextWriter writer = new XmlTextWriter(streamWriter))
@@ -19,6 +19,6 @@ tags: [.net, c#, serialize, StreamWriter, xml, xmlserializer, XmlTextWriter, xsl
     }
     /*TextWriter textWriter = new StreamWriter("reportItems.xml");
     serializer.Serialize(textWriter, reportItems);
-    textWriter.Close();*/</code>
+    textWriter.Close();*/
 
 

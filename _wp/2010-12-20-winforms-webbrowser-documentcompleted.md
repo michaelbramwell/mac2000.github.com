@@ -3,14 +3,14 @@ layout: post
 title: WinForms WebBrowser DocumentCompleted
 permalink: /142
 tags: [.net, c#, webbrowser, winforms]
-----
+---
 
 Дело в том что WebBrowser может выдавать событие DocumentCompleted еще тогда
 когда на самом деле это не так, это из-за iframe'ов, далее пример как
 побороть:
 
-    
-    <code>using System;
+
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
@@ -20,7 +20,7 @@ tags: [.net, c#, webbrowser, winforms]
     using System.Security.Permissions;
     using mshtml;
     using System.IO;
-    
+
     namespace HeadHunterNewCompanies
     {
         [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
@@ -30,7 +30,7 @@ tags: [.net, c#, webbrowser, winforms]
             public Form1()
             {
                 InitializeComponent();
-    
+
                 webBrowser1.AllowWebBrowserDrop = false;
                 webBrowser1.IsWebBrowserContextMenuEnabled = false;
                 webBrowser1.WebBrowserShortcutsEnabled = false;
@@ -38,23 +38,23 @@ tags: [.net, c#, webbrowser, winforms]
                 // Uncomment the following line when you are finished debugging.
                 webBrowser1.ScriptErrorsSuppressed = true;
             }
-    
+
             private void Form1_Load(object sender, EventArgs e)
             {
                 webBrowser1.Navigate("http://hh.ua/employersList.do");
             }
-    
+
             private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
             {
                 if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
-                    return; 
-    
+                    return;
+
                 HtmlElement head = webBrowser1.Document.GetElementsByTagName("head")[0];
                 HtmlElement scriptEl = webBrowser1.Document.CreateElement("script");
                 IHTMLScriptElement element = (IHTMLScriptElement)scriptEl.DomElement;
                 element.text = File.ReadAllText("jquery-1.4.2.min.js");
                 head.AppendChild(scriptEl);
-    
+
                 scriptEl = webBrowser1.Document.CreateElement("script");
                 element = (IHTMLScriptElement)scriptEl.DomElement;
                 element.text = "function myfunc() { var lastPageNumber = $('.b-pager-lite a:last').text(); alert(lastPageNumber); }";
@@ -64,5 +64,5 @@ tags: [.net, c#, webbrowser, winforms]
             }
         }
     }
-    </code>
+
 

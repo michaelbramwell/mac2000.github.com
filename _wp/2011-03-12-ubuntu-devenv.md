@@ -3,7 +3,7 @@ layout: post
 title: Ubuntu devenv
 permalink: /500
 tags: [admin, administration, apache, apt, bind, dns, hosts, lamp, mass, postfix, tasksel, ubuntu, vhost]
-----
+---
 
 Tips for configuring php development enviroment in ubuntu.
 
@@ -12,13 +12,13 @@ Tips for configuring php development enviroment in ubuntu.
 
 First of all install tasksel:
 
-    
+
     sudo apt-get install tasksel
 
 
 To list available tasks use:
 
-    
+
     tasksel --list-tasks
 
 
@@ -29,7 +29,7 @@ We're going to install lamp-server, dns-server, mail-server.
 
 We're going install apache, mysql and php, to do so, type:
 
-    
+
     sudo tasksel install lamp-server
 
 
@@ -44,7 +44,7 @@ After installing try to open http://localhost if all ok you will see message
 It is time to setup some packages that not installed by tasksel, like pear,
 gd, curl etc.
 
-    
+
     sudo apt-get install php-pear php5-xdebug php-apc curl libcurl3 php5-curl php5-gd php5-tidy php5-xmlrpc phpmyadmin cron wget phpunit libzend-framework-php libzend-framework-zendx-php zend-framework zend-framework-bin
 
 
@@ -53,7 +53,7 @@ While installing you will be promted for phpmyadmin password.
 
 Also here is some examples using pear:
 
-    
+
     sudo pear install --alldeps PhpDocumentor
     pear list
     sudo pear upgrade-all
@@ -62,7 +62,7 @@ Also here is some examples using pear:
 After all installed, last step to do is enable rewrite module (and some other
 modules), and you may host almost any site in /var/www, to do so type:
 
-    
+
     sudo a2enmod deflate
     sudo a2enmod expires
     sudo a2enmod rewrite
@@ -88,7 +88,7 @@ mass virtual hosting.
 
 To install DNS just type:
 
-    
+
     sudo tasksel install dns-server
 
 
@@ -97,29 +97,29 @@ I'm going to configure local.com domain, but it may be really anithing u want.
 
 First edit /etc/bind/named.conf.local, and add:
 
-    
+
     zone "local.com" {
-    	type master;
-    	file "/etc/bind/db.local.com";
+        type master;
+        file "/etc/bind/db.local.com";
     };
 
 
 Then:
 
-    
+
     sudo cp /etc/bind/db.local /etc/bind/db.local.com
 
 
 Then edit /etc/bind/db.local.com, replace all localhost string to local.com
 and add following line to end of file:
 
-    
+
     *.local.com. IN A 127.0.0.1
 
 
 No check your file, restart bind and check is it works:
 
-    
+
     named-checkzone local.com /etc/bind/db.local.com
     sudo /etc/init.d/bind9 restart
     nslookup aa.bb.local.com 127.0.0.1
@@ -128,7 +128,7 @@ No check your file, restart bind and check is it works:
 Now when DNS is working we need to tell dhcp to use it, just uncomment
 following line in /etc/dhcp3/dhclient.conf:
 
-    
+
     prepend domain-name-servers 127.0.0.1;
 
 
@@ -141,14 +141,14 @@ Main idea is that you will have folder projects, and its subfolders will be
 subdomains to local.com. To configure this you will need vhost_alias module,
 enable it by typing:
 
-    
+
     sudo a2enmod vhost_alias
     sudo /etc/init.d/apache2 restart
 
 
 Now create folders for your projects:
 
-    
+
     mkdir -p ~/Projects/zf
     mkdir -p ~/Projects/drupal
     mkdir -p ~/Projects/wp
@@ -157,23 +157,23 @@ Now create folders for your projects:
 
 And create file /etc/apache2/sites-available/local.com and edit it like this:
 
-    
+
     # AllowOverride for mod_rewrite
     # Do not forget to change directory path
     <Directory /home/mac/Projects>
-    	Options All
-    	AllowOverride All
+        Options All
+        AllowOverride All
     </Directory>
-    
+
     # Replacements for subdomains
     # %0 - test1.drupal.local.com > test1.drupal.local.com
     # %1 - test1.drupal.local.com > test1
-    
+
     <VirtualHost *:80>
             ServerAlias *.drupal.local.com
             VirtualDocumentRoot /home/mac/Projects/drupal/%1
     </VirtualHost>
-    
+
     # If using netbeans
     # ln -s /home/mac/NetBeansProjects /home/mac/Projects/nb
     # Notice: project names must be in lower case to work
@@ -181,20 +181,20 @@ And create file /etc/apache2/sites-available/local.com and edit it like this:
             ServerAlias *.nb.local.com
             VirtualDocumentRoot /home/mac/Projects/nb/%1
     </VirtualHost>
-    
+
     <VirtualHost *:80>
             ServerAlias *.script.local.com
             VirtualDocumentRoot /home/mac/Projects/script/%1
     </VirtualHost>
-    
+
     <VirtualHost *:80>
             ServerAlias *.wp.local.com
             VirtualDocumentRoot /home/mac/Projects/wp/%1
     </VirtualHost>
-    
+
     <VirtualHost *:80>
-    	ServerAlias *.zf.local.com
-    	VirtualDocumentRoot /home/mac/Projects/zf/%1/public
+        ServerAlias *.zf.local.com
+        VirtualDocumentRoot /home/mac/Projects/zf/%1/public
     </VirtualHost>
 
 
@@ -209,7 +209,7 @@ All left to do is to configure mail.
 
 To install mail server just type:
 
-    
+
     sudo tasksel install mail-server
 
 
@@ -219,7 +219,7 @@ enter domain type local.com.
 
 After installing add following lines to end of /etc/postfix/main.cf file:
 
-    
+
     local_recipient_maps =
     # Replace mac to your user name
     luser_relay = mac
@@ -230,7 +230,7 @@ This lines tells that all mail will be mailed to specific user.
 
 Now restart postfix:
 
-    
+
     sudo /etc/init.d/postfix restart
 
 
@@ -242,7 +242,7 @@ Try this script ~/Projects/script/mail/index.php, accessible via
 http://mail.script.local.com/, run it at least once when all done, to create
 local mailbox file:
 
-    
+
     <?php
     $r = mail('user1@local.com', 'test', 'test');
     $m = $r ? 'yes' : 'no';
@@ -259,7 +259,7 @@ created, and placed at /var/mail/mac
 
 **Uploadprogress**
 
-    
+
     sudo pecl install uploadprogress
 
 
@@ -268,7 +268,7 @@ created, and placed at /var/mail/mac
 After install create file /etc/php5/apache2/conf.d/uploadprogress.ini with
 following line
 
-    
+
     extension=uploadprogress.so
 
 
@@ -278,7 +278,7 @@ following line
 
 Put into /etc/apache2/httpd.conf
 
-    
+
     ServerName local.com
 
 
@@ -288,7 +288,7 @@ Put into /etc/apache2/httpd.conf
 
 Edit /etc/php5/apache2/php.ini
 
-    
+
     error_reporting = E_ALL & ~E_NOTICE
     display_errors = On
     display_startup_errors = On
@@ -306,7 +306,7 @@ Edit /etc/php5/apache2/php.ini
 
 Edit /etc/php5/apache2/conf.d/xdebug.ini
 
-    
+
     xdebug.remote_enable=On
     xdebug.remote_enable=1
     xdebug.remote_handler=dbgp
@@ -319,7 +319,7 @@ Edit /etc/php5/apache2/conf.d/xdebug.ini
 
 **Permissions**
 
-    
+
     sudo chgrp -R www-data /var/www
     sudo chmod -R 777 /var/www
     sudo chmod -R g+st /var/www
@@ -328,7 +328,7 @@ Edit /etc/php5/apache2/conf.d/xdebug.ini
 
 **Sun Java**
 
-    
+
     sudo add-apt-repository ppa:ferramroberto/java
     sudo apt-get update
     sudo apt-get install sun-java6-jdk sun-java6-plugin
@@ -339,7 +339,7 @@ Edit /etc/php5/apache2/conf.d/xdebug.ini
 
 Add to /etc/php5/apache2/php.ini
 
-    
+
     auto_prepend_file = /var/www/vhosts/virtual.prepend.php
 
 
@@ -347,11 +347,11 @@ Add to /etc/php5/apache2/php.ini
 
 with following content:
 
-    
+
     <?php
     $http_host = explode('.',$_SERVER['HTTP_HOST']);
     $__mod_vhost_alias_fix_doc_root = dirname(__FILE__) . DIRECTORY_SEPARATOR . $http_host[0];
-    
+
     if (is_dir($__mod_vhost_alias_fix_doc_root))
     {
     $_SERVER['__MOD_VHOST_FIX_OLD_DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'];
