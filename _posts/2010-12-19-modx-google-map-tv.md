@@ -114,7 +114,7 @@ tags: [google, map, modx]
                 <div style=\"position:relative;width:500px;height:300px;\">
                     <div id=\"map\" style=\"width: 500px; height: 300px\"></div>
                     <div style=\"position:absolute;right:7px;top:33px;background-color:#fff;padding:2px;border:1px solid #333;\">
-                        <input type=\"text\" id=\"map".$field_id."\"  style=\"width:200px\" value=\"Óêðàèíà, Êèåâ, Ìàÿêîâñêîãî 3à\" /> <a href=\"javascript:void(0)\" onclick=\"showAddress(document.getElementById('map".$field_id."').value)\" style=\"text-decoration:none;\"><img style=\"width: 16px; height: 16px;\" src=\"media/style/MODxCarbon/images/icons/preview.png\"></a>
+                        <input type=\"text\" id=\"map".$field_id."\"  style=\"width:200px\" value=\"Ukraine, Kiev, pr. Mayakovskogo 3a\" /> <a href=\"javascript:void(0)\" onclick=\"showAddress(document.getElementById('map".$field_id."').value)\" style=\"text-decoration:none;\"><img style=\"width: 16px; height: 16px;\" src=\"media/style/MODxCarbon/images/icons/preview.png\"></a>
                     </div>
                 </div>
                 <div style=\"display:none\">
