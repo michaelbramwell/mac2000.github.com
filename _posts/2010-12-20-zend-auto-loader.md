@@ -40,7 +40,7 @@ TODO: ссылка на доку по обновлению PEAR
 
     move controllers and views folders to /modules/default/ folder, also we can create, for example admin direcotry, with its own controllers and views
 
-    resources.layout.layoutpath = APPLICATION_PATH “/layouts”
+    resources.layout.layoutpath = APPLICATION_PATH "/layouts"
     resources.layout.layout = default
 
     resources.frontController.plugins.LayoutPicker = "ZC_Controller_Plugin_LayoutPicker"

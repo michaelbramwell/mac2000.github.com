@@ -25,10 +25,10 @@ tags: [.net, admin, asp.net, c#]
         string result = proc.StandardOutput.ReadToEnd();
 
         string[] resparts = result.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-        if (resparts.Length == 2 && resparts[0].StartsWith("Server: ") && resparts[1].StartsWith("Address: ")) lblRes.Text = "Такого домена не существует";
-        else if (result.Contains("Non-existent domain")) lblRes.Text = "Такого домена не существует";
-        else if(result.Contains("DNS request timed out")) lblRes.Text = "Таймаут - хз что с мылом";
-        else lblRes.Text = "Все ок, МХ записи обнаружены - знач письмо будет куда отсылать";
+        if (resparts.Length == 2 && resparts[0].StartsWith("Server: ") && resparts[1].StartsWith("Address: ")) lblRes.Text = "Domain not exists";
+        else if (result.Contains("Non-existent domain")) lblRes.Text = "Domain not exists";
+        else if(result.Contains("DNS request timed out")) lblRes.Text = "Timeout";
+        else lblRes.Text = "OK";
 
         lblRes.Text += "<br /><br />" + command;
     }
@@ -37,4 +37,4 @@ tags: [.net, admin, asp.net, c#]
         lblRes.Text = objException.Message;
     }
 
-Естественно, код “грязный” и требует доработки – но может стать отправной точкой для более изящных решений.
+Естественно, код "грязный" и требует доработки – но может стать отправной точкой для более изящных решений.

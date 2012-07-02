@@ -10,7 +10,7 @@ tags: [.net, asp.net, c#, mssql, spell, sql]
     protected void btnGo_Click(object sender, EventArgs e)
     {
         string word = txBxKeyWord.Text;
-        string alphabet = "abcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+        string alphabet = "abcdefghijklmnopqrstuvwxyz"; // add cyrillyc letters
         int n = word.Length;
         System.Collections.Generic.List<string> edits = new System.Collections.Generic.List<string>();
 
