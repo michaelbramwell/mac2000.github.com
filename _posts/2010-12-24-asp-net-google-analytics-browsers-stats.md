@@ -9,9 +9,9 @@ tags: [.net, analytics, asp.net, c#, chart, gdata, google]
 
 Стандартный asp.net сайт.
 
-Для работы необходимо подключить: Google.GData.Analytics, Google.GData.Client, Google.GData.Extensions.
+Для работы необходимо подключить: `Google.GData.Analytics`, `Google.GData.Client`, `Google.GData.Extensions`.
 
-[http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html](http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html)
+<http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html>
 
 **Default.aspx**
 
@@ -343,3 +343,5 @@ tags: [.net, analytics, asp.net, c#, chart, gdata, google]
     }
 
 Собственно вот как это все выглядит:
+
+[![video](http://img.youtube.com/vi/blqlUJ-KYY4/0.jpg)](http://www.youtube.com/watch?v=blqlUJ-KYY4)
