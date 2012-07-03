@@ -1,6 +1,6 @@
 ---
 layout: post
-title: perl: warning: Setting locale failed.
+title: perl warning Setting locale failed
 permalink: /841
 tags: [debian, linux, locale, perl, ru, utf, utf-8, utf8]
 ---

@@ -5,7 +5,7 @@ permalink: /851
 tags: [ago, date, datetime, format, plural, singular, time]
 ---
 
-<?php
+    <?php
 
     echo ago(time() - 3452); // will return: 58 минут назад
 

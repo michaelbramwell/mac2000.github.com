@@ -23,3 +23,7 @@ TODO:
 
 upc
 
+To test your files use:
+
+    jekyll --safe
+    ruby _inspect.rb
