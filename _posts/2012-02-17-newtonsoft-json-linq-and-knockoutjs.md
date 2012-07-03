@@ -147,4 +147,4 @@ In this code objects are serialized into knockout ko.observable and ko.observabl
 
 This code will produce output like this one:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/kojson2.png)
+![screenshot](/images/wp/kojson2.png)

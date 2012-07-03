@@ -52,4 +52,4 @@ tags: [actionscript, chart, flash, google, javascript, online, service, tool]
 
 И как оно выглядит:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/1.png)
+![screenshot](/images/wp/1.png)

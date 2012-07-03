@@ -99,7 +99,7 @@ tags: [gdata, google, php, search, seo]
 
 Ну и собственно вот как это выглядит:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/12.png)
+![screenshot](/images/wp/12.png)
 
 Параметры:
 

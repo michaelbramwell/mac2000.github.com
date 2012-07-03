@@ -7,7 +7,7 @@ tags: [batch, cms, console, countdown, php, shell, time, timeleft, timer]
 
 Here is screenshot:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/14.png)
+![screenshot](/images/wp/14.png)
 
 Here is code for timer:
 

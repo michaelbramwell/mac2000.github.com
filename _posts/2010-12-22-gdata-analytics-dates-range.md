@@ -11,4 +11,4 @@ tags: [analytics, gdata, google, service]
 
 <http://code.google.com/intl/ru-RU/apis/analytics/docs/gdata/gdataExplorer.html>
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/11.png)
+![screenshot](/images/wp/11.png)

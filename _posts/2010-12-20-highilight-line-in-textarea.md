@@ -14,7 +14,7 @@ tags: [javascript, textarea, editor]
     <title>Untitled Document</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
     <!-- http://code.google.com/p/jcaret/ -->
-	<!--<script type="text/javascript" src="http://mac-blog.org.ua/wp-content/uploads/jquery.caret.1.02.min.js"></script>-->
+	<!--<script type="text/javascript" src="/images/wp/jquery.caret.1.02.min.js"></script>-->
     <script type="text/javascript">
     $(function(){
         $('#data').keyup(highlightTextArea).mouseup(highlightTextArea).scroll(highlightTextArea);

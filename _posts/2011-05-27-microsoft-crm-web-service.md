@@ -27,7 +27,7 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 Для WinForms - правый клик по проекту **Add Web Reference**, в URL вбиваем путь к сохраненному xml файлу, в Web reference name вбиваем имя создаваемой ссылки.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/111.png)
+![screenshot](/images/wp/111.png)
 
 Для asp.net - правый клик по проекту **Add Service Reference**, далее клик по кнопке **Advanced...** и еще раз клик по кнопке **Add Web Reference..**. и дальше то же самое как и для обычных апликух.
 
@@ -90,7 +90,7 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 Собственно вот как это может выглядеть:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/22.png)
+![screenshot](/images/wp/22.png)
 
 Чтобы не заморачиваться с ColumnSet - можно юзать вот такую штуку:
 
@@ -149,7 +149,7 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 выглядит вот так:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/23.png)
+![screenshot](/images/wp/23.png)
 
 **fetch link-entity aggregate**
 
@@ -169,7 +169,7 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
     </fetch>
     ";
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/31.png)
+![screenshot](/images/wp/31.png)
 
 **fetchxml into datagridview**
 

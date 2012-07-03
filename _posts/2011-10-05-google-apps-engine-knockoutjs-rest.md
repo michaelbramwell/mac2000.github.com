@@ -8,10 +8,10 @@ tags: [gae, knockout, knockoutjs, python, rest, restful]
 Simple example, demonstates how to create app with knockoutjs that will use
 RESTfull google apps engine service.
 
-[![](http://mac-blog.org.ua/wp-content/uploads/127-300x81.png)](http://mac-
+[![](/images/wp/127-300x81.png)](http://mac-
 blog.org.ua/wp-content/uploads/127.png)
 
-[![](http://mac-blog.org.ua/wp-content/uploads/214-300x110.png)](http://mac-
+[![](/images/wp/214-300x110.png)](http://mac-
 blog.org.ua/wp-content/uploads/214.png)
 
 **main.py:**

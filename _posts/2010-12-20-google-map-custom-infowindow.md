@@ -5,7 +5,7 @@ permalink: /54
 tags: [geo, gmap, google, javascript]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/gmap_custom_infowindow.png)
+![screenshot](/images/wp/gmap_custom_infowindow.png)
 
 Если есть необходимость создать кастомные infoWindow то очень здорово поможет [gmaps-utility-library-dev](http://code.google.com/p/gmaps-utility-library-dev/). А именно их класс [extinfowindow](http://gmaps-utility-library-dev.googlecode.com/svn/tags/extinfowindow/1.2/examples/).
 

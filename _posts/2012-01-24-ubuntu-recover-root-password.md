@@ -7,11 +7,11 @@ tags: [linux, passwd, password, pwconv, pwd, recover, recovery, root, shadow, ub
 
 You need to load into recovery mode
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/130.png)
+![screenshot](/images/wp/130.png)
 
 Then into root shell
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/216.png)
+![screenshot](/images/wp/216.png)
 
 Then run **passwd root** command to change root password.
 

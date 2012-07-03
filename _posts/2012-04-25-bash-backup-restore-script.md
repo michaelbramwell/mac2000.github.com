@@ -68,7 +68,7 @@ Restore Script
 Interactive Restore Script
 --------------------------
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/132.png)
+![screenshot](/images/wp/132.png)
 
     touch ~/date-backup-restore.sh
     chmod a+x ~/date-backup-restore.sh

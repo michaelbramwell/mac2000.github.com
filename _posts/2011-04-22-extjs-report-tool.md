@@ -9,7 +9,7 @@ Sample maded for rabota.ua sales department.
 
 Here is how it looks like:
 
-![](http://mac-blog.org.ua/wp-content/uploads/110.png)
+![](/images/wp/110.png)
 
 Main page code:
 
@@ -112,7 +112,7 @@ Code is copied from extjs examples, first of all we showing loader, and loading 
 
 Note: TDGi.iconMgr - cool extjs plugin that adds famfam icons to your project.
 
-[TDGi.iconMgr](http://mac-blog.org.ua/wp-content/uploads/TDGi.iconMgr.zip)
+[TDGi.iconMgr](/images/wp/TDGi.iconMgr.zip)
 
 After all files loaded, we load our init.js, and reports (each report has its own js file)
 

@@ -7,7 +7,7 @@ tags: [add_action, add_option, add_settings_section, add_settings_field, add_the
 
 Here is example screenshot:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/example.png)
+![screenshot](/images/wp/example.png)
 
     <?php
     // return array of default theme options

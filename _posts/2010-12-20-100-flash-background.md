@@ -74,4 +74,4 @@ tags: [acrionscript, flash]
         }
     }
 
-Файлы: [bg](http://mac-blog.org.ua/wp-content/uploads/bg.zip)
+Файлы: [bg](/images/wp/bg.zip)

@@ -8,7 +8,7 @@ tags: [.net, bindingsource, c#, datagrid, datagridview, dataset, datasource, fil
 I have handler that produces some XML data, that must be loaded into client
 aplication datagridview to be filtered.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/dfp_filter.png)
+![screenshot](/images/wp/dfp_filter.png)
 
 Here is handler:
 

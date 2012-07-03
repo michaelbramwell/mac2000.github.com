@@ -75,7 +75,7 @@ tags: [GUI, javascript, UI, YUI]
 
 Все делается точно так же как и в примерах документации к [YUI](http://developer.yahoo.com/yui/) виджету [DataTable](http://developer.yahoo.com/yui/docs/YAHOO.widget.DataTable.html).
 
-![step1](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-step1.png)
+![step1](/images/wp/yui-datatable-custom-celleditor-step1.png)
 
 Сами данные в моем случае хранятся в массиве `YAHOO.example.Data.lng`, массивы `YAHOO.example.Data.languages` и `YAHOO.example.Data.skills` – вспомогательные и служат для форматирования выводимых данных, а так же в будущем для генерации списков в редакторе.
 
@@ -175,7 +175,7 @@ tags: [GUI, javascript, UI, YUI]
 
 Получилось вот так:
 
-![step2](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-step2.png)
+![step2](/images/wp/yui-datatable-custom-celleditor-step2.png)
 
 Уже сейчас все это дело работает, изменяя цифру мы тем самым меняем язык.
 
@@ -376,13 +376,13 @@ tags: [GUI, javascript, UI, YUI]
                 YAHOO.widget.BaseCellEditor);
     })();
 
-![step3](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-step3.png)
+![step3](/images/wp/yui-datatable-custom-celleditor-step3.png)
 
 Основная часть задачи уже решена, в методах `attach` и `save` комментариями отмечены места которые были изменены, для достижения результата, теперь наш редактор гоняет запись целиком, вместо того чтобы гонять значение одной ячейки.
 
 Следующим логичным этапом будет добавление возможности добавления и удаления записей, что делается весьма просто.
 
-![step4](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-step4.png)
+![step4](/images/wp/yui-datatable-custom-celleditor-step4.png)
 
 Я просто добавил соответствующие ссылки в шапку таблицы и к каждой записи:
 
@@ -449,15 +449,15 @@ tags: [GUI, javascript, UI, YUI]
         this.fixTdHeight(true);
     },
 
-![step5](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-step5.png)
+![step5](/images/wp/yui-datatable-custom-celleditor-step5.png)
 
 Вот теперь это уже почти то что мне нужно, но остался еще один важный момент – валидация. Для его реализации пришлось перелопатить целую кучу кода, собственно тут уже каждый сам для себя должен определить что и как ему нужно.  Дело в том что поведение редактора по умолчанию меня совсем не устраивает, так например, нажав на кнопку добавления записи, мы добавляем новую запись со значениями равными нулю, мне бы хотелось чтобы при отмене эта запись удалялась. Так же при попытке сохранить значение не удовлетворяющее правилам валидации, редактор просто закрывается и не сохраняет значение – мне нужно оставлять его открытым и показывать уведомление об ошибке.
 
 По концовке получился вот такой контрол:
 
-![result](http://mac-blog.org.ua/wp-content/uploads/yui-datatable-custom-celleditor-result.png)
+![result](/images/wp/yui-datatable-custom-celleditor-result.png)
 
-Его исходники: [yui-custom-celleditor](http://mac-blog.org.ua/wp-content/uploads/yui-custom-celleditor.html)
+Его исходники: [yui-custom-celleditor](/images/wp/yui-custom-celleditor.html)
 
 Вот что из этого всего получилось в реальных условиях:
 

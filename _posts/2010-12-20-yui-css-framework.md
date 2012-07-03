@@ -354,4 +354,4 @@ HTML
     </body>
     </html>
 
-Файлы: [yuicss](http://mac-blog.org.ua/wp-content/uploads/yuicss.zip)
+Файлы: [yuicss](/images/wp/yuicss.zip)

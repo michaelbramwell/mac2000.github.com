@@ -5,7 +5,7 @@ permalink: /216
 tags: [.net, c#, javascript, php, regex]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image03.png)
+![screenshot](/images/wp/image03.png)
 
 C#
 --

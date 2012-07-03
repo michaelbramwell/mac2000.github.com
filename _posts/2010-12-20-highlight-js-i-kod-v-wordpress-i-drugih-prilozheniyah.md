@@ -22,4 +22,4 @@ tags: [code, highlight, javascript]
 
 Вот как это выглядит на деле:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/highlight_screen.png)
+![screenshot](/images/wp/highlight_screen.png)

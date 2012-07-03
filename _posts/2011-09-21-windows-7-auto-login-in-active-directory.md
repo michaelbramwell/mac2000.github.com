@@ -5,4 +5,4 @@ permalink: /838
 tags: [activedirectory, ad, auto, autologin, login, windows]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/125.png)
+![screenshot](/images/wp/125.png)

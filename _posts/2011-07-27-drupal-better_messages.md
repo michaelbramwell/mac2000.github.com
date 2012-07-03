@@ -7,7 +7,7 @@ tags: [better_messages, d6, drupal]
 
 <http://drupal.org/project/better_messages>
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/122.png)
+![screenshot](/images/wp/122.png)
 
 **Styles:**
 
@@ -15,4 +15,4 @@ tags: [better_messages, d6, drupal]
     #better-messages-default div.error,
     #better-messages-default div.warning {padding:0 10px;background:none;border:none;}
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/211.png)
+![screenshot](/images/wp/211.png)

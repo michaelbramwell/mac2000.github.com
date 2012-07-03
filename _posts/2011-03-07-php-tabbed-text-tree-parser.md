@@ -100,4 +100,4 @@ Here is usage example:
     </items>
      */
 
-Code with tests [TabbedLinesTree.tar](http://mac-blog.org.ua/wp-content/uploads/TabbedLinesTree.tar.gz)
+Code with tests [TabbedLinesTree.tar](/images/wp/TabbedLinesTree.tar.gz)

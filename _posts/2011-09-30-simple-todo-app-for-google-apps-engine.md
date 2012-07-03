@@ -11,7 +11,7 @@ This is copy-paste from:
 
 Screenshot:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/126.png)
+![screenshot](/images/wp/126.png)
 
 **app.yaml**
 
@@ -303,7 +303,7 @@ Screenshot:
 
 ## Ajax \ Rest like implementations
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/213.png)
+![screenshot](/images/wp/213.png)
 
 **app.yaml**
 

@@ -9,7 +9,7 @@ Found at: <http://www.artfulsoftware.com/infotree/queries.php#78>
 
 Sample schema:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/18.png)
+![screenshot](/images/wp/18.png)
 
 Script:
 

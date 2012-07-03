@@ -5,7 +5,7 @@ permalink: /942
 tags: [add_menu_page, add_meta_box, add_submenu_page, admin_menu, dbDelta, do_meta_boxes, gettext, i18n, l10n, load_plugin_textdomain, mo, plugin, plugins_loaded, po, register_activation_hook, wordpress, WP_List_Table]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/cte1.png) ![screenshot](http://mac-blog.org.ua/wp-content/uploads/cte2.png)
+![screenshot](/images/wp/cte1.png) ![screenshot](/images/wp/cte2.png)
 
     <?php
     /*

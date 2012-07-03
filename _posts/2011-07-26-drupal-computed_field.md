@@ -19,23 +19,23 @@ Note about using `compute_field`.
 
 Product have one additional field `Price` that is required and can be only one per product.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/118.png)
+![screenshot](/images/wp/118.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/119.png)
+![screenshot](/images/wp/119.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/29.png)
+![screenshot](/images/wp/29.png)
 
 Order
 
 Order have noderefference Product field and its amount in Multigroup and computed field Total price.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/34.png)
+![screenshot](/images/wp/34.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/43.png)
+![screenshot](/images/wp/43.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/53.png)
+![screenshot](/images/wp/53.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/62.png)
+![screenshot](/images/wp/62.png)
 
 **Computed field snippet:**
 
@@ -56,11 +56,11 @@ More snippet examples:
 
 More complex example, added field _Discount_ and computed field _Price_ to _Multigroup_, computed field _Price_ will be calculated foreach selected product. Computed field _Total price_ also changed to retrive price with discount.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/82.png)
+![screenshot](/images/wp/82.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/92.png)
+![screenshot](/images/wp/92.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/93.png)
+![screenshot](/images/wp/93.png)
 
 **Code snippet for Price:**
 

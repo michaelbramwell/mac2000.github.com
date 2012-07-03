@@ -87,6 +87,6 @@ About company node has price min, avg, max fields that must be updated when user
 
 Now u can create rules, like: When user creates new published product call our custom action.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/112.png)
+![screenshot](/images/wp/112.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/24.png)
+![screenshot](/images/wp/24.png)

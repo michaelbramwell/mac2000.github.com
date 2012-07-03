@@ -612,4 +612,4 @@ Almost all code was copy pasted from <http://framework.zend.com/manual/en/learni
     <?php echo $form->render()?>
     <a href="/customer/list">back to list</a>
 
-[simplecrud](http://mac-blog.org.ua/wp-content/uploads/simplecrud.zip)
+[simplecrud](/images/wp/simplecrud.zip)

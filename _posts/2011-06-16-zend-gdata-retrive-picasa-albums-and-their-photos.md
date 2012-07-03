@@ -5,7 +5,7 @@ permalink: /631
 tags: [gdata, picasa, zend]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/zend_gdata_picasa.png)
+![screenshot](/images/wp/zend_gdata_picasa.png)
 
 Here is sample code:
 

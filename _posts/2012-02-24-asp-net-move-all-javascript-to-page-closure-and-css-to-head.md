@@ -99,7 +99,7 @@ Without our custom placeholder styles and scripts will be rendrered in their pla
 
 And here is how this will look like in VisualStudio:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/assetsplaceholder.png)
+![screenshot](/images/wp/assetsplaceholder.png)
 
 And here is code doing all this:
 

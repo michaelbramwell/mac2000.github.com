@@ -24,35 +24,35 @@ Probably before configuring imagebrowser you must configure imagecache presets.
 Specify role permissions, especialy for imagecache presets - this will prevent user from inserting images as is.
 
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/120.png)
+![screenshot](/images/wp/120.png)
 
 Do not forget to allow users to view imagecache presets.
 
 Make some basic setup on **/admin/settings/imagebrowser** to configure styles and defaults.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/35.png)
+![screenshot](/images/wp/35.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/44.png)
+![screenshot](/images/wp/44.png)
 
 Enable imagebrowser fileter here **/admin/settings/filters**. In my case i rearranget it to be last, after all other filters, but it works event if it first - wich is probably better.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/54.png)
+![screenshot](/images/wp/54.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/63.png)
+![screenshot](/images/wp/63.png)
 
 Edit wysiwyg profile at **/admin/settings/wysiwyg/profile** and enable **Image Browser** plugin.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/210.png)
+![screenshot](/images/wp/210.png)
 
 Now if all ok while editing pages you will see image button in editor.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/73.png)
+![screenshot](/images/wp/73.png)
 
 **Configuring shadowbox:**
 
 On **/admin/settings/shadowbox/automatic** check **Enable for all image links**.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/83.png)
+![screenshot](/images/wp/83.png)
 
 **Drush make:**
 

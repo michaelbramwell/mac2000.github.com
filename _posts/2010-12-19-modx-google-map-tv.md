@@ -26,7 +26,7 @@ tags: [google, map, modx]
 
 Тем самым мы добавляем новый пункт в выпадающий список типов TV на странице создания нового TV.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/modx-add-new-tv-type.png)
+![screenshot](/images/wp/modx-add-new-tv-type.png)
 
 Добавляем Google Maps в админку
 -------------------------------
@@ -126,7 +126,7 @@ tags: [google, map, modx]
 
 Выглядеть это будет вот так:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/modx-add-new-tv-type2.png)
+![screenshot](/images/wp/modx-add-new-tv-type2.png)
 
 Использование Google Map в ModX
 -------------------------------
@@ -162,4 +162,4 @@ tags: [google, map, modx]
 
 Ну и собственно скриншот:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/modx-add-new-tv-type3.png)
+![screenshot](/images/wp/modx-add-new-tv-type3.png)

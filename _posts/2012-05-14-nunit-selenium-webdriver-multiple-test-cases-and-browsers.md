@@ -218,7 +218,7 @@ Here is code from nunit.xslt (can not find link where found it):
 Here is some screen shots, tests also can be runned from VisualStudio and
 NUnit GUI.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/133.png) ![screenshot](http://mac-blog.org.ua/wp-content/uploads/217.png)
+![screenshot](/images/wp/133.png) ![screenshot](/images/wp/217.png)
 
 As of making nice reports, here is starter kit:
 

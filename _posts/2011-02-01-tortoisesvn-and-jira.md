@@ -11,11 +11,11 @@ tags: [code, jira, scm, svn, tortoisesvn]
 
 Идем в свойства TortoiseSVN
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/13.png)
+![screenshot](/images/wp/13.png)
 
 Далее добавляем Issue Tracker Integration
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/2.png)
+![screenshot](/images/wp/2.png)
 
 Где:
 

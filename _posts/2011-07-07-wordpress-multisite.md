@@ -90,11 +90,11 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Теперь в админке в разделе **Инструменты** должен появиться новый пункт **Установка сети**.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/114.png)
+![screenshot](/images/wp/114.png)
 
 Заходим туда, и в разделе **Адреса сайтов вашей сети** выбираем **Поддомены**.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/26.png)
+![screenshot](/images/wp/26.png)
 
 Давим кнопку **Установить**. Wordpress матюкнеться что не может достучаться до поддоменов - на это можно не обращать внимания.
 
@@ -104,19 +104,19 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Если все было сделано правильно в разделе **Консоль** появиться новый пункт **Мои сайты**.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/32.png)
+![screenshot](/images/wp/32.png)
 
 Управление сетью находиться по адресу: **/wp-admin/network/** собственно туда и нужно идти чтобы добавить новые сайты. В самом верхнем-правом углу в выпадайке - там где пишут "Привет, admin"
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/6.png)
+![screenshot](/images/wp/6.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/41.png)
+![screenshot](/images/wp/41.png)
 
 При добавлении нового сайта - указываем его имя (не домен), заголовок и email админа (вбивать тот же email что и для админа - чтобы не плодить пользователей).
 
 В моем случае:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/71.png)
+![screenshot](/images/wp/71.png)
 
 Теперь этот сайт доступен по адресу: **test1.multi.com**, можно в него залогиниться под тем же логином паролем что и для основного сайта (это возможно только при условии что добавляя новый сайт мы указали email администратора основного сайта, иначе будет создан отдельный пользователь для сайта).
 
@@ -139,11 +139,11 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Остальные настройки (галочки) я не трогал.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/8.png)
+![screenshot](/images/wp/8.png)
 
 Теперь идем на `test1.multi.com`, логинимся и идем в настроку доменов (`/wp-admin/tools.php?page=domainmapping`), прописываем в качестве домена `test1.ru`, и ставим галочку **Primary domain for this blog**.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/9.png)
+![screenshot](/images/wp/9.png)
 
 После сохранения изменений сайт будет доступен по адресу **test1.ru**.
 
@@ -153,7 +153,7 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Темы - ставяться как обычно в /wp-content/themes - после чего в настройках сети необходимо разрешить тему для выбора сайтами.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/10.png)
+![screenshot](/images/wp/10.png)
 
 Ссылки:
 

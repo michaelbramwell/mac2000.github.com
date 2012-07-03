@@ -5,4 +5,4 @@ permalink: /524
 tags: [admin, cron, dhcp, ip, network, shedule, task, windows]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/17.png)
+![screenshot](/images/wp/17.png)

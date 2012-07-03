@@ -25,4 +25,4 @@ tags: [diff, javascript]
     </body>
     </html>
 
-Файлы: [jsdiff](http://mac-blog.org.ua/wp-content/uploads/jsdiff.zip)
+Файлы: [jsdiff](/images/wp/jsdiff.zip)

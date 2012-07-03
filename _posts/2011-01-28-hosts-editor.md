@@ -5,7 +5,7 @@ permalink: /384
 tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system32, uac]
 ---
 
-![screehshot](http://mac-blog.org.ua/wp-content/uploads/hosts.png)
+![screehshot](/images/wp/hosts.png)
 
     using System;
     using System.Collections.Generic;
@@ -88,4 +88,4 @@ For UAC. You must add application manifest file, and change there
 
     <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />
 
-[Hosts](http://mac-blog.org.ua/wp-content/uploads/Hosts.zip)
+[Hosts](/images/wp/Hosts.zip)

@@ -11,7 +11,7 @@ So main idea is to generate all this automaticaly.
 
 Here is class diagram:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/15.png)
+![screenshot](/images/wp/15.png)
 
 And here is how now my ashx looks like:
 

@@ -5,7 +5,7 @@ permalink: /547
 tags: [category, post, register_taxonomy, taxonomy, wordpress, wp]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/19.png)
+![screenshot](/images/wp/19.png)
 
 in functions.php:
 

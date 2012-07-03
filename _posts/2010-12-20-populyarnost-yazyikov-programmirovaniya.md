@@ -11,4 +11,4 @@ tags: [analytics, statistics]
 
 По данным сайта <http://langpop.com/> картинка выглядит следующим образом:
 
-![langpop](http://mac-blog.org.ua/wp-content/uploads/langpop-300x196.png)
+![langpop](/images/wp/langpop-300x196.png)

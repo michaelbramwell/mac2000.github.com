@@ -7,7 +7,7 @@ tags: [generate, php, plugin, wordpress, wp_delete_post, wp_get_posts, wp_insert
 
 Generate wordpress pages, posts, categories, comments for development enviroment in few clicks
 
-[Download GWE Plugin link](http://mac-blog.org.ua/wp-content/uploads/gwe.zip)
+[Download GWE Plugin link](/images/wp/gwe.zip)
 
 How it works:
 
@@ -15,10 +15,10 @@ How it works:
 
 Screenshots:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/gwe_screenshot1.png)
+![screenshot](/images/wp/gwe_screenshot1.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/gwe_screenshot2.png)
+![screenshot](/images/wp/gwe_screenshot2.png)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/gwe_screenshot3.png)
+![screenshot](/images/wp/gwe_screenshot3.png)
 
-![screehshot](http://mac-blog.org.ua/wp-content/uploads/gwe_screenshot4.png)
+![screehshot](/images/wp/gwe_screenshot4.png)

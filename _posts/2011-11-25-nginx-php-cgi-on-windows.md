@@ -11,7 +11,7 @@ tags: [cgi, nginx, php, php-cgi, win, windows]
 
 Нужен VC9 (6-й нужен только если используем с апачем).  Будет ли это thread safe или not thread safe значения не имеет.
 
-Для запуска php-cgi.exe в фоновом режиме, использую [RunHiddenConsole](http://mac-blog.org.ua/wp-content/uploads/RunHiddenConsole.zip):
+Для запуска php-cgi.exe в фоновом режиме, использую [RunHiddenConsole](/images/wp/RunHiddenConsole.zip):
 
 **start.cmd**
 

@@ -9,7 +9,7 @@ Plugin allows insert picasa albums into posts and pages via new tinymce button i
 
 Used build in jquery ui and zend gdata library.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/screenshot-1.png) ![screenshot](http://mac-blog.org.ua/wp-content/uploads/screenshot-2.png) ![screenshot](http://mac-blog.org.ua/wp-content/uploads/screenshot-3.png)
+![screenshot](/images/wp/screenshot-1.png) ![screenshot](/images/wp/screenshot-2.png) ![screenshot](/images/wp/screenshot-3.png)
 
 plugin code:
 

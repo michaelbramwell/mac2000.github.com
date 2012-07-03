@@ -5,7 +5,7 @@ permalink: /552
 tags: [ad, adsense, commercial, dc, doubleclick, google, service]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/DoubleClick.png)
+![screenshot](/images/wp/DoubleClick.png)
 
 **Sample code for home page:**
 

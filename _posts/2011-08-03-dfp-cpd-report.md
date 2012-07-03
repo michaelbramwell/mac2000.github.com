@@ -7,7 +7,7 @@ tags: [.net, ad, c#, cpd, dfp, linq, xml, xslt]
 
 Double click for publishers does not have report for sponsorship cpd line items, so we need to write own one.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/123.png)
+![screenshot](/images/wp/123.png)
 
 First of all we need to get access to Dfp API
 

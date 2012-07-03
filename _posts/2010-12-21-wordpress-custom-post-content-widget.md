@@ -26,7 +26,7 @@ tags: [php, plugin, widget, wordpress, register_post_type, get_post, register_si
 
 После чего в админке появится новосозданный кастомный тип записей
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image01.png)
+![screenshot](/images/wp/image01.png)
 
 Подробнее о создании кастомных полей: [register_post_type](http://codex.wordpress.org/Function_Reference/register_post_type)
 
@@ -74,7 +74,7 @@ tags: [php, plugin, widget, wordpress, register_post_type, get_post, register_si
 
 После добавления этого кода на странице виджетов должен появиться новый сайтбар:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image11.png)
+![screenshot](/images/wp/image11.png)
 
 Шаг 4. Вывод кастомных сайтбаров
 --------------------------------
@@ -161,4 +161,4 @@ tags: [php, plugin, widget, wordpress, register_post_type, get_post, register_si
 
 Примечание: Очень важно в форме правильно использовать методы `$this->get_field_id` и `$this->get_field_name` иначе данные не будут сохранятся и будет куча гемороя.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image21.png)
+![screenshot](/images/wp/image21.png)

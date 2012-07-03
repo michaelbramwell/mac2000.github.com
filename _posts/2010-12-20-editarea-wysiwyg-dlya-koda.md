@@ -9,7 +9,7 @@ tags: [editarea, javascript, wysiwyg]
 
 Случайно наткнулся на проект [EditArea](http://www.cdolivet.com/index.php?page=editArea), который в состоянии решить подобные проблемы.EditArea – эдакий TinyMCE, только для правки кода (HTML, CSS и т.п.).
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/editareascreenshot.png)
+![screenshot](/images/wp/editareascreenshot.png)
 
 Как видно из скриншота ([больше примеров](http://www.cdolivet.com/editarea/editarea/exemples/exemple_full.html) на сайте разработчиков), эта штуковина нормально воспринимает Tab’ы, делает подсветку синтаксиса, может менять размер шрифтов и тип редактируемого файла.
 

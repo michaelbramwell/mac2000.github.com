@@ -24,7 +24,7 @@ So browser will display content first while rendering page. It is still semantic
 
 Here is example:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/129.png)
+![screenshot](/images/wp/129.png)
 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html lang="en">

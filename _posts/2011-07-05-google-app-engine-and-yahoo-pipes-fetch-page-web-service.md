@@ -9,7 +9,7 @@ Yahoo Pipes build in [fetch page](http://pipes.yahoo.com/pipes/docs?doc=sources#
 
 Pipe looks like this:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/113.png)
+![screenshot](/images/wp/113.png)
 
 But there is [web service](http://pipes.yahoo.com/pipes/docs?doc=operators#WebService) module that allow bypass this restriction.
 
@@ -90,7 +90,7 @@ Here is sample:
 
 Now you can make pipes like this:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/25.png)
+![screenshot](/images/wp/25.png)
 
 BUT. Here is epic fail:
 

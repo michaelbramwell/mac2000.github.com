@@ -11,6 +11,6 @@ tags: [editarea, modx, php]
 
 Собственно вот что получилось:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/editarea_screenshot.png)
+![screenshot](/images/wp/editarea_screenshot.png)
 
 Скачать плагин можно [здесь](http://code.google.com/p/modxeditarea/).

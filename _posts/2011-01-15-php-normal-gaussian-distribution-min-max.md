@@ -5,7 +5,7 @@ permalink: /327
 tags: [algorithm, gaus, gauss, generator, php, rand, random, rnd]
 ---
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/rnd_vb_gauss.png)
+![screenshot](/images/wp/rnd_vb_gauss.png)
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">

@@ -8,7 +8,7 @@ tags: [analytics, statistics]
 Google опубликовала в своем [блоге](http://googleblog.blogspot.com/2010/01/unicode-nearing-50-of-web.html) статистику использования кодировок на сайтах.
 По их данным, процент сайтов на [unicode](http://ru.wikipedia.org/wiki/Unicode) кодировках превысил 50% от общей доли.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/unicode-300x225.png)
+![screenshot](/images/wp/unicode-300x225.png)
 
 Статистика использования кодировок
 
