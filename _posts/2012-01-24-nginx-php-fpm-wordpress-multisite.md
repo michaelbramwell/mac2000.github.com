@@ -62,9 +62,8 @@ tags: [fpm, multilingual, multisite, nginx, wordpress, wp]
 
 Пример взят от сюда: <http://codex.wordpress.org/Nginx> с той лиш разницей что этот будет работать из коробки.
 
-После этого, все по мануалке:
+После этого, все по [мануалке](/663/)
 
-<http://mac-blog.org.ua/663>
 
 Добавление еще одного языка:
 

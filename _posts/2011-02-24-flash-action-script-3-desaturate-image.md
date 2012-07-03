@@ -13,4 +13,4 @@ For image desaturation use this code:
 
 Notice, u desaturating movie clip - so image must be loaded into it
 
-Used for <http://mac-blog.org.ua/110>
+Used for </110/>
