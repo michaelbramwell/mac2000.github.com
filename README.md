@@ -27,3 +27,18 @@ To test your files use:
 
     jekyll --safe
     ruby _inspect.rb
+
+TODO: move this files:
+
+    ./yui-custom-celleditor.html
+    ./yuicss.zip
+    ./wysiwyg.zip
+    ./gwe.zip
+    ./WinSnapper.zip
+    ./Hosts.zip
+    ./RunHiddenConsole.zip
+    ./TabbedLinesTree.tar.gz
+    ./TDGi.iconMgr.zip
+    ./bg.zip
+    ./jsdiff.zip
+    ./simplecrud.zip
