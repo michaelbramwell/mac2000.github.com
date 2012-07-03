@@ -8,7 +8,6 @@ tags: [data, event, jquery, plugin]
 [http://docs.jquery.com/Plugins/Authoring](http://docs.jquery.com/Plugins/Auth
 oring)
 
-
     (function( $ ){
         //default settings
         var settings = {
@@ -53,4 +52,3 @@ oring)
             alert('custom event detected\r\nDATA:\r\nname: ' + oArgs.name);
         });
     });
-

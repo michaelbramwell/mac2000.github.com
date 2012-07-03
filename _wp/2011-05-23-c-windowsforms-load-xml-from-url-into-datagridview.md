@@ -8,13 +8,10 @@ tags: [.net, bindingsource, c#, datagrid, datagridview, dataset, datasource, fil
 I have handler that produces some XML data, that must be loaded into client
 aplication datagridview to be filtered.
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/dfp_filter-300x221.png)](http
 ://mac-blog.org.ua/wp-content/uploads/dfp_filter.png)
 
-
 Here is handler:
-
 
     <%@ WebHandler Language="C#" Class="dfp" %>
 
@@ -116,9 +113,7 @@ Here is handler:
         }
     }
 
-
 And here is app code to load xml from url into datagridview:
-
 
     using System;
     using System.Collections.Generic;
@@ -248,5 +243,3 @@ And here is app code to load xml from url into datagridview:
             }
         }
     }
-
-

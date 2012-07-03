@@ -7,36 +7,27 @@ tags: [cols, columns, compass, css, float, layout, sass, scss, sidebar, wrapper]
 
 Main idea is to have html like this:
 
-
     <div class="wrapper">
         <div class="content-both-sidebars">CONTENT</div>
         <div class="left">LEFT</div>
         <div class="right">RIGHT</div>
     </div>
 
-
-
-
 Or like this:
-
 
     <div class="wrapper">
         <div class="content-left">CONTENT</div>
         <div class="left">LEFT</div>
     </div>
 
-
 So browser will display content first while rendering page. It is still
 semantic. It is good for overall page speed and good user experience while
 browsing your pages.
 
-
 Here is example:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/129-300x36.png)](http://mac-
 blog.org.ua/wp-content/uploads/129.png)
-
 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html lang="en">
@@ -109,15 +100,10 @@ blog.org.ua/wp-content/uploads/129.png)
     </body>
     </html>
 
-
-
-
 Look at contents div margin calculations.
-
 
 And here is another example using compass (better show how calculatings are
 done):
-
 
     @import "compass";
 
@@ -153,20 +139,14 @@ done):
       margin:0 -1*$_WRAPPER 0 $_LEFT;
     }
 
-
-
-
 Found at: [http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/cssnegat
 ivemarginsalgebra](http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/
 cssnegativemarginsalgebra)
 
-
 Also in drupal zen theme:
 [http://drupal.org/project/zen](http://drupal.org/project/zen)
 
-
 Need working liquid solution, for less code, something like this:
-
 
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html lang="en">
@@ -248,5 +228,3 @@ Need working liquid solution, for less code, something like this:
 
     </body>
     </html>
-
-

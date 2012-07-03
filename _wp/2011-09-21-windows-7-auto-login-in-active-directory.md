@@ -7,4 +7,3 @@ tags: [activedirectory, ad, auto, autologin, login, windows]
 
 [![](http://mac-blog.org.ua/wp-content/uploads/125-300x185.png)](http://mac-
 blog.org.ua/wp-content/uploads/125.png)
-

@@ -5,7 +5,7 @@ permalink: /623
 tags: [breadcrumbs, drupal, preprocess_page]
 ---
 
-<code>function mydrive_preprocess_page(&$variables) {
+    function mydrive_preprocess_page(&$variables) {
 
         if($variables['node']->type != "") {
             $variables['template_files'][] = "page-node-" . $variables['node']->type;
@@ -53,4 +53,3 @@ tags: [breadcrumbs, drupal, preprocess_page]
         }
 
     }
-

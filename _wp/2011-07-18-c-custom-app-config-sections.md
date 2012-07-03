@@ -7,7 +7,6 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
 
 **Code:**
 
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -99,11 +98,7 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
         }
     }
 
-
-
-
 **App.config:**
-
 
     <?xml version="1.0" encoding="utf-8" ?>
     <configuration>
@@ -136,7 +131,3 @@ tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, Name
       </StartupFolders>
 
     </configuration>
-
-
-
-

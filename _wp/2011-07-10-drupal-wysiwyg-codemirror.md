@@ -8,9 +8,7 @@ tags: [codemirror, d6, drupal, editarea, hook_editor, wysiwyg]
 To add CodeMirror editor to wysiwyg drupal module, u need create following
 files:
 
-
 **/sites/all/modules/wysiwyg/editors/codemirror.inc**
-
 
     <?php
     /**
@@ -164,11 +162,7 @@ files:
       return $plugins;
     }
 
-
-
-
 **/sites/all/modules/wysiwyg/editors/js/codemirror.js**
-
 
     (function($) {
 
@@ -207,32 +201,22 @@ files:
 
     })(jQuery);
 
-
-
-
 **/sites/all/modules/wysiwyg/editors/css/codemirror.css**
-
 
     .CodeMirror {
         border: 1px solid #999;
     }
 
-
-
 ## How to add custom editor for wysiyg
-
 
 To add custom editor, u need create files as above.
 
-
 Inc file must implement:
-
 
 **wysiwyg_[editor]_editor** - this hook retrives info about editor, that will be used by wysiwyg module to determine is editor installed (found at /sites/all/libraries).
 
 Versions sub array contains file names that must be included for specific
 versions (see for example tinymce.inc).
-
 
 **wysiwyg_[editor]_version** - must return version of installed editor, used by previous function to include version specific files.
 
@@ -246,17 +230,14 @@ versions (see for example tinymce.inc).
 
 Js file must implement:
 
-
 **Drupal.wysiwyg.editor.attach.[editor]** - must attach editor to params.field.
 
 **Drupal.wysiwyg.editor.detach.[editor]** - must detach editor from params.field.
 
 Actualy this is it. Implementing this functions u can add any editor u want.
 
-
 Commited patch to
 [http://drupal.org/node/1214136](http://drupal.org/node/1214136) - but it was
 closed as duplicate to
 [http://drupal.org/node/274431](http://drupal.org/node/274431) that was
 created in 2008 O_o
-

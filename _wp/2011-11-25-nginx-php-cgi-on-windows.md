@@ -7,48 +7,35 @@ tags: [cgi, nginx, php, php-cgi, win, windows]
 
 [http://nginx.org/en/download.html](http://nginx.org/en/download.html)
 
-
 [http://windows.php.net/download/](http://windows.php.net/download/)
-
 
 Нужен VC9 (6-й нужен только если используем с апачем).  Будет ли это thread
 safe или not thread safe значения не имеет.
 
-
 Для запуска php-cgi.exe в фоновом режиме, использую [RunHiddenConsole](http
 ://mac-blog.org.ua/wp-content/uploads/RunHiddenConsole.zip):
 
-
 **start.cmd**
-
 
     @ECHO OFF
     start C:\nginx\nginx.exe
     start C:\nginx\RunHiddenConsole.exe C:\PHP\php-cgi.exe -b 127.0.0.1:9000 -c C:\PHP\php.ini
     EXIT
 
-
 **stop.cmd**
-
 
     @ECHO OFF
     taskkill /f /IM nginx.exe
     taskkill /f /IM php-cgi.exe
     EXIT
 
-
-
-
 [http://eksith.wordpress.com/2008/12/08/nginx-php-on-
 windows/](http://eksith.wordpress.com/2008/12/08/nginx-php-on-windows/)
-
 
 [http://wiki.nginx.org/PHPFastCGIOnWindows](http://wiki.nginx.org/PHPFastCGIOn
 Windows)
 
-
 **nginx.conf**
-
 
     worker_processes  1;
     events {
@@ -89,11 +76,8 @@ Windows)
         }
     }
 
-
 Отличная статья на примере Wordpress'а показывающая как бороться с ЧПУ
-
 
 [http://wiki.nginx.org/WordPress](http://wiki.nginx.org/WordPress)
 
 [http://wiki.nginx.org/Drupal](http://wiki.nginx.org/Drupal)
-

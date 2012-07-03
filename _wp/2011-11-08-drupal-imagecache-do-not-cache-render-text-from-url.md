@@ -7,7 +7,6 @@ tags: [batch, cache, drupal, gd, imagecache, imagecache_external, imagemagick, p
 
 Changes to **imagecache.module**
 
-
     ...
     function imagecache_cache() {
       $args = func_get_args();
@@ -26,11 +25,7 @@ Changes to **imagecache.module**
     }
     ...
 
-
-
-
 Changes to drupal **.htaccess**
-
 
     ...
     #start
@@ -47,45 +42,24 @@ Changes to drupal **.htaccess**
       RewriteRule ^(.*)$ index.php?q=$1 [L,QSA]
     ...
 
-
-
-
 Now every request to imagecache will be processed again and again, try to add
 **Add Text** action with following params:
 
-
     return isset($_REQUEST['t']) ? $_REQUEST['t'] : 'No text'
-
-
-
 
 Do not forget to check **Evaluate Text as PHP code**
 
-
 Now you can open urls like:
-
 
     http://drupalimage.local/sites/default/files/imagecache/preset1/imagecache_sample.png?t=hello
     http://drupalimage.local/sites/default/files/imagecache/preset1/imagecache_sample.png?t=world
 
-
-
-
 Each time you will get new image with new text.
-
 
 Now time for **imagecache_external** module, **version 1, not 2**. With it you
 will be able to do same things to external images, just make some changes to
 url like this:
 
-
     http://drupalimage.local/external/preset1/http://shtirlitz.com/wp-content/uploads/2011/03/vishenki1.jpg?t=hello
 
-
-
-
 Notice: Question marks (?) in image url must be replaced to %3F
-
-
-
-

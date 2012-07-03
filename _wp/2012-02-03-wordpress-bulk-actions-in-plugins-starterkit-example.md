@@ -7,7 +7,6 @@ tags: [admin_menu, ajax, ajaxurl, bulk, check_ajax_referer, wordpress, wp_ajax, 
 
 Here is simple starterkit example of making bulk actions in wordpress via ajax
 
-
     <?php
     /*
     Plugin Name: Bulk
@@ -125,7 +124,6 @@ Here is simple starterkit example of making bulk actions in wordpress via ajax
         function bulk_update(response, success) {
             calculateMetrics(success);
 
-
             $('#bulk_process table').append('<tr><td>' + success + '</td><td>' + bulk_actions_total + '</td><td>' + bulk_actions_success + '</td><td>' + bulk_actions_fail + '</td><td>' + bulk_actions_current + '</td><td>' + bulk_actions_remainded + '</td><td>' + bulk_actions_complete_percentage + '%</td><td>' + bulk_actions_time_start + '</td><td>' + humanReadableTime(bulk_actions_time_elapsed) + '</td><td>' + humanReadableTime(bulk_actions_time_remainded) + '</td><td>' + humanReadableTime(bulk_actions_time_per_item) + '</td><td>' + response.message + '</td></tr>');
 
             console.log(
@@ -220,7 +218,6 @@ Here is simple starterkit example of making bulk actions in wordpress via ajax
         <?php
     }
 
-
     // our ajax handler, all data accessible via $_POST
     function bulk_process() {
         //check correct nonce (setted in bulk_page_handler function)
@@ -259,7 +256,6 @@ Here is simple starterkit example of making bulk actions in wordpress via ajax
     //wp_ajax_[bulk_process] - where [bulk_process] will be action name in javascript
     add_action('wp_ajax_bulk_process', 'bulk_process');
 
-
 Some links:
 
 http://codex.wordpress.org/Function_Reference/add_menu_page
@@ -269,4 +265,3 @@ http://codex.wordpress.org/AJAX_in_Plugins
 http://codex.wordpress.org/Plugin_API/Action_Reference/wp_ajax_(action)
 
 http://codex.wordpress.org/Function_Reference/wp_enqueue_script
-

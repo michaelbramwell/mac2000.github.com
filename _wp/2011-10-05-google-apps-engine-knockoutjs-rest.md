@@ -8,17 +8,13 @@ tags: [gae, knockout, knockoutjs, python, rest, restful]
 Simple example, demonstates how to create app with knockoutjs that will use
 RESTfull google apps engine service.
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/127-300x81.png)](http://mac-
 blog.org.ua/wp-content/uploads/127.png)
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/214-300x110.png)](http://mac-
 blog.org.ua/wp-content/uploads/214.png)
 
-
 **main.py:**
-
 
     from google.appengine.ext import webapp
     from google.appengine.ext.webapp import util
@@ -98,14 +94,9 @@ blog.org.ua/wp-content/uploads/214.png)
     if __name__ == '__main__':
         main()
 
-
-
-
 Note, that there is no validations etc, but hey this is just example.
 
-
 **index.html:**
-
 
     <!DOCTYPE html>
     <html lang="en">
@@ -363,10 +354,6 @@ Note, that there is no validations etc, but hey this is just example.
     </body>
     </html>
 
-
-
-
 Note that for simplify, there is two models rather that just one like in
 knockoutjs examples, but u can do whatever way u want, also there is no
 validations etc.
-

@@ -9,28 +9,21 @@ Yahoo Pipes build in [fetch
 page](http://pipes.yahoo.com/pipes/docs?doc=sources#FetchPage) module have
 restriction - it can fetch pages only under 200 kb.
 
-
 Pipe looks like this:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/113-300x213.png)](http://mac-
 blog.org.ua/wp-content/uploads/113.png)
-
 
 But there is [web
 service](http://pipes.yahoo.com/pipes/docs?doc=operators#WebService) module
 that allow bypass this restriction.
 
-
 All we need is to write web service that will fetch pages and attache them to
 feed.
 
-
 Here is sample:
 
-
 **app.yaml**
-
 
     application: yahoo-pipes-fetch-page
     version: 1
@@ -45,11 +38,7 @@ Here is sample:
     - url: .*
       script: main.py
 
-
-
-
 **main.py**
-
 
     #!/usr/bin/env python
 
@@ -105,25 +94,15 @@ Here is sample:
     if __name__ == '__main__':
         main()
 
-
-
-
 Now you can make pipes like this:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/25-300x126.png)](http://mac-
 blog.org.ua/wp-content/uploads/25.png)
 
-
 BUT. Here is epic fail:
-
 
     Web service failure:
     An Error Occurred
     408 User-agent timeout (select)
 
-
-
-
 So ...
-

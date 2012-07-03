@@ -5,7 +5,7 @@ permalink: /816
 tags: [border-radius, corners, radius, roundcorder, vector, vml]
 ---
 
-<code><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -98,24 +98,14 @@ tags: [border-radius, corners, radius, roundcorder, vector, vml]
     </body>
     </html>
 
-
-
-
 Work in IE6,7,8.
-
-
-
 
 [http://msdn.microsoft.com/en-
 us/library/bb264307%28v=VS.85%29.aspx](http://msdn.microsoft.com/en-
 us/library/bb264307%28v=VS.85%29.aspx)
 
-
 To add namespace via js:
-
 
     <script type="text/javascript">
     document.namespaces.add("v","urn:schemas-microsoft-com:vml","#default#VML");
     </script>
-
-

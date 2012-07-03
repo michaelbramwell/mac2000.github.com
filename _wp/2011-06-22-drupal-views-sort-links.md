@@ -7,9 +7,7 @@ tags: [d6, drupal, hook_views_query_alter, order, sort, views]
 
 Create any view page, for example i have one with url /service.
 
-
 Create simple module wich will implement hook__views_query_alter, like this:
-
 
     function sync_company_prices_views_query_alter(&$view, &$query) {
         if($view->name == 'Services') {
@@ -20,12 +18,9 @@ Create simple module wich will implement hook__views_query_alter, like this:
         }
     }
 
-
 Now anywhere in theme u can add links like:
-
 
     <a href="/services/pfa">by price from ASC</a> |
     <a href="/services/pfd">by price from DESC</a> |
     <a href="/services/pta">by price to ASC</a> |
     <a href="/services/ptd">by price to DESC</a>
-

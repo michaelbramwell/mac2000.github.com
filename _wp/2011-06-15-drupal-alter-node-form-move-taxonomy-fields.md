@@ -7,16 +7,13 @@ tags: [drupal, form, hook_form_alter, taxonomy]
 
 **product_form_move_fields.info**
 
-
     version = "6.x-1.0"
     name = "Product form - move fields"
     description = "Moves fields on product add/edit page."
     core = "6.x"
     package = custom
 
-
 **product_form_move_fields.module**
-
 
     <?php
     function product_form_move_fields_form_alter(&$form, $form_state, $form_id) {
@@ -81,4 +78,3 @@ tags: [drupal, form, hook_form_alter, taxonomy]
         unset($form_state['tax' . $vid]);
     }
     ?>
-

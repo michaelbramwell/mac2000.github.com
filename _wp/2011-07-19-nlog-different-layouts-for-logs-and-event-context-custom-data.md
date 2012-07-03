@@ -7,7 +7,6 @@ tags: [.net, c#, debug, log, log4net, logger, nlog]
 
 To add custom data to log, that can be used in layouts, log message like this:
 
-
     post_data["id"] = res.ToString();
     LogEventInfo unpublish_post_data_event_info = new LogEventInfo(LogLevel.Trace, logger.Name, "Upublish data generated");
     foreach (string k in post_data.Keys) unpublish_post_data_event_info.Properties[k] = post_data[k];
@@ -15,24 +14,15 @@ To add custom data to log, that can be used in layouts, log message like this:
     unpublish_post_data_event_info.Properties["PostData"] = encode_post_data(post_data);
     logger.Log(unpublish_post_data_event_info);
 
-
-
-
 In this way you can access all log properties in layout via event-context
 variables:
 
-
     ${event-context:item=job_category}
-
-
-
 
 [http://nlog-project.org/wiki/Event-context_layout_renderer](http://nlog-
 project.org/wiki/Event-context_layout_renderer)
 
-
 Now in targets config section:
-
 
     <target name="unpublish" xsi:type="File" fileName="${basedir}/logs/unpublish.csv">
       <layout xsi:type="CSVLayout">
@@ -47,20 +37,13 @@ Now in targets config section:
     <target xsi:type="ColoredConsole" name="console_vacancy_info" layout="________________________________________________________________________________${newline}PROCCESSING VACANCY${newline}http://rabota.ua/company0/vacancy${event-context:item=VacancyID}${newline}Name: ${event-context:item=VacancyName}${newline}RubricIds: ${event-context:item=RubricIDs}${newline}Regions: ${event-context:item=Cities}${newline}"/>
     <target xsi:type="ColoredConsole" name="console_post_data_info" layout="POST DATA${newline}Category: ${event-context:item=job_category}${newline}GEO: ${event-context:item=job_country} / ${event-context:item=job_region} / ${event-context:item=job_city}${newline}"/>
 
-
-
-
-
 Here we have few targets, now to all work propertly we need catch specific
 logs in loggers, this was accomplish wia condition filters.
-
 
 [http://nlog-project.org/wiki/Conditions](http://nlog-
 project.org/wiki/Conditions)
 
-
 Rules section of nlog config:
-
 
     <logger name="*" levels="Trace" writeTo="unpublish">
       <filters>
@@ -85,12 +68,7 @@ Rules section of nlog config:
       </filters>
     </logger>
 
-
-
-
 So console_default logger catches all messages except Trace that contains
 specific text. On other side console_vacacny_info and console_post_data_info
 catches only Trace messages with this specific text. All three of them outputs
 messages to console, but with different layout.
-
-

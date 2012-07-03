@@ -8,10 +8,8 @@ tags: [pipes, rss, yahoo, yahoo_pipes]
 As example we have very big rss feed and want to get one item per day. All
 item in feed do not have any pudDate.
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/117-300x215.png)](http://mac-
 blog.org.ua/wp-content/uploads/117.png)
-
 
 **dateinput** - will contain default value of start date.
 
@@ -27,7 +25,6 @@ blog.org.ua/wp-content/uploads/117.png)
 
 We have xml like this one:
 
-
     <?xml version="1.0" encoding="UTF-8"?>
     <items>
         <item>Some text 1</item>
@@ -38,17 +35,11 @@ We have xml like this one:
         <item>Some text 1000</item>
     </items>
 
-
-
-
 And want to get rss that will retrive one item per day from start date.
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/28-300x245.png)](http://mac-
 blog.org.ua/wp-content/uploads/28.png)
 
-
 In this example you may see how to use string regex, generate pseudo random
 number, work with dates, string, numbers, how to format date, and how to work
 with loop module.
-

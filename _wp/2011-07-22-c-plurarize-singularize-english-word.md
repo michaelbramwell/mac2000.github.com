@@ -7,19 +7,15 @@ tags: [.net, c#, form, plural, plurarize, seo, singular, singularize, text, word
 
 Found at:
 
-
 [http://lotsacode.wordpress.com/2010/03/05/singularization-pluralization-
 in-c/](http://lotsacode.wordpress.com/2010/03/05/singularization-
 pluralization-in-c/)
-
 
 [http://mattgrande.wordpress.com/2009/10/28/pluralization-helper-
 for-c/](http://mattgrande.wordpress.com/2009/10/28/pluralization-helper-
 for-c/)
 
-
 **Code:**
-
 
     using System;
     using System.Collections.Generic;
@@ -141,5 +137,3 @@ for-c/)
             }
         }
     }
-
-

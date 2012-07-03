@@ -8,10 +8,8 @@ tags: [.net, c#, javascript, js, json, JsonConvert, JsonConverter, JsonSerialize
 Here is example of defining custom JsonConverters, which allow control way of
 serializing objects.
 
-
 In this code objects are serialized into knockout ko.observable and
 ko.observableArray.
-
 
     using System;
     using System.Collections.Generic;
@@ -149,10 +147,7 @@ ko.observableArray.
         }
     }
 
-
 This code will produce output like this one:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/kojson2-300x151.png)](http
 ://mac-blog.org.ua/wp-content/uploads/kojson2.png)
-

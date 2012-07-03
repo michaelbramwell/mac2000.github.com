@@ -5,7 +5,7 @@ permalink: /769
 tags: [.net, c#, date, datetime, ranges]
 ---
 
-<code>//Dates range for report last month
+    //Dates range for report last month
 
     System.DateTime reportStartDateTime = new System.DateTime(System.DateTime.Now.AddMonths(-1).Year, System.DateTime.Now.AddMonths(-1).Month, 1, 0, 0, 0);
     System.DateTime reportEndDateTime = new System.DateTime(reportStartDateTime.Year, reportStartDateTime.Month, System.DateTime.DaysInMonth(reportStartDateTime.Year, reportStartDateTime.Month), 23, 59, 59);
@@ -22,5 +22,3 @@ tags: [.net, c#, date, datetime, ranges]
 
     DateTime d1 = DateTime.ParseExact("6/23/11", "M/d/yy", System.Globalization.CultureInfo.InvariantCulture);
     DateTime d2 = DateTime.ParseExact("2011/07/01", "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture);
-
-

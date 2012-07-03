@@ -7,7 +7,6 @@ tags: [crossdomain, domain, frame, iframe, javascript, js, postmessage, resize, 
 
 **In iframe**
 
-
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
         //http://www.onlineaspect.com/2010/01/15/backwards-compatible-postmessage/
@@ -85,14 +84,9 @@ tags: [crossdomain, domain, frame, iframe, javascript, js, postmessage, resize, 
         });
     </script>
 
-
-
-
 Notice that jQuery is actualy not nessesary for this script.
 
-
 **Parent**
-
 
     <iframe id="RUAFRAME" allowTransparency="1" frameborder="0" scrolling="no" src="http://local.rabota.ua/export/context/company.aspx?ntid=1074" style="width:100%;border:none;"></iframe>
     <script type="text/javascript">
@@ -165,17 +159,11 @@ Notice that jQuery is actualy not nessesary for this script.
     }, 'http://' + RUADOMAIN);
     </script>
 
-
-
-
 Script cant send messages in both directions, between differrent domains.
-
 
 Found at: [http://www.onlineaspect.com/2010/01/15/backwards-compatible-
 postmessage/](http://www.onlineaspect.com/2010/01/15/backwards-compatible-
 postmessage/)
 
-
 Example: [http://onlineaspect.com/uploads/postmessage/parent.html](http://onli
 neaspect.com/uploads/postmessage/parent.html)
-

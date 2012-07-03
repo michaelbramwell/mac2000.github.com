@@ -7,31 +7,22 @@ tags: [AddAccessRule, admin, administration, application, asp.net, automation, a
 
 We're working on few ASP.NET projects, so have need in some automatization.
 
-
 Here is some brief notes and links:
 
-
 **Run powershell script by pass execution policy from cmd file**
-
 
     isadmin.cmd
     PowerShell.exe -executionpolicy bypass -File c:\users\alexandrm\desktop\isadmin.ps1
 
-
 **Make symlink to folder (on left - link, on right - directory)**
-
 
     mklink /D C:\inetpub\wwwroot\CvPhotos D:\CvPhotos
 
-
 **To setup all needed components run this command:**
-
 
     start /w pkgmgr /iu:IIS-WebServerRole;IIS-WebServer;IIS-ApplicationDevelopment;IIS-CommonHttpFeatures;IIS-HealthAndDiagnostics;IIS-Performance;IIS-Security;IIS-WebServerManagementTools;IIS-RequestFiltering;IIS-HttpCompressionStatic;IIS-HttpLogging;IIS-RequestMonitor;IIS-LoggingLibraries;IIS-HttpTracing;IIS-DefaultDocument;IIS-DirectoryBrowsing;IIS-HttpErrors;IIS-HttpRedirect;IIS-StaticContent;IIS-NetFxExtensibility;IIS-ASPNET;IIS-ISAPIExtensions;IIS-ISAPIFilter;IIS-ManagementConsole;IIS-ManagementScriptingTools
 
-
 Links:
-
 
 [http://samag.ru/archive/article/1072](http://samag.ru/archive/article/1072)
 
@@ -39,9 +30,7 @@ Links:
 us/library/ff716257%28v=ws.10%29.aspx](http://technet.microsoft.com/en-
 us/library/ff716257%28v=ws.10%29.aspx)
 
-
 **Setup all via Web Platform Installer**
-
 
     $source = "http://www.iis.net/community/files/webpi/webpicmd_x86.zip"
     $destination = "C:\Users\AlexandrM\Desktop\webpicmd_x86.zip"
@@ -56,7 +45,6 @@ us/library/ff716257%28v=ws.10%29.aspx)
 
     C:\Users\user\Desktop\webpicmd\WebpiCmdLine.exe /Products: NETFramework4, KB980423-Win7, KB983484-Win7, ASPNET, DefaultDocument, DirectoryBrowse, HTTPErrors, HTTPLogging, IIS7, IISManagementConsole, ISAPIExtensions, ISAPIFilters, LoggingTools, MVC, MVC2, MVC3, MVC3Loc, MVC3Runtime, NETExtensibility, NETFramework20SP2, NETFramework35, Plan9, Plan9Loc, PowerShell, PowerShell2, RequestFiltering, RequestMonitor, StaticContent, StaticContentCompression, IISManagementScriptsAndTools /SuppressReboot /AcceptEula
 
-
 Links:
 
 [ http://msdn.microsoft.com/en-
@@ -69,9 +57,7 @@ line.aspx)
 
 ### Powershell tips
 
-
 **Check is admin**
-
 
     $principal = new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())
     $isAdmin = $principal.IsInRole([System.Security.Principal.WindowsBuiltInRole]::Administrator)
@@ -81,16 +67,12 @@ line.aspx)
         Write-Host "You are admin" -ForegroundColor Green
     }
 
-
 **Retrieve environment variables**
-
 
     Get-ChildItem Env:
     Get-ChildItem Env:SystemRoot | Select -expand Value
 
-
 _Some variables_
-
 
     COMPUTERNAME                   MAC-PC
     SystemDrive                    C:
@@ -102,35 +84,25 @@ _Some variables_
     USERNAME                       AlexandrM
     USERPROFILE                    C:\Users\AlexandrM
 
-
 **Include powershell file**
-
 
     . C:\Users\user\Desktop\hosts.ps1
 
-
 _Helper_
-
 
     $currentDirectory = (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent) + "\"
     . ($currentDirectory + "inc.ps1")
 
-
 **Check that .NET 4.0 installed**
-
 
     Test-Path "${Env:ProgramFiles(x86)}\Microsoft ASP.NET\ASP.NET MVC 3"
 
-
 **Press any key to continue**
-
 
     Write-Host "Press any key to continue ..."
     $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
-
 **Login info**
-
 
     if((Get-ChildItem Env:USERDOMAIN | Select -Expand Value) -ne (Get-ChildItem Env:COMPUTERNAME | Select -Expand Value)) {
         $logonServer = Get-ChildItem Env:USERDOMAIN | Select -Expand Value
@@ -139,43 +111,31 @@ _Helper_
     }
     $userName = Get-ChildItem Env:USERNAME | Select -Expand Value
 
-
 ### Powershell IIS tips
-
 
 [http://technet.microsoft.com/en-
 us/library/ee790599.aspx](http://technet.microsoft.com/en-
 us/library/ee790599.aspx)
 
-
 **First things first**
-
 
     Set-ExecutionPolicy remotesigned
     Import-Module WebAdministration
 
-
 **Add site and bindings**
-
 
     New-WebSite -Name test.com -Port 80 -HostHeader local.test.com -PhysicalPath "C:\Users\user\Desktop\test.com"
     New-WebBinding -Name "test.com" -IPAddress "*" -Port 80 -HostHeader mac.test.com
 
-
 _Add site for specific pool_
-
 
     New-WebSite -ApplicationPool "Admin" -Name test.com -Port 80 -HostHeader local.test.com -PhysicalPath "C:\Users\user\Desktop\test.com"
 
-
 **Add virtual directory**
-
 
     New-WebApplication -Name app -Site "test.com" -PhysicalPath "C:\Users\user\Desktop\app" -ApplicationPool DefaultAppPool
 
-
 **Add Admin pool**
-
 
     $WebAppPool = New-WebAppPool -Name "Admin"
     $WebAppPool.processModel.identityType = "SpecificUser"
@@ -185,27 +145,21 @@ _Add site for specific pool_
     $WebAppPool.managedRuntimeVersion = "v4.0"
     $WebAppPool | set-item
 
-
 **Create assets directory**
-
 
     if (Test-Path -path C:\inetpub\wwwroot\images -ne $True)
     {
         New-Item C:\inetpub\wwwroot\images -type directory
     }
 
-
 **Give IIS full access for assets directory**
-
 
     $acl = Get-Acl C:\inetpub\wwwroot\images
     $rule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "FullControl", "ContainerInherit, ObjectInherit", "None", "Allow")
     $acl.AddAccessRule($rule)
     Set-Acl C:\inetpub\wwwroot\images $acl
 
-
 ### Scheduled tasks
-
 
 [http://poshtips.com/2011/04/07/use-powershell-to-create-a-scheduled-
 task/](http://poshtips.com/2011/04/07/use-powershell-to-create-a-scheduled-
@@ -215,23 +169,17 @@ task/)
 us/library/cc725744(v=ws.10).aspx](http://technet.microsoft.com/en-
 us/library/cc725744(v=ws.10).aspx)
 
-
 **Creating tasks examples**
-
 
     schtasks.exe /Create /TN UpdateLocalAssets /RU user-PC\user /SC DAILY /ST 09:00 /TR "C:\Users\user\Desktop\schedule.cmd"
     schtasks.exe /Create /TN UpdateLocalAssets /RU system /SC DAILY /ST 09:00 /TR "C:\Users\user\Desktop\schedule.cmd"
 
-
 ## Automating
-
 
 Main idea is to have some scripts that will install all needed sites on local
 machine and make changes to hosts file.
 
-
 We have config.xml file, like this one:
-
 
     <?xml version="1.0" encoding="UTF-8"?>
     <config>
@@ -283,7 +231,6 @@ We have config.xml file, like this one:
         </projects>
     </config>
 
-
 In config, we have section with users and their ip addresses (will be used to
 create hosts file records).
 
@@ -294,22 +241,17 @@ each project has its own setup script.
 
 ## Hosts
 
-
 SetupHosts.cmd will setup all needed hosts on your machine, so you will be
 able to work with local sites and check sites on other developer machines.
 
-
 **SetupHosts.cmd**
-
 
     @ECHO OFF
     REM http://stackoverflow.com/questions/659647/how-to-get-folder-path-from-file-path-with-cmd
     PowerShell.exe -executionpolicy bypass -File %~dp0\scripts\hosts.ps1 %*
     PAUSE
 
-
 **hosts.ps1**
-
 
     # Get current directory
     $currentDirectory = (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent) + "\"
@@ -362,23 +304,17 @@ able to work with local sites and check sites on other developer machines.
     #Write-Host "Press any key to continue ..."
     #$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
-
 ## IIS
-
 
 SetupIISComponents.cmd - will install all needed iis componenets
 
-
 **SetupIISComponents.cmd**
-
 
     @ECHO OFF
     PowerShell.exe -executionpolicy bypass -File %~dp0\scripts\iis.ps1 %*
     PAUSE
 
-
 **iis.ps1**
-
 
     # Get current directory
     $currentDirectory = (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent) + "\"
@@ -398,32 +334,24 @@ SetupIISComponents.cmd - will install all needed iis componenets
     Write-Host
     Write-Host "Done" -ForegroundColor Green
 
-
 **pkgmgr.cmd**
-
 
     start /w pkgmgr /iu:IIS-WebServerRole;IIS-WebServer;IIS-ApplicationDevelopment;IIS-CommonHttpFeatures;IIS-HealthAndDiagnostics;IIS-Performance;IIS-Security;IIS-WebServerManagementTools;IIS-RequestFiltering;IIS-HttpCompressionStatic;IIS-HttpLogging;IIS-RequestMonitor;IIS-LoggingLibraries;IIS-HttpTracing;IIS-DefaultDocument;IIS-DirectoryBrowsing;IIS-HttpErrors;IIS-HttpRedirect;IIS-StaticContent;IIS-NetFxExtensibility;IIS-ASPNET;IIS-ISAPIExtensions;IIS-ISAPIFilter;IIS-ManagementConsole;IIS-ManagementScriptingTools
 
-
 ## Sites
-
 
 Notice: Do not delete default site (at least one site must be present in IIS,
 otherwise scripts can not work - this is known problem, will hope will be
 fixed in next versions of IIS Web Management Scripts And Tools and\or
 Powershell)
 
-
 **SetupSites.cmd**
-
 
     @ECHO OFF
     PowerShell.exe -executionpolicy bypass -File %~dp0\scripts\sites.ps1 %*
     PAUSE
 
-
 **sites.ps1**
-
 
     $currentDirectory = (Split-Path -Path $MyInvocation.MyCommand.Definition -Parent) + "\"
     . ($currentDirectory + "inc.ps1")
@@ -529,9 +457,7 @@ Powershell)
     net start w3svc
     Get-Website | foreach { Start-Website $_.name }
 
-
 **Example of user config file: mac.ps1**
-
 
     # This file contains user specific variables
 
@@ -543,9 +469,7 @@ Powershell)
     $base = "C:\Rabota.UA\trunk\Version\"
     $temp = "C:\Temp"
 
-
 **Example of rabota.ua.ps1 setup script**
-
 
     $todo = Check-Site # 0 - create, 1 - delete and create, 2 - skip
 
@@ -619,12 +543,9 @@ Powershell)
         #TODO: Create $site additional tasks here
     }
 
-
 ## Helpers
 
-
 **inc.ps1**
-
 
     $_HOSTS_FORMAT = "{0,-16}{1,-57}# IIS`n"
 
@@ -715,9 +636,7 @@ Powershell)
         Invoke-Expression ("cmd /c mklink /D C:\inetpub\wwwroot\" + $dirName + " " + $temp + $dirName)
     }
 
-
 **Test-IsWritable.ps1**
-
 
     function Test-IsWritable(){
     <#
@@ -768,20 +687,12 @@ Powershell)
             }
     }
 
-
 ## TODO
-
-
-
 
   * Fill C:\inetpub\wwwroot\iisstart.htm with all sites
 
-
   * Create bach file for non developers to access sites on dev machines
-
 
   * Scheduled task for syncing assets
 
-
   * Scheduled task for checking building results and sites availability
-

@@ -7,20 +7,15 @@ tags: [db, example, gae, python]
 
 This is copy-paste from:
 
-
 [http://www.vogella.de/articles/GoogleAppEngine/article.html](http://www.vogel
 la.de/articles/GoogleAppEngine/article.html)
 
-
 Screenshot:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/126-300x219.png)](http://mac-
 blog.org.ua/wp-content/uploads/126.png)
 
-
 **app.yaml**
-
 
     application: todo
     version: 1
@@ -35,11 +30,7 @@ blog.org.ua/wp-content/uploads/126.png)
     - url: .*
       script: main.py
 
-
-
-
 **main.py**
-
 
     #!/usr/bin/env python
     #
@@ -155,12 +146,7 @@ blog.org.ua/wp-content/uploads/126.png)
     if __name__ == '__main__':
         main()
 
-
-
-
-
 **templates/index.html**
-
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -317,16 +303,12 @@ blog.org.ua/wp-content/uploads/126.png)
     </body>
     </html>
 
-
 ## Ajax \ Rest like implementations
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/213-300x219.png)](http://mac-
 blog.org.ua/wp-content/uploads/213.png)
 
-
 **app.yaml**
-
 
     application: ajaxmodel
     version: 1
@@ -337,11 +319,7 @@ blog.org.ua/wp-content/uploads/213.png)
     - url: .*
       script: main.py
 
-
-
-
 **main.py**
-
 
     #!/usr/bin/env python
     #
@@ -468,12 +446,7 @@ blog.org.ua/wp-content/uploads/213.png)
     if __name__ == '__main__':
         main()
 
-
-
-
-
 **index.html**
-
 
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
             "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -632,6 +605,4 @@ blog.org.ua/wp-content/uploads/213.png)
     </body>
     </html>
 
-
 TODO: implement REST by refs & use knockout
-

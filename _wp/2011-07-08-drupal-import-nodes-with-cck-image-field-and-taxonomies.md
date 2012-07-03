@@ -5,7 +5,7 @@ permalink: /677
 tags: [drupal, import, node_save]
 ---
 
-<code><?php
+    <?php
 
     chdir('/hosting/mebelfan.com/');
     require_once './includes/bootstrap.inc';
@@ -66,5 +66,3 @@ tags: [drupal, import, node_save]
 
         echo '<a href="http://mebelfan.com/node/' . $node->nid . '/edit">http://mebelfan.com/node/' . $node->nid . '/edit</a><br />';
     }
-
-

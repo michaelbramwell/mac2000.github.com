@@ -7,7 +7,6 @@ tags: [css, css3, device-width, maximum-scale, media, mediaqueries, min-width, m
 
 **Desktop - Tablet - Phone**
 
-
     <!DOCTYPE HTML>
     <html lang="en-US">
     <head>
@@ -40,9 +39,7 @@ tags: [css, css3, device-width, maximum-scale, media, mediaqueries, min-width, m
     </body>
     </html>
 
-
 **Desktop - Tablet - Phone With Orientation**
-
 
     <!DOCTYPE HTML>
     <html lang="en-US">
@@ -87,15 +84,10 @@ tags: [css, css3, device-width, maximum-scale, media, mediaqueries, min-width, m
     </body>
     </html>
 
-
 Tested on iPad2, iPhone3(4), HTC Evo 4g, Nokia C6
-
-
 
 Another way, founded at: http://www.studionashvegas.com/design/responsive-
 design-media-queries/
-
-
 
     <!DOCTYPE HTML>
     <html lang="en-US">
@@ -126,4 +118,3 @@ design-media-queries/
     <h3>TEST</h3>
     </body>
     </html>
-

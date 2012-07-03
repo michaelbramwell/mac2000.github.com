@@ -10,7 +10,6 @@ blog.org.ua/wp-content/uploads/cte1.png) [![](http://mac-blog.org.ua/wp-
 content/uploads/cte2-300x178.png)](http://mac-blog.org.ua/wp-
 content/uploads/cte2.png)
 
-
     <?php
     /*
     Plugin Name: Custom table example
@@ -621,4 +620,3 @@ content/uploads/cte2.png)
     }
 
     add_action('init', 'custom_table_example_languages');
-

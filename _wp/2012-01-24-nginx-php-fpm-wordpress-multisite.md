@@ -12,9 +12,7 @@ apt-get install mysql-server mysql-client
     touch /etc/nginx/sites-available/example.com
     ln -s /etc/nginx/sites-available/example.com
 
-
 **/etc/nginx/sites-available/example.com**:
-
 
     server {
         server_name *.example.com;
@@ -63,50 +61,34 @@ apt-get install mysql-server mysql-client
         }
     }
 
-
 Пример взят от сюда: http://codex.wordpress.org/Nginx с той лиш разницей что
 этот будет работать из коробки.
 
-
 После этого, все по мануалке:
-
 
 http://mac-blog.org.ua/663
 
-
 Добавление еще одного языка:
-
 
     cd /var/www/wp-content/languages/
     wget http://svn.automattic.com/wordpress-i18n/uk/tags/3.3.1/messages/uk.mo
     cd /var/www/wp-content/themes/twentyeleven/languages/
     wget http://svn.automattic.com/wordpress-i18n/uk/tags/3.3.1/messages/twentyeleven/uk.mo
 
-
 Нужно не забыть выставить права 777 на папки uploads и blogs.dir
-
 
 Создать базу для wordpress'а из консоли:
 
-
     mysqladmin -u root -p -v create example
-
 
 Идея была в том чтобы сделать многоязычный сайт на базе multisite.
 
-
 Ссылки по теме:
-
 
 http://codex.wordpress.org/Multilingual_WordPress
 
-
 http://codex.wordpress.org/WordPress_in_Your_Language
-
 
 http://svn.automattic.com/wordpress-i18n/
 
-
 http://codex.wordpress.org/Installing_WordPress_in_Your_Language
-
-

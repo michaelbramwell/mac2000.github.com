@@ -5,7 +5,7 @@ permalink: /661
 tags: [bootstrap, d6, drupal, external, i18n, l10n, multilanguage, node_save, translate]
 ---
 
-<code><?php
+    <?php
 
     //set the working directory to your Drupal root
     chdir('/home/mac/Projects/drupal/multi/');
@@ -61,5 +61,3 @@ tags: [bootstrap, d6, drupal, external, i18n, l10n, multilanguage, node_save, tr
     print '<pre>';
     print_r($node);
     print '</pre>';
-
-

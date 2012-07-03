@@ -7,10 +7,8 @@ tags: [add_action, add_option, add_settings_section, add_settings_field, add_the
 
 Here is example screenshot:
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/example-150x300.png)](http
 ://mac-blog.org.ua/wp-content/uploads/example.png)
-
 
     <?php
     // return array of default theme options
@@ -176,9 +174,6 @@ Here is example screenshot:
         </div>
     <?php }
 
-
 To display option in theme use helper functions like so:
 
-
     <?php echo apply_filters('the_content', get_swickd_option('copyright')) ?>
-

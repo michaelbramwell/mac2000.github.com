@@ -7,25 +7,19 @@ tags: [.net, asp.net, c#, ControlDesigner, css, DefaultProperty, GetDesignTimeHt
 
 Here is my use case:
 
-
 In our project we have hungreds of controls, and each of them has some styles
 and javascripts.
-
 
 I's very convenient coz I can change things very fast, but it's very bad for
 page load speed.
 
-
 So we need ability to move all our code in special places.
-
 
 What I've done is create Custom Control that inherites from PlaceHolder, but
 rather than rendering itself inplace it renders into page closure (for js) or
 head (for css).
 
-
 Here is how its look like:
-
 
     <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="AssetsPlaceHolder._Default" %>
 
@@ -51,9 +45,7 @@ Here is how its look like:
     </body>
     </html>
 
-
 And here is example of control code:
-
 
     <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Control1.ascx.cs" Inherits="AssetsPlaceHolder.Control1" %>
     <%@ Register Assembly="Rabota2.Controls" Namespace="Rabota2.Controls" TagPrefix="rua" %>
@@ -65,11 +57,9 @@ And here is example of control code:
     </script>
     </rua:JavaScriptPlaceHolder>
 
-
 Without our custom placeholder styles and scripts will be rendrered in their
 places, but with our code they will be rendered in page closere and header,
 here is rendered html:
-
 
     <!DOCTYPE HTML>
 
@@ -113,16 +103,12 @@ here is rendered html:
 
     </html>
 
-
 And here is how this will look like in VisualStudio:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/assetsplaceholder-
 300x231.png)](http://mac-blog.org.ua/wp-content/uploads/assetsplaceholder.png)
 
-
 And here is code doing all this:
-
 
     using System;
     using System.Collections.Generic;
@@ -326,16 +312,10 @@ And here is code doing all this:
         #endregion
     }
 
-
 TODO:
-
-
 
   * Add AppSettings configuration option to turn on\off this feature
 
-
   * Add public boolean option Minify
 
-
   * Add ability to attach files by path
-

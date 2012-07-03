@@ -5,7 +5,7 @@ permalink: /874
 tags: [xslx excel oledb ole .net c# office]
 ---
 
-<code>string filePath =
+    string filePath =
 @"C:\Users\AlexandrM\Dropbox\unon.com.ua\boilers.xlsx";
 
     string conStr = "Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + filePath + "; Extended Properties=\"Excel 12.0 Xml; HDR=YES\";";
@@ -26,5 +26,3 @@ tags: [xslx excel oledb ole .net c# office]
 
     dataGridView1.DataSource = ds.Tables[0];
     con.Close();
-
-

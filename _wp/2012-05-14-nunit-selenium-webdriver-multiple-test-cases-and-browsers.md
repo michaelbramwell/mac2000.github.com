@@ -5,33 +5,21 @@ permalink: /1012
 tags: [category, ChromeDriver, CurrentContext, FirefoxDriver, FullName, GetScreenshot, InternetExplorerDriver, ITakesScreenshot, IWebDriver, NUnit, OpenQA, result, SaveAsFile, screenshot, Selenium, Test, TestCase, TestContext, TestFixture, TestFixtureSetUp, TestFixtureTearDown, transform, WebDriver, xslt]
 ---
 
-
-
   1. Download and install [NUnit](http://nunit.org).
-
 
   2. Install NUnit Test Adapter (Tools \ Extensions Manager...)
 
-
   3. Create Unit Test Project
-
 
   4. Install (Tools \ Library Package Manager \ Manage NuGet Packages for Solution...):
 
-
-
     * Selenium WebDriver
-
 
     * Selenium WebDriver Support Classes
 
-
     * NUnit
 
-
-
 Here is example code that runs on multiple browsers with multiple test cases:
-
 
     using System;
     using System.Text.RegularExpressions;
@@ -114,28 +102,21 @@ Here is example code that runs on multiple browsers with multiple test cases:
         }
     }
 
-
 Also you can run [tests via
 console](http://www.nunit.org/index.php?p=consoleCommandLine&r=2.6), like
 this:
 
-
     "C:\Program Files (x86)\NUnit 2.6\bin\nunit-console" "C:\Users\AlexandrM\Documents\Visual Studio 11\Projects\Example\Example\Example.csproj"  /result:"C:\Users\AlexandrM\Desktop\result.xml"
-
 
 Notice that result will be saved as XML file, which can be transformed with
 old [Summary.xslt](http://www.nunit.org/docs/2.2.5/files/Summary.xslt)  () by
 adding
 
-
     <?xml-stylesheet type="text/xsl" href="Summary.xslt"?>
-
 
 right after xml declaration or you can write your own xslt file.
 
-
 Here is code from nunit.xslt (can not find link where found it):
-
 
     <?xml version="1.0" encoding="UTF-8" ?>
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -244,19 +225,15 @@ Here is code from nunit.xslt (can not find link where found it):
     </xsl:text></xsl:template>
     </xsl:stylesheet>
 
-
 Here is some screen shots, tests also can be runned from VisualStudio and
 NUnit GUI.
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/133-300x202.png)](http://mac-
 blog.org.ua/wp-content/uploads/133.png) [![](http://mac-blog.org.ua/wp-
 content/uploads/217-300x193.png)](http://mac-blog.org.ua/wp-
 content/uploads/217.png)
 
-
 As of making nice reports, here is starter kit:
-
 
     <?xml version="1.0"?>
     <!-- http://www.bizcoder.com/index.php/2010/02/12/convert-xml-to-json-using-xslt/ -->
@@ -322,7 +299,5 @@ As of making nice reports, here is starter kit:
         </xsl:template>
     </xsl:stylesheet>
 
-
 The main idea is that all xml is converted to knockout json model, so you can
 make interactive report.
-

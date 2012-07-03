@@ -8,70 +8,48 @@ tags: [.net, ad, c#, cpd, dfp, linq, xml, xslt]
 Double click for publishers does not have report for sponsorship cpd line
 items, so we need to write own one.
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/123-98x300.png)](http://mac-
 blog.org.ua/wp-content/uploads/123.png)
 
-
 First of all we need to get access to Dfp API
-
 
 [http://code.google.com/intl/ru/apis/dfp/docs/start.html](http://code.google.c
 om/intl/ru/apis/dfp/docs/start.html)
 
-
 Get production or sandbox access for your needs.
 
-
 In my project we are using .net so i get .net library here:
-
 
 [http://code.google.com/p/google-api-dfp-dotnet/](http://code.google.com/p
 /google-api-dfp-dotnet/)
 
-
 **Algo:**
-
-
 
   1. Programmaticaly create, run and get results of report by line items.
 
-
   2. Fetch line items, orders, companies data.
-
 
   3. Form xml from all retrieved data.
 
-
   4. Use xslt to make friendly report.
-
 
 I'm using xml/xslt because you may easily import xml into excel and make some
 custom analysis.
 
-
 Something like this:
-
-
-
 
 **Preparations:**
 
 To retrieve data from double click **Google.Dfp.dll** and
 **System.Web.Services** must be referenced.
 
-
 Also we need some **App.config** or **Web.config** changes (in my case web).
-
 
 In **configSections** add:
 
-
     <section name="DfpApi" type="System.Configuration.DictionarySectionHandler"/>
 
-
 Also there is need to add **webServices** section into **system.web**:
-
 
     <webServices>
       <soapExtensionTypes>
@@ -79,11 +57,7 @@ Also there is need to add **webServices** section into **system.web**:
       </soapExtensionTypes>
     </webServices>
 
-
-
-
 And add following to your config file:
-
 
     <DfpApi>
       <!-- Change the appropriate flags to turn on SOAP logging. -->
@@ -115,15 +89,10 @@ And add following to your config file:
       <!-- <add key="DfpApi.Server" value="https://sandbox.google.com"/> -->
     </DfpApi>
 
-
-
-
 Do not forget to change **ApplicationName**, **Email**, **Password **and
 **NetworkCode **to your values.
 
-
 **Retrieving data:**
-
 
     using System;
     using System.Collections.Generic;
@@ -358,15 +327,10 @@ Do not forget to change **ApplicationName**, **Email**, **Password **and
         }
     }
 
-
-
-
 Retrieving data may be simpler or more specific, but in my case it is exactly
 what i want.
 
-
 **Utils/Date.cs:**
-
 
     using System;
     using System.Collections.Generic;
@@ -437,11 +401,7 @@ what i want.
         }
     }
 
-
-
-
 **Utils/DFP.cs:**
-
 
     using System;
     using System.Collections.Generic;
@@ -563,11 +523,7 @@ what i want.
         }
     }
 
-
-
-
 So at this step we have xml report, like this one:
-
 
     <?xml version="1.0" encoding="utf-8" standalone="yes"?>
     <?xml-stylesheet type="text/xsl" href="dfpreport.xslt"?>
@@ -975,17 +931,11 @@ So at this step we have xml report, like this one:
       </item>
     </items>
 
-
-
-
 Which can be successfully imported into excel to make some analysis.
-
 
 Next step is make xslt to make from this xml nice report:
 
-
 **XSLT:**
-
 
     <?xml version="1.0" encoding="utf-8"?>
     <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:msxsl="urn:schemas-microsoft-com:xslt" exclude-result-prefixes="msxsl">
@@ -1818,12 +1768,7 @@ Next step is make xslt to make from this xml nice report:
 
     </xsl:stylesheet>
 
-
-
-
 To debug xslt in VisualStudio, define xml file in properties, and press
 Alt+F5.
 
-
 At moment working to integrate this report into ExtJs app.
-

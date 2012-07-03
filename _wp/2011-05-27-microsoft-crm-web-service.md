@@ -8,32 +8,24 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 Интеграция с MS CRM по средствам встроенного сервиса дает возможность
 получать\изменять данные в системе.
 
-
 **Полезные ссылки:**
 
 http://example.com:5555/mscrmservices/2006/crmservice.asmx - сам сервис
 
-
 http://example.com:5555/mscrmservices/2006/metadataservice.asmx - мета данные
-
 
 http://example.com:5555/sdk/list.aspx - список сущностей
 
-
 Для подключения к студии надо использовать вот такие ссылки:
-
 
 http://example.com:5555/mscrmservices/2006/crmservice.asmx?WSDL&uniquename=COM
 PANYNAME
 
-
 http://example.com:5555/mscrmservices/2006/metadataservice.asmx?WSDL&uniquenam
 e=COMPANYNAME
 
-
 По ним будут доступны xml файлы описывающие сервис, со всеми кастомными полями
 и т.п. и именно они будут нужны для подключения к студии.
-
 
 **Добавление сервиса к проекту.**
 
@@ -41,27 +33,20 @@ e=COMPANYNAME
 путь к сохраненному xml файлу, в Web reference name вбиваем имя создаваемой
 ссылки.
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/111-300x208.png)](http://mac-
 blog.org.ua/wp-content/uploads/111.png)
-
 
 Для asp.net - правый клик по проекту **Add Service Reference**, далее клик по
 кнопке **Advanced...** и еще раз клик по кнопке **Add Web Reference..**. и
 дальше то же самое как и для обычных апликух.
 
-
 http://msdn.microsoft.com/en-us/library/cc151015.aspx
-
 
 http://msdn.microsoft.com/en-us/library/cc151014.aspx
 
-
 Теперь после того как сервисы прикручены можно с ними работать.
 
-
 **Пример получения информации и компании из CRM**
-
 
     MetadataService ms = new MetadataService();
     CrmService s = new CrmService();
@@ -112,27 +97,20 @@ http://msdn.microsoft.com/en-us/library/cc151014.aspx
 
     dataGridView1.DataSource = items;
 
-
 Собственно вот как это может выглядеть:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/22-300x155.png)](http://mac-
 blog.org.ua/wp-content/uploads/22.png)
 
-
 Чтобы не заморачиваться с ColumnSet - можно юзать вот такую штуку:
 
-
     query.ColumnSet = new AllColumns();
-
 
 Взято отсюда: http://community.dynamics.com/roletailored/customerservice/b/csc
 rmblog/archive/2009/01/07/building-rich-client-dashboards-for-microsoft-
 dynamics-crm-with-windows-presentation-foundation.aspx
 
-
 Пример выуживания данных сразу из двух сущностей:
-
 
     String fetch = "<fetch mapping='logical'>" +
     "<entity name='account'>" +
@@ -151,27 +129,20 @@ dynamics-crm-with-windows-presentation-foundation.aspx
     "</fetch>";
     String result = s.Fetch(fetch);
 
-
 Взято из этих мест:
 
-
 http://msdn.microsoft.com/en-us/library/ms914457.aspx
-
 
 http://social.microsoft.com/Forums/en/crmdevelopment/thread/5ef585a5-58bc-
 46cd-a134-a46869d0684c
 
-
 http://www.stunnware.com/crm2/topic.aspx?id=FindingData6
 
-
 http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
-
 
 **Вытягивание связанных записей**
 
 Задачи за последние N дней плюс кастомное поле из account
-
 
     string fetchXml = @"
     <fetch mapping=""logical"" count=""5"">
@@ -189,17 +160,13 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
     </fetch>
     ";
 
-
 выглядит вот так:
 
-
 ![](http://mac-blog.org.ua/wp-content/uploads/23.png)
-
 
 **fetch link-entity aggregate**
 
 Вытягиваем количество действий для конкретного аккаунта:
-
 
     string fetchXml = @"
     <fetch mapping=""logical"" count=""50"" aggregate=""true"">
@@ -215,12 +182,9 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
     </fetch>
     ";
 
-
 ![](http://mac-blog.org.ua/wp-content/uploads/31.png)
 
-
 **fetchxml into datagridview**
-
 
     string fetchXml = @"
     <fetch mapping=""logical"" count=""50"" aggregate=""true"">
@@ -243,4 +207,3 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
     ds.ReadXml(lxmlStringReader);
 
     dataGridView1.DataSource = ds.Tables[1];
-

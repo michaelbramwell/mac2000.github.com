@@ -7,15 +7,12 @@ tags: [drupal, hook_theme, module, template, theme, tpl]
 
 **cust.info**
 
-
     name = cust
     description = cust
     package = Other
     core = 6.x
 
-
 **cust.module**
-
 
     <?php
     function cust_theme() {
@@ -30,40 +27,30 @@ tags: [drupal, hook_theme, module, template, theme, tpl]
     }
     ?>
 
-
 **moe-example.tpl.php**
-
 
     start<br />
     <?php var_dump($some_data);?>
     end<br />
 
-
 somewhere in **node.tpl.php**
-
 
     <?php echo 'xx';
     print theme('moe_example', array(1,2,3));
     ?>
 
-
 http://www.captaincodemonkey.com/blog/2010/12/26/drupal-6x-skeleton-module-
 with-tpl-file-example/
 
-
 And more complex example:
 
-
 **catalog.info**
-
 
     name = catalog
     description = "custom catalog module."
     core = 6.x
 
-
 **catalog.module**
-
 
     <?php
     //pull in our include file
@@ -110,10 +97,7 @@ And more complex example:
         );
     }
 
-
-
 **catalog.inc**
-
 
     <?php
 
@@ -133,19 +117,13 @@ And more complex example:
 
     ?>
 
-
 **catalog-catalog.tpl.php**
-
 
     hello from catalog.tpl.php
 
-
 **catalog-form.tpl.php**
-
 
     hello from catalog-form.tpl.php
 
-
 Now if you will go to example.com/catalog - you will see both templates if you
 logged as admin, or one if not logged or have not privilegies to add items.
-

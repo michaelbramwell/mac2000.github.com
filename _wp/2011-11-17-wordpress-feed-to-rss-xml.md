@@ -5,7 +5,7 @@ permalink: /880
 tags: [301, 302, feed, feedburner, htaccess, redirect, rewrite, rss, wordpress]
 ---
 
-<code><IfModule mod_rewrite.c>
+    <IfModule mod_rewrite.c>
 
     RewriteEngine On
     RewriteBase /
@@ -15,5 +15,3 @@ tags: [301, 302, feed, feedburner, htaccess, redirect, rewrite, rss, wordpress]
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . /index.php [L]
     </IfModule>
-
-

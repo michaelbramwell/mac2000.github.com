@@ -8,9 +8,7 @@ tags: [gdata, picasa, zend]
 [![](http://mac-blog.org.ua/wp-content/uploads/zend_gdata_picasa-
 300x288.png)](http://mac-blog.org.ua/wp-content/uploads/zend_gdata_picasa.png)
 
-
 Here is sample code:
-
 
     <?php
     $email = "LOGIN@gmail.com";
@@ -103,6 +101,4 @@ Here is sample code:
         return $photos;
     }
 
-
 For this example work u need download zend gdata library.
-

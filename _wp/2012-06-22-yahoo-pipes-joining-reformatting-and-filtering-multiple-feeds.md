@@ -7,7 +7,5 @@ tags: [feed, fetch feed, filter, item builder, loop, pipe, rss, sort, truncate, 
 
 Here is how you can create feed from multiple sources:
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/pipe-179x300.png)](http://mac-
 blog.org.ua/wp-content/uploads/pipe.png)
-

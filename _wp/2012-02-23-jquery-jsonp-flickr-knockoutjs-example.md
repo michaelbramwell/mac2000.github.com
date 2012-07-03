@@ -5,9 +5,6 @@ permalink: /968
 tags: [flickr, jquery, json, jsonp, knockout, knockoutjs, ko]
 ---
 
-
-
-
     <!DOCTYPE HTML>
     <html lang="en-US">
     <head>
@@ -179,4 +176,3 @@ tags: [flickr, jquery, json, jsonp, knockout, knockoutjs, ko]
         </script>
     </body>
     </html>
-

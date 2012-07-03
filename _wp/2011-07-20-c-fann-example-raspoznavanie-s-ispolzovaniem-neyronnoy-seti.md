@@ -8,26 +8,20 @@ tags: [ai, fann, neural, neuralnet]
 [http://leenissen.dk/fann/wp/](http://leenissen.dk/fann/wp/) - сайт библиотеки
 FANN
 
-
 [http://code.google.com/p/fanndotnetwrapper/](http://code.google.com/p/fanndot
 netwrapper/) - обертка под .NET
 
-
 [http://leenissen.dk/fann/fann.html](http://leenissen.dk/fann/fann.html) - php
-
 
 [http://code.google.com/p/fanntool/](http://code.google.com/p/fanntool/) - тул
 по работе с библиотекой FANN - самое классное в нем - что он может подобрать
 оптимальные параметры нейронной сети.
 
-
 В примере стандартная задача по операции xor, и еще одна по определению
 прямоугольника - на вход подается сто бит (грубо говоря рисунок - 10х10
 пикселей) - сеть пытается определить нарисован ли на ней прямоугольник.
 
-
 **Пример:**
-
 
     using System;
     using System.Collections.Generic;
@@ -461,11 +455,7 @@ netwrapper/) - обертка под .NET
 
     }
 
-
-
-
 **На выходе дает такое:**
-
 
     XOR
     0 xor 0 = 1
@@ -530,12 +520,7 @@ netwrapper/) - обертка под .NET
     0 0 1 0 0 0 0 1 0 1
     NOT box
 
-
-
-
-
 **Пример на php из исходников pecl модуля** (сохраняю на память):
-
 
     <?php
 
@@ -627,9 +612,7 @@ netwrapper/) - обертка под .NET
 
     ?>
 
-
 Наметки по установке fann на linux'е:
-
 
     sudo pear install http://pecl.php.net/get/fann-0.1.1.tgz
     sudo pecl install fann-devel
@@ -655,8 +638,4 @@ netwrapper/) - обертка под .NET
     sudo touch /etc/php5/apache2/conf.d/fann.ini
     fann_extension=/usr/lib/php5/20090626+lfs/fann.so
 
-
-
-
 пока ничего не получилось... (
-

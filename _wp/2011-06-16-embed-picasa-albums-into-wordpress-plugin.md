@@ -8,9 +8,7 @@ tags: [gdata, picasa, plugin, wordpress, zend]
 Plugin allows insert picasa albums into posts and pages via new tinymce button
 in few clicks.
 
-
 Used build in jquery ui and zend gdata library.
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/screenshot-1-300x273.png)](http
 ://mac-blog.org.ua/wp-content/uploads/screenshot-1.png) [![](http://mac-
@@ -19,9 +17,7 @@ blog.org.ua/wp-content/uploads/screenshot-2.png) [![](http://mac-blog.org.ua
 /wp-content/uploads/screenshot-3-300x234.png)](http://mac-blog.org.ua/wp-
 content/uploads/screenshot-3.png)
 
-
 plugin code:
-
 
     <?php
     /*
@@ -414,21 +410,15 @@ plugin code:
       return $ver;
     } add_filter( 'tiny_mce_version', 'embpicasa_refresh_mce');
 
-
-
 Here u can see how to make options for plugins and pages to set them, also
 there is default values for them.
-
 
 Then how to make shortcodes. In shortcode u may see how to retrive picasa
 album photos.
 
-
 And last bit of code makes jquery ui dialog and adds tinymce button.
 
-
 Here is tinymce plugin code:
-
 
     (function() {
         tinymce.create('tinymce.plugins.embpicasa', {
@@ -459,6 +449,4 @@ Here is tinymce plugin code:
         tinymce.PluginManager.add('embpicasa', tinymce.plugins.embpicasa);
     })();
 
-
 http://code.google.com/p/embpicasa/
-

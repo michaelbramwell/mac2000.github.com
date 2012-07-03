@@ -7,37 +7,26 @@ tags: [backup, bash, cat, chmod, drush, gz, linux, ls, menu, mysql, mysqldump, r
 
 ## Backup\Restore Commands
 
-
 **Backup files**
-
 
     /bin/tar -cpzf /path-to-backups/www-`date +%Y-%m-%d`.tar.gz /home/example/www/
 
-
 **Restore files**
-
 
     /bin/tar -xpzf /path-to-backups/www-2012-04-25.tar.gz -C /
 
-
 **Backup mysql**
-
 
     /usr/bin/mysqldump --databases -u MYSQL_LOGIN --password=MYSQL_PASSWORD MYSQL_DATABASE > /path-to-backups/db-`date +%Y-%m-%d`.sql
 
-
 **Restore mysql**
 
-
     /usr/bin/mysql -u MYSQL_LOGIN --password=MYSQL_PASSWORD MYSQL_DATABASE < /path-to-backups/db-2012-04-25.sql
-
 
 [https://help.ubuntu.com/community/BackupYourSystem/TAR](https://help.ubuntu.c
 om/community/BackupYourSystem/TAR)
 
 ## Backup Script
-
-
 
     touch ~/make-backup.sh
     chmod a+x ~/make-backup.sh
@@ -54,10 +43,7 @@ om/community/BackupYourSystem/TAR)
     # Delete old backups
     /usr/bin/find /home/example/backups/ -mtime +30 -delete
 
-
 ## Restore Script
-
-
 
     touch ~/restore-backup.sh
     chmod a+x ~/restore-backup.sh
@@ -77,13 +63,10 @@ om/community/BackupYourSystem/TAR)
     # Clear drupal caches
     drush -r /home/example/www/ cc all
 
-
 ## Interactive Restore Script
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/132-300x188.png)](http://mac-
 blog.org.ua/wp-content/uploads/132.png)
-
 
     touch ~/date-backup-restore.sh
     chmod a+x ~/date-backup-restore.sh
@@ -110,8 +93,6 @@ blog.org.ua/wp-content/uploads/132.png)
             drush -r /home/example/www/ cc all
     fi
 
-
 TODO: refactor scripts to use path variables
 
 TODO: move to github
-

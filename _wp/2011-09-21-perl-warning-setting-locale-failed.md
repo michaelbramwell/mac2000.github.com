@@ -7,7 +7,6 @@ tags: [debian, linux, locale, perl, ru, utf, utf-8, utf8]
 
 На свежем Debian валятся ошибки
 
-
     perl: warning: Setting locale failed.
     perl: warning: Please check that your locale settings:
         LANGUAGE = (unset),
@@ -69,29 +68,19 @@ tags: [debian, linux, locale, perl, ru, utf, utf-8, utf8]
     locale: Cannot set LC_MESSAGES to default locale: No such file or directory
     locale: Cannot set LC_ALL to default locale: No such file or directory
 
-
-
-
 Лечится вот так:
-
 
     apt-get install locales
     locale-gen ru_RU.UTF-8
     dpkg-reconfigure locales
 
-
-
-
 [http://xpoint.ru/forums/programming/perl/misc/thread/40534.xhtml](http://xpoi
 nt.ru/forums/programming/perl/misc/thread/40534.xhtml)
-
 
 [http://debianworld.ru/qa/question/1/perl-warning-setting-locale-
 failed](http://debianworld.ru/qa/question/1/perl-warning-setting-locale-
 failed)
 
-
 [http://www.mindinmotion.ru/post/perl-warning-setting-locale-failed-debian-
 linux](http://www.mindinmotion.ru/post/perl-warning-setting-locale-failed-
 debian-linux)
-

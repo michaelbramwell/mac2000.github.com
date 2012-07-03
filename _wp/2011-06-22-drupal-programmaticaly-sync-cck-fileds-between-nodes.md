@@ -7,33 +7,25 @@ tags: [action, cck, d6, db_fetch_object, db_query, db_result, drupal, hook_form_
 
 My case.
 
-
 When user registers via specific path - he gets seller role (auto assign role
 module), about_company node creates (rules module).
 
-
 Seller can edit own about_company node, but not create or delete.
-
 
 It works like content profile module, but i do not use him - because i have
 many other roles, that have other profiles.
 
-
 About company node has price min, avg, max fields that must be updated when
 user create, update or delete product nodes that have price field.
 
-
 **sync_company_prices.info**
-
 
     name = Sync company prices
     description = Sync company prices, when author make something with products
     package = Custom
     core = 6.x
 
-
 **sync_company_prices.module**
-
 
     <?php
     // registering our custom action (will be shown when configuring rules)
@@ -96,15 +88,11 @@ user create, update or delete product nodes that have price field.
     }
     ?>
 
-
 Now u can create rules, like: When user creates new published product call our
 custom action.
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/112-300x61.png)](http://mac-
 blog.org.ua/wp-content/uploads/112.png)
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/24-300x289.png)](http://mac-
 blog.org.ua/wp-content/uploads/24.png)
-

@@ -5,30 +5,21 @@ permalink: /857
 tags: [convert, converter, doc, docx, ghostscript, gs, gswin32c, pdf, powershell, ps, ps1, word, word2pdf]
 ---
 
-<code>$word = new-object -ComObject "word.application"
+    $word = new-object -ComObject "word.application"
 
     $doc = $word.documents.open("C:\Users\AlexandrM\Desktop\TempCVArch\CV Кулакова C&B.doc")
     $doc.SaveAs([ref] "C:\Users\AlexandrM\Desktop\1.pdf", [ref] 17)
     $doc.Close()
     $word.Quit()
 
-
 Такая штука нужна чтобы потом через ghostscript сделать вот так:
 
-
     gswin32c -q -dQUIET -dPARANOIDSAFER -dBATCH -dNOPAUSE -dNOPROMPT -sDEVICE=pngalpha -sOutputFile=1-%d.png 1.pdf
-
-
-
 
 что нагенерит рисунки с страницами из pdf, в общем можно сделать свой google
 docs viewer
 
-
-
-
 **pdf2png.ps1:**
-
 
     # preferred dimensions
     # only width is required, height is calculated via A4 paper dimensions with aspect ratio
@@ -71,7 +62,5 @@ docs viewer
         }
     }
 
-
 На выходе этого срипта - рисунок который уже можно подключать на страничку -
 собственно вот и свой google docs viewer получился
-

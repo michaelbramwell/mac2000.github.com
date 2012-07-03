@@ -7,18 +7,12 @@ tags: [TODO]
 
 Sample maded for rabota.ua sales department.
 
-
-
-
 Here is how it looks like:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/110-300x125.png)](http://mac-
 blog.org.ua/wp-content/uploads/110.png)
 
-
 Main page code:
-
 
     <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="RabotaUA.Sales._Default" %>
 
@@ -115,23 +109,17 @@ Main page code:
 
     <form id="form1" runat="server"></form></body></html>
 
-
 Code is copied from extjs examples, first of all we showing loader, and
 loading all needed files.
 
-
 Note: TDGi.iconMgr - cool extjs plugin that adds famfam icons to your project.
 
-
 [TDGi.iconMgr](http://mac-blog.org.ua/wp-content/uploads/TDGi.iconMgr.zip)
-
 
 After all files loaded, we load our init.js, and reports (each report has its
 own js file)
 
-
 So here is init.js
-
 
     var _DEFAULT_PERPAGE = 20;
 
@@ -606,16 +594,12 @@ So here is init.js
         });
     }
 
-
 Have look at extended stores and grid this is pretty standard way in extjs to
 extend base classes.
 
-
 After all defined we create viewport and fill it with some UI.
 
-
 Here is example of report:
-
 
     REPORT_BUTTONS.push({
         xtype : 'button',
@@ -847,13 +831,10 @@ Here is example of report:
         }
     });
 
-
 Because i have extended grid and store, all i need is to declare grid columns
 and filters.
 
-
 Many of fields have own renderers here is their code:
-
 
     var RENDERERS = {};
 
@@ -1147,13 +1128,10 @@ Many of fields have own renderers here is their code:
         return val;
     }
 
-
 Notice that in stores i use metadata driven json from asp handler that
 automaticaly generates all need stufs from returned DataTables.
 
-
 In general handler looks like:
-
 
     using System;
     using System.Collections.Generic;
@@ -1213,9 +1191,7 @@ In general handler looks like:
         }
     }
 
-
 All work done in ExtJS.GridReader and here it is:
-
 
     using System;
     using System.Collections.Generic;
@@ -1378,10 +1354,7 @@ All work done in ExtJS.GridReader and here it is:
         }
     }
 
-
-
 Also there is TypeConverter helper:
-
 
     using System;
     using System.Collections.Generic;
@@ -1575,5 +1548,3 @@ Also there is TypeConverter helper:
             }
         }
     }
-
-

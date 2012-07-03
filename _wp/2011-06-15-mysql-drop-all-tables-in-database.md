@@ -5,6 +5,5 @@ permalink: /629
 tags: [delete, drop, dump, mysql, mysqldump]
 ---
 
-<code>mysqldump -u[USERNAME] -p[PASSWORD] --add-drop-table --no-data
+    mysqldump -u[USERNAME] -p[PASSWORD] --add-drop-table --no-data
 [DATABASE] | grep ^DROP | mysql -u[USERNAME] -p[PASSWORD] [DATABASE]
-

@@ -7,12 +7,9 @@ tags: [facebook, fb]
 
 Primary idea is to create qr code vcard from facebook profile.
 
-
 http://ru.wikipedia.org/wiki/VCard
 
-
 http://phpqrcode.sourceforge.net/
-
 
     <?php
     require 'facebook-php-sdk/src/facebook.php';
@@ -243,33 +240,24 @@ http://phpqrcode.sourceforge.net/
     </body>
     </html>
 
-
 After app starts it checks getLoginStatus to see if user is connected (means
 that user allowed app to access profile info) to app.
-
 
 If no, app calling FB.login to get permissions to retrive profile info, and
 after successfull call fill form with user data.
 
-
 User then may change data and submit it to qr code generator, that will form
 qr code vcard from submited data - not implemented.
 
-
 Development was stopped after this:
-
 
 http://imageshack.us/photo/my-images/13/77970240.png/
 
-
 Facebook no longer allow getting user phone - so app is unusefull.
-
 
 Are facebook and his users - paranoics?
 
-
 Example of qr code generate:
-
 
     <?php
     include "phpqrcode/qrlib.php";
@@ -286,5 +274,3 @@ Example of qr code generate:
     ?>
 
     <img src="test.png" />
-
-

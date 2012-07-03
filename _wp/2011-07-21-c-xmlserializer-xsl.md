@@ -5,8 +5,7 @@ permalink: /730
 tags: [.net, c#, serialize, StreamWriter, xml, xmlserializer, XmlTextWriter, xsl]
 ---
 
-<code>XmlSerializer serializer = new XmlSerializer(typeof(List<ReportItem>));
-
+    XmlSerializer serializer = new XmlSerializer(typeof(List<ReportItem>));
 
     using (StreamWriter streamWriter = new StreamWriter("reportItems.xml"))
     {
@@ -20,5 +19,3 @@ tags: [.net, c#, serialize, StreamWriter, xml, xmlserializer, XmlTextWriter, xsl
     /*TextWriter textWriter = new StreamWriter("reportItems.xml");
     serializer.Serialize(textWriter, reportItems);
     textWriter.Close();*/
-
-

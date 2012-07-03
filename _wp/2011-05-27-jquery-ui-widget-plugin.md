@@ -7,7 +7,6 @@ tags: [class, jquery, oop, plugin, UI, widget]
 
 Sample template for jQuery UI plugins
 
-
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -81,6 +80,4 @@ Sample template for jQuery UI plugins
     </body>
     </html>
 
-
 Found at http://habrahabr.ru/blogs/javascript/120074/
-

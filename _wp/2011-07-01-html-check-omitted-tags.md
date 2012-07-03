@@ -8,19 +8,13 @@ tags: [compass, gae, google_apps_engine, sass]
 [http://check-ommited-tags.appspot.com/](http://check-ommited-
 tags.appspot.com/)
 
-
 [![how to check omitted html tags](http://check-omitted-
 tags.appspot.com/images/howto.gif)](http://check-omitted-
 tags.appspot.com/images/howto.gif)
 
-
-
-
 Main idea is to help find omitted tags in html.
 
-
 All job done by very small and simple script:
-
 
     jQuery(document).ready(function($) {
         function show_tab(tab) {
@@ -193,11 +187,7 @@ All job done by very small and simple script:
         });
     });
 
-
-
-
 Also here is sass:
-
 
     @import "compass/css3";
     @import "blueprint";
@@ -266,12 +256,8 @@ Also here is sass:
         }
     }
 
-
-
-
 Application hosted on google apps engine, i do not know it at all, here is my
 app.yaml:
-
 
     application: check-omitted-tags
     version: 1
@@ -292,5 +278,3 @@ app.yaml:
 
     - url: /js
       static_dir: js
-
-

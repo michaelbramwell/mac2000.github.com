@@ -7,19 +7,13 @@ tags: [batch, batch_process, batch_set, d6, drupal, hook_menu, job]
 
 Example of script for internal use
 
-
 **macbatch.info**
-
 
     name = "macbatch"
     core = "6.x"
     version = "6.x-1.0"
 
-
-
-
 **macbatch.module**
-
 
     <?php
     function macbatch_menu() {
@@ -79,16 +73,10 @@ Example of script for internal use
         $context['results'][] = check_plain($node->title);
     }
 
-
-
-
 To create some batch job - u must define __YOUR_JOB_NAME_ and
 __YOUR_JOB_NAME_process_ functions.
-
 
 First must fill operations array, which will contains second function name,
 and array with params.
 
-
 Second will actualy do job.
-

@@ -7,12 +7,9 @@ tags: [apache, apachesolr, java, solr, tomcat, tomcat7, ubuntu, xampp]
 
 After some researches get working Apache Solr instance.
 
-
 http://youtu.be/-LD1aCxYODI
 
-
 Here is briew commands that will run two solr instances.
-
 
     sudo apt-get install tomcat7
     wget http://apache.vc.ukrtel.net//lucene/solr/3.4.0/apache-solr-3.4.0.zip
@@ -32,74 +29,51 @@ Here is briew commands that will run two solr instances.
         </Context>
     sudo /etc/init.d/tomcat7 restart
 
-
-
-
 now u can open: http://localhost:8080/example1/admin/ and
 http://localhost:8080/example2/admin/
-
 
 Do not copy solr.war into webapps, instead copy it to tomcat lib folder. To
 find it use something like this:
 
-
     sudo find / -name lib -type d | grep tomcat
-
-
-
 
 Do not forget to paste correct docBase it must point to solr.war. **Actualy
 all you need to do is change Enviroment.value, and nothing else**, that must
 point to copied example/solr folder. Also do not forget that tomcat must have
 access to it.
 
-
 If you running Windows with xampp:
-
 
 Copy _example/solr_ anywhere you want.
 
-
 Copy solr.war to _C:\xampp\tomcat\lib_.
-
 
 XML config files are stored in _C:\xampp\tomcat\conf\Catalina\localhost
 folder_.
 
-
 Example of XML file:
-
 
     <Context docBase="C:\xampp\tomcat\lib\solr.war" debug="0" crossContext="true" >
         <Environment name="solr/home" type="java.lang.String" value="C:\xampp\htdocs\solr\example1" override="true" />
     </Context>
 
-
 To restrict access add valve to context, something like this:
-
 
     <Context docBase="/usr/share/tomcat6/lib/solr.war" debug="0" crossContext="true" >
     <Environment name="solr/home" type="java.lang.String" value="/var/tomcat/example1" override="true" />
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.0\.0\.1"/>
     </Context>
 
-
-
-
 More info can be found here:
 http://tomcat.apache.org/tomcat-7.0-doc/config/valve.html
 
-
 Also this can be done via firewall.
-
 
 Also there is realms in tomcat, but i can not find solution for them. All
 examples require changing web.xml, but this file is compressed into solr.war.
 
-
 Here is some examples of using solr with php, probably u can use it with any
 language you want, just to show how it can be done:
-
 
     <?php
 
@@ -213,13 +187,10 @@ language you want, just to show how it can be done:
         return array_unique($features);
     }
 
-
 [http://code.google.com/p/solr-php-client/](http://code.google.com/p/solr-php-
 client/) used.
 
-
 And here is example of simple faceted search:
-
 
     <?php
     header('Content-Type: text/html; charset=utf-8');
@@ -534,6 +505,4 @@ And here is example of simple faceted search:
         return is_facet_checked($name, $key) ? ' checked="checked" ' : '';
     }
 
-
 Notice this is not good code, just for fun.
-

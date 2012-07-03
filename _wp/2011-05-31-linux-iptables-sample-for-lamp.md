@@ -5,8 +5,7 @@ permalink: /605
 tags: [centos, filter, firewall, iptables, linux, netstat, ubuntu]
 ---
 
-<code>#!/bin/sh
-
+    #!/bin/sh
 
     #save this to firewall.sh, and make chmod +x firewall.sh
     #available ports: icmp, tcp, udp
@@ -42,4 +41,3 @@ tags: [centos, filter, firewall, iptables, linux, netstat, ubuntu]
 
     #list rules
     /sbin/iptables -L -v
-

@@ -7,7 +7,6 @@ tags: [ago, date, datetime, format, plural, singular, time]
 
 <?php
 
-
     echo ago(time() - 3452); // will return: 58 минут назад
 
     function ago($timestamp) {
@@ -35,9 +34,7 @@ tags: [ago, date, datetime, format, plural, singular, time]
         return $difference.' '.$text . ' назад';
     }
 
-
 Реализация на .net
-
 
     public static string timeAgo(DateTime date)
     {
@@ -74,9 +71,7 @@ tags: [ago, date, datetime, format, plural, singular, time]
         return string.Format("{0}{1} {2}{3}", prefix, difference, text, suffix);
     }
 
-
 Реализация на javascript
-
 
     function ago(date) {
         var difference = ((new Date()).getTime() - date.getTime()) / 1000;
@@ -103,4 +98,3 @@ tags: [ago, date, datetime, format, plural, singular, time]
         var text = periods[i][(difference%100>4 && difference%100<20)? 2: cases[Math.min(difference%10, 5)]];
         return difference + ' ' + text + ' назад';
     }
-

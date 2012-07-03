@@ -5,7 +5,7 @@ permalink: /579
 tags: [.net, array, asp.net, c#, list, parts]
 ---
 
-<code>/// <summary>
+    /// <summary>
 
     /// Split any list to equal partitions
     /// </summary>
@@ -40,4 +40,3 @@ tags: [.net, array, asp.net, c#, list, parts]
 
         return partitions;
     }
-

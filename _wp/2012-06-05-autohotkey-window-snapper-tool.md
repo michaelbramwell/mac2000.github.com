@@ -7,24 +7,18 @@ tags: [active, autohotkey, bottom, delete, end, home, insert, left, MinMax, Moni
 
 This tool will move and resize your active window in next way:
 
-
 [![](http://mac-blog.org.ua/wp-content/uploads/WinSnapper-300x134.png)](http
 ://mac-blog.org.ua/wp-content/uploads/WinSnapper.png)
 
-
 Something like:
-
 
 [![](http://mac-blog.org.ua/wp-content/uploads/Screen-300x168.png)](http
 ://mac-blog.org.ua/wp-content/uploads/Screen.png)
 
-
 [WinSnapper](http://mac-blog.org.ua/wp-content/uploads/WinSnapper.zip) sources
 and executable
 
-
 And here is code:
-
 
     ; WinSnapper:
     ; Move and resize windows with arrow and text navigation keys
@@ -168,4 +162,3 @@ And here is code:
             WinMaximize, A
         }
     }
-

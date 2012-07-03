@@ -9,7 +9,6 @@ tags: [count, counter, jquery, plugin, settimeout, timer]
 типу как на страницах вКонтакте - где счетчик показывает количество
 зарегистрировавшихся людей.
 
-
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -111,4 +110,3 @@ tags: [count, counter, jquery, plugin, settimeout, timer]
     <h3>CV Counter2: <span id="cvcounter2"></span></h3>
     </body>
     </html>
-
