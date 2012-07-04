@@ -11,14 +11,12 @@ layout: base
 {% endfor %}
 {% endif %}
 
-{% comment %}
 {% if site.related_posts %}
 <h2>Related</h2>
 {% for post in site.related_posts %}
     <div><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></div>
 {% endfor %}
 {% endif %}
-{% endcomment %}
 
 <div>
     Template: post
