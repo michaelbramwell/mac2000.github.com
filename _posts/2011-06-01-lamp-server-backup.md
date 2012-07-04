@@ -7,13 +7,13 @@ tags: [automysqlbackup, backup, centos, cron, link, linux, ln, simplebashbu, ubu
 
 Automatic creation of archived daily, weekly, monthly backups of sites and databases  with email notification.
 
-Found at: <http://www.nardin.info/2010/07/backup-lamp.html>
+Found at: http://www.nardin.info/2010/07/backup-lamp.html
 
 Scripts:
 
-<http://sourceforge.net/projects/automysqlbackup/>
+http://sourceforge.net/projects/automysqlbackup/
 
-<http://sourceforge.net/projects/simplebashbu/>
+http://sourceforge.net/projects/simplebashbu/
 
 put them somewhere and make them executable.
 
@@ -32,6 +32,6 @@ To download backups:
 
     wget -m ftp://LOGIN:PASSWORD@example.com/backups -P C:\Users\mac\Desktop\
 
-Wget for windows: <http://gnuwin32.sourceforge.net/packages/wget.htm>
+Wget for windows: http://gnuwin32.sourceforge.net/packages/wget.htm
 
 Download binaries and dependencies, extract all to same directory.

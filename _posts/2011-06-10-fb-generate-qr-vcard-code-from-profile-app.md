@@ -7,9 +7,9 @@ tags: [facebook, fb]
 
 Primary idea is to create qr code vcard from facebook profile.
 
-<http://ru.wikipedia.org/wiki/VCard>
+http://ru.wikipedia.org/wiki/VCard
 
-<http://phpqrcode.sourceforge.net/>
+http://phpqrcode.sourceforge.net/
 
     <?php
     require 'facebook-php-sdk/src/facebook.php';
@@ -248,7 +248,7 @@ User then may change data and submit it to qr code generator, that will form qr 
 
 Development was stopped after this:
 
-<http://imageshack.us/photo/my-images/13/77970240.png/>
+http://imageshack.us/photo/my-images/13/77970240.png/
 
 Facebook no longer allow getting user phone - so app is unusefull.
 

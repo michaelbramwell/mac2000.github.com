@@ -5,9 +5,9 @@ permalink: /33
 tags: [admin, db, log, mysql, performance, sql, webgrind, php, xdebug, profiler, general_log, slow_query_log]
 ---
 
-<http://code.google.com/p/webgrind/wiki/Installation>
+http://code.google.com/p/webgrind/wiki/Installation
 
-<http://anantgarg.com/2009/03/10/php-xdebug-webgrind-installation/>
+http://anantgarg.com/2009/03/10/php-xdebug-webgrind-installation/
 
 * Put webgrind into `C:\xampp\htdocs`
 * Create `C:\xampp\htdocs\webgrind\tmp` folder and allow full access to it for everyone

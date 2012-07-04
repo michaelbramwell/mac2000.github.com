@@ -9,9 +9,9 @@ Note about configuring content manager friendly backend.
 
 **Modules:**
 
-<http://drupal.org/project/imagebrowser> - 6.x-2.x - at moment in dev
+http://drupal.org/project/imagebrowser - 6.x-2.x - at moment in dev
 
-<http://drupal.org/project/shadowbox>
+http://drupal.org/project/shadowbox
 
 **Dependencies:**
 

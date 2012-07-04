@@ -74,8 +74,8 @@ tags: [debian, linux, locale, perl, ru, utf, utf-8, utf8]
     locale-gen ru_RU.UTF-8
     dpkg-reconfigure locales
 
-<http://xpoint.ru/forums/programming/perl/misc/thread/40534.xhtml>
+http://xpoint.ru/forums/programming/perl/misc/thread/40534.xhtml
 
-<http://debianworld.ru/qa/question/1/perl-warning-setting-locale-failed>
+http://debianworld.ru/qa/question/1/perl-warning-setting-locale-failed
 
-<http://www.mindinmotion.ru/post/perl-warning-setting-locale-failed-debian-linux>
+http://www.mindinmotion.ru/post/perl-warning-setting-locale-failed-debian-linux

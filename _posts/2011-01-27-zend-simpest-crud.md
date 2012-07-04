@@ -36,7 +36,7 @@ Form:
 
     zf create form customerForm
 
-Almost all code was copy pasted from <http://framework.zend.com/manual/en/learning.quickstart.intro.html>
+Almost all code was copy pasted from http://framework.zend.com/manual/en/learning.quickstart.intro.html
 
 **Application.ini config for mysql connection:**
 

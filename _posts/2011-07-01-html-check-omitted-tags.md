@@ -5,7 +5,7 @@ permalink: /654
 tags: [compass, gae, google_apps_engine, sass]
 ---
 
-<http://check-ommited-tags.appspot.com/>
+http://check-ommited-tags.appspot.com/
 
 ![how to check omitted html tags](http://check-omitted-tags.appspot.com/images/howto.gif)
 

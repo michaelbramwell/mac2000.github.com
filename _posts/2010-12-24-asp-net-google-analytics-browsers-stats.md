@@ -11,7 +11,7 @@ tags: [.net, analytics, asp.net, c#, chart, gdata, google]
 
 Для работы необходимо подключить: `Google.GData.Analytics`, `Google.GData.Client`, `Google.GData.Extensions`.
 
-<http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html>
+http://code.google.com/intl/ru-RU/apis/gdata/articles/dotnet_client_lib.html
 
 **Default.aspx**
 

@@ -24,9 +24,9 @@ Here is some brief notes and links:
 
 Links:
 
-<http://samag.ru/archive/article/1072>
+http://samag.ru/archive/article/1072
 
-<http://technet.microsoft.com/en-us/library/ff716257%28v=ws.10%29.aspx>
+http://technet.microsoft.com/en-us/library/ff716257%28v=ws.10%29.aspx
 
 **Setup all via Web Platform Installer**
 
@@ -45,9 +45,9 @@ Links:
 
 Links:
 
-<http://msdn.microsoft.com/en-us/library/windowsazure/gg433092.aspx>
+http://msdn.microsoft.com/en-us/library/windowsazure/gg433092.aspx
 
-<http://blogs.iis.net/satishl/archive/2011/01/26/webpi-command-line.aspx>
+http://blogs.iis.net/satishl/archive/2011/01/26/webpi-command-line.aspx
 
 ### Powershell tips
 
@@ -105,57 +105,12 @@ _Helper_
     }
     $userName = Get-ChildItem Env:USERNAME | Select -Expand Value
 
-### Powershell IIS tips
-
-<http://technet.microsoft.com/en-us/library/ee790599.aspx>
-
-**First things first**
-
-    Set-ExecutionPolicy remotesigned
-    Import-Module WebAdministration
-
-**Add site and bindings**
-
-    New-WebSite -Name test.com -Port 80 -HostHeader local.test.com -PhysicalPath "C:\Users\user\Desktop\test.com"
-    New-WebBinding -Name "test.com" -IPAddress "*" -Port 80 -HostHeader mac.test.com
-
-_Add site for specific pool_
-
-    New-WebSite -ApplicationPool "Admin" -Name test.com -Port 80 -HostHeader local.test.com -PhysicalPath "C:\Users\user\Desktop\test.com"
-
-**Add virtual directory**
-
-    New-WebApplication -Name app -Site "test.com" -PhysicalPath "C:\Users\user\Desktop\app" -ApplicationPool DefaultAppPool
-
-**Add Admin pool**
-
-    $WebAppPool = New-WebAppPool -Name "Admin"
-    $WebAppPool.processModel.identityType = "SpecificUser"
-    $WebAppPool.processModel.username = "user-PC\user"
-    $WebAppPool.processModel.password = "1234567"
-    $WebAppPool.managedPipelineMode = "Classic"
-    $WebAppPool.managedRuntimeVersion = "v4.0"
-    $WebAppPool | set-item
-
-**Create assets directory**
-
-    if (Test-Path -path C:\inetpub\wwwroot\images -ne $True)
-    {
-        New-Item C:\inetpub\wwwroot\images -type directory
-    }
-
-**Give IIS full access for assets directory**
-
-    $acl = Get-Acl C:\inetpub\wwwroot\images
-    $rule = New-Object System.Security.AccessControl.FileSystemAccessRule("IIS_IUSRS", "FullControl", "ContainerInherit, ObjectInherit", "None", "Allow")
-    $acl.AddAccessRule($rule)
-    Set-Acl C:\inetpub\wwwroot\images $acl
 
 ### Scheduled tasks
 
-<http://poshtips.com/2011/04/07/use-powershell-to-create-a-scheduled-task/>
+http://poshtips.com/2011/04/07/use-powershell-to-create-a-scheduled-task/
 
-<http://technet.microsoft.com/en-us/library/cc725744(v=ws.10).aspx>
+http://technet.microsoft.com/en-us/library/cc725744(v=ws.10).aspx
 
 **Creating tasks examples**
 

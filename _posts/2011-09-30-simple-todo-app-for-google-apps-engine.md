@@ -7,7 +7,7 @@ tags: [db, example, gae, python]
 
 This is copy-paste from:
 
-<http://www.vogella.de/articles/GoogleAppEngine/article.html>
+http://www.vogella.de/articles/GoogleAppEngine/article.html
 
 Screenshot:
 

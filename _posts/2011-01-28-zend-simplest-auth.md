@@ -161,9 +161,9 @@ Index/index view:
 
 Examples copy pasted from:
 
-<http://weierophinney.net/matthew/archives/165-Login-and-Authentication-with-Zend-Framework.html>
+http://weierophinney.net/matthew/archives/165-Login-and-Authentication-with-Zend-Framework.html
 
-<http://framework.zend.com/manual/en/zend.auth.adapter.dbtable.html>
+http://framework.zend.com/manual/en/zend.auth.adapter.dbtable.html
 
 If you want create data table adapter, do not forget to add
 

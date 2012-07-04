@@ -5,7 +5,7 @@ permalink: /534
 tags: [auto, crossdomain, height, iframe, javascript, jquery, js]
 ---
 
-Found at: <http://benalman.com/projects/jquery-postmessage-plugin/>
+Found at: http://benalman.com/projects/jquery-postmessage-plugin/
 
 Code for iframe `http://site1.com/frame.html`:
 

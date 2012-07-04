@@ -7,9 +7,9 @@ tags: [ajax, beforerequest, ext, extjs, javascript, js, json, mask, request, req
 
 Links:
 
-<http://www.extensions.extjs.com/learn/Ext_FAQ_Ajax>
+http://www.extensions.extjs.com/learn/Ext_FAQ_Ajax
 
-<http://snipplr.com/view/9692/extjs--simple-ajax-request-with-callback-and-json-to-object-deserialization/>
+http://snipplr.com/view/9692/extjs--simple-ajax-request-with-callback-and-json-to-object-deserialization/
 
 Code:
 

@@ -18,6 +18,6 @@ Zip folder:
 
     zip -r myarchive.zip /path/to/my/folder
 
-<http://help.ubuntu.com/community/FileCompression>
+http://help.ubuntu.com/community/FileCompression
 
-<http://ubuntuforums.org/showthread.php?t=83877>
+http://ubuntuforums.org/showthread.php?t=83877

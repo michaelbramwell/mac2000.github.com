@@ -5,7 +5,7 @@ permalink: /351
 tags: [.net, c#, connector, dll, lib, mysql]
 ---
 
-<http://dev.mysql.com/downloads/connector/net/5.2.html>
+http://dev.mysql.com/downloads/connector/net/5.2.html
 
 Sample code:
 

@@ -11,9 +11,9 @@ tags: [asp.net, automate, batch, com, dcomcnfg, powershell, word]
 
 С горем по полам нашел следующие ссылки:
 
-<http://theether.net/download/Microsoft/kb/288368.html>
+http://theether.net/download/Microsoft/kb/288368.html
 
-<http://theether.net/download/Microsoft/kb/288366.html>
+http://theether.net/download/Microsoft/kb/288366.html
 
 Идея в следующем - нам необходимо подправить настройки com объекта word'а чтобы он всегда запускался с определенной учетной записью.
 
