@@ -78,6 +78,6 @@ now after restarting networking u will be able to ping any subdomain.
 
 All that left is to configure Apache Mass Virtual Hosting
 
-<http://serverfault.com/questions/112535/apache2-virtualhost-auto-subdomain>
+http://serverfault.com/questions/112535/apache2-virtualhost-auto-subdomain
 
-<http://httpd.apache.org/docs/2.2/vhosts/mass.html>
+http://httpd.apache.org/docs/2.2/vhosts/mass.html

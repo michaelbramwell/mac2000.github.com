@@ -7,7 +7,7 @@ tags: [apache, apachesolr, java, solr, tomcat, tomcat7, ubuntu, xampp]
 
 After some researches get working Apache Solr instance.
 
-<http://youtu.be/-LD1aCxYODI>
+http://youtu.be/-LD1aCxYODI
 
 Here is briew commands that will run two solr instances.
 
@@ -58,7 +58,7 @@ To restrict access add valve to context, something like this:
     <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.0\.0\.1"/>
     </Context>
 
-More info can be found here: <http://tomcat.apache.org/tomcat-7.0-doc/config/valve.html>
+More info can be found here: http://tomcat.apache.org/tomcat-7.0-doc/config/valve.html
 
 Also this can be done via firewall.
 
@@ -178,7 +178,7 @@ Here is some examples of using solr with php, probably u can use it with any lan
         return array_unique($features);
     }
 
-<http://code.google.com/p/solr-php-client/> used.
+http://code.google.com/p/solr-php-client/used.
 
 And here is example of simple faceted search:
 

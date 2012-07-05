@@ -18,7 +18,7 @@ Then
 
     Set-AuthenticodeSignature C:\Users\mac\Scripts\ImagesShedule.ps1 @(Get-ChildItem cert:\CurrentUser\My -codesigning)[0]
 
-makecert.exe ships with Microsoft Windows Software Development Kit, available at <http://msdn.microsoft.com/en-us/windowsserver/bb980924.aspx>.
+makecert.exe ships with Microsoft Windows Software Development Kit, available at http://msdn.microsoft.com/en-us/windowsserver/bb980924.aspx.
 
 Also note that makecert.exe may be located in another folder.
 

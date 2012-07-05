@@ -441,4 +441,4 @@ Here is tinymce plugin code:
         tinymce.PluginManager.add('embpicasa', tinymce.plugins.embpicasa);
     })();
 
-<http://code.google.com/p/embpicasa/>
+http://code.google.com/p/embpicasa/

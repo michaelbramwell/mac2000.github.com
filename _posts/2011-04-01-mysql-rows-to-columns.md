@@ -5,7 +5,7 @@ permalink: /537
 tags: [TODO]
 ---
 
-Found at: <http://www.artfulsoftware.com/infotree/queries.php#78>
+Found at: http://www.artfulsoftware.com/infotree/queries.php#78
 
 Sample schema:
 

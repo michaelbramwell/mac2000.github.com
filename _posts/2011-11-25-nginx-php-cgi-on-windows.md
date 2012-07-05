@@ -5,9 +5,9 @@ permalink: /882
 tags: [cgi, nginx, php, php-cgi, win, windows]
 ---
 
-<http://nginx.org/en/download.html>
+http://nginx.org/en/download.html
 
-<http://windows.php.net/download/>
+http://windows.php.net/download/
 
 Нужен VC9 (6-й нужен только если используем с апачем).  Будет ли это thread safe или not thread safe значения не имеет.
 
@@ -27,9 +27,9 @@ tags: [cgi, nginx, php, php-cgi, win, windows]
     taskkill /f /IM php-cgi.exe
     EXIT
 
-<http://eksith.wordpress.com/2008/12/08/nginx-php-on-windows/>
+http://eksith.wordpress.com/2008/12/08/nginx-php-on-windows/
 
-<http://wiki.nginx.org/PHPFastCGIOnWindows>
+http://wiki.nginx.org/PHPFastCGIOnWindows
 
 **nginx.conf**
 
@@ -74,6 +74,6 @@ tags: [cgi, nginx, php, php-cgi, win, windows]
 
 Отличная статья на примере Wordpress'а показывающая как бороться с ЧПУ
 
-<http://wiki.nginx.org/WordPress>
+http://wiki.nginx.org/WordPress
 
-<http://wiki.nginx.org/Drupal>
+http://wiki.nginx.org/Drupal

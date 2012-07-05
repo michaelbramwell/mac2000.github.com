@@ -9,27 +9,27 @@ tags: [drupal, filter, html_filter, input_format, upload, wysiwyg]
 
 **Используемые модули:**
 
-<http://drupal.org/project/wysiwyg>
+http://drupal.org/project/wysiwyg
 
-<http://drupal.org/project/better_formats>
+http://drupal.org/project/better_formats
 
-<http://drupal.org/project/wysiwyg_template>
+http://drupal.org/project/wysiwyg_template
 
-<http://drupal.org/project/wysiwyg_button_order>
+http://drupal.org/project/wysiwyg_button_order
 
-<http://drupal.org/project/imagepicker>
+http://drupal.org/project/imagepicker
 
-<http://drupal.org/project/filepicker>
+http://drupal.org/project/filepicker
 
-<http://drupal.org/project/imageapi>
+http://drupal.org/project/imageapi
 
-<http://drupal.org/project/imagecache>
+http://drupal.org/project/imagecache
 
-<http://drupal.org/project/imagecache_actions>
+http://drupal.org/project/imagecache_actions
 
 **Форматы ввода**
 
-<http://www.lullabot.com/articles/drupal-input-formats-and-filters> отличная статья по теме.
+http://www.lullabot.com/articles/drupal-input-formats-and-filters отличная статья по теме.
 
 Мне необходимы всего два формата ввода: plain, wysiwyg.
 
@@ -83,9 +83,9 @@ plain выделен как формат по умолчанию, доступ �
 
 Настроек миллион, и все зависит от задач которые будут ставиться перед контент редактором.
 
-Так же в догонку неплохо использовать плагин <http://drupal.org/project/wysiwyg_template> - он добавит возможность вставлять заранее подготовленные шаблоны в контент - что очень поможет контент редактору быстро создавать качественный материал.
+Так же в догонку неплохо использовать плагин http://drupal.org/project/wysiwyg_template - он добавит возможность вставлять заранее подготовленные шаблоны в контент - что очень поможет контент редактору быстро создавать качественный материал.
 
-Так же неплохой модуль: <http://drupal.org/project/wysiwyg_button_order> - который позволит задать порядок кнопок для tiny. Не уверен насчет практической необходимости - но вполне пригодная штука - хотя бы те же разделители раставить между группами кнопок редактора.
+Так же неплохой модуль: http://drupal.org/project/wysiwyg_button_order - который позволит задать порядок кнопок для tiny. Не уверен насчет практической необходимости - но вполне пригодная штука - хотя бы те же разделители раставить между группами кнопок редактора.
 
 **Вставка рисунков в TinyMCE**
 

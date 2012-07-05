@@ -23,7 +23,7 @@ tags: [compass, css, css3, gem, ruby, sass, scss]
 
 Плюшки
 
-<http://compass-style.org/docs/reference/compass/>
+http://compass-style.org/docs/reference/compass/
 
 Например в SCSS
 
@@ -52,7 +52,7 @@ tags: [compass, css, css3, gem, ruby, sass, scss]
 
     compass compile --output-style compressed --force my1
 
-В самом простом случае, если нужно что то добавить идем в доки <http://compass-style.org/docs/reference/compass/>
+В самом простом случае, если нужно что то добавить идем в доки http://compass-style.org/docs/reference/compass/
 
 смотрим что надо заимпортить, наприм.:
 
@@ -62,7 +62,7 @@ tags: [compass, css, css3, gem, ruby, sass, scss]
 
     .test {@include inline-block;}
 
-Спека по SASS/SCSS: <http://sass-lang.com/>
+Спека по SASS/SCSS: http://sass-lang.com/
 
 Пожалуй самое прикольное:
 

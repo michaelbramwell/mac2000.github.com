@@ -60,7 +60,7 @@ tags: [fpm, multilingual, multisite, nginx, wordpress, wp]
         }
     }
 
-Пример взят от сюда: <http://codex.wordpress.org/Nginx> с той лиш разницей что этот будет работать из коробки.
+Пример взят от сюда: http://codex.wordpress.org/Nginx с той лиш разницей что этот будет работать из коробки.
 
 После этого, все по [мануалке](/663/)
 
@@ -82,10 +82,10 @@ tags: [fpm, multilingual, multisite, nginx, wordpress, wp]
 
 Ссылки по теме:
 
-<http://codex.wordpress.org/Multilingual_WordPress>
+http://codex.wordpress.org/Multilingual_WordPress
 
-<http://codex.wordpress.org/WordPress_in_Your_Language>
+http://codex.wordpress.org/WordPress_in_Your_Language
 
-<http://svn.automattic.com/wordpress-i18n/>
+http://svn.automattic.com/wordpress-i18n/
 
-<http://codex.wordpress.org/Installing_WordPress_in_Your_Language>
+http://codex.wordpress.org/Installing_WordPress_in_Your_Language

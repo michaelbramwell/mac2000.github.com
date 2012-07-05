@@ -8,16 +8,16 @@ tags: [haml, less, ruby, sass, scss]
 Refactoring with SASS
 ---------------------
 
-<http://chriseppstein.github.com/blog/2010/05/25/refactor-my-stylesheets-digg-edition/>
+http://chriseppstein.github.com/blog/2010/05/25/refactor-my-stylesheets-digg-edition/
 
 Get Ruby
 --------
 
 On Windows
 
-<http://rubyinstaller.org/downloads/>
+http://rubyinstaller.org/downloads/
 
-<http://sass-lang.com/tutorial.html>
+http://sass-lang.com/tutorial.html
 
 Less
 ----

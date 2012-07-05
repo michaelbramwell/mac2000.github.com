@@ -24,7 +24,7 @@ Backup\Restore Commands
 
     /usr/bin/mysql -u MYSQL_LOGIN --password=MYSQL_PASSWORD MYSQL_DATABASE < /path-to-backups/db-2012-04-25.sql
 
-<http://help.ubuntu.com/community/BackupYourSystem/TAR>
+http://help.ubuntu.com/community/BackupYourSystem/TAR
 
 Backup Script
 -------------

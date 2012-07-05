@@ -5,7 +5,7 @@ permalink: /465
 tags: [alter, drupal, flash, form, message]
 ---
 
-<http://drupal.org/node/651106>
+http://drupal.org/node/651106
 
     <?php
     /**

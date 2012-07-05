@@ -9,7 +9,7 @@ tags: [docutils, markdown, markup, php, rest, restructuredtext, syntax, wiki]
 
 Спека по разметке:
 
-<http://docutils.sourceforge.net/docs/user/rst/quickref.html>
+http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
 Небольшой пример вызова API для преобразования в HTML:
 
@@ -61,6 +61,6 @@ TODO: проверить наличие php либы, а так же либы д
 
 Тул для перегона html2rst:
 
-<http://svn.berlios.de/svnroot/repos/docutils/trunk/sandbox/xhtml2rest/xhtml2rest.py>
+http://svn.berlios.de/svnroot/repos/docutils/trunk/sandbox/xhtml2rest/xhtml2rest.py
 
 Вся либа написана на Python.

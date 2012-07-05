@@ -18,7 +18,7 @@ Example List Installed Services
 Example Restart Service
 -----------------------
 
-<http://www.csharp-examples.net/restart-windows-service/>
+http://www.csharp-examples.net/restart-windows-service/
 
     ServiceController service = new ServiceController(serviceName);
     service.Stop();

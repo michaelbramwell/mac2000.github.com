@@ -9,9 +9,9 @@ Note about using `compute_field`.
 
 **Modules:**
 
-<http://drupal.org/project/cck> - with multigroup (at moment in dev)
+http://drupal.org/project/cck - with multigroup (at moment in dev)
 
-<http://drupal.org/project/computed_field>
+http://drupal.org/project/computed_field
 
 **Node types:**
 

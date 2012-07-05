@@ -11,13 +11,13 @@ Double click for publishers does not have report for sponsorship cpd line items,
 
 First of all we need to get access to Dfp API
 
-<http://code.google.com/intl/ru/apis/dfp/docs/start.html>
+http://code.google.com/intl/ru/apis/dfp/docs/start.html
 
 Get production or sandbox access for your needs.
 
 In my project we are using .net so i get .net library here:
 
-<http://code.google.com/p/google-api-dfp-dotnet/>
+http://code.google.com/p/google-api-dfp-dotnet/
 
 **Algo:**
 

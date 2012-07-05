@@ -122,7 +122,7 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Чтобы сделать его доступным по адресу **test1.ru**, необходим модуль:
 
-<http://wordpress.org/extend/plugins/wordpress-mu-domain-mapping/>
+http://wordpress.org/extend/plugins/wordpress-mu-domain-mapping/
 
 Качаем разорхивируем, копируем файл `domain_mapping.php` в `/wp-content/plugins`, файл `sunrise.php` - в `/wp-content`.
 
@@ -157,9 +157,9 @@ tags: [farm, multisite, wordpress, wp, wpmu]
 
 Ссылки:
 
-<http://codex.wordpress.org/Create_A_Network>
+http://codex.wordpress.org/Create_A_Network
 
-<http://www.binaryturf.com/run-multiple-sites-wordpress-30-separate-domains/>
+http://www.binaryturf.com/run-multiple-sites-wordpress-30-separate-domains/
 
 Самое классное в этом всем - теперь:
 

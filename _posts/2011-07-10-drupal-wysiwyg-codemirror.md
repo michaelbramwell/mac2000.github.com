@@ -234,4 +234,4 @@ Js file must implement:
 
 Actualy this is it. Implementing this functions u can add any editor u want.
 
-Commited patch to <http://drupal.org/node/1214136> - but it was closed as duplicate to <http://drupal.org/node/274431> that was created in 2008 O_o
+Commited patch to http://drupal.org/node/1214136 - but it was closed as duplicate to http://drupal.org/node/274431 that was created in 2008 O_o

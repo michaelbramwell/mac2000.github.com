@@ -15,7 +15,7 @@ Flow
 * Merge changes from branch into trunk
 * Delete the branch
 
-Original article: <http://stevesmithblog.com/blog/simple-branching-and-merging-with-svn/>
+Original article: http://stevesmithblog.com/blog/simple-branching-and-merging-with-svn/
 
 Create a new branch
 -------------------

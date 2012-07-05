@@ -31,4 +31,4 @@ in my case, sustem transparently redirect requests like:
 
 http://example.com/home to http://example.com/index.php?q=/home and we will not touch such requests
 
-<http://wiki.apache.org/httpd/RewriteQueryString>
+http://wiki.apache.org/httpd/RewriteQueryString

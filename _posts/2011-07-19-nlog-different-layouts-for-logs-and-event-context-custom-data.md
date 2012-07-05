@@ -18,7 +18,7 @@ In this way you can access all log properties in layout via event-context variab
 
     ${event-context:item=job_category}
 
-<http://nlog-project.org/wiki/Event-context_layout_renderer>
+http://nlog-project.org/wiki/Event-context_layout_renderer
 
 Now in targets config section:
 
@@ -37,7 +37,7 @@ Now in targets config section:
 
 Here we have few targets, now to all work propertly we need catch specific logs in loggers, this was accomplish wia condition filters.
 
-<http://nlog-project.org/wiki/Conditions>
+http://nlog-project.org/wiki/Conditions
 
 Rules section of nlog config:
 

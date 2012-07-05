@@ -30,4 +30,4 @@ Simle sample showing how to check is user logged
 
     node_save($node);
 
-<http://www.group42.ca/creating_and_updating_nodes_programmatically_in_drupal_7>
+http://www.group42.ca/creating_and_updating_nodes_programmatically_in_drupal_7

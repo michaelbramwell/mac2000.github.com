@@ -135,9 +135,9 @@ And here is another example using compass (better show how calculatings are done
       margin:0 -1*$_WRAPPER 0 $_LEFT;
     }
 
-Found at: <http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/cssnegativemarginsalgebra>
+Found at: http://www.severnsolutions.co.uk/twblog/archive/2004/07/01/cssnegativemarginsalgebra
 
-Also in drupal zen theme: <http://drupal.org/project/zen>
+Also in drupal zen theme: http://drupal.org/project/zen
 
 Need working liquid solution, for less code, something like this:
 

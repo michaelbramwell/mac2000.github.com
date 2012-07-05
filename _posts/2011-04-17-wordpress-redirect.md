@@ -34,4 +34,4 @@ In sample code, we have posts of category "task", that have "author" custom fiel
     }
     add_action('template_redirect', 'test_redirect');
 
-Also `template_redirect` can be used to assign custom template files. See: <http://www.mihaivalentin.com/wordpress-tutorial-load-the-template-you-want-with-template_redirect/>
+Also `template_redirect` can be used to assign custom template files. See: http://www.mihaivalentin.com/wordpress-tutorial-load-the-template-you-want-with-template_redirect/

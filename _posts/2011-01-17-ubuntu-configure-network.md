@@ -5,7 +5,7 @@ permalink: /333
 tags: [admin, administration, config, dhcp, dns, eth0, ifconfig, init.d, interface, ip, network, ubuntu]
 ---
 
-<http://www.ubuntugeek.com/ubuntu-networking-configuration-using-command-line.html>
+http://www.ubuntugeek.com/ubuntu-networking-configuration-using-command-line.html
 
 Configs are here:
 

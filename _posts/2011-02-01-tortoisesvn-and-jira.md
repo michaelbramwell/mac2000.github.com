@@ -5,9 +5,9 @@ permalink: /394
 tags: [code, jira, scm, svn, tortoisesvn]
 ---
 
-<http://plugins.atlassian.com/plugin/details/10017>
+http://plugins.atlassian.com/plugin/details/10017
 
-Инсталлируем: <https://github.com/csharptest/JiraSVN/downloads>
+Инсталлируем: https://github.com/csharptest/JiraSVN/downloads
 
 Идем в свойства TortoiseSVN
 
@@ -23,7 +23,7 @@ tags: [code, jira, scm, svn, tortoisesvn]
 * _Provide_ - то что мы установили
 * _Parameters_ - логин, пароль, адресс jira'ы
 
-<http://justaddwater.dk/2010/06/10/windows-svn-pre-commit-hook/>
+http://justaddwater.dk/2010/06/10/windows-svn-pre-commit-hook/
 
 Скрипт который запрещает коммиты без комментария
 
@@ -72,4 +72,4 @@ tags: [code, jira, scm, svn, tortoisesvn]
 
 Добавляется это дело в настройках TortoiseSVN\Hook Scripts (рядом с Issue Tracking Integration)
 
-<http://code.google.com/p/tortoisesvn/source/browse/trunk/contrib/hook-scripts/client-side/PreCommit.js.tmpl?r=19213>
+http://code.google.com/p/tortoisesvn/source/browse/trunk/contrib/hook-scripts/client-side/PreCommit.js.tmpl?r=19213

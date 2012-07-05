@@ -7,7 +7,7 @@ tags: [.net, c#, sortedset, collections]
 
 [Новая коллекция SortedSet в .Net 4.0](http://habrahabr.ru/blogs/net/102697/#habracut)
 
-<http://www.codeproject.com/KB/cs/SortedSet_T__Collection.aspx>
+http://www.codeproject.com/KB/cs/SortedSet_T__Collection.aspx
 
 User type example
 -----------------

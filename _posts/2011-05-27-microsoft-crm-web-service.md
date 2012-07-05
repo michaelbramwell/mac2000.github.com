@@ -9,17 +9,17 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 **Полезные ссылки:**
 
-<http://example.com:5555/mscrmservices/2006/crmservice.asmx> - сам сервис
+http://example.com:5555/mscrmservices/2006/crmservice.asmx - сам сервис
 
-<http://example.com:5555/mscrmservices/2006/metadataservice.asmx> - мета данные
+http://example.com:5555/mscrmservices/2006/metadataservice.asmx - мета данные
 
-<http://example.com:5555/sdk/list.aspx> - список сущностей
+http://example.com:5555/sdk/list.aspx - список сущностей
 
 Для подключения к студии надо использовать вот такие ссылки:
 
-<http://example.com:5555/mscrmservices/2006/crmservice.asmx?WSDL&uniquename=COMPANYNAME>
+http://example.com:5555/mscrmservices/2006/crmservice.asmx?WSDL&uniquename=COMPANYNAME
 
-<http://example.com:5555/mscrmservices/2006/metadataservice.asmx?WSDL&uniquename=COMPANYNAME>
+http://example.com:5555/mscrmservices/2006/metadataservice.asmx?WSDL&uniquename=COMPANYNAME
 
 По ним будут доступны xml файлы описывающие сервис, со всеми кастомными полями и т.п. и именно они будут нужны для подключения к студии.
 
@@ -31,9 +31,9 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 Для asp.net - правый клик по проекту **Add Service Reference**, далее клик по кнопке **Advanced...** и еще раз клик по кнопке **Add Web Reference..**. и дальше то же самое как и для обычных апликух.
 
-<http://msdn.microsoft.com/en-us/library/cc151015.aspx>
+http://msdn.microsoft.com/en-us/library/cc151015.aspx
 
-<http://msdn.microsoft.com/en-us/library/cc151014.aspx>
+http://msdn.microsoft.com/en-us/library/cc151014.aspx
 
 Теперь после того как сервисы прикручены можно с ними работать.
 
@@ -96,7 +96,7 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
     query.ColumnSet = new AllColumns();
 
-Взято отсюда: <http://community.dynamics.com/roletailored/customerservice/b/cscrmblog/archive/2009/01/07/building-rich-client-dashboards-for-microsoft-dynamics-crm-with-windows-presentation-foundation.aspx>
+Взято отсюда: http://community.dynamics.com/roletailored/customerservice/b/cscrmblog/archive/2009/01/07/building-rich-client-dashboards-for-microsoft-dynamics-crm-with-windows-presentation-foundation.aspx
 
 Пример выуживания данных сразу из двух сущностей:
 
@@ -119,13 +119,13 @@ tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 
 Взято из этих мест:
 
-<http://msdn.microsoft.com/en-us/library/ms914457.aspx>
+http://msdn.microsoft.com/en-us/library/ms914457.aspx
 
-<http://social.microsoft.com/Forums/en/crmdevelopment/thread/5ef585a5-58bc-46cd-a134-a46869d0684c>
+http://social.microsoft.com/Forums/en/crmdevelopment/thread/5ef585a5-58bc-46cd-a134-a46869d0684c
 
-<http://www.stunnware.com/crm2/topic.aspx?id=FindingData6>
+http://www.stunnware.com/crm2/topic.aspx?id=FindingData6
 
-<http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html>
+http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
 
 **Вытягивание связанных записей**
 

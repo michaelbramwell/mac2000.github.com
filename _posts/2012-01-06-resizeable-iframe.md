@@ -161,6 +161,6 @@ Notice that jQuery is actualy not nessesary for this script.
 
 Script cant send messages in both directions, between differrent domains.
 
-Found at: <http://www.onlineaspect.com/2010/01/15/backwards-compatible-postmessage/>
+Found at: http://www.onlineaspect.com/2010/01/15/backwards-compatible-postmessage/
 
-Example: <http://onlineaspect.com/uploads/postmessage/parent.html>
+Example: http://onlineaspect.com/uploads/postmessage/parent.html

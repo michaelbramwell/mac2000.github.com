@@ -80,4 +80,4 @@ Sample template for jQuery UI plugins
     </body>
     </html>
 
-Found at <http://habrahabr.ru/blogs/javascript/120074/>
+Found at http://habrahabr.ru/blogs/javascript/120074/

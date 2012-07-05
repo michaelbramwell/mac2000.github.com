@@ -98,7 +98,7 @@ tags: [border-radius, corners, radius, roundcorder, vector, vml]
 
 Work in IE6,7,8.
 
-<http://msdn.microsoft.com/en-us/library/bb264307%28v=VS.85%29.aspx>
+http://msdn.microsoft.com/en-us/library/bb264307%28v=VS.85%29.aspx
 
 To add namespace via js:
 

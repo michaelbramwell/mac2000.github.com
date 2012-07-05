@@ -5,7 +5,7 @@ permalink: /765
 tags: [better_messages, d6, drupal]
 ---
 
-<http://drupal.org/project/better_messages>
+http://drupal.org/project/better_messages
 
 ![screenshot](/images/wp/122.png)
 

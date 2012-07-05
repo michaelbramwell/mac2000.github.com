@@ -5,7 +5,7 @@ permalink: /584
 tags: [data, event, jquery, plugin]
 ---
 
-<http://docs.jquery.com/Plugins/Authoring>
+http://docs.jquery.com/Plugins/Authoring
 
     (function( $ ){
         //default settings

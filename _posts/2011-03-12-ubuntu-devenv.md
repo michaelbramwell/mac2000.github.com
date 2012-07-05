@@ -260,4 +260,4 @@ with following content:
 
 **Links**
 
-<http://www.vmirgorod.name/11/1/20/drupal-development-environment-based-ubuntu-1010>
+http://www.vmirgorod.name/11/1/20/drupal-development-environment-based-ubuntu-1010

@@ -103,7 +103,7 @@ tags: [gdata, google, php, search, seo]
 
 Параметры:
 
-<http://code.google.com/intl/ru-RU/apis/websearch/docs/reference.html>
+http://code.google.com/intl/ru-RU/apis/websearch/docs/reference.html
 
 Подправленный адрес для более адекватных результатов:
 

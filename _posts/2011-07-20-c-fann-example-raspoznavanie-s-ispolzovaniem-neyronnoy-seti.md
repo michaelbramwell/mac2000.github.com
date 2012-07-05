@@ -5,13 +5,13 @@ permalink: /726
 tags: [ai, fann, neural, neuralnet]
 ---
 
-<http://leenissen.dk/fann/wp/> - сайт библиотеки FANN
+http://leenissen.dk/fann/wp/ - сайт библиотеки FANN
 
-<http://code.google.com/p/fanndotnetwrapper/> - обертка под .NET
+http://code.google.com/p/fanndotnetwrapper/ - обертка под .NET
 
-<http://leenissen.dk/fann/fann.html> - php
+http://leenissen.dk/fann/fann.html - php
 
-<http://code.google.com/p/fanntool/> - тул по работе с библиотекой FANN - самое классное в нем - что он может подобрать оптимальные параметры нейронной сети.
+http://code.google.com/p/fanntool/ - тул по работе с библиотекой FANN - самое классное в нем - что он может подобрать оптимальные параметры нейронной сети.
 
 В примере стандартная задача по операции xor, и еще одна по определению прямоугольника - на вход подается сто бит (грубо говоря рисунок - 10х10 пикселей) - сеть пытается определить нарисован ли на ней прямоугольник.
 

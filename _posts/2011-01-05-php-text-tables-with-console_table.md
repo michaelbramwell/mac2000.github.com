@@ -5,7 +5,7 @@ permalink: /288
 tags: [console, console_table, formatters, pear, php, table, text, wiki, wysiwyg]
 ---
 
-<http://pear.php.net/package/Console_Table/>
+http://pear.php.net/package/Console_Table/
 
 класс позволяющий выводить текстовые таблички, то что нужно для консоли
 

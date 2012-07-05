@@ -39,7 +39,7 @@ somewhere in **node.tpl.php**
     print theme('moe_example', array(1,2,3));
     ?>
 
-<http://www.captaincodemonkey.com/blog/2010/12/26/drupal-6x-skeleton-module-with-tpl-file-example/>
+http://www.captaincodemonkey.com/blog/2010/12/26/drupal-6x-skeleton-module-with-tpl-file-example/
 
 And more complex example:
 
