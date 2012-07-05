@@ -4,7 +4,29 @@
 @include normalize;
 
 body {
-    background-color:#f7f7f7;
+    background-color:#fff;
     margin: 1em;
 }
-
+aside {
+    background:#f7f7f7;
+    margin:-.5em;
+    padding:.5em;
+}
+a {
+    color:#356AA0;
+}
+a:visited {
+    color:#999;
+}
+.tags {
+    @include comma-delimited-list;
+    &:before {
+        content: 'Tags:';
+    }
+}
+.related {
+    &:before {
+        content: 'Related:';
+        margin-left:-40px;
+    }
+}
