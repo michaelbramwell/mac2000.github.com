@@ -8,7 +8,7 @@ Tags
 
 <dl>
 {% for tag in site.tags %} 
-    <dt>{{ tag[0] }}<a name="{{ tag[0] }}"></a></dt>
+    <dt><a name="{{ tag[0] }}">{{ tag[0] }}</a></dt>
     <dd><ol>
     {% for post in tag[1] %}
         <li><a href="{{ post.url }}">{{ post.title }}</a></li>
