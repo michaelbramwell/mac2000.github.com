@@ -1,9 +1,8 @@
 @import "compass";
-@import "normalize/normalize";
+@import "normalize";
 
 @include normalize;
-$fontAwesomePath: "/css/font-awesome/font/fontawesome-webfont";
-@import "../css/font-awesome/sass/font-awesome.scss";
+@import "font-awesome";
 
 body {
     color:#444;
