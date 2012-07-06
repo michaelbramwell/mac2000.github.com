@@ -1,3 +1,6 @@
 [submodule "scss/normalize"]
 	path = scss/normalize
 	url = https://github.com/Boldewyn/normalize.scss.git
+[submodule "css/font-awesome"]
+	path = css/font-awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git

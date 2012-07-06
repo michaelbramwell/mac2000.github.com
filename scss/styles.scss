@@ -2,31 +2,131 @@
 @import "normalize/normalize";
 
 @include normalize;
+$fontAwesomePath: "/css/font-awesome/font/fontawesome-webfont";
+@import "../css/font-awesome/sass/font-awesome.scss";
 
 body {
-    background-color:#fff;
+    color:#444;
     margin: 1em;
 }
-aside {
-    background:#f7f7f7;
-    margin:-.5em;
-    padding:.5em;
+article + aside, footer {
+    border-top:1px solid #f7f7f7;
+    margin-top:.5em;
+    padding-top:.5em;
+    @include clearfix;
 }
 a {
-    color:#356AA0;
+    @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
 }
-a:visited {
-    color:#999;
-}
-.tags {
-    @include comma-delimited-list;
+
+ul.tags {
+    @include delimited-list(',');
     &:before {
-        content: 'Tags:';
+        content: '\f02c';
+        font-family: FontAwesome;
+        @include inline-block;
     }
+}
+dl.tags {
+    dt a {color:#444!important;font-weight:bold;}
+    dd {margin-left:0}
 }
 .related {
     &:before {
         content: 'Related:';
         margin-left:-40px;
+    }
+}
+.recent {
+    @include float-left;
+    width:50%;
+}
+.pipe {
+    border-top:none;
+    padding:0;
+    margin:0;
+}
+.recent, .pipe {
+    ul {
+        padding-left:1.4em;
+        margin-right:1em;
+    }
+}
+footer {
+    clear: both;
+    nav {
+        @include float-left;
+        ul {
+            /*@include delimited-list('|');*/
+            @include inline-list;
+
+            a {
+                text-decoration:none;
+                @include transition-property(color);
+                @include transition-duration(.5s);
+
+                span {
+                    display:none;
+                }
+            }
+
+            /*li:after {
+                margin-left:.35em;
+            }*/
+        }
+    }
+    aside {
+        @include float-right;
+
+        ul {
+            /*@include no-bullets;*/
+            @include inline-list;
+        }
+    }
+}
+
+@media print{
+    body{
+        padding:0;
+        margin:0;
+        width:auto
+    }
+    footer, aside {
+        display:none;
+    }
+}
+
+@media only screen and (min-width:768px) and (max-width:959px){
+    .recent, .pipe, footer nav, footer aside {
+        float:none;
+        display:block;
+        width:auto;
+    }
+    footer {
+        text-align:center;
+    }
+    footer nav ul {
+        font-size:2em;
+        margin:1em auto;
+    }
+    footer nav {
+        margin:1em auto;
+    }
+}
+
+@media only screen and (max-width:767px){
+    .recent, .pipe, footer nav, footer aside {
+        float:none;
+        display:block;
+        width:auto;
+    }
+    footer {
+        text-align:center;
+    }
+    footer nav ul {
+        font-size:2em;
+    }
+    footer nav {
+        margin:1em auto;
     }
 }

@@ -43,3 +43,12 @@ TODO: move this files:
 ### Windows
 
 Before running jekyll on windows, run this command `chcp 65001` as mentioned in [issue](https://github.com/mojombo/jekyll/issues/188)
+
+# Build scripts
+
+## Windows
+
+    copy jquery.js+autolink.js+page.js scripts.js /b
+    java -jar C:\yuicompressor\build\yuicompressor-2.4.7.jar -o scripts.min.js scripts.js
+
+

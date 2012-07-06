@@ -5,27 +5,39 @@
 
     <title>{{page.title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" href="//current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css">-->
+    <meta name="Author" content="Marchenko Alexandr, marchenko.alexandr@gmail.com">
+    <meta name="Generator" content="Jekyll 0.5.2">
+    <meta name="Date" content="{{ page.date }}">
     <link rel="stylesheet" href="/css/styles.css">
     {% if page.tags %}
         <meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">
     {% endif %}
 </head>
 <body>
+    <a name="top"></a>
     {{content}}
-    <!--<hr>
-    TODO: nav links here-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="/js/autolink-min.js"></script>
-    <script src="/js/app.js"></script>
-    <script>
-        (function($){
-            $('p').each(function(){
-                var that = $(this);
-                var text = that.html();
-                that.html(text.autoLink());
-            });
-        })(jQuery);
-    </script>
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="#top"><i class="icon-arrow-up"></i><span>Top</span></a></li>
+                <li><a href="/"><i class="icon-home"></i><span>Home</span></a></li>
+                <li><a href="/tags.html"><i class="icon-tags"></i><span>Tags</span></a></li>
+                <li><a href="https://plus.google.com/114259064191790696813?rel=author"><i class="icon-google-plus"></i><span>Google+</span></a></li>
+                <li><a href="http://www.facebook.com/marchenko.alexandr"><i class="icon-facebook"></i><span>Facebook</span></a></li>
+                <li><a href="https://twitter.com/#!/alexandrm"><i class="icon-twitter"></i><span>Twitter</span></a></li>
+                <li><a href="https://github.com/mac2000"><i class="icon-github"></i><span>GitHub</span></a></li>
+                <li><a href="http://about.me/alexandrmarchenko"><i class="icon-user"></i><span>About.me</span></a></li>
+                <li><a href="/atom.xml"><i class="icon-rss"></i><span>Rss</span></a></li>
+            </ul>
+        </nav>
+        <aside>
+            <ul>
+                <li title="Phone"><i class="icon-phone"></i> +3 8(044) 360-78-85 or <a title="Skype" href="callto://mac2000-skype">mac2000-skype</a></li>
+                <li title="Generated"><i class="icon-time"></i> {{ site.time | date: "%Y-%m-%d" }}</li>
+            </ul>
+        </aside>
+    </footer>
+    <script src="/js/scripts.min.js"></script>
+    {% if page.url == '/index.html' %}<script src="http://pipes.yahoo.com/pipes/pipe.run?_id=2dceea81f676aa59c60ee28649ded0cf&_render=json&_callback=mypipe"></script>{% endif %}
 </body>
 </html>
