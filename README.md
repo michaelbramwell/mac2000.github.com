@@ -39,3 +39,7 @@ TODO: move this files:
     ./bg.zip
     ./jsdiff.zip
     ./simplecrud.zip
+
+### Windows
+
+Before running jekyll on windows, run this command `chcp 65001` as mentioned in [issue](https://github.com/mojombo/jekyll/issues/188)
