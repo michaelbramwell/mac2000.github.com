@@ -5,18 +5,16 @@
 
     <title>{{page.title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<link rel="stylesheet" href="/css/styles.css">-->
-    <link rel="stylesheet" href="//current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css">
+    <!--<link rel="stylesheet" href="//current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css">-->
+    <link rel="stylesheet" href="/css/styles.css">
     {% if page.tags %}
         <meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">
     {% endif %}
 </head>
 <body>
-    <div class="container-fluid">
-        <a href="/">Home</a>
-        <hr>
-        {{content}}
-    </div>
+    {{content}}
+    <!--<hr>
+    TODO: nav links here-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="/js/autolink-min.js"></script>
     <script src="/js/app.js"></script>
