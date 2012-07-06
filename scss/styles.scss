@@ -33,11 +33,16 @@ article + aside, footer {
     padding-top:.5em;
     @include clearfix;
 }
+
 a {
-    @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
+    color:#356AA0;
+}
+a:visited {
+    color:#999;
 }
 
 ul.tags {
+    clear:both;
     @include delimited-list(',');
     &:before {
         content: '\f02c';
@@ -70,6 +75,33 @@ dl.tags {
         margin-right:1em;
     }
 }
+.prevnext {
+    @include inline-list;
+    @include clearfix;
+    display:block!important;
+    margin-bottom:1em!important;
+
+    li:first-child {
+        @include float-left;
+    }
+    li:last-child {
+        @include float-right;
+    }
+
+    a[title^="Next"]:after,
+    a[title^="Prev"]:before {
+        font-family: FontAwesome;
+        @include inline-block;
+    }
+    a[title^="Next"]:after {
+        content: '\f054';
+        margin-left:.5em;
+    }
+    a[title^="Prev"]:before {
+        content: '\f053';
+        margin-right:.5em;
+    }
+}
 footer {
     clear: both;
     nav {
@@ -82,6 +114,7 @@ footer {
                 text-decoration:none;
                 @include transition-property(color);
                 @include transition-duration(.5s);
+                @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
 
                 span {
                     display:none;
@@ -151,6 +184,24 @@ footer {
     footer nav {
         margin:1em auto;
     }
+    .prevnext {
+        li:first-child, li:last-child {
+            float:none;
+            display:block;
+        }
+        a[title^="Next"] {
+            &:before {
+                font-family: FontAwesome;
+                @include inline-block;
+                content: '\f054';
+                margin-right:.5em;
+            }
+            &:after {
+                content: '';
+                display:none;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width:767px){
@@ -167,5 +218,23 @@ footer {
     }
     footer nav {
         margin:1em auto;
+    }
+    .prevnext {
+        li:first-child, li:last-child {
+            float:none;
+            display:block;
+        }
+        a[title^="Next"] {
+            &:before {
+                font-family: FontAwesome;
+                @include inline-block;
+                content: '\f054';
+                margin-right:.5em;
+            }
+            &:after {
+                content: '';
+                display:none;
+            }
+        }
     }
 }
