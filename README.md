@@ -19,9 +19,6 @@ https://gist.github.com/939713
 
 http://www.juev.ru/2012/01/07/jekyll/
 
-TODO:
-
-upc
 
 To test your files use:
 
