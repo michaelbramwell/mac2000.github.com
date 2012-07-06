@@ -3,10 +3,29 @@
 
 @include normalize;
 @import "font-awesome";
+@import "prettify";
 
 body {
     color:#444;
     margin: 1em;
+}
+code, pre, pre.prettyprint {
+    background:#f7f7f7;
+    border:1px solid darken(#f7f7f7, 20%);
+    @include border-radius(3px);
+}
+code {
+    padding: 2px 4px;
+}
+pre, pre.prettyprint {
+    padding:.5em;
+    margin:1em -0.5em;
+    code {
+        padding: 0;
+        background:none;
+        border:none;
+        @include border-radius(0);
+    }
 }
 article + aside, footer {
     border-top:1px solid #f7f7f7;
@@ -92,6 +111,27 @@ footer {
     }
     footer, aside {
         display:none;
+    }
+    a:link:after, a:visited:after {
+        content: " [" attr(href) "] ";
+    }
+    code, pre, pre.prettyprint {
+        background:none;
+        border:none;
+        @include border-radius(0);
+        padding:0;
+        margin:0;
+    }
+    pre, pre.prettyprint {
+        margin:0.5em 0;
+        padding:0.5em 0;
+        border-top:1px solid #000;
+        border-bottom:1px solid #000;
+
+        & * {
+            color:#000!important;
+            font-weight:normal!important;
+        }
     }
 }
 
