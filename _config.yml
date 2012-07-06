@@ -3,7 +3,7 @@ safe: true
 exclude: ["scss", "README.md", "config.rb", "_inspect.rb"]
 
 title: My notes
-tagline: hello world
+production_url: http://mac-blog.org.ua
 author:
     name: Marchenko Alexandr
     email: marchenko.alexandr@gmail.com
