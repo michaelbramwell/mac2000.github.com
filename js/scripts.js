@@ -58,10 +58,18 @@ function mypipe(data) {
     }
 }
 
-if(document.getElementById('disqus_thread')) {
+if(document.getElementById('disqus_thread') && window.location.hostname != 'localhost') {
     var disqus_shortname = 'mbou';
 
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}
+
+function toggleImgNoScale(e) {
+    this.className = this.className == 'noscale' ? '' : 'noscale';
+}
+var imgs = document.getElementsByTagName('IMG');
+for(var i = 0; i < imgs.length; i++) {
+    imgs[i].onclick = toggleImgNoScale;
 }

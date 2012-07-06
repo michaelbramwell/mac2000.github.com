@@ -41,6 +41,15 @@ a:visited {
     color:#999;
 }
 
+img {
+    max-width:100%;
+    cursor:pointer;
+
+    &.noscale {
+        max-width:none;
+    }
+}
+
 ul.tags {
     clear:both;
     @include delimited-list(',');
