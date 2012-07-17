@@ -7,13 +7,13 @@ tags: [active, autohotkey, bottom, delete, end, home, insert, left, MinMax, Moni
 
 This tool will move and resize your active window in next way:
 
-![screenshot](/images/wp/WinSnapper.png)
+![screenshot](https://github.com/mac2000/WinSnapper/raw/master/WinSnapper.png)
 
 Something like:
 
-![screenshot](/images/wp/Screen.png)
+![screenshot](https://github.com/mac2000/WinSnapper/raw/master/Screen.png)
 
-[WinSnapper](/images/wp/WinSnapper.zip) sources and executable
+WinSnapper [sources](https://github.com/mac2000/WinSnapper/blob/master/WinSnapper.ahk) and [executable](https://github.com/mac2000/WinSnapper/raw/master/WinSnapper.exe)
 
 And here is code:
 
