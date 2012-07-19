@@ -5,6 +5,10 @@ permalink: /1023
 tags: [active, autohotkey, bottom, delete, end, home, insert, left, MinMax, MonitorWorkArea, pgdown, pgup, right, snap, SysGet, top, window, WinGet, WinGetPos, WinMaximize, WinMove, WinRestore, WS_SIZEBOX]
 ---
 
+How it works:
+
+http://www.youtube.com/watch?v=pvD6S7mqsR4
+
 This tool will move and resize your active window in next way:
 
 ![screenshot](https://github.com/mac2000/WinSnapper/raw/master/WinSnapper.png)
