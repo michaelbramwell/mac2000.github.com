@@ -3,6 +3,7 @@ layout: page
 title: Search on site
 ---
 
+{% raw %}
 <div id="cse" style="width: 100%;">Loading</div>
 <script src="http://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript"> 
@@ -15,3 +16,4 @@ title: Search on site
   }, true);
 </script>
 <link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+{% endraw %}
