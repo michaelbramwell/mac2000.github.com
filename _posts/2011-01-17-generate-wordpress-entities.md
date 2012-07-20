@@ -7,7 +7,7 @@ tags: [generate, php, plugin, wordpress, wp_delete_post, wp_get_posts, wp_insert
 
 Generate wordpress pages, posts, categories, comments for development enviroment in few clicks
 
-[Download GWE Plugin link](/images/wp/gwe.zip)
+[Download GWE Plugin link](http://downloads.wordpress.org/plugin/generate-wordpress-entities.zip)
 
 How it works:
 
