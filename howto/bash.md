@@ -25,3 +25,8 @@ Backup(restore) mysql
     mysql -u [LOGIN] --password=[PASSWORD] [DATABASE] < /home/mac/db-2012-04-25.sql
 
 If there is errors about importing big file, set `set global max_allowed_packet=128*1024*1024;`
+
+Symlink
+-------
+
+    ln -s [link] [actual_file_or_directory_path]
