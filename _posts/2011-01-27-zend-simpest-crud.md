@@ -611,5 +611,3 @@ Almost all code was copy pasted from http://framework.zend.com/manual/en/learnin
     <a href="/customer/list">back to list</a>
     <?php echo $form->render()?>
     <a href="/customer/list">back to list</a>
-
-[simplecrud](/images/wp/simplecrud.zip)
