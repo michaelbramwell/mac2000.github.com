@@ -110,9 +110,7 @@ Main page code:
 
 Code is copied from extjs examples, first of all we showing loader, and loading all needed files.
 
-Note: TDGi.iconMgr - cool extjs plugin that adds famfam icons to your project.
-
-[TDGi.iconMgr](/images/wp/TDGi.iconMgr.zip)
+Note: **TDGi.iconMgr** - cool extjs plugin that adds famfam icons to your project.
 
 After all files loaded, we load our init.js, and reports (each report has its own js file)
 
