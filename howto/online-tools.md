@@ -3,4 +3,6 @@ layout: page
 title: Online tools
 ---
 
-http://mac-blog.org.ua/nestifycss/ - online tool to nestify CSS
+http://nestifycss.mac-blog.org.ua/ - online tool to nestify CSS
+
+http://fonts.mac-blog.org.ua/ - online tool to calculate font sizes in different metrics
