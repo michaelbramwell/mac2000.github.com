@@ -354,4 +354,12 @@ HTML
     </body>
     </html>
 
-Файлы: [yuicss](/images/wp/yuicss.zip)
+Файлы:
+
+http://developer.yahoo.com/yui/examples/base/base-simple_source.html
+
+http://developer.yahoo.com/yui/build/reset/reset.css
+
+http://developer.yahoo.com/yui/build/fonts/fonts.css
+
+http://developer.yahoo.com/yui/build/base/base.css
