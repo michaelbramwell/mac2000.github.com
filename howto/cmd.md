@@ -13,3 +13,12 @@ User:
 System:
 
     SETX PATH "%PATH%;C:\MyDir" /M
+
+Symlink
+-------
+
+    mklink [LINK_NAME] [TARGET_PATH]
+
+And for directories:
+
+    mklink /D [LINK_NAME] [TARGET_PATH]
