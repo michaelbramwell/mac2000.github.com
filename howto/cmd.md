@@ -27,3 +27,8 @@ Robocopy
 --------
 
     robocopy [SOURCE] [TARGET] /MIR
+
+Cd to current directory when run as admin
+-----------------------------------------
+
+    cd %0%\..\
