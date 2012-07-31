@@ -30,3 +30,8 @@ Symlink
 -------
 
     ln -s [link] [actual_file_or_directory_path]
+
+Search for text in files
+------------------------
+
+    grep -H -r "TODO" | cut -d: -f1
