@@ -22,3 +22,8 @@ Symlink
 And for directories:
 
     mklink /D [LINK_NAME] [TARGET_PATH]
+
+Robocopy
+--------
+
+    robocopy [SOURCE] [TARGET] /MIR
