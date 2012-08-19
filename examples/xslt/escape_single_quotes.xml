@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="escape_single_quotes.xslt"?>
+<items>
+    <item>
+        <name>Alex</name>
+        <email>alex@example.com</email>
+    </item>
+    <item>
+        <name>O'reilly</name>
+        <email>oreilly@example.com</email>
+    </item>
+</items>
