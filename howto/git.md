@@ -129,6 +129,11 @@ Remotes
     git remote
     git remote show origin
 
+Submodules
+----------
+
+To ignore `dirty` changes add `ignore = dirty` to problematic submodule in youd `.gitmodules` file
+
 Links
 =====
 
