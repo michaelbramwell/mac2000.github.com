@@ -10,6 +10,19 @@ Add to your `template.php` file next function:
 
     // THEME_preprocess_node
     function test_preprocess_node(&$vars, $hook) {
-        variable_set('comment_form_location_' . $vars['node']->type, $node->sticky ? COMMENT_FORM_SEPARATE_PAGE : COMMENT_FORM_BELOW );
+        variable_set('comment_form_location_' . $vars['node']->type, $vars['node']->sticky ? COMMENT_FORM_SEPARATE_PAGE : COMMENT_FORM_BELOW );
     }
 
+Here is more complex example:
+
+    // THEME_preprocess_node
+    function test_preprocess_node(&$vars, $hook) {
+        // Show\hide comment form depending on node sticky flag
+        variable_set('comment_form_location_' . $vars['node']->type, $vars['node']->sticky ? COMMENT_FORM_SEPARATE_PAGE : COMMENT_FORM_BELOW );
+        // Render comments to $comments variable wich will be available in your node template file
+        $vars['comments'] = comment_render($vars['node']);
+        // Do not render comments in page template
+        $vars['node']->comment = 0;
+    }
+
+Starting point was found here: http://adaptivethemes.com/print-comments-anywhere-and-the-form-as-well
