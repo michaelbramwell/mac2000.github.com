@@ -214,6 +214,8 @@ Edit /etc/php5/apache2/php.ini
     upload_max_filesize = 128M
     max_execution_time = 900
 
+Example of development php.ini can be found here: `/usr/share/doc/php5-common/examples/php.ini-development`
+
 **XDEBUG**
 
 Edit /etc/php5/apache2/conf.d/xdebug.ini
