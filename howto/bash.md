@@ -44,3 +44,8 @@ Sync with production server
     mysql -u root --password=[PASSWORD] < [FILE_NAME].sql
 
 First command will sync files, two next - database
+
+Remove line from multiple files
+-------------------------------
+
+    find . -name "*.md" -exec sed -i 's/^permalink.*$//' {} \;
