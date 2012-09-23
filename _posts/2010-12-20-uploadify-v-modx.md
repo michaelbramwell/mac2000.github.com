@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Uploadify в ModX
-permalink: /67
+
 tags: [as3, flash, modx, php, uploadify]
 ---
 

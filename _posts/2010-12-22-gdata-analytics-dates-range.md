@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Gdata analytics dates range
-permalink: /233
+
 tags: [analytics, gdata, google, service]
 ---
 

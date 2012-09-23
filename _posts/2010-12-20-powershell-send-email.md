@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell send email
-permalink: /140
+
 tags: [cmd, powershell, shell, smtpclient, send, mailfrom, mailto, subject, body]
 ---
 

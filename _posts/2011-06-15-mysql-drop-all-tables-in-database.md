@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL drop all tables in database
-permalink: /629
+
 tags: [delete, drop, dump, mysql, mysqldump]
 ---
 

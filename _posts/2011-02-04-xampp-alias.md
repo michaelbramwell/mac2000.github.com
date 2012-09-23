@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Xampp alias
-permalink: /419
+
 tags: [alias, apache, bind, link, ln, server, vhost, vhosts, virtualhost, xampp]
 ---
 

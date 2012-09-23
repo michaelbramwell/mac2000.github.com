@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AS3 cursor pointer
-permalink: /265
+
 tags: [actionscript, actionscript3, as3, button, flash]
 ---
 

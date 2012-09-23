@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nlog different layouts for logs and event context custom data
-permalink: /724
+
 tags: [.net, c#, debug, log, log4net, logger, nlog]
 ---
 

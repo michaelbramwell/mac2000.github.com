@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Netbeans php foreach intellisense
-permalink: /354
+
 tags: [autosuggest, foreach, intellisense, netbeans, php, zend]
 ---
 

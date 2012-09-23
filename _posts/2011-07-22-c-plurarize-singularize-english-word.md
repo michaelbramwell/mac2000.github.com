@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# plurarize/singularize english word
-permalink: /733
+
 tags: [.net, c#, form, plural, plurarize, seo, singular, singularize, text, word]
 ---
 

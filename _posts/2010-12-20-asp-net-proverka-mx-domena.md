@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.Net проверка MX домена
-permalink: /42
+
 tags: [.net, admin, asp.net, c#]
 ---
 

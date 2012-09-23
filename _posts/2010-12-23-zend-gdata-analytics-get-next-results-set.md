@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend gdata analytics get next results set
-permalink: /241
+
 tags: [analytics, gdata, google, php, zend]
 ---
 

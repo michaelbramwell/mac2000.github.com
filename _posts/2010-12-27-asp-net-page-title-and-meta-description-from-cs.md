@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.net page title and meta description from cs
-permalink: /263
+
 tags: [.net, asp.net, c#, meta, seo, title]
 ---
 

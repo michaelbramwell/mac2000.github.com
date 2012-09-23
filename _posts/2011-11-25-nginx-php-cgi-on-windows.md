@@ -1,7 +1,7 @@
 ---
 layout: post
 title: nginx, php-cgi on windows
-permalink: /882
+
 tags: [cgi, nginx, php, php-cgi, win, windows]
 ---
 

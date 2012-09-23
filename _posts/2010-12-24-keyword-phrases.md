@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Keyword phrases
-permalink: /243
+
 tags: [gdata, google, php, search, seo]
 ---
 

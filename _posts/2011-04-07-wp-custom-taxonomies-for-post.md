@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WP custom taxonomies for post
-permalink: /547
+
 tags: [category, post, register_taxonomy, taxonomy, wordpress, wp]
 ---
 

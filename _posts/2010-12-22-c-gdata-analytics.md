@@ -1,7 +1,7 @@
 ---
 layout: post
 title: c# gdata analytics
-permalink: /223
+
 tags: [.net, analytics, c#, gdata, google]
 ---
 

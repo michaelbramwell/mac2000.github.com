@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# linq count distinct
-permalink: /220
+
 tags: [.net, c#, linq]
 ---
 

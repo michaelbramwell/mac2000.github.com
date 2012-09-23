@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJS RowEditor not editable fields renderer
-permalink: /214
+
 tags: [extjs, javascript]
 ---
 

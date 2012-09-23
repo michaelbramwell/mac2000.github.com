@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.Net move all Javascript to page closure and css to head
-permalink: /971
+
 tags: [.net, asp.net, c#, ControlDesigner, css, DefaultProperty, GetDesignTimeHtml, HtmlGenericControl, HtmlTextWriter, InitComplete, javascript, OnPreRender, RenderControl, StringWriter, ToolboxData]
 ---
 

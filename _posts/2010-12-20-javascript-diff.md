@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript Diff
-permalink: /151
+
 tags: [diff, javascript]
 ---
 

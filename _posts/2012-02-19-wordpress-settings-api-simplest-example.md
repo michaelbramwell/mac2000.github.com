@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress Settings API, text, tinymce, file upload simple example
-permalink: /957
+
 tags: [add_action, add_option, add_settings_section, add_settings_field, add_theme_page, admin_init, admin_menu, do_settings_sections, get_option, options, register_settings, settings, settings_fields, submit_button, wordpress]
 ---
 

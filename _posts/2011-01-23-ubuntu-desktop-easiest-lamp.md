@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu Desktop easiest LAMP
-permalink: /361
+
 tags: [admin, administration, apache, compass, haml, install, lamp, linux, mysql, pear, phpdoc, phpdocumentor, phpunit, sass, scss, setup, ubuntu, zend]
 ---
 

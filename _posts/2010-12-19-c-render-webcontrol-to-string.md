@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# Render WebControl to string
-permalink: /23
+
 tags: [.net, asp.net, c#]
 ---
 

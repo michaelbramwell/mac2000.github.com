@@ -1,7 +1,7 @@
 ---
 layout: post
 title: User agents list
-permalink: /275
+
 tags: [browser, curl, php, ua, useragent]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Timer for console batch operations
-permalink: /427
+
 tags: [batch, cms, console, countdown, php, shell, time, timeleft, timer]
 ---
 

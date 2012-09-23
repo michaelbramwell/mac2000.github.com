@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Php tabbed text tree parser
-permalink: /487
+
 tags: [dom, DOMDocument, domelement, lib, list, nodes, parser, php, tree]
 ---
 

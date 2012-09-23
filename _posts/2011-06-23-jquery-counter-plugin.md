@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery counter plugin
-permalink: /648
+
 tags: [count, counter, jquery, plugin, settimeout, timer]
 ---
 

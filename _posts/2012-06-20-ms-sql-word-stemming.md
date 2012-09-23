@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MS SQL Word Stemming
-permalink: /1037
+
 tags: [contains, formsof, freetext, inflectional, mssql, sql, stemming]
 ---
 

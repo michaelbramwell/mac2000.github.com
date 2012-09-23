@@ -1,7 +1,7 @@
 ---
 layout: post
 title: htaccess remove (not hide) query string
-permalink: /787
+
 tags: [htaccess, mod_rewrite, query_string, request_uri, rewrite, rewritecond, rewriterule]
 ---
 

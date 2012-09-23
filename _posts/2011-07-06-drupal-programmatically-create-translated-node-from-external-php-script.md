@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal programmatically create translated node from external php script
-permalink: /661
+
 tags: [bootstrap, d6, drupal, external, i18n, l10n, multilanguage, node_save, translate]
 ---
 

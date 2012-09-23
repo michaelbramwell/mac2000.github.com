@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress batch rename title by categories
-permalink: /456
+
 tags: [batch, category, cmd, mysql, post_title, rename, script, sql, taxonomy, title, wordpress, wp]
 ---
 

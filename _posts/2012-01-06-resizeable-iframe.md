@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Resizeable iframe
-permalink: /901
+
 tags: [crossdomain, domain, frame, iframe, javascript, js, postmessage, resize, xd]
 ---
 

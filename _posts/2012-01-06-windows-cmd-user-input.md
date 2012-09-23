@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Windows cmd user input
-permalink: /899
+
 tags: [batch, cmd, input, shell]
 ---
 

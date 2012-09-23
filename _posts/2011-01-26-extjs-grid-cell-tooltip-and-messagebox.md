@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJs grid cell tooltip and messagebox
-permalink: /371
+
 tags: [cell, ext, extjs, grid, messagebox, qtip, quicktip, renderer, sencha, tip, tooltip]
 ---
 

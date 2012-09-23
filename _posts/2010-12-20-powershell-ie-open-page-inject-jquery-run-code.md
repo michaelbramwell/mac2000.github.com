@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell IE open page, inject jQuery, run code
-permalink: /102
+
 tags: [cmd, powershell, script, shell, ie, internetexplorer, inject, jquery, com, navigate2]
 ---
 

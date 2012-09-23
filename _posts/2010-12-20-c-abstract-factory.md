@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# Abstract Factory
-permalink: /122
+
 tags: [.net, c#, designpatterns, oop]
 ---
 

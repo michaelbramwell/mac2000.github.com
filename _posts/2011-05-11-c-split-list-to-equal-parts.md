@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# split list to equal parts
-permalink: /579
+
 tags: [.net, array, asp.net, c#, list, parts]
 ---
 

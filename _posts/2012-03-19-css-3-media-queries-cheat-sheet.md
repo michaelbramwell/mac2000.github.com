@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS 3, Media Queries Cheat Sheet
-permalink: /982
+
 tags: [css, css3, device-width, maximum-scale, media, mediaqueries, min-width, minimum-scale, mobile, orientation, phone, query, tablet, viewport]
 ---
 

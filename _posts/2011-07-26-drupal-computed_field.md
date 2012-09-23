@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal computed_field
-permalink: /740
+
 tags: [cck, computed, field, drupal]
 ---
 

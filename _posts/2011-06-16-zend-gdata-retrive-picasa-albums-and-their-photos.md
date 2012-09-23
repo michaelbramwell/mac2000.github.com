@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend gData retrive picasa albums and their photos
-permalink: /631
+
 tags: [gdata, picasa, zend]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 100% Flash background
-permalink: /110
+
 tags: [acrionscript, flash]
 ---
 

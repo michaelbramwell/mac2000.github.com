@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Check what PID is listening port
-permalink: /30
+
 tags: [admin, administration, cmd, ip, netstat, network, port, powershell, ps, shell]
 ---
 

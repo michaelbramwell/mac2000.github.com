@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal import nodes with cck image field and taxonomies
-permalink: /677
+
 tags: [drupal, import, node_save]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: wp generate pages
-permalink: /318
+
 tags: [api, generator, lorem, php, wordpress, wp]
 ---
 

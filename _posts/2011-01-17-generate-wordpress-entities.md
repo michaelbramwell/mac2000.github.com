@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Generate WordPress Entities
-permalink: /335
+
 tags: [generate, php, plugin, wordpress, wp_delete_post, wp_get_posts, wp_insert_post, wp_insert_category, wp_insert_comment]
 ---
 

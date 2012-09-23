@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySql profiling
-permalink: /33
+
 tags: [admin, db, log, mysql, performance, sql, webgrind, php, xdebug, profiler, general_log, slow_query_log]
 ---
 

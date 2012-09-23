@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu configure DNS for development enviroment
-permalink: /490
+
 tags: [admin, administration, bind, bind9, dhcp, dns, host, hosting, resolv, ubuntu]
 ---
 

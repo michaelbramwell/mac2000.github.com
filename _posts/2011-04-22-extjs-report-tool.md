@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJs Report tool
-permalink: /570
+
 tags: [TODO]
 ---
 

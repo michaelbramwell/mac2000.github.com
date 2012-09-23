@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Curl first login then get example
-permalink: /124
+
 tags: [automate, curl, php, login, authorize, auth]
 ---
 

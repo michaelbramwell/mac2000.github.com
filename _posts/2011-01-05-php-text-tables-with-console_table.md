@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php text tables with Console_Table
-permalink: /288
+
 tags: [console, console_table, formatters, pear, php, table, text, wiki, wysiwyg]
 ---
 

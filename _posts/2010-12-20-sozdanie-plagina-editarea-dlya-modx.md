@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Создание плагина EditArea для ModX
-permalink: /92
+
 tags: [modx, php, editarea]
 ---
 

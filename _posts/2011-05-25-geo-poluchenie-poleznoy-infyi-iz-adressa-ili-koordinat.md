@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GEO получение полезной инфы из адресса или координат
-permalink: /587
+
 tags: [geo, geocoder, google, map, metro, wikimapia, yandex, ymaps]
 ---
 

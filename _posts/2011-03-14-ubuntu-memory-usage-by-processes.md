@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu memory usage by processes
-permalink: /520
+
 tags: [admin, mem, memory, ps, ram, top, ubuntu]
 ---
 

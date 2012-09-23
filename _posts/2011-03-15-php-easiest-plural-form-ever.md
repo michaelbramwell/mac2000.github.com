@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php easiest plural form ever
-permalink: /522
+
 tags: [form, php, plural]
 ---
 

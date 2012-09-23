@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php нейронная сеть
-permalink: /168
+
 tags: [ai, neural, neuralnetwork, php]
 ---
 

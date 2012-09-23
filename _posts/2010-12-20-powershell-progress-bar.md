@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell progress bar
-permalink: /163
+
 tags: [automate, cmd, powershell, shell, write-progress, activity, percentcomplete, currentoperation, innerloop, start-sleep]
 ---
 

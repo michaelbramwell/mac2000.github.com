@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# Linq on DataColumnCollection
-permalink: /250
+
 tags: [.net, c#, linq, columns, cast, datacolumn, where, columnname]
 ---
 

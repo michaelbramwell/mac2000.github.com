@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal batch operations
-permalink: /821
+
 tags: [batch, batch_process, batch_set, d6, drupal, hook_menu, job]
 ---
 

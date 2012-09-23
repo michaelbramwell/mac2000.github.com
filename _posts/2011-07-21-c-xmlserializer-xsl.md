@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# XmlSerializer XSL
-permalink: /730
+
 tags: [.net, c#, serialize, StreamWriter, xml, xmlserializer, XmlTextWriter, xsl]
 ---
 

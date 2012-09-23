@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php gettext
-permalink: /65
+
 tags: [gettext, i18n, l10n, php]
 ---
 

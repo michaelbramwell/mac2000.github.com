@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Javascript window dimensions
-permalink: /268
+
 tags: [dimensions, height, javascript, js, width, window]
 ---
 

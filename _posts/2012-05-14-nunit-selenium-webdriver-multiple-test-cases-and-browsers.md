@@ -1,7 +1,7 @@
 ---
 layout: post
 title: NUnit, Selenium WebDriver multiple Test Cases and Browsers
-permalink: /1012
+
 tags: [category, ChromeDriver, CurrentContext, FirefoxDriver, FullName, GetScreenshot, InternetExplorerDriver, ITakesScreenshot, IWebDriver, NUnit, OpenQA, result, SaveAsFile, screenshot, Selenium, Test, TestCase, TestContext, TestFixture, TestFixtureSetUp, TestFixtureTearDown, transform, WebDriver, xslt]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Compass IE filter AlphaImageLoader
-permalink: /347
+
 tags: [alphaimageloader, compass, css, filter, ie, png, sass, scss, style, styles]
 ---
 

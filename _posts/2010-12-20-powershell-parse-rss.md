@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell parse RSS
-permalink: /126
+
 tags: [automate, cmd, powershell, script, shell, rss, parse, webclient, net, encoding, utf8, downloadstring, export-csv]
 ---
 

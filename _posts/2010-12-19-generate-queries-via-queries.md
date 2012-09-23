@@ -1,7 +1,7 @@
 ---
 layout: post
 title: generate queries via queries
-permalink: /19
+
 tags: [.net, c#, mssql]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL – версионирование базы данных
-permalink: /63
+
 tags: [mysql, svn, sym, symlink, versioning]
 ---
 

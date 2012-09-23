@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu configure Mass Virtual hosting
-permalink: /492
+
 tags: [apache, apache2, host, hosting, mass, subdomain, ubuntu, vhost, virtualhost]
 ---
 

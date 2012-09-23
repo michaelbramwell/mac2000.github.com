@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# Dates tips &#038; tricks
-permalink: /769
+
 tags: [.net, c#, date, datetime, ranges]
 ---
 

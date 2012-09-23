@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell IIS mass site bindings change ip
-permalink: /527
+
 tags: [admin, batch, binding, iis, ip, mass, network, powershell]
 ---
 

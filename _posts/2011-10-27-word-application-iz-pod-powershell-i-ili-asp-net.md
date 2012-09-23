@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Word.Application из под Powershell и/или Asp.Net
-permalink: /866
+
 tags: [asp.net, automate, batch, com, dcomcnfg, powershell, word]
 ---
 

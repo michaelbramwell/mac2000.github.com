@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Google apps engine + KnockoutJs + REST
-permalink: /853
+
 tags: [gae, knockout, knockoutjs, python, rest, restful]
 ---
 

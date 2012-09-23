@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Flash Action Script 3 desaturate image
-permalink: /460
+
 tags: [actionscript, actionscript3, as, as3, desaturate, flash, image]
 ---
 

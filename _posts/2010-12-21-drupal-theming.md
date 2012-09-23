@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal theming
-permalink: /186
+
 tags: [drupal, php]
 ---
 

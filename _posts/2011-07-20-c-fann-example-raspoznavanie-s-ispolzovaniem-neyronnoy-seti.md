@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# FANN example &#8212; распознавание с использованием нейронной сети
-permalink: /726
+
 tags: [ai, fann, neural, neuralnet]
 ---
 

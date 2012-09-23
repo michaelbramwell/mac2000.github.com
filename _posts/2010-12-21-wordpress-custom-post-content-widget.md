@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress custom post content widget
-permalink: /198
+
 tags: [php, plugin, widget, wordpress, register_post_type, get_post, register_sidebar, dynamic_sidebar, wp_query]
 ---
 

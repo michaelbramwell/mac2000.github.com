@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Популярность языков программирования
-permalink: /87
+
 tags: [analytics, statistics]
 ---
 

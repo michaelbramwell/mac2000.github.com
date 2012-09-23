@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJs store this.fields.get(field) is undefined
-permalink: /446
+
 tags: [applysort, ext, extjs, javascript, js, jsonreader, jsonstore, metadata, sortinfo, store]
 ---
 

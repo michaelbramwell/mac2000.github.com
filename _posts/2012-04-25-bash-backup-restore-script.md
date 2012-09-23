@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bash backup-restore script
-permalink: /1005
+
 tags: [backup, bash, cat, chmod, drush, gz, linux, ls, menu, mysql, mysqldump, restore, script, sed, sh, tail, tar, touch, ubuntu, var, variable, whiptail]
 ---
 

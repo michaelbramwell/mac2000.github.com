@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal taxonomy name in $body_classes
-permalink: /449
+
 tags: [bodyclasses, class, css, drupal, php, style, taxonomy, template, theme, tpl]
 ---
 

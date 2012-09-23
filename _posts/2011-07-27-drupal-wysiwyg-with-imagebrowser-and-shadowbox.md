@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal wysiwyg with imagebrowser and shadowbox
-permalink: /754
+
 tags: [d6, drupal, imagebrowser, shadowbox, tinymce, wysiwyg]
 ---
 

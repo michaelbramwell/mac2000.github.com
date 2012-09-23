@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Highilight line in textarea
-permalink: /98
+
 tags: [javascript, textarea, editor]
 ---
 

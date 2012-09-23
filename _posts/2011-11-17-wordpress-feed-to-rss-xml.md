@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress /feed to rss.xml
-permalink: /880
+
 tags: [301, 302, feed, feedburner, htaccess, redirect, rewrite, rss, wordpress]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.net string to Type
-permalink: /439
+
 tags: [.net, appdomain, assembly, c#, convert, reflection, type]
 ---
 

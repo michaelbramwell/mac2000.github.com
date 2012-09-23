@@ -1,7 +1,7 @@
 ---
 layout: post
 title: FB generate qr vcard code from profile app
-permalink: /617
+
 tags: [facebook, fb]
 ---
 

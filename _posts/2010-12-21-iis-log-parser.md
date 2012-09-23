@@ -1,7 +1,7 @@
 ---
 layout: post
 title: IIS Log Parser
-permalink: /210
+
 tags: [admin, iis, log, logparser, s-sitename, s-ip, cs-method, cs-uri-stem, cs-uri-query, s-port, cs-username, c-ip, cs-version, cs-host, sc-status, sc-substatus, sc-win32-status, sc-bytes, cs-bytes, time-taken, timestamp]
 ---
 

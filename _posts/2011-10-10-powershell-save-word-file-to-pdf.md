@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell save word file to pdf
-permalink: /857
+
 tags: [convert, converter, doc, docx, ghostscript, gs, gswin32c, pdf, powershell, ps, ps1, word, word2pdf]
 ---
 

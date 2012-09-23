@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DokuWiki YouTube plugin
-permalink: /46
+
 tags: [dokuwiki, php, plugin, wiki, youtube, shortcode]
 ---
 

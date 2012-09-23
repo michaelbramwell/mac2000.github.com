@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Google app engine and Yahoo Pipes &#8212; fetch page web service
-permalink: /656
+
 tags: [gae, json, pipe, python, yahoo]
 ---
 

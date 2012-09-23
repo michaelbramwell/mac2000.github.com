@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery, JSONp, Flickr, KnockoutJs example
-permalink: /968
+
 tags: [flickr, jquery, json, jsonp, knockout, knockoutjs, ko]
 ---
 

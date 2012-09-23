@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Add jQuery to any page
-permalink: /173
+
 tags: [firefox, javascript, jquery, plugin]
 ---
 

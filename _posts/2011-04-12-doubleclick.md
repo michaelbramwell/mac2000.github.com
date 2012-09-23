@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DoubleClick
-permalink: /552
+
 tags: [ad, adsense, commercial, dc, doubleclick, google, service]
 ---
 

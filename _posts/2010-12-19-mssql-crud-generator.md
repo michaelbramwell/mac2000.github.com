@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mssql crud generator
-permalink: /17
+
 tags: [.net, c#, mssql]
 ---
 

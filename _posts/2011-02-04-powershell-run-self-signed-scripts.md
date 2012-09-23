@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell run self signed scripts
-permalink: /424
+
 tags: [admin, administration, allsigned, authenticodesignature, cert, certificate, cmd, executionpolicy, makecert, powershell, ps, ps1, shell, sign]
 ---
 

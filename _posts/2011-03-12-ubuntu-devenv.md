@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu devenv
-permalink: /500
+
 tags: [admin, administration, apache, apt, bind, dns, hosts, lamp, mass, postfix, tasksel, ubuntu, vhost]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.net Google Analytics Browsers stats
-permalink: /254
+
 tags: [.net, analytics, asp.net, c#, chart, gdata, google]
 ---
 

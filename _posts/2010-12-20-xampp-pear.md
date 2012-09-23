@@ -1,7 +1,7 @@
 ---
 layout: post
 title: XAMPP Pear
-permalink: /39
+
 tags: [admin, develop, pear, php]
 ---
 

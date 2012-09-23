@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Сравнение двух текстов на уникальность
-permalink: /293
+
 tags: [algorithm, php, seo, shingle, text, utils]
 ---
 

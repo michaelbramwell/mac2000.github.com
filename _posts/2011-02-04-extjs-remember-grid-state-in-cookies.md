@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Extjs remember grid state in cookies
-permalink: /422
+
 tags: [cols, columns, cookie, cookies, ext, extjs, grid, gridpanel, state, statemanager, stateprovider]
 ---
 

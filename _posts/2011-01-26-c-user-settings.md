@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# user settings
-permalink: /367
+
 tags: [.net, c#, conf, config, prop, properties, settings, user]
 ---
 

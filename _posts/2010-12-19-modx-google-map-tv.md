@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ModX Google Map TV
-permalink: /8
+
 tags: [google, map, modx]
 ---
 

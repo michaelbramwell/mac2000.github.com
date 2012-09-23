@@ -1,7 +1,7 @@
 ---
 layout: post
 title: RegExp to highlight word in html
-permalink: /128
+
 tags: [.net, asp.net, c#, regex, replace, highlight]
 ---
 

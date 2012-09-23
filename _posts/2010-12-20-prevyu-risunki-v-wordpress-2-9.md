@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Превью рисунки в WordPress 2.9+
-permalink: /90
+
 tags: [php, wordpress, add_theme_support, post-thumbnails, the_post_thumbnail, thumbnail]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using google charts to display email as image
-permalink: /813
+
 tags: [charts, email, google, image, mail, security, static]
 ---
 

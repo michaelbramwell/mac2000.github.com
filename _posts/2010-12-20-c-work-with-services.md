@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# Work with Services
-permalink: /175
+
 tags: [.net, admin, c#, services]
 ---
 

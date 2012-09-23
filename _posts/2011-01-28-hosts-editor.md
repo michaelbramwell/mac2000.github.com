@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hosts editor
-permalink: /384
+
 tags: [.net, access, admin, administrator, c#, host, hosts, privilegies, system32, uac]
 ---
 

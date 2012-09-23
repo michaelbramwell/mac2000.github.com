@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Плагин EditArea для ModX
-permalink: /84
+
 tags: [editarea, modx, php]
 ---
 

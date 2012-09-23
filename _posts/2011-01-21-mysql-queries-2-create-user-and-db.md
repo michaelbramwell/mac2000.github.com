@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL queries 2 create user and db
-permalink: /349
+
 tags: [admin, administration, database, db, mysql, privileges, query, user]
 ---
 
