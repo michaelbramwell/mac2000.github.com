@@ -194,3 +194,50 @@ http://mymscrm3.blogspot.com/2008/01/fetchxml-query-examples.html
     ds.ReadXml(lxmlStringReader);
 
     dataGridView1.DataSource = ds.Tables[1];
+
+Avoid CRM 5000 limit
+--------------------
+
+By default CRM Web Services is limited to return only first 5000 records. Here is how you can retrieve all records:
+
+    MetadataService ms = new MetadataService();
+    CrmService s = new CrmService();
+    s.Credentials = new NetworkCredential("USERNAME", "PASSWORD", "DOMAIN");
+    ms.Credentials = new NetworkCredential("USERNAME", "PASSWORD", "DOMAIN");
+
+    int i = 1;
+    bool finished = false;
+    DataSet dsAll = new DataSet();
+    while (finished == false)
+    {
+        String fetch = @"<fetch mapping='logical' page='" + i + @"' count='5000'> <!-- add page and count attributes to avoid 5000 limit -->
+        <!-- http://example.com:5555/sdk/list.aspx - list of available entities can be found here-->
+        <entity name='account'>
+            <!-- <all-attributes /> - to retrieve all attributes -->
+            <attribute name='new_notebookid'/>
+            <attribute name='name'/>
+            <link-entity name='systemuser' link-type='inner' from='systemuserid' to='ownerid'>
+                <attribute name='fullname'/>
+                <attribute name='firstname'/>
+                <attribute name='lastname'/>
+            </link-entity>
+            <!-- filtering example
+            <filter type='and'>
+                <condition attribute = 'name' operator='like' value='%Саша%'/>
+            </filter>
+            -->
+        </entity>
+        </fetch>";
+
+        String result = s.Fetch(fetch);
+        DataSet ds = new DataSet();
+        StringReader reader = new StringReader(result);
+        ds.ReadXml(reader);
+        dsAll.Merge(ds);
+        // if there is <resultset morerecods="1"> in response
+        if (ds.Tables[0].Rows[0]["morerecords"].ToString() == "0") finished = true;
+        else i++;
+    }
+
+    grid.DataSource = dsAll.Tables[1];
+    grid.DataBind();
