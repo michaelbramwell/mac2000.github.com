@@ -1,7 +1,7 @@
 ---
 layout: post
 title: c# read xslx
-permalink: /874
+
 tags: [xslx excel oledb ole .net c# office]
 ---
 

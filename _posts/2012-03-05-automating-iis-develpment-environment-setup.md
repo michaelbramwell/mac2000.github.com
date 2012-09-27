@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Automating IIS develpment environment setup
-permalink: /976
+
 tags: [AddAccessRule, admin, administration, application, asp.net, automation, automatization, COMPUTERNAME, Copyhere, env, Get-Acl, Get-ChildItem, Get-Content, Get-WebSite, iis, Import-Module, Invoke-Expression, IsInRole, Join-Path, Measure-Object, New-Item, New-WebApplication, New-WebBinding, New-WebSite, New-WebVirtualDirectory, powershell, PromptForChoice, promt, ps1, Set-Acl, shell, Split-Path, Stop-Website, Test-Path, unzip, USERDOMAIN, w3svc, WebAdministration, Write-Host, xml, zip]
 ---
 

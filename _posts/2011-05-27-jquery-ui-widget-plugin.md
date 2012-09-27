@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery UI widget plugin
-permalink: /595
+
 tags: [class, jquery, oop, plugin, UI, widget]
 ---
 

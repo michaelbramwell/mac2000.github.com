@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL import large dumps
-permalink: /204
+
 tags: [backup, export, import, mysql, restore, mysqldump]
 ---
 

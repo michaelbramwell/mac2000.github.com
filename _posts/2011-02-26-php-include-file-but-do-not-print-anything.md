@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Php include file but do not print anything
-permalink: /462
+
 tags: [include, ob, php, print, require]
 ---
 

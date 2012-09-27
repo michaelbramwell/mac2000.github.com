@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Linux iptables sample for lamp
-permalink: /605
+
 tags: [centos, filter, firewall, iptables, linux, netstat, ubuntu]
 ---
 

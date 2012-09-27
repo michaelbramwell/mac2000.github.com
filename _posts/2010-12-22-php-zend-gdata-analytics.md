@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php zend gdata analytics
-permalink: /230
+
 tags: [analytics, gdata, google, php, service, tool, zend]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: YUI DataTable Custom CellEditor
-permalink: /71
+
 tags: [GUI, javascript, UI, YUI]
 ---
 

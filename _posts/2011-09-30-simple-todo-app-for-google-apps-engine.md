@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Simple TODO app for google apps engine
-permalink: /844
+
 tags: [db, example, gae, python]
 ---
 

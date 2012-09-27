@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Статистика использования кодировок
-permalink: /95
+
 tags: [analytics, statistics]
 ---
 

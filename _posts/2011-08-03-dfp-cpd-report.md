@@ -1,7 +1,7 @@
 ---
 layout: post
 title: DFP CPD Report
-permalink: /779
+
 tags: [.net, ad, c#, cpd, dfp, linq, xml, xslt]
 ---
 

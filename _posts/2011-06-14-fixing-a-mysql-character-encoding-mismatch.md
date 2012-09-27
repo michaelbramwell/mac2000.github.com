@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fixing a MySQL Character Encoding Mismatch
-permalink: /621
+
 tags: [backup, charset, collation, cp1251, dump, encoding, mysql, utf-8, utf8, windows-1251]
 ---
 

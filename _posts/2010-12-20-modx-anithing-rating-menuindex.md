@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modx Anithing rating &#038; menuindex
-permalink: /148
+
 tags: [anithingrating, modx, mysql, php]
 ---
 

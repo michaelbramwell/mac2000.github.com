@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal tiny input formats
-permalink: /680
+
 tags: [drupal, filter, html_filter, input_format, upload, wysiwyg]
 ---
 

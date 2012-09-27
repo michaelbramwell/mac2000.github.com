@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Yahoo pipes get one item per day
-permalink: /709
+
 tags: [pipes, rss, yahoo, yahoo_pipes]
 ---
 

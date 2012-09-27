@@ -1,7 +1,7 @@
 ---
 layout: post
 title: YUI CSS Framework
-permalink: /118
+
 tags: [css, framework, YUI]
 ---
 

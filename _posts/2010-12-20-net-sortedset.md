@@ -1,7 +1,7 @@
 ---
 layout: post
 title: .Net SortedSet
-permalink: /160
+
 tags: [.net, c#, sortedset, collections]
 ---
 

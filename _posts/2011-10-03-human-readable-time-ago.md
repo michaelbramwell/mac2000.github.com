@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Human readable time ago
-permalink: /851
+
 tags: [ago, date, datetime, format, plural, singular, time]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal alter node form - move taxonomy fields
-permalink: /626
+
 tags: [drupal, form, hook_form_alter, taxonomy]
 ---
 

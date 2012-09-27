@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Embed picasa albums into wordpress plugin
-permalink: /634
+
 tags: [gdata, picasa, plugin, wordpress, zend]
 ---
 

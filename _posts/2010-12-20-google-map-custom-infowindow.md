@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Google map custom infoWindow
-permalink: /54
+
 tags: [geo, gmap, google, javascript]
 ---
 

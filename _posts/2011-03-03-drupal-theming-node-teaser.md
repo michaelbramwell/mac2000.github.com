@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal theming node teaser
-permalink: /471
+
 tags: [drupal, node, teaser, template, theme, tpl]
 ---
 

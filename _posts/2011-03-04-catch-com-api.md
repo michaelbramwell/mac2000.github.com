@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Catch.com api
-permalink: /475
+
 tags: [.net, api, c#, catch, note, notes, php]
 ---
 

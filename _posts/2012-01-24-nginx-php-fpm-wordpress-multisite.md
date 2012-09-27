@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Nginx, php-fpm, wordpress multisite
-permalink: /930
+
 tags: [fpm, multilingual, multisite, nginx, wordpress, wp]
 ---
 

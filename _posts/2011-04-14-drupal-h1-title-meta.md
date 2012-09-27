@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal h1, title, meta
-permalink: /561
+
 tags: [drupal, h1, meta, preprocess_page, seo, title]
 ---
 

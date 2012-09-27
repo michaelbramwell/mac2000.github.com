@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal views sort links
-permalink: /646
+
 tags: [d6, drupal, hook_views_query_alter, order, sort, views]
 ---
 

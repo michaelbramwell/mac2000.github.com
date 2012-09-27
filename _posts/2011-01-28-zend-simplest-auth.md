@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend simplest auth
-permalink: /392
+
 tags: [adapter, auth, authenticate, autoincrement, database, db, dbadapter, id, identity, login, noautoincrement, noid, php, sequence, zend]
 ---
 

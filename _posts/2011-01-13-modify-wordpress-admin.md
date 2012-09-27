@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modify wordpress admin
-permalink: /321
+
 tags: [admin, administrator, php, template, theme, wordpress, wp]
 ---
 

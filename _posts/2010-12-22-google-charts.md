@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Google charts
-permalink: /226
+
 tags: [actionscript, chart, flash, google, javascript, online, service, tool]
 ---
 

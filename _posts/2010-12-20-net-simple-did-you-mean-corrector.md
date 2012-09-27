@@ -1,7 +1,7 @@
 ---
 layout: post
 title: .net simple &#171;Did You mean&#187; corrector
-permalink: /158
+
 tags: [.net, asp.net, c#, mssql, spell, sql]
 ---
 

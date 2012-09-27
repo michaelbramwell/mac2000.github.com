@@ -1,7 +1,7 @@
 ---
 layout: post
 title: YUI recordset events
-permalink: /146
+
 tags: [javascript, YUI, yahoo, createevent, subscribe, recordset]
 ---
 

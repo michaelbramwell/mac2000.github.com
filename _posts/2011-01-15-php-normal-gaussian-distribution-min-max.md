@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php normal gaussian distribution min max
-permalink: /327
+
 tags: [algorithm, gaus, gauss, generator, php, rand, random, rnd]
 ---
 

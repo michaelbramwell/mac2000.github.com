@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend Partial
-permalink: /183
+
 tags: [mvc, php, zend]
 ---
 

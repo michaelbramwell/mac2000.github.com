@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MsSQL Limit, Offset
-permalink: /132
+
 tags: [mssql, sql, limit, offset, rownum, between, row_number, over]
 ---
 

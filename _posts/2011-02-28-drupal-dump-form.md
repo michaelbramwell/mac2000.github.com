@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal dump form
-permalink: /465
+
 tags: [alter, drupal, flash, form, message]
 ---
 

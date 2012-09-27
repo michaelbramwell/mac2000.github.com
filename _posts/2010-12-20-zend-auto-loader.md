@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend Auto Loader
-permalink: /181
+
 tags: [php, zend, set_include_path, path_separator, realpath, get_include_path, application_path, autoloader, registernamespace]
 ---
 

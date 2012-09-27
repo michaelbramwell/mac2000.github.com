@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ASP.Net Clear OutputCache
-permalink: /28
+
 tags: [.net, asp.net, cache, iis, performance, vb]
 ---
 

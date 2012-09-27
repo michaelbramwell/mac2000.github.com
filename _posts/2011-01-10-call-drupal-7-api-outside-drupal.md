@@ -1,7 +1,7 @@
 ---
 layout: post
 title: call drupal 7 api outside drupal
-permalink: /308
+
 tags: [api, drupal, drupal7, extend, php]
 ---
 

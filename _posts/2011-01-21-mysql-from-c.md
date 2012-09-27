@@ -1,7 +1,7 @@
 ---
 layout: post
 title: mysql from c#
-permalink: /351
+
 tags: [.net, c#, connector, dll, lib, mysql]
 ---
 

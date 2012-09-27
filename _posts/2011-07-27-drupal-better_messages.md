@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal better_messages
-permalink: /765
+
 tags: [better_messages, d6, drupal]
 ---
 

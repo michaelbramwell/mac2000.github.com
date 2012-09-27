@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Htaccess block by ip
-permalink: /495
+
 tags: [apache, htaccess, remote_addr, rewritecond]
 ---
 

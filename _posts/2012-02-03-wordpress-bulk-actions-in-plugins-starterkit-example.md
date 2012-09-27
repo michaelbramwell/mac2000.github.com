@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress bulk actions in plugins, starterkit example
-permalink: /949
+
 tags: [admin_menu, ajax, ajaxurl, bulk, check_ajax_referer, wordpress, wp_ajax, wp_create_nonce, wp_enqueue_script, _ajax_nonce]
 ---
 

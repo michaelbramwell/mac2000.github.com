@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WindowsMobile send SMS
-permalink: /107
+
 tags: [.net, c#, mobile, .netcf, compacktframework]
 ---
 

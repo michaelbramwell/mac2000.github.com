@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell Excell example
-permalink: /138
+
 tags: [cmd, powershell, excel, comobject, workbooks, cells]
 ---
 

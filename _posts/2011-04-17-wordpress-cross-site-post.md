@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress cross site post
-permalink: /566
+
 tags: [api, cross, ixr, metaweblog, rpc, wordpress, xmlrpc]
 ---
 

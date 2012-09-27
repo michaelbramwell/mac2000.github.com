@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress widget display random pages by parent
-permalink: /291
+
 tags: [menu, php, random, widget, wordpress, WP_Query]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Editarea – wysiwyg для кода
-permalink: /48
+
 tags: [editarea, javascript, wysiwyg]
 ---
 

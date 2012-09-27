@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress – добавляем аватар автора к статье
-permalink: /69
+
 tags: [gravatar, php, wordpress, get_the_author_email, get_avatar]
 ---
 

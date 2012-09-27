@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WinForms WebBrowser DocumentCompleted
-permalink: /142
+
 tags: [.net, c#, webbrowser, winforms, documentcompleted, oermissionset, allowwebbrowserdrop, iswebbrowsercontextmenuenabled, objectforscripting, scripterrorssuspend]
 ---
 

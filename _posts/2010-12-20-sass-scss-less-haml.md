@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sass, Scss, Less, Haml
-permalink: /171
+
 tags: [haml, less, ruby, sass, scss]
 ---
 

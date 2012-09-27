@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CSS - Content before sidebars
-permalink: /890
+
 tags: [cols, columns, compass, css, float, layout, sass, scss, sidebar, wrapper]
 ---
 

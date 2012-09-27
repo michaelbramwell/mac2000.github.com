@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AutoHotkey window snapper tool
-permalink: /1023
+
 tags: [active, autohotkey, bottom, delete, end, home, insert, left, MinMax, MonitorWorkArea, pgdown, pgup, right, snap, SysGet, top, window, WinGet, WinGetPos, WinMaximize, WinMove, WinRestore, WS_SIZEBOX]
 ---
 

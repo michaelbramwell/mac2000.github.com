@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# LogParser
-permalink: /26
+
 tags: [.net, asp.net, c#, iis, logparser]
 ---
 

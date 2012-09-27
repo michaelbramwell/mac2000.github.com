@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScriptSerializer serrialize any object
-permalink: /408
+
 tags: [.net, ashx, c#, handler, javascript, javascriptserializer, js, json, serrialize]
 ---
 

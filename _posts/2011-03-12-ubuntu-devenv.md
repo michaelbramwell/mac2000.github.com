@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu devenv
-permalink: /500
+
 tags: [admin, administration, apache, apt, bind, dns, hosts, lamp, mass, postfix, tasksel, ubuntu, vhost]
 ---
 
@@ -213,6 +213,8 @@ Edit /etc/php5/apache2/php.ini
     post_max_size = 128M
     upload_max_filesize = 128M
     max_execution_time = 900
+
+Example of development php.ini can be found here: `/usr/share/doc/php5-common/examples/php.ini-development`
 
 **XDEBUG**
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.net ExtJs store response generator
-permalink: /436
+
 tags: [.net, asp.net, c#, ext, extjs, grid, gridpanel, javascript, js, jsonreader, meta, metadata, reader, store]
 ---
 

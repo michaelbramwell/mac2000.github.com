@@ -1,7 +1,7 @@
 ---
 layout: post
 title: .Net паралельное выполнение задач
-permalink: /100
+
 tags: [.net, c#, parralel, threading, tasks, async]
 ---
 

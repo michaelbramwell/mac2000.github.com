@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Firefox vkontakte share button
-permalink: /165
+
 tags: [firefox, javascript, vkontake, share, social]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery plugin template
-permalink: /584
+
 tags: [data, event, jquery, plugin]
 ---
 

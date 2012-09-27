@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu configure network
-permalink: /333
+
 tags: [admin, administration, config, dhcp, dns, eth0, ifconfig, init.d, interface, ip, network, ubuntu]
 ---
 

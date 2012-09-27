@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Wikipedia search
-permalink: /342
+
 tags: [ajax, php, search, seo, service, wiki, wikipedia]
 ---
 

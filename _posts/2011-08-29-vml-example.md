@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VML example
-permalink: /816
+
 tags: [border-radius, corners, radius, roundcorder, vector, vml]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL rows to columns
-permalink: /537
+
 tags: [TODO]
 ---
 

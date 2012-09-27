@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microsoft CRM web service
-permalink: /590
+
 tags: [.net, asp.net, c#, crm, crmservice, networkcredential]
 ---
 

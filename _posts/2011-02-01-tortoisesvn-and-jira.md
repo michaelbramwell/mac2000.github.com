@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TortoiseSvn and Jira
-permalink: /394
+
 tags: [code, jira, scm, svn, tortoisesvn]
 ---
 

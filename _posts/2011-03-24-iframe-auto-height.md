@@ -1,7 +1,7 @@
 ---
 layout: post
 title: iframe auto height
-permalink: /534
+
 tags: [auto, crossdomain, height, iframe, javascript, jquery, js]
 ---
 

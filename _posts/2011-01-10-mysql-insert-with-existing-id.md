@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL insert with existing id
-permalink: /296
+
 tags: [database, db, insert, mysql, replace, sql, update]
 ---
 

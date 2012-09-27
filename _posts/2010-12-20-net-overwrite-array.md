@@ -1,7 +1,7 @@
 ---
 layout: post
 title: .Net overwrite(extend) array
-permalink: /134
+
 tags: [.net, asp.net, c#, extend, array, namevaluecollection, linq, allkeys, union]
 ---
 

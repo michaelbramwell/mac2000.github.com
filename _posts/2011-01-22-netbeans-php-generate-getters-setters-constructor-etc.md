@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Netbeans php generate getters setters constructor etc
-permalink: /356
+
 tags: [auto, generate, generator, getter, intellisense, netbeans, php, setter]
 ---
 

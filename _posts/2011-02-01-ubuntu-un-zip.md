@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Ubuntu (un)zip
-permalink: /403
+
 tags: [admin, administration, arch, archive, cmd, dump, howto, linux, shell, ubuntu, unzip, zip]
 ---
 

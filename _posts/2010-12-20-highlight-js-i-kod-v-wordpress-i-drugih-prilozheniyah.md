@@ -1,7 +1,7 @@
 ---
 layout: post
 title: highlight.js и код в wordpress и других приложениях
-permalink: /57
+
 tags: [code, highlight, javascript]
 ---
 

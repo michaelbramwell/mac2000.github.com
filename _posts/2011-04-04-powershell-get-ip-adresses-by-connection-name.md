@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell get ip adresses by connection name
-permalink: /541
+
 tags: [gwmi, powershell, ps, wmi]
 ---
 

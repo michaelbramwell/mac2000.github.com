@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySql import huge value
-permalink: /405
+
 tags: [admin, administration, archive, backup, big, database, db, dump, huge, large, mysql]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJs ajax request, json and masking
-permalink: /410
+
 tags: [ajax, beforerequest, ext, extjs, javascript, js, json, mask, request, requestcomplete, requestexception, response, responsetext]
 ---
 

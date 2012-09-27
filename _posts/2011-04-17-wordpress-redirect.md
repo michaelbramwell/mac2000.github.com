@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress redirect
-permalink: /564
+
 tags: [access, acl, auth, get_post_meta, redirect, template_redirect, user, wordpress, wp_get_post_categories, wp_redirect]
 ---
 

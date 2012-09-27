@@ -1,7 +1,7 @@
 ---
 layout: post
 title: drupal 6 tpl for module
-permalink: /612
+
 tags: [drupal, hook_theme, module, template, theme, tpl]
 ---
 

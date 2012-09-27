@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal imagecache do not cache, render text from url
-permalink: /878
+
 tags: [batch, cache, drupal, gd, imagecache, imagecache_external, imagemagick, processing, resize]
 ---
 

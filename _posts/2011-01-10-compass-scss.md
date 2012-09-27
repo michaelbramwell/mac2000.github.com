@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Compass &#038; SCSS
-permalink: /300
+
 tags: [compass, css, css3, gem, ruby, sass, scss]
 ---
 

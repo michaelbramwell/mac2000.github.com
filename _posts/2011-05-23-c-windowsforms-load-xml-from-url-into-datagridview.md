@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# WindowsForms load XML from URL into DataGridView
-permalink: /581
+
 tags: [.net, bindingsource, c#, datagrid, datagridview, dataset, datasource, filter, serialize, table, url, xml, xmlreader, xmlserializer, xmltextreader]
 ---
 

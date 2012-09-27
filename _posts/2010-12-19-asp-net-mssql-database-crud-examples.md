@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ASP.Net MsSQL DataBase CRUD examples
-permalink: /15
+
 tags: [asp.net, c#, db, mssql]
 ---
 

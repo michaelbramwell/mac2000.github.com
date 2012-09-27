@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal programmaticaly sync CCK fileds between nodes
-permalink: /639
+
 tags: [action, cck, d6, db_fetch_object, db_query, db_result, drupal, hook_form_alter, hook_rules_action_info, node_save, rules]
 ---
 

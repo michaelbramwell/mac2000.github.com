@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Extend YUI
-permalink: /52
+
 tags: [javascript, oop, YUI]
 ---
 

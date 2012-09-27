@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal custom breadcrumbs
-permalink: /623
+
 tags: [breadcrumbs, drupal, preprocess_page]
 ---
 

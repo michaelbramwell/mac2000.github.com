@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Lamp server backup
-permalink: /609
+
 tags: [automysqlbackup, backup, centos, cron, link, linux, ln, simplebashbu, ubuntu, wget]
 ---
 

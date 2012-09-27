@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ExtJs grid filter
-permalink: /374
+
 tags: [datagrid, ext, extjs, filter, grid, gridpanel, messagebox, qtip, quicktip, renderer, tooltip]
 ---
 

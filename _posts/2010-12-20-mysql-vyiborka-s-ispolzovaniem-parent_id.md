@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL выборка с использованием parent_id
-permalink: /60
+
 tags: [mysql, sql, join, left, create, table, primary]
 ---
 

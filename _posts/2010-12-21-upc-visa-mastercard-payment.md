@@ -1,7 +1,7 @@
 ---
 layout: post
 title: UPC - visa/mastercard payment
-permalink: /191
+
 tags: [online, pay, php, plugin, service, upc, visa]
 ---
 

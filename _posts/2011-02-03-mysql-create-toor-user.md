@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySql create toor user
-permalink: /416
+
 tags: [admin, administration, database, db, grant, localhost, mysql, privilegies, root, toor, user]
 ---
 

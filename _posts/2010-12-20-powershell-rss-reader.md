@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell RSS reader
-permalink: /136
+
 tags: [automate, cmd, powershell, script, webclient, downloadstring, rss, format-table]
 ---
 

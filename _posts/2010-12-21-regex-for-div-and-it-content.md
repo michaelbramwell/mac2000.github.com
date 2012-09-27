@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Regex for div and it content
-permalink: /216
+
 tags: [.net, c#, javascript, php, regex]
 ---
 

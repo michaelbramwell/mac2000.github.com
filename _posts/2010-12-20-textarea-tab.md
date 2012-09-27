@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Textarea tab
-permalink: /105
+
 tags: [GUI, javascript, textarea, UI, tab]
 ---
 

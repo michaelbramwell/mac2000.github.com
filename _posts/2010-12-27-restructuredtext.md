@@ -1,7 +1,7 @@
 ---
 layout: post
 title: reStructuredText
-permalink: /259
+
 tags: [docutils, markdown, markup, php, rest, restructuredtext, syntax, wiki]
 ---
 

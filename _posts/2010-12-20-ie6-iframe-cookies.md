@@ -1,7 +1,7 @@
 ---
 layout: post
 title: IE6 iFrame Cookies
-permalink: /178
+
 tags: [cookies, facebook, fb, ie6, ie7, ie8, iframe, javascript, kb927917]
 ---
 

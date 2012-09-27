@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal wysiwyg CodeMirror
-permalink: /692
+
 tags: [codemirror, d6, drupal, editarea, hook_editor, wysiwyg]
 ---
 

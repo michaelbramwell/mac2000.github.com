@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress custom taxonomy dropdown
-permalink: /325
+
 tags: [dropdown, php, taxonomy, template, theme, wordpress]
 ---
 

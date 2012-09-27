@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# custom App.config sections
-permalink: /721
+
 tags: [.net, app.config, c#, config, configSections, ConfigurationSettings, NameValueSectionHandler, section, SingleTagSectionHandler]
 ---
 

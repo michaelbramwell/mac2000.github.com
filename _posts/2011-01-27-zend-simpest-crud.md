@@ -1,7 +1,7 @@
 ---
 layout: post
 title: zend simplest crud
-permalink: /379
+
 tags: [admin, create, crud, database, db, dbadapter, delete, edit, mysql, php, sql, update, zend]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: WordPress multisite
-permalink: /663
+
 tags: [farm, multisite, wordpress, wp, wpmu]
 ---
 

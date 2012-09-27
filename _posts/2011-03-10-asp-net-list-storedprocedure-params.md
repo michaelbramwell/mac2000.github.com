@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Asp.Net list storedprocedure params
-permalink: /497
+
 tags: [.net, asp.net, c#, command, params, procedure, sp, sql, sqlclient, sqlcommand, sqlparameter, storedprocedure]
 ---
 

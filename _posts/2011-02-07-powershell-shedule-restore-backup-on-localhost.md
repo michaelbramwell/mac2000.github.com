@@ -1,7 +1,7 @@
 ---
 layout: post
 title: PowerShell shedule restore backup on localhost
-permalink: /430
+
 tags: [admin, administration, auto, automatic, backup, batch, cmd, powershell, ps, ps1, restore, shell]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: YUI custom events
-permalink: /144
+
 tags: [javascript, YUI, yahoo, eventprovider, createevent, fireevent, subscribe]
 ---
 

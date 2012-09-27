@@ -1,7 +1,7 @@
 ---
 layout: post
 title: jQuery custom events
-permalink: /130
+
 tags: [javascript, jquery, events, trigger, bind]
 ---
 

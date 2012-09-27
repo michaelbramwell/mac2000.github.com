@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache Solr for multiple sites
-permalink: /904
+
 tags: [apache, apachesolr, java, solr, tomcat, tomcat7, ubuntu, xampp]
 ---
 

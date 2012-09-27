@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Zend application.ini database connection
-permalink: /376
+
 tags: [application, cfg, conf, config, database, db, ini, mysql, pdo, zend]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: XAMPP use Virtual Host but keep localhost
-permalink: /345
+
 tags: [admin, administration, apache, config, lamp, server, vhost, vhosts, virtual, xampp]
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MsSql Unix time
-permalink: /36
+
 tags: [mssql, sql, dateadd, datefiff, getdate, timestamp, unixtime, second]
 ---
 

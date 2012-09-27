@@ -35,3 +35,17 @@ Search for text in files
 ------------------------
 
     grep -H -r "TODO" | cut -d: -f1
+
+Sync with production server
+---------------------------
+
+    rsync -avz -e ssh [USERNAME]@[HOST]:/var/www/ ./
+    mysqldump --add-drop-database --databases -h [HOST] -u [USERNAME] --password=[PASSWORD] [DATABASE] > [FILE_NAME].sql
+    mysql -u root --password=[PASSWORD] < [FILE_NAME].sql
+
+First command will sync files, two next - database
+
+Remove line from multiple files
+-------------------------------
+
+    find . -name "*.md" -exec sed -i 's/^permalink.*$//' {} \;

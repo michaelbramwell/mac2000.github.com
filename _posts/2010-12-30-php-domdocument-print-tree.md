@@ -1,7 +1,7 @@
 ---
 layout: post
 title: php DOMDocument print tree
-permalink: /281
+
 tags: [dom, DOMDocument, html, parse, php, recursive, xml]
 ---
 

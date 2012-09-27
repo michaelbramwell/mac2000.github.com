@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Drupal Locale Block
-permalink: /188
+
 tags: [drupal, php, locale, drupal_is_front_page]
 ---
 

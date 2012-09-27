@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C# convert rtf to txt using word
-permalink: /238
+
 tags: [.net, c#, convert, doc, docx, lib, microsoft, office, rtf, tool, word]
 ---
 
