@@ -14,6 +14,10 @@ Deleting:
 
     netsh http delete ::0.1.0.128
 
+In Windows 8:
+
+    netsh http delete iplisten ipaddress=192.168.5.47
+
 Use IPv6 localhost:
 
     netsh http add iplisten ipaddress=[0:0:0:0:0:0:0:1]:80
