@@ -25,15 +25,15 @@ Minimal code sample:
 Links
 -----
 
-http://ajpiano.com/widgetfactory/
+[Widget Factory](http://ajpiano.com/widgetfactory/)
 
-http://www.erichynds.com/jquery/tips-for-developing-jquery-ui-widgets/
+[Tips for developing jquery.ui widgets](http://www.erichynds.com/jquery/tips-for-developing-jquery-ui-widgets/)
 
-http://net.tutsplus.com/tutorials/javascript-ajax/coding-your-first-jquery-ui-plugin/
+[Coding your first jquery ui plugin](http://net.tutsplus.com/tutorials/javascript-ajax/coding-your-first-jquery-ui-plugin/)
 
 Example
 -------
 
-http://mac-blog.org.ua/examples/jquery/ui/mac.message.html
+[mac.message.html](http://mac-blog.org.ua/examples/jquery/ui/mac.message.html)
 
 <iframe src="http://mac-blog.org.ua/examples/jquery/ui/mac.message.html" width="100%" height="300"></iframe>
