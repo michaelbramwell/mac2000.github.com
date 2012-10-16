@@ -34,4 +34,6 @@ http://net.tutsplus.com/tutorials/javascript-ajax/coding-your-first-jquery-ui-pl
 Example
 -------
 
+http://mac-blog.org.ua/examples/jquery/ui/mac.message.html
+
 <iframe src="http://mac-blog.org.ua/examples/jquery/ui/mac.message.html" width="100%" height="300"></iframe>
