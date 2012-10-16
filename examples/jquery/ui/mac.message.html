@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<title>Message example</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css">
+<!-- jquery.mac.messsage.css -->
+<style>
+.mac-message {
+    margin:10px auto;
+}
+.mac-message-content {
+    padding:10px;
+    position:relative;
+}
+.mac-message-close {
+    position:absolute;
+    top:10px;
+    right:10px;
+}
+</style>
+
+<div id="msg">Message example</div>
+<div id="msg2">Message2 example</div>
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+<!-- jquery.mac.messsage.js -->
+<script>
+(function ($, undefined) {
+    $.widget('mac.message', { // jQuery.widget will automatically create needed namespaces
+        closeButton:undefined, // private variable to hold close button (per instance)
+        options:{ // default options
+            closeable:true
+        },
+        _addCloseButton:function () { // private method example
+            if (!this.closeButton) {
+                var self = this;
+                this.closeButton = $('<a href="#">').addClass('mac-message-close').appendTo(this.element).button({
+                    icons:{primary:'ui-icon-close'},
+                    text:false
+                }).on('click', function () {
+                        self.close();
+                    });
+            }
+        },
+        _removeCloseButton:function () { // another private method
+            if (this.closeButton) {
+                this.closeButton.button('destroy').remove();
+                this.closeButton = undefined;
+            }
+        },
+        close:function () { // public method aka: $('#my').message('close');
+            this.element.hide();
+            this._trigger('close');
+        },
+        _create:function () { // constructor
+            this.element.wrap('<div class="ui-widget mac-message">'); // wrap element with .ui-widget
+            this.element.addClass('ui-widget-content mac-message-content ui-state-highlight ui-corner-all'); // add necessary classes
+
+            if (this.options.closeable) this._addCloseButton(); // create close button if needed
+        },
+        _setOption:function (key, value) { // change options
+            var old = this.options[key];
+            this.options[key] = value;
+
+            if (key == 'closeable' && old != value) {
+                if (value) this._addCloseButton();
+                else this._removeCloseButton();
+            }
+
+            this._super('_setOption', key, value); //$.Widget.prototype._setOption.apply(this, arguments);
+        },
+        destroy:function () { // destructor (undo constructor)
+            this.element.removeClass('ui-widget-content mac-message-content ui-state-highlight ui-corner-all'); // remove added classes
+            this._removeCloseButton(); // remove close button
+            this.element.unwrap(); // unwrap element from .ui-widget
+
+            this._super('destroy'); //$.Widget.prototype.destroy.call(this);
+        }
+    });
+})(jQuery);
+</script>
+<script>
+    $('#msg').message({close: function(){
+        alert('Message closed');
+    }});
+    $('#msg2').message({closeable:false});
+</script>
