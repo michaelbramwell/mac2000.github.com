@@ -49,3 +49,14 @@ Remove line from multiple files
 -------------------------------
 
     find . -name "*.md" -exec sed -i 's/^permalink.*$//' {} \;
+
+Ubuntu version
+--------------
+
+    cat /etc/issue
+
+Upgrade ubuntu
+--------------
+
+    apt-get install update-manager-core
+    do-release-upgrade
