@@ -96,3 +96,11 @@ To check encodings run following queries:
 
     show variables like 'char%';
     show variables like 'collation%';
+
+Minimal phpmyadmin config.inc.php
+---------------------------------
+
+    <?php
+    $cfg['Servers'][1]['verbose'] = 'localhost';
+    $cfg['Servers'][1]['auth_type'] = 'cookie';
+    $cfg['blowfish_secret'] = '507e9d4d8bbdc8.34867123';
