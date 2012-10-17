@@ -60,3 +60,18 @@ Upgrade ubuntu
 
     apt-get install update-manager-core
     do-release-upgrade
+
+Ubuntu locales
+--------------
+
+    apt-get install language-pack-ru
+    update-locale LC_ALL=ru_UA.UTF-8 LANG=ru_UA.UTF-8
+
+Notice that I used `ru_UA` for Ukrainian instead of `ru_RU`
+To get effect logout from system and login back
+
+Allow user use sudo (add him to sudo group)
+-------------------------------------------
+
+    #usermod -aG <groupname> <username>
+    usermod -aG sudo <username>

@@ -75,3 +75,24 @@ http://dev.mysql.com/doc/index-other.html#sampledb
 
 http://downloads.mysql.com/docs/sakila-db.zip
 
+Encodings
+---------
+
+To get `utf8` make changes to `my.cnf`
+
+    [client]
+    default-character-set=utf8
+
+    [mysql]
+    default-character-set=utf8
+
+
+    [mysqld]
+    collation-server=utf8_general_ci
+    init-connect='SET NAMES utf8'
+    character-set-server=utf8
+
+To check encodings run following queries:
+
+    show variables like 'char%';
+    show variables like 'collation%';
