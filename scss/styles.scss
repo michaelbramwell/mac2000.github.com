@@ -65,23 +65,22 @@ footer {
 
     nav {
         margin:1em auto;
-        ul {
-            margin:1em auto;
-            @include inline-list;
 
-            i {
-                font-size:2em;
-            }
-            span {
-                display:none;
-            }
+        ul {
+            @include inline-list;
 
             a {
                 text-decoration:none;
-
                 @include transition-property(color);
                 @include transition-duration(.5s);
                 @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
+
+                i {
+                    font-size:2em;
+                }
+                span {
+                    display:none;
+                }
             }
         }
     }
@@ -120,7 +119,7 @@ footer {
 }
 
 @media only screen and (min-width:768px) and (max-width:959px){
-    .recent, .howto, footer nav, footer aside {
+    .recent, .howto {
         float:none;
         display:block;
         width:auto;
@@ -128,7 +127,7 @@ footer {
 }
 
 @media only screen and (max-width:767px){
-    .recent, .howto, footer nav, footer aside {
+    .recent, .howto {
         float:none;
         display:block;
         width:auto;
