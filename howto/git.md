@@ -123,6 +123,12 @@ Add remote branch
 
     git branch --track [local branch name] origin/[remote branch name]
 
+Delete branch
+-------------
+
+    git branch -D gh-pages # deletes local branch
+    git push origin --delete gh-pages # deletes remote branch
+
 Remotes
 -------
 
@@ -133,6 +139,7 @@ Submodules
 ----------
 
 To ignore `dirty` changes add `ignore = dirty` to problematic submodule in youd `.gitmodules` file
+
 
 Links
 =====
