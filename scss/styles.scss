@@ -69,15 +69,15 @@ footer {
             margin:1em auto;
             @include inline-list;
 
+            i {
+                font-size:2em;
+            }
+            span {
+                display:none;
+            }
+
             a {
                 text-decoration:none;
-
-                i {
-                    font-size:2em;
-                }
-                span {
-                    display:none;
-                }
 
                 @include transition-property(color);
                 @include transition-duration(.5s);
