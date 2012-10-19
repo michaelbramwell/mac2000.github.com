@@ -4,7 +4,7 @@ title: XSD example
 tags: [xsd, xml]
 ---
 
-[XSD](http://en.wikipedia.org/wiki/XML_Schema_(W3C)) (XML Schema Definition) - can be used to validate incoming xml.
+XSD (XML Schema Definition) - can be used to validate incoming xml.
 
 Lets assume that we have next assumptions:
 
