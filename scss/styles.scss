@@ -63,12 +63,14 @@ footer {
     padding-top:.5em;
     @include clearfix;
 
+    ul {
+        @include inline-list;
+    }
+
     nav {
         margin:1em auto;
 
         ul {
-            @include inline-list;
-
             a {
                 text-decoration:none;
                 @include transition-property(color);
