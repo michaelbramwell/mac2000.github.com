@@ -11,13 +11,7 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/org/baFo">
     <link rel="stylesheet" href="/css/styles.css">
     {% if page.tags %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
-    {% if page.url == '/index.html' %}<script>(function() {
-        var cx = '000857461493106615220:h3g48vufhro';
-        var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-            '//www.google.com/cse/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
-    })();</script>{% endif %}
+    {% if page.url == '/index.html' %}<link rel="stylesheet" href="//www.google.com/cse/style/look/default.css">{% endif %}
 </head>
 <body>
     <a name="top"></a>

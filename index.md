@@ -21,4 +21,18 @@ title: My notes
 {% endfor %}
 </ul>
 </aside>
-<gcse:search></gcse:search>
+<div id="cse" style="width: 100%;clearboth">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+  google.load('search', '1');
+  google.setOnLoadCallback(function() {
+    var customSearchOptions = {};
+    var googleAnalyticsOptions = {};
+    googleAnalyticsOptions['queryParameter'] = 's';
+    googleAnalyticsOptions['categoryParameter'] = '';
+    customSearchOptions['googleAnalyticsOptions'] = googleAnalyticsOptions;  var customSearchControl = new google.search.CustomSearchControl(
+      '000857461493106615220:h3g48vufhro', customSearchOptions);
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+</script>
