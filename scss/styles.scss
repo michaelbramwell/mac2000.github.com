@@ -27,7 +27,7 @@ pre, pre.prettyprint {
         @include border-radius(0);
     }
 }
-article + aside, footer {
+footer {
     border-top:1px solid #f7f7f7;
     margin-top:.5em;
     padding-top:.5em;
@@ -50,67 +50,16 @@ img {
     }
 }
 
-ul.tags {
-    clear:both;
-    @include delimited-list(',');
-    &:before {
-        content: '\f02c';
-        font-family: FontAwesome;
-        @include inline-block;
-    }
-}
-dl.tags {
-    dt a {color:#444!important;font-weight:bold;}
-    dd {margin-left:0}
-}
-.related {
-    &:before {
-        content: 'Related:';
-        margin-left:-40px;
-    }
-}
-.recent {
+.recent, .howto {
     @include float-left;
     width:50%;
-}
-.pipe {
-    border-top:none;
-    padding:0;
-    margin:0;
-}
-.recent, .pipe {
+
     ul {
         padding-left:1.4em;
         margin-right:1em;
     }
 }
-.prevnext {
-    @include inline-list;
-    @include clearfix;
-    display:block!important;
-    margin-bottom:1em!important;
 
-    li:first-child {
-        @include float-left;
-    }
-    li:last-child {
-        @include float-right;
-    }
-
-    a[title^="Next"]:after,
-    a[title^="Prev"]:before {
-        font-family: FontAwesome;
-        @include inline-block;
-    }
-    a[title^="Next"]:after {
-        content: '\f054';
-        margin-left:.5em;
-    }
-    a[title^="Prev"]:before {
-        content: '\f053';
-        margin-right:.5em;
-    }
-}
 footer {
     clear: both;
     nav {
@@ -129,24 +78,15 @@ footer {
                     display:none;
                 }
             }
-
-            /*li:after {
-                margin-left:.35em;
-            }*/
         }
     }
     aside {
         @include float-right;
 
         ul {
-            /*@include no-bullets;*/
             @include inline-list;
         }
     }
-}
-
-#disqus_thread {
-    margin-top:1em;
 }
 
 @media print{
@@ -182,7 +122,7 @@ footer {
 }
 
 @media only screen and (min-width:768px) and (max-width:959px){
-    .recent, .pipe, footer nav, footer aside {
+    .recent, .howto, footer nav, footer aside {
         float:none;
         display:block;
         width:auto;
@@ -196,29 +136,11 @@ footer {
     }
     footer nav {
         margin:1em auto;
-    }
-    .prevnext {
-        li:first-child, li:last-child {
-            float:none;
-            display:block;
-        }
-        a[title^="Next"] {
-            &:before {
-                font-family: FontAwesome;
-                @include inline-block;
-                content: '\f054';
-                margin-right:.5em;
-            }
-            &:after {
-                content: '';
-                display:none;
-            }
-        }
     }
 }
 
 @media only screen and (max-width:767px){
-    .recent, .pipe, footer nav, footer aside {
+    .recent, .howto, footer nav, footer aside {
         float:none;
         display:block;
         width:auto;
@@ -231,23 +153,5 @@ footer {
     }
     footer nav {
         margin:1em auto;
-    }
-    .prevnext {
-        li:first-child, li:last-child {
-            float:none;
-            display:block;
-        }
-        a[title^="Next"] {
-            &:before {
-                font-family: FontAwesome;
-                @include inline-block;
-                content: '\f054';
-                margin-right:.5em;
-            }
-            &:after {
-                content: '';
-                display:none;
-            }
-        }
     }
 }
