@@ -70,12 +70,14 @@ footer {
             @include inline-list;
 
             a {
-                font-size:2em;
                 text-decoration:none;
                 @include transition-property(color);
                 @include transition-duration(.5s);
                 @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
 
+                i {
+                    font-size:2em;
+                }
                 span {
                     display:none;
                 }
