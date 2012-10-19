@@ -62,10 +62,14 @@ img {
 
 footer {
     clear: both;
+    text-align:center;
+
     nav {
+        margin:1em auto;
         @include float-left;
         ul {
-            /*@include delimited-list('|');*/
+            font-size:2em;
+            margin:1em auto;
             @include inline-list;
 
             a {
@@ -127,16 +131,6 @@ footer {
         display:block;
         width:auto;
     }
-    footer {
-        text-align:center;
-    }
-    footer nav ul {
-        font-size:2em;
-        margin:1em auto;
-    }
-    footer nav {
-        margin:1em auto;
-    }
 }
 
 @media only screen and (max-width:767px){
@@ -144,14 +138,5 @@ footer {
         float:none;
         display:block;
         width:auto;
-    }
-    footer {
-        text-align:center;
-    }
-    footer nav ul {
-        font-size:2em;
-    }
-    footer nav {
-        margin:1em auto;
     }
 }
