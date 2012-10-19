@@ -66,11 +66,11 @@ footer {
     nav {
         margin:1em auto;
         ul {
-            font-size:2em;
             margin:1em auto;
             @include inline-list;
 
             a {
+                font-size:2em;
                 text-decoration:none;
                 @include transition-property(color);
                 @include transition-duration(.5s);
