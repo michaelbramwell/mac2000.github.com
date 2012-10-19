@@ -27,12 +27,7 @@ pre, pre.prettyprint {
         @include border-radius(0);
     }
 }
-footer {
-    border-top:1px solid #f7f7f7;
-    margin-top:.5em;
-    padding-top:.5em;
-    @include clearfix;
-}
+
 
 a {
     color:#356AA0;
@@ -63,10 +58,13 @@ img {
 footer {
     clear: both;
     text-align:center;
+    border-top:1px solid #f7f7f7;
+    margin-top:.5em;
+    padding-top:.5em;
+    @include clearfix;
 
     nav {
         margin:1em auto;
-        @include float-left;
         ul {
             font-size:2em;
             margin:1em auto;
@@ -82,13 +80,6 @@ footer {
                     display:none;
                 }
             }
-        }
-    }
-    aside {
-        @include float-right;
-
-        ul {
-            @include inline-list;
         }
     }
 }
