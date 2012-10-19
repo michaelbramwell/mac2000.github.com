@@ -70,6 +70,8 @@ Ubuntu locales
 Notice that I used `ru_UA` for Ukrainian instead of `ru_RU`
 To get effect logout from system and login back
 
+To regenerate locale use `sudo locale-gen en_US.UTF-8`
+
 Allow user use sudo (add him to sudo group)
 -------------------------------------------
 
