@@ -29,7 +29,8 @@ If there is errors about importing big file, set `set global max_allowed_packet=
 Symlink
 -------
 
-    ln -s [link] [actual_file_or_directory_path]
+    ln -s [existing_file] [link]
+    ln -s /var/www /home/mac/www
 
 Search for text in files
 ------------------------
