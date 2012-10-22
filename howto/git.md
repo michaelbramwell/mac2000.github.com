@@ -19,9 +19,9 @@ Config
     git config --global color.diff auto
     git config --global color.interactive auto
     git config --global color.status auto
+    git config --global core.safecrlf true
     git config --global core.autocrlf input # on unix like os
     git config --global core.autocrlf true  # on windows (not needed with new client)
-    git config --global core.safecrlf true
     git config --global core.excludesfile ~/Dropbox/Public/gitignore_global.txt
 
 Stage deleted files
