@@ -51,6 +51,11 @@ Remove line from multiple files
 
     find . -name "*.md" -exec sed -i 's/^permalink.*$//' {} \;
 
+Replace line in a file
+----------------------
+
+    sed -i 's/search_me/replacement/' test.txt
+
 Ubuntu version
 --------------
 
