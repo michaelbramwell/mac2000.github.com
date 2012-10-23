@@ -6,14 +6,13 @@ title: git
 Setup
 -----
 
-    sudo apt-get install git
+    sudo apt-get install git bash-completion
 
 Config
 ------
 
     git config --global user.name "Marchenko Alexandr"
     git config --global user.email "marchenko.alexandr@gmail.com"
-    git config --global credential.helper cache
     git config --global credential.helper "cache --timeout=3600"
     git config --global color.branch auto
     git config --global color.diff auto
