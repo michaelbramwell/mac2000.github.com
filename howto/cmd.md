@@ -31,4 +31,10 @@ Robocopy
 Cd to current directory when run as admin
 -----------------------------------------
 
-    cd %0%\..\
+    cd %~dp0
+
+Get host name by ip
+-------------------
+
+    nbtstat -a 192.168.5.42
+
