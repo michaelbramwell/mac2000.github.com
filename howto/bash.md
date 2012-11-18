@@ -88,3 +88,8 @@ Automatically login
 -------------------
 
 Replace last line in `/etc/init/tty1.conf` from `exec /sbin/getty -8 38400 tty1` to `exec /bin/login -f USERNAME < /dev/tty1 > /dev/tty1 2>&1`
+
+Show available network cards
+----------------------------
+
+    ifconfig | grep "^[a-z]" | cut -d":" -f 1
