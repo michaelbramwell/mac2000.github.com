@@ -152,6 +152,63 @@ http://adw0rd.com/2009/3/3/freebsd-ports-and-pkg/
     portsnap fetch update
 
 
+Порты
+-----
+
+    make install #установка
+    make reinstall #переустановка
+    make deinstall #удаление
+    make clean #очистка от промежуточных сборок
+    make distclean #очистка скачаных файлов
+    make config #предустановочная настройка
+    make search key=КЛЮЧ #поиск по ключу
+    make search name=ИМЯ #поиск по имени
+
+Пример:
+
+    cd /usr/ports/www/apache22/
+    make config
+    make install clean
+    rehash
+
+`rehash` обновляет пути к приложениям чтобы можно было не писать `/path/to/programm`
+
+Обновление дерева портов
+
+    portsnap fetch update
+
+Обновление порта
+
+Выполняется командой `portupgrade` которую вначале нужно поставить:
+
+    cd /usr/ports/ports-mgmt/portupgrade
+    make install clean
+
+Обновление:
+
+    portupgrade название_программы
+
+Аргументы `portupgrade`:
+
+`-r` - так же обновить зависимости
+`-R` - так же обновить зависимости
+
+Обновление системы
+------------------
+
+    freebsd-update fetch
+    freebsd-update install
+
+Замена shell'а
+--------------
+
+    cd /usr/ports/shells/bash
+    make config
+    make install
+    make clean
+    make distclean
+    rehash
+    chsh -s /usr/local/bin/bash
 
 
 
