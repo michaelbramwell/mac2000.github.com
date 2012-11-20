@@ -67,6 +67,92 @@ TODO
 
 Что если у нас закончилось место на `/var` (нужно проверить как добавляется новый диск, форматируется и подключается в эту точку монтирования, так же выяснить что потом можно сделать со старым разделом чтобы он не пропадал за зря).
 
+Настройка сети на свежеустановленной системе
+--------------------------------------------
+
+http://www.freebsd.org/doc/en/books/handbook/config-network-setup.html
+http://www.freebsd.org/doc/en/books/handbook/network-dhcp.html
+
+**Посмотреть сетевые карты:**
+
+    ifconfig | grep "^[a-z]" | cut -d":" -f 1
+
+**IP - статика**
+
+    ifconfig em0 inet 192.168.5.201 netmask 255.255.255.0
+
+Либо в `/etc/rc.conf`
+
+    ifconfig_em0="inet 192.168.5.201 netmask 255.255.255.0"
+
+Второй вариант предпочтительнее так как настройки из этого файла считываются в `/etc/rc.d/netif` который стартует при загрузке системы
+
+**Несколько адресов на одну сетевуху**
+
+Через консоль
+
+    ifconfig em0 inet 192.168.5.201 netmask 255.255.255.0
+    ifconfig em0 inet 192.168.5.202 netmask 255.255.255.0 alias
+
+Через `/etc/rc.conf`
+
+ifconfig_em0="inet 192.168.5.201 netmask 255.255.255.0"
+ifconfig_em0_alias0="inet 192.168.5.202 netmask 255.255.255.0"
+
+**IP - DHCP**
+
+    ifconfig_em0="DHCP"
+
+Если нужно остановить запуск системы до завершения инициализации сети, можно использовать `SYNCDHCP` вместо `DHCP`.
+
+Если сеть конфигурируется по DHCP, то автоматом будут перезаписаны `/etc/resolv.conf` и добавлен шлюз по умолчанию.
+
+**Шлюз**
+
+Для просмотра текущей маршрутизации пользуем `netstat -rn`
+
+Добавляем в `/etc/rc.conf`
+
+    defaultrouter="192.168.5.1"
+
+Через консоль
+
+    route add default 192.168.5.1
+
+Удалить шлюз через консоль
+
+    route delete default
+
+**DNS**
+
+Если пользуется статика вместо DHCP, нужно в файл `/etc/resolv.conf` добавить что то вроде такого:
+
+    nameserver 8.8.8.8
+
+Можно как то через консоль управиться с помощью команды `resolvconf`
+
+**Перезапуск**
+
+    /etc/rc.d/netif restart
+    /etc/rc.d/routing restart
+    /etc/rc.d/resolv restart
+
+Порты
+-----
+
+http://adw0rd.com/2009/3/3/freebsd-ports-and-pkg/
+
+Первый раз:
+
+    portsnap fetch
+    portsnap extract
+
+Обновление
+
+    portsnap fetch update
+
+
+
 
 
 http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/consoles.html
