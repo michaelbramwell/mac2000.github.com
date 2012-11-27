@@ -15,6 +15,7 @@ Size - размер раздела (понимает согращения `K`, `
 Mountpoint - точка монтирования.
 Label - метка устройства, используется в `/etc/fstab` вместо стандартного устройства, метки храняться в `/dev/gpt/` и очень удобны в случае замены железа.
 
+
 Пример:
 
     Type: freebsd-boot
@@ -61,6 +62,8 @@ Label - метка устройства, используется в `/etc/fstab
 Раздел `/usr` должен быть не мение 512 Мб, если предпологается установка портов и не мение 1 Гб если предпологается установка исходиков ядра и не мение 5 Гб если предпологается пересборка ядра. Как правило на этот раздел выделяют все оставшееся на винчестере место.
 
 Раздел `/var` по идее должен хранить данные баз, сайтов и прочего ПО, его размер должен быть выяснен предварительно.
+
+Оптимальный порядок разделов при разбивке: root, swap, /var, /usr (первые разделы распологаются в центре диска который быстрее).
 
 TODO
 ----
@@ -193,6 +196,7 @@ http://adw0rd.com/2009/3/3/freebsd-ports-and-pkg/
 `-r` - так же обновить зависимости
 `-R` - так же обновить зависимости
 
+
 Обновление системы
 ------------------
 
@@ -203,14 +207,235 @@ http://adw0rd.com/2009/3/3/freebsd-ports-and-pkg/
 --------------
 
     cd /usr/ports/shells/bash
-    make config
-    make install
-    make clean
-    make distclean
+    make install clean
     rehash
     chsh -s /usr/local/bin/bash
 
+Добавить в ~/.bashrc
+
+    [[ -s ~/.bashrc ]] && source ~/.bashrc
+
+Так же ставим `/usr/ports/shells/bash-completion`, после чего в `~/.bashrc` добавляем:
+
+    export TERM=xterm-color
+
+    if [ -f /usr/local/etc/bash_completion ]; then
+            . /usr/local/etc/bash_completion
+    fi
+
+    alias ls='ls -G'
+    alias la='ls -laG'
+
+Для обновления конфига пользуем комманду `source ~/.bashrc`
+
+apt-get update
+apt-get install pygmentize
+alias pcat='pygmentize'
+
+pkg install source-highlight-3.1.6
+src-hilite-lesspipe.sh test.php
+
+touch ~/.bash_it/aliases/custom.aliases.bash
+echo alias cat=\'src-hilite-lesspipe.sh\' > ~/.bash_it/aliases/custom.aliases.bash
+
+
+http://wiki.pcprobleemloos.nl/my_freebsd_installation_and_configuration_guide/start
+http://www.hypexr.org/freebsd_ports_help.php
+http://mebsd.com/make-build-your-freebsd-word/pkgng-first-look-at-freebsds-new-package-manager.html
+http://bin63.com/how-to-install-nginx-and-php-fpm-on-freebsd
+
+
+После установки
+===============
+
+Обновление системы и портов
+---------------------------
+    freebsd--update fetch
+    freebsd-update install
+    portsnap fetch
+    portsnap extract
+
+
+http://itblog.su/linux-screen.html
+
+
+# Update for locate
+/usr/libexec/locate.updatedb
 
 
 http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/consoles.html
+
+/etc/ttys - настройки консолей, можно повыключать чтобы за зря не крутились
+
+http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/permissions.html
+
+Права доступа
+-------------
+
+0 --- Ничего
+1 --x Исполнение
+2 -w- Запись
+3 -wx Запись, исполнение
+4 r-- Чтение
+5 r-x Чтение, исполнение
+6 rw- Чтение, запись
+7 rwx Все
+
+Для каталога `x` говорит о том что в него можно перейти (`cd`) и работать в нем с файлами к которым есть доступ.
+Для получения списка файлов командой `ls` у каталога должен стоят флаг `r`
+
+Символические обозначения прав
+------------------------------
+
+u user
+g group
+o other
+a all
++ add
+- remove
+= set
+r read
+w write
+x execute
+t sticky bit
+s suid or sgid
+
+Запрет на удаление файла (даже для root)
+----------------------------------------
+
+    chflags sunlink file1
+
+Для снятия запрета:
+
+    chflags nosunlink file1
+
+Просмотр флагов:
+
+    ls -lo file1
+
+setuid
+------
+
+uid - id пользователя **запустившего** процесс
+euid - (effective uid) id пользователя с которым **выполняется** процесс
+
+chmod 4755 suidexample.sh
+ls -la suidexample.sh
+-rwsr-xr-x   1 trhodes  trhodes    63 Aug 29 06:36 suidexample.sh
+
+Заменяет `x` на `s`
+
+setgid
+------
+
+Аналогично `setuid`, программе запущенной с этим битом будут обеспечены права в соотв. с групой владельца файла, а не с группой пользователя
+
+chmod 2755 sgidexample.sh
+ls -la sgidexample.sh
+-rwxr-sr-x   1 trhodes  trhodes    44 Aug 31 01:49 sgidexample.sh
+
+Заменяет `x` на `s` у группы
+
+TODO: Почему это не работает?
+
+touch test.py
+cat test.py
+#!/usr/bin/env python
+from subprocess import call
+call('whoami')
+
+chmod 2755 test.py
+
+Всеравно выводит root
+
+sticky
+------
+
+sticky - установленный на каталог - позволяет производить удаление файла только владельцу файла.
+
+chmod 1777 /tmp
+ls -al / | grep tmp
+drwxrwxrwt  10 root  wheel         512 Aug 31 01:49 tmp
+
+добавляет `t` в хвост
+
+http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/disk-organization.html
+
+**Преимущества нескольких файловых систем**
+
+* Могут иметь различные опции монтирования. Например корневая - только чтение, а /home с параметром nosuid - который отменит s(g)uid для всех исполняемых файлов в этом разделе что в теории повышает безопасность системы.
+* FreeBSD по разному оптимизирует файловые системы, к примеру: с большим количеством маленьких файлов или с малым количеством больших файлов
+* Разделив часто используемые разделы от редко используемых - понижается риск поломки файловой системы на последних.
+
+Для увеличение раздела используется комманда `growfs`
+
+TODO: всетаки есть смысл оставить пару гигабайт винта для того чтобы в случае острой необходимости можно было рассширить раздел.
+
+
+export EDITOR="/usr/local/bin/vim"
+echo $EDITOR
+
+
+http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/basics-more-information.html
+
+Поиск
+=====
+
+man -k mail # поиск man'а с названием содержащим слово mail
+
+cd /usr/bin
+man -f *
+whatis *
+
+покажут информацию о файлах
+
+
+http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/ports-finding-applications.html
+
+Поиск:
+
+cd /usr/ports
+make search name=mongo
+
+
+Ядро
+====
+
+Зачем?
+------
+
+* Меньшее время загрузки
+* Уменьшение использования памяти
+* Поддержка дополнительного аппаратного обеспечения
+
+`dmesg` и `pciconf -lv` - отображает список обнаруженных железяк
+
+`/boot/kernel/` - доступные модули ядра
+`/boot/loader.conf` - настройки загружаемых модулей
+
+svn checkout svn://svn.freebsd.org/base/releng/9.0/ /usr/src
+
+options UFS_ACL - ACL для файловой системы
+
+
+http://taer-naguur.livejournal.com/149354.html
+http://habrahabr.ru/post/143546/
+
+
+Пользователи
+============
+
+adduser, rmuser, passwd
+
+Группы
+------
+
+pw groupadd teamtwo # создает группу
+pw groupshow teamtwo # показывает инфу о группе
+pw groupmod teamtwo -M mac # изменяет группу, -M перечисленные через запятую пользователи группы
+pw groupmod teamtwo -m mac # добавляет пользователя mac в группу
+id mac # выводит инфу о пользователе
+
+
+
 

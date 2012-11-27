@@ -62,3 +62,33 @@ tags: [convert, converter, doc, docx, ghostscript, gs, gswin32c, pdf, powershell
     }
 
 На выходе этого срипта - рисунок который уже можно подключать на страничку - собственно вот и свой google docs viewer получился
+
+**How to get PID of Word.application**
+
+    Add-Type -TypeDefinition @"
+    using System;
+    using System.Runtime.InteropServices;
+
+    public static class Win32Api
+    {
+    [System.Runtime.InteropServices.DllImportAttribute( "User32.dll", EntryPoint =  "GetWindowThreadProcessId" )]
+    public static extern int GetWindowThreadProcessId ( [System.Runtime.InteropServices.InAttribute()] System.IntPtr hWnd, out int lpdwProcessId );
+
+    [DllImport("User32.dll", CharSet = CharSet.Auto)]
+    public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+    }
+    "@
+
+    $word = New-Object -ComObject "Word.application"
+
+    $caption = [guid]::NewGuid()
+    $word.Caption = $caption
+    $HWND = [Win32Api]::FindWindow("OpusApp", $caption)
+    $wordPid = [IntPtr]::Zero
+    [Win32Api]::GetWindowThreadProcessId($HWND, [ref]$wordPid);
+
+    $word.visible = $true
+    Start-Sleep -Seconds 5
+
+    Stop-Process -Id $wordPid -ErrorAction SilentlyContinue
+
