@@ -439,3 +439,11 @@ id mac # выводит инфу о пользователе
 
 
 
+Вопросы
+=======
+
+Тюнинг файловой системы для файлового кеша
+http://nginx.org/r/sendfile/ru
+man sendfile
+zero_copy
+sysctl kern.maxvnodes

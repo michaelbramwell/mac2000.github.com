@@ -35,3 +35,15 @@ title: glamour notes
     apt-get install update-manager-core
     do-release-upgrade -d
 
+Добавление пользователя
+
+    adduser glamour
+    usermod -a -G sudo glamour
+    usermod -a -G www-data glamour
+
+nginx
+
+    apt-get install nginx
+
+/var/run/glamour.php5-fpm.sock
+
