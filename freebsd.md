@@ -140,6 +140,20 @@ ifconfig_em0_alias0="inet 192.168.5.202 netmask 255.255.255.0"
     /etc/rc.d/routing restart
     /etc/rc.d/resolv restart
 
+**Hyper-V**
+
+Для работы сети из под Hyper-V нужно удалить тамошнюю сетевуху и создать Legacy Adapter. Но и после этого оно не заработает, чтобы работало правим rc.conf вот так:
+
+    ifconfig_de0="DHCP media 100baseTX mediaopt full-duplex"
+
+После чего:
+
+    ifconfig de0 down
+    ifconfig de0 up
+    dhclient de0
+
+
+
 Порты
 -----
 
