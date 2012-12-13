@@ -264,7 +264,7 @@ http://bin63.com/how-to-install-nginx-and-php-fpm-on-freebsd
 
 Обновление системы и портов
 ---------------------------
-    freebsd--update fetch
+    freebsd-update fetch
     freebsd-update install
     portsnap fetch
     portsnap extract
