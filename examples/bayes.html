@@ -36,12 +36,13 @@
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script>
-Array.prototype.unique = function() {
-    var o = {}, i, l = this.length, r = [];
-    for(i=0; i<l;i+=1) o[this[i]] = this[i];
-    for(i in o) r.push(o[i]);
-    return r;
-};
+jQuery(document).ready(function($){
+	Array.prototype.unique = function() {
+	    var o = {}, i, l = this.length, r = [];
+	    for(i=0; i<l;i+=1) o[this[i]] = this[i];
+	    for(i in o) r.push(o[i]);
+	    return r;
+	};
 
 	var data = {};
 	var $spam = $('#spam');
@@ -151,5 +152,5 @@ Array.prototype.unique = function() {
 
 		return false;
 	});
-
+});
 </script>
