@@ -473,3 +473,14 @@ http://nginx.org/r/sendfile/ru
 man sendfile
 zero_copy
 sysctl kern.maxvnodes
+
+
+
+pkg_add -r portaudit
+rehash
+portaudit -Fda
+
+pkg_add -r portupgrade
+rehash
+pkgdb -F
+portupgrade -a
