@@ -60,3 +60,5 @@ Make your `Web.config` to look like this:
 Restart your site, and thats all, now you can access your bundles by urls: `/bundles/js/all`, `/bundles/css/all`, `/bundles/css/config`
 
 There is much more can be done with bundles, but in my case i need only such simple example
+
+On IIS 7 *microsoft.web.infrastructure.dll* also needed for proper work.
