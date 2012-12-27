@@ -484,3 +484,14 @@ pkg_add -r portupgrade
 rehash
 pkgdb -F
 portupgrade -a
+
+
+
+Добавление новго диска
+----------------------
+
+/rescue/dmesg # смотрим наш новый винт (IDE винты называются ad0, ad1, SCSI 0 da0, da1)
+/rescue/fdisk -BI /dev/ad1 # Инизиализируем новый диск
+/rescue/bsdlabel -wB /dev/ad1s1   # Размечаем его
+/rescue/newfs /dev/ad1s1a # Создаем новую FS
+/rescue/mount /dev/ad1s1a /mnt
