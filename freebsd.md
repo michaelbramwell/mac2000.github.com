@@ -490,6 +490,15 @@ portupgrade -a
 Добавление новго диска
 ----------------------
 
+/rescue/mount -a # монтируем наш диск (ad0)
+setenv TERM cons25 # нужно для запуска sysinstall
+/usr/sbin/sysinstall # разбиваем новый диск (ad1)
+# Configure > Fdisk > A (use entire disk), W (write), Q (quit)
+# Configure > Label > C (create, full size, FS file system, /mnt mount point), W (write), Q (quit)
+cp -r /var /mnt # копируем содержимое старого раздела
+
+
+
 /rescue/dmesg # смотрим наш новый винт (IDE винты называются ad0, ad1, SCSI 0 da0, da1)
 /rescue/fdisk -BI /dev/ad1 # Инизиализируем новый диск
 /rescue/bsdlabel -wB /dev/ad1s1   # Размечаем его
