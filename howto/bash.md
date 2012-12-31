@@ -93,3 +93,24 @@ Show available network cards
 ----------------------------
 
     ifconfig | grep "^[a-z]" | cut -d":" -f 1
+
+SSH authorize with keys
+-----------------------
+
+On your laptop run:
+
+    ssh-keygen
+
+Answer with default values to all questions. Then run:
+
+    ssh-copy-id user@server
+
+Change `user` and `server` to apropriate values. This will allow you to connect to remote machine without entering password.
+
+screen
+------
+
+To start new session use: `screen [-S my]`
+To reconnect to session use: `screen -r [my]`
+To list available sessions use: `screen -ls`
+Connect second user to screen: `screen -x [my]`
