@@ -118,3 +118,18 @@ To start new session use: `screen [-S my]`
 To reconnect to session use: `screen -r [my]`
 To list available sessions use: `screen -ls`
 Connect second user to screen: `screen -x [my]`
+
+
+scp
+---
+
+Local to remote
+
+    scp path/myfile user@8.8.8.8:/full/path/to/new/location/
+
+Remote to local
+
+    scp user@8.8.8.8:/full/path/to/file /path/to/put/here
+
+Notice semicolon before path to remote file.
+Under windows you can use `pscp.exe` wich comes with putty.
