@@ -107,6 +107,10 @@ Answer with default values to all questions. Then run:
 
 Change `user` and `server` to apropriate values. This will allow you to connect to remote machine without entering password.
 
+On Windows, run `puttygen.exe`, generate `SSH-2 RSA` with 1024 bits and save generated keys.
+
+Now in putty under `Connection\SSH\Auth` select generated private key, and copy your public key to servers `~/.ssh/authorized_keys`
+
 screen
 ------
 
