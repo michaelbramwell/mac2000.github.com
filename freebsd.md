@@ -3,6 +3,308 @@ layout: page
 title: FreeBSD
 ---
 
+from murka laptop
+-----------------
+
+FreeBSD Course Notes
+====================
+
+mount_smbfs - mount windows share without samba
+
+howe work: read about ZFS
+
+Создаем в памяти, форматируем, монтируем
+
+mdconfig -a -t malloc -s 10m
+# -a - append
+# -t malloc - how much 
+# -s 10m - size of allocation
+# optional -u md10 - to give it a name
+#mdconfig -l -f my.iso
+
+#mkfs /dev/md0 for linux
+
+newfs /dev/md0
+mount /dev/md0 /mnt/
+
+размонтируем и удаляем ноду
+umount /mnt/
+mdconfig -d -u md0
+
+
+Example
+
+    mount -t msdosfs /dev/fs0 /mnt/ -o ro
+    mount_smbfs -I 192.168.1.33 -W WORKGOUP //plim@sweethome/photos /media
+# -W - optional coz we are write fron name
+
+ll /user/share/lo
+locale # show current locale
+
+setenv LANG 'ru_RU.UTF-8' # on sh
+export LANG='ru_RU.UTF-8' # on bash
+
+homework: newfs, tunefs
+
+
+Для работы с диском рекомендую установить /usr/ports/sysutils/linuxfdisk
+
+
+df -h # show available space on hard drives
+du -d1 # show directories sizes, -d1 - deep
+
+-rwxrwxrwx # - - file
+d......... # d - directory
+l......... # l - link
+c......... # c - device (from /dev/), in linux - c - is последовательное, b - паралельное etc, s - socket
+
+soft link - аналог ярлыка в винде (-s)
+hard link - жесткие ссылки
+
+touch 1.txt
+echo hello2 > 2.txt
+ln -s 1.txt 3.txt
+ln 1.txt 4.txt
+
+
+hard link - еще одна запись в таблице файловой системе, можно делать только в пределах одной файловой системы, это более низкоуровневая ссылка (ярлык)
+
+место на винте никогда не перетреться пока мы не удалим все ссылающиеся hard link файлы
+
+привелегии меняются сразу для всех
+
+ls -lA # вывести список папок без ./ и ../ - очень удобно для скриптов!
+
+Дополнительне флаги
+-------------------
+
+chflags - обязательно посмотреть
+
+    arch - архивирован (меняется сразу после изменения файла пользователем, удобно для бекапов - берем все файлы у которых изменился параметр arch - соотв. только они менялись с прошлого раза и только их нужно бекапить)
+
+    sappnd - файл только для Дозаписи, нельзя перетереть предыдущую инфу
+
+chmod +x 1.txt - сделать файл исполняемым для всех
+
+
+http://lleo.me/arhive/humor/serafim.htm
+
+
+chown - может использоваться только рутом?
+
+chown admin:mail 2.txt
+chown :mail 2.txt - пеменять только группу!
+
+-R - recursive
+
+Поиск
+-----
+
+where ls - поиск исполняемых файлов
+whereis ls - поиск исполняемых файлов, манов и исходников
+
+locate ls
+
+find /etc  -iname \*rc\*
+
+-iname - case insensetive
+
+homework: find, mount, newfs, tunefs, chmod
+
+
+
+homework:
+
+grep +posix metacharactes
+
+man grep
+
+grep regex
+
+
+
+ntpdate pool.ntp.org # fet times
+
+date +"Today: %d.%m.%Y%nTime: %H:%M"
+
+#!/bin/sh
+
+datevar=`date +%d%m%Y`
+echo $datevar
+touch file$datevar
+
+
+сброс пароля
+------------
+
+грузимся в сингл моде
+
+/bin/csh
+/rescue/mount # посмотреть че смонтировалось
+/rescue/mount -a # смотнировать все по файлу fstab
+passwd # сменит пароль рута
+/rescue/reboot
+
+запрет сброса пароля рута
+-------------------------
+
+/etc/ttys
+
+заменяем опцию secure на insecure
+что запрещает вход рута без пароля
+в однопользовательском режиме
+
+sys v5
+------
+runlevels
+one for single user
+next for multi user
+next for multi user in X
+6 for reboot
+0 for halt
+other - зарезервированны
+
+в linux в init.d все скрипты
+в rc0-6 - симлинки на rc.d
+
+bsd stye
+--------
+
+/etc/rc.local - каждая строчка - команда
+/etc/rc.conf - каждая строчка - переменная вкл\выкл
+
+в /rc.d/ в файлах (напр. sshd) имеют включение . /etc/rc.subr
+обрабатывают набор команд типа start, stop etc и самое гланвое он смотрит наличие переменной rcvar в файле rc.conf чтобы знать запускать сервис или нет
+
+init - смотрит в rc.conf на переменные которые YES и запускает скрипты из rc.d соотв. скрипты
+
+но вначале в /etc/defaults/rc.conf
+
+* скрипты запускаются по алфавиту
+
+* сервисы можно перезапускать
+/etc/rc.d/sshd - выведет список допустимых команд
+напр:  /etc/rc.d/sshd 
+
+
+modules
+-------
+
+kldstat - показывает загруженные модули
+kldload sound - загрузить модуль
+kldload /boot/kernel/sound.ko
+kldunload sound - выгрузить модуль
+
+
+/boot/loader.conf - модули которые загружать при закгрущке
+
+/boot/defaults/loader.conf - модули загружаемые по умолчанию
+
+/etc/syctl.conf - параметры ядра
+
+net.inet.ip.forwarding - ф-ии роутера
+
+#изменение параметра ядра
+sysctl net.inet.ip.forwarding=0
+
+чтобы оставались после перезагрузки нужно их прописать в 
+
+/etc/rc.conf
+
+выключение
+----------
+
+shutdown -r - reboot
+shutdown -h - poweroff
+shutdown -r +10 min - reboot in 10 mins
+shutdown -r now -reboot now
+killall shutdown - cancel
+
+ll /var/db/pkg # - показывает че стоит
+
+
+pkg_add -r vim-lite
+
+
+
+http://vds-admin.ru/freebsd/obnovlenie-yadra-i-mira-freebsd
+
+
+vim
+---
+
+shift+z - закрывает вим в фоновый режим
+делаем что надо в консоли и потом коммандой fg возвращаемся в вим - мега штука!
+
+iconv - проверить еще раз под виндой
+
+
+/usr/local/share/vim/vim73/vimrc_example.vim
+
+UTF-8
+-----
+
+Исправляем файл /etc/login.conf:
+
+    russian|Russian Users Accounts:\
+    :charset=UTF-8:\
+    :lang=ru_RU.UTF-8:\
+    :tc=default:
+
+Затем выполняем в консоли:
+
+    cap_mkdb /etc/login.conf
+    pw usermod -n $username -L russian
+
+Вместо "$username" пишете имя пользователя, к примеру "root".
+
+Дополнительно к вышеприведенному способу, можно прописать переменные в используемом shell
+
+
+#ee /etc/csh.cshrc
+
+
+
+setenv LANG ru_RU.UTF-8
+setenv LC_CTYPE ru_RU.UTF-8
+setenv LC_COLLATE POSIX
+setenv LC_ALL ru_RU.UTF-8
+
+
+Опционально, для тех кто любит bash
+
+
+# ee /etc/profile
+
+
+
+LANG="ru_RU.UTF-8"; export LANG
+LC_CTYPE="ru_RU.UTF-8"; export LC_CTYPE
+LC_COLLATE="POSIX"; export LC_COLLATE
+LC_ALL="ru_RU.UTF-8"; export LC_ALL
+
+
+
+# ee /root/.cshrc
+
+
+
+setenv LANG ru_RU.UTF-8
+setenv LC_CTYPE ru_RU.UTF-8
+setenv LC_COLLATE POSIX
+setenv LC_ALL ru_RU.UTF-8
+
+
+http://habrahabr.ru/post/143546/
+
+http://dadv.livejournal.com/162099.html
+http://kvasdopil.livejournal.com/31964.html
+
+
+
+
+
+
 Файловая система
 ----------------
 
