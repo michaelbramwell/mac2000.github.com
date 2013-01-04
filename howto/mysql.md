@@ -28,13 +28,9 @@ Create toor user
 Create user and database
 ------------------------
 
-    CREATE USER 'USER_LOGIN'@'%' IDENTIFIED BY 'USER_PASSWORD';
-    GRANT USAGE ON *.* TO 'USER_LOGIN'@'%' IDENTIFIED BY 'USER_PASSWORD' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-
-    CREATE DATABASE IF NOT EXISTS `USER_LOGIN`;
-    GRANT ALL PRIVILEGES ON `USER_LOGIN`.* TO 'USER_LOGIN'@'%';
-
-    ALTER DATABASE `USER_LOGIN` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+    CREATE USER 'USERNAME'@'%' IDENTIFIED BY 'PASSWORD';
+    CREATE DATABASE IF NOT EXISTS USERNAME CHARACTER SET utf8 COLLATE utf8_general_ci;
+    GRANT ALL PRIVILEGES ON USERNAME.* TO 'USERNAME'@'%';
 
 Delete user and his database
 ----------------------------
@@ -104,3 +100,21 @@ Minimal phpmyadmin config.inc.php
     $cfg['Servers'][1]['verbose'] = 'localhost';
     $cfg['Servers'][1]['auth_type'] = 'cookie';
     $cfg['blowfish_secret'] = '507e9d4d8bbdc8.34867123';
+
+Allow external connections
+--------------------------
+
+Changes in `/etc/mysql/my.cnf`:
+
+    #bind-address = 127.0.0.1
+    bind-address = 0.0.0.0
+
+Now connect to mysql and run following command:
+
+    GRANT ALL ON *.* TO root@'%' IDENTIFIED BY 'password';
+    FLUSH PRIVILEGES;
+
+Where:
+
+`*.*` - database.table to allow access, star means all.
+`root@'%'` - username and remote host(ip), percent means all.
