@@ -93,3 +93,43 @@ Show available network cards
 ----------------------------
 
     ifconfig | grep "^[a-z]" | cut -d":" -f 1
+
+SSH authorize with keys
+-----------------------
+
+On your laptop run:
+
+    ssh-keygen
+
+Answer with default values to all questions. Then run:
+
+    ssh-copy-id user@server
+
+Change `user` and `server` to apropriate values. This will allow you to connect to remote machine without entering password.
+
+On Windows, run `puttygen.exe`, generate `SSH-2 RSA` with 1024 bits and save generated keys.
+
+Now in putty under `Connection\SSH\Auth` select generated private key, and copy your public key to servers `~/.ssh/authorized_keys`
+
+screen
+------
+
+To start new session use: `screen [-S my]`
+To reconnect to session use: `screen -r [my]`
+To list available sessions use: `screen -ls`
+Connect second user to screen: `screen -x [my]`
+
+
+scp
+---
+
+Local to remote
+
+    scp path/myfile user@8.8.8.8:/full/path/to/new/location/
+
+Remote to local
+
+    scp user@8.8.8.8:/full/path/to/file /path/to/put/here
+
+Notice semicolon before path to remote file.
+Under windows you can use `pscp.exe` wich comes with putty.
