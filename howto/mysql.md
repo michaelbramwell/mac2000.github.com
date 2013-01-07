@@ -118,3 +118,9 @@ Where:
 
 `*.*` - database.table to allow access, star means all.
 `root@'%'` - username and remote host(ip), percent means all.
+
+Copy table from one database to another
+---------------------------------------
+
+    DROP TABLE IF EXISTS destination_db.destination_table;
+    CREATE TABLE IF NOT EXISTS destination_db.destination_table SELECT * FROM source_db.source_table;
