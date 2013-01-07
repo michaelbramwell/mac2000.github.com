@@ -124,3 +124,107 @@ Copy table from one database to another
 
     DROP TABLE IF EXISTS destination_db.destination_table;
     CREATE TABLE IF NOT EXISTS destination_db.destination_table SELECT * FROM source_db.source_table;
+
+Add column
+----------
+
+    ALTER TABLE books ADD COLUMN isbn VARCHAR(10) NOT NULL
+
+Rename(change) column
+---------------------
+
+    ALTER TABLE books CHANGE COLUMN isbn ISBN VARCHAR(10) NOT NULL
+
+Delete column
+-------------
+
+    ALTER TABLE books DROP COLUMN ISBN
+
+Create index
+------------
+
+    CREATE INDEX isbn ON books(isbn);
+    CREATE INDEX title_author ON books(title, author);
+
+Delete index
+------------
+
+    DROP INDEX isbn ON books
+
+Insert multiple rows
+--------------------
+
+    INSERT INTO books VALUES
+    (...),
+    (...);
+
+Insert data from another table
+------------------------------
+
+    INSERT INTO destination_table(columns, to, insert, ...) SELECT columns, to, insert, ... FROM source_table;
+
+Import data strategies
+----------------------
+
+Turn off indexes:
+
+    ALTER TABLE books DISABLE KEYS;
+    -- IMPORT DATA HERE
+    ALTER TABLE books ENABLE KEYS;
+
+For MyISAM:
+
+    LOCK TABLES books WRITE;
+    -- IMPORT DATA HERE
+    UNLOCK TABLES;
+
+For InnoDB:
+
+    BEGIN;
+    -- IMPORT DATA HERE
+    COMMIT;
+
+Dates
+-----
+
+    SELECT DATE_SUB(CURDATE(), INTERVAL 1 WEEK),  DATE_ADD(CURDATE(), INTERVAL 1 WEEK)
+
+Create user
+-----------
+
+    CREATE USER username@host IDENTIFIED BY 'password'
+
+Will add record to mysql.user table
+
+Delete user
+-----------
+
+    DROP USER username@host
+
+Rename user
+-----------
+
+    RENAME USER username@host TO new_username@host
+
+Change password
+---------------
+
+    SET PASSWORD FOR username@host = PASSWORD('password')
+
+Create user and grand privileges
+--------------------------------
+
+    GRANT ALL ON sakila.* TO username@host IDENTIFIED BY 'password';
+
+Is user not exists it will be created, if user exists you can skip `IDENTIFIED BY 'password'` to leave old user password, but if you will not - password will be changed to the new one.
+
+Show user privileges
+--------------------
+
+    SHOW GRANTS FOR username@host
+
+Dissalow user change data
+-------------------------
+
+    REVOKE INSERT, UPDATE, DELETE ON sakila.payment FROM username@host
+
