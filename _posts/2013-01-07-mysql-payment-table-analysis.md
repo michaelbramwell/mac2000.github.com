@@ -1,7 +1,7 @@
 ---
 layout: post
 title: MySQL payment table analysis
-tags: [mysql]
+tags: [mysql, analysis, olap, cube, dates]
 ---
 
 http://downloads.mysql.com/docs/sakila-db.zip - training database with payment table.
