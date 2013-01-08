@@ -53,10 +53,10 @@ homework: newfs, tunefs
     df -h # show available space on hard drives
     du -d1 # show directories sizes, -d1 - deep
 
--rwxrwxrwx # - - file
-d......... # d - directory
-l......... # l - link
-c......... # c - device (from /dev/), in linux - c - is последовательное, b - паралельное etc, s - socket
+    -rwxrwxrwx # - - file
+    d......... # d - directory
+    l......... # l - link
+    c......... # c - device (from /dev/), in linux - c - is последовательное, b - паралельное etc, s - socket
 
 soft link - аналог ярлыка в винде (-s)
 hard link - жесткие ссылки
