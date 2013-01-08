@@ -46,3 +46,14 @@ Get output of vim command
     "ap
 
 `:redir @a` - will redirect output to `a` register, `"ap` - paste text from register
+
+Pasting text without auto indent
+--------------------------------
+
+    :set past
+    # insert text
+    :set nopaste
+
+Or you can bind it to key like this:
+
+    set pastetoggle=<F2>
