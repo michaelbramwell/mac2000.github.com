@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fill MySQL calendar table
-tags: [mysql]
+tags: [mysql, dates]
 ---
 
 The only possible way to get analysis data from mysql by date ranges with filled missing dates is to have separate calendar in join with results table.
