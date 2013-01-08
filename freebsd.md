@@ -9,40 +9,40 @@ from murka laptop
 FreeBSD Course Notes
 ====================
 
-mount_smbfs - mount windows share without samba
+`mount_smbfs` - mount windows share without samba
 
 howe work: read about ZFS
 
 Создаем в памяти, форматируем, монтируем
 
-mdconfig -a -t malloc -s 10m
-# -a - append
-# -t malloc - how much 
-# -s 10m - size of allocation
-# optional -u md10 - to give it a name
-#mdconfig -l -f my.iso
+    mdconfig -a -t malloc -s 10m
+    # -a - append
+    # -t malloc - how much
+    # -s 10m - size of allocation
+    # optional -u md10 - to give it a name
+    #mdconfig -l -f my.iso
 
-#mkfs /dev/md0 for linux
+    #mkfs /dev/md0 for linux
 
-newfs /dev/md0
-mount /dev/md0 /mnt/
+    newfs /dev/md0
+    mount /dev/md0 /mnt/
 
-размонтируем и удаляем ноду
-umount /mnt/
-mdconfig -d -u md0
+    #размонтируем и удаляем ноду
+    umount /mnt/
+    mdconfig -d -u md0
 
 
 Example
 
     mount -t msdosfs /dev/fs0 /mnt/ -o ro
     mount_smbfs -I 192.168.1.33 -W WORKGOUP //plim@sweethome/photos /media
-# -W - optional coz we are write fron name
+    # -W - optional coz we are write fron name
 
-ll /user/share/lo
-locale # show current locale
+    ll /user/share/lo
+    locale # show current locale
 
-setenv LANG 'ru_RU.UTF-8' # on sh
-export LANG='ru_RU.UTF-8' # on bash
+    setenv LANG 'ru_RU.UTF-8' # on sh
+    export LANG='ru_RU.UTF-8' # on bash
 
 homework: newfs, tunefs
 
@@ -50,8 +50,8 @@ homework: newfs, tunefs
 Для работы с диском рекомендую установить /usr/ports/sysutils/linuxfdisk
 
 
-df -h # show available space on hard drives
-du -d1 # show directories sizes, -d1 - deep
+    df -h # show available space on hard drives
+    du -d1 # show directories sizes, -d1 - deep
 
 -rwxrwxrwx # - - file
 d......... # d - directory
@@ -184,7 +184,7 @@ init - смотрит в rc.conf на переменные которые YES и
 
 * сервисы можно перезапускать
 /etc/rc.d/sshd - выведет список допустимых команд
-напр:  /etc/rc.d/sshd 
+напр:  /etc/rc.d/sshd
 
 
 modules
@@ -207,7 +207,7 @@ net.inet.ip.forwarding - ф-ии роутера
 #изменение параметра ядра
 sysctl net.inet.ip.forwarding=0
 
-чтобы оставались после перезагрузки нужно их прописать в 
+чтобы оставались после перезагрузки нужно их прописать в
 
 /etc/rc.conf
 
@@ -705,9 +705,9 @@ http://www.freebsd.org/doc/ru_RU.KOI8-R/books/handbook/basics-more-information.h
 
 man -k mail # поиск man'а с названием содержащим слово mail
 
-cd /usr/bin
-man -f *
-whatis *
+    cd /usr/bin
+    man -f *
+    whatis *
 
 покажут информацию о файлах
 
@@ -843,7 +843,8 @@ umask 22 - создавать все файлы 400
 setenv EDITOR vim
 
 Поиск по истории!!!!
-r<UP> - покажет первую команду которая начинается на r
+
+    r<UP> - покажет первую команду которая начинается на r
 
 /usr/share/skel - шаблон копирующийся при создании новго файла (но обычно он в /etc)
 
@@ -904,53 +905,53 @@ pkg_add -r tmux
 TMUX
 ----
 
-http://the-bosha.ru/2010/06/01/terminal-window-manager-tmux/
-еще тут глянуть =- распечать с картинками http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
+    http://the-bosha.ru/2010/06/01/terminal-window-manager-tmux/
+    еще тут глянуть =- распечать с картинками http://blog.hawkhost.com/2010/06/28/tmux-the-terminal-multiplexer/
 
-Команды следует вводить после префикса (в данном случае Ctrl-b):
-Функция  Клавиша
-Справка по командам  ?
-Командная строка  :
-Увести tmux в фон  d
-Создать новое окно  c
-Следующее окно  n
-Предыдущее окно  p
-Выбрать окно под соответствующим номером  1\2\3\4\5\6\7\8\9\0
-Предыдущее окно  l
-Выбрать окно из списка  w
-Выбрать сессию  s
-Разделить окно вертикально  "
-Разделить окно горизонтально  %
-Листать "слои"  Space(пробел)
-Удалить фрейм  !
-Переместить фрейм вверх  {
-Переместить фрейм вниз  }
-Следущий фрейм  o
-Изменить размеры фрейма  Alt + Стрелки
-Удалить окно  &
-Обновить клиент  r
-Часики :)  t
-Найти окно  f
-Переименовать окно  ,
-Изменить номер окна  .
-Перейти в режим копирования  [
-Вставить содержимое буфера обмена  ]
+    Команды следует вводить после префикса (в данном случае Ctrl-b):
+    Функция  Клавиша
+    Справка по командам  ?
+    Командная строка  :
+    Увести tmux в фон  d
+    Создать новое окно  c
+    Следующее окно  n
+    Предыдущее окно  p
+    Выбрать окно под соответствующим номером  1\2\3\4\5\6\7\8\9\0
+    Предыдущее окно  l
+    Выбрать окно из списка  w
+    Выбрать сессию  s
+    Разделить окно вертикально  "
+    Разделить окно горизонтально  %
+    Листать "слои"  Space(пробел)
+    Удалить фрейм  !
+    Переместить фрейм вверх  {
+    Переместить фрейм вниз  }
+    Следущий фрейм  o
+    Изменить размеры фрейма  Alt + Стрелки
+    Удалить окно  &
+    Обновить клиент  r
+    Часики :)  t
+    Найти окно  f
+    Переименовать окно  ,
+    Изменить номер окна  .
+    Перейти в режим копирования  [
+    Вставить содержимое буфера обмена  ]
 
 
 
-После "детача", вернуть tmux на родину можно передав ему параметр attach:
+    После "детача", вернуть tmux на родину можно передав ему параметр attach:
 
-    tmux attach 
-    tmux attach
+        tmux attach
+        tmux attach
 
-В случае если сессий несколько, то можно посмотреть их список с помощью ls, и выбрать нужную передав к attach ещё и аргумент в виде номера сессии:
+    В случае если сессий несколько, то можно посмотреть их список с помощью ls, и выбрать нужную передав к attach ещё и аргумент в виде номера сессии:
 
-    --[bosha@home-pc]--(~)
-    L-[% >tmux ls # Вывод списка всех сессий
-    0: 1 windows (created Mon May 31 23:08:16 2010) [104x48] (attached)
-    1: 1 windows (created Mon May 31 23:33:19 2010) [80x23]
-    --[bosha@home-pc]--(~)
-    L-[% >tmux attach -t 1 # Подключение к конкретной сессии
+        --[bosha@home-pc]--(~)
+        L-[% >tmux ls # Вывод списка всех сессий
+        0: 1 windows (created Mon May 31 23:08:16 2010) [104x48] (attached)
+        1: 1 windows (created Mon May 31 23:33:19 2010) [80x23]
+        --[bosha@home-pc]--(~)
+        L-[% >tmux attach -t 1 # Подключение к конкретной сессии
 
 
 
@@ -960,7 +961,7 @@ http://the-bosha.ru/2010/06/01/terminal-window-manager-tmux/
  top
  ---
 
- load averages: 
+ load averages:
  3 - цифры, первая - 15мин, 5мин, 1мин - очередь к процессу
 
  если однопроцессораная система и очередь меньше единицы - то процессор не нагружен, (если моного процессораня - том ножим на количество процессоров)
