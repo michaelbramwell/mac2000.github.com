@@ -10,7 +10,7 @@
     <meta name="Date" content="{{ page.date }}">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/org/baFo">
     <link rel="stylesheet" href="/css/styles.css">
-    {% if page.tags %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
+    {% if page.tags.length > 0 %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
 </head>
 <body>
     <a name="top"></a>
