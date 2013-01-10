@@ -1025,3 +1025,53 @@ ps aux # показывает все процессы
 
 
 !!! начинаем с  Задания. Потоки ввода и вывода
+
+TMUX
+====
+
+Sessions
+--------
+
+    tmux [new -s session_name] # Create new session
+    tmux [attach -t session_name] # Attach to session
+    tmux switch -t session_name # Switch between sessions
+    tmux list-sessions # List available sessions
+    tmux deatch # Detach from session (prefix + d)
+
+Windows
+-------
+
+    tmux new-window # create new window (prefix + c)
+    tmux select-window -t 0-9 # switch to window (prefix + 0-9)
+
+Panels
+------
+
+    tmux split-window # split vertically (prefix + ")
+    tmux split-window -h # split horizontal (prefix + %)
+    tmux swap-pane -[UDLR] # swap (Ctrl+b, Shift+[ or Ctrl+b, Shift+]) (prefix + { or })
+    tmux select-pane -[UDLR] # ?
+
+Helpful
+-------
+
+    tmux list-keys
+    tmux list-commands
+    tmux info
+
+.tmux.conf example
+------------------
+
+    # remap prefix to Control + a
+    set -g prefix C-a
+    unbind C-b
+    bind C-a send-prefix
+
+    # force a reload of the config file
+    unbind r
+    bind r source-file ~/.tmux.conf
+
+    # quick pane cycling
+    unbind ^A
+    bind ^A select-pane -t :.+
+
