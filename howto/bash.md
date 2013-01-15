@@ -111,6 +111,21 @@ On Windows, run `puttygen.exe`, generate `SSH-2 RSA` with 1024 bits and save gen
 
 Now in putty under `Connection\SSH\Auth` select generated private key, and copy your public key to servers `~/.ssh/authorized_keys`
 
+To make it more easier, create file `~/.ssh/config` with config like this:
+
+	Host example
+		User example
+		Hostname example.com
+
+Now instead:
+
+	ssh example@example.com
+
+You can use:
+
+	ssh example
+
+
 screen
 ------
 
