@@ -1393,3 +1393,7 @@ options         IPFIREWALL
 options         DUMMYNET
 options         IPFIREWALL_DEFAULT_TO_ACCEPT
 options         IPDIVERT
+
+
+portupgrade -aPPR # do a massive network binary upgrade
+
