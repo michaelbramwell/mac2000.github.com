@@ -1,3 +1,5 @@
+vladimir
+
 from murka laptop
 -----------------
 
@@ -779,8 +781,14 @@ portaudit -Fda
 
 pkg_add -r portupgrade
 rehash
-pkgdb -F
+pkgdb -F # or `portversion` wich do the same
 portupgrade -a
+
+
+portversion - выводит список установленных програм и < = > в зависимости от того какая версия
+
+portupgrade -aRry # обновит все и вся, R - рекурсия вверх, r - рекурсия вниз, y - отвечать на все "ДА", а - обновлять все
+
 
 
 
@@ -1075,6 +1083,8 @@ Helpful
     unbind ^A
     bind ^A select-pane -t :.+
 
+В .tmux.conf если добавить new-session то при вызове tmux attach и отсутсвии сессий, тмукс будет создавать новую
+
 
 
 Потоки ввода\вывода
@@ -1177,6 +1187,18 @@ shell programming
 
 смотрит в env на наличие переменной python, если такой нет - запускает что то вроде whereis и запускает ее
 
+tmux autoload
+-------------
+
+~/.tmux.conf
+
+new-session
+
+~/.cshrc
+
+/usr/local/bin/tmux attach
+
+
 
 
 DATA=`date +%H:%M` # отработает комманду и запишет в перменную $dDATA
@@ -1249,4 +1271,125 @@ camel book "Programming Perl"
 
 http://www.dreamsyssoft.com/unix-shell-scripting/case-tutorial.php
 
+УСТАНОВКА ПО
+============
 
+freshports.org - сайт содержащий инфу по пакетам которые мы ставим через pkg_add
+
+cvsup - для обновления
+cvsup-without-gui - то же самое только без Х
+
+Для установки:
+sudo pkg_add -r cvsup-without-gui
+rehash
+
+/usr/share/examples/cvsup/ - содержит supfile - которые позволяют обновитьпорты, систему и т.п.
+
+sudo cp /usr/share/examples/cvsup/ports-supfile /etc/supfile
+
+меняем в конфиге
+
+*default host=CHANGE_THIS.FreeBSD.org
+
+идем в handbook, ищем CVSUP Sites Mirrors
+
+*default relase=cvs tag=. #tag=. - это что то типа trunk'а
+
+ports-all # обновляет все и вся, но если мы хотим мы можем обновить только нужны нам порты
+
+так же добавляем 
+
+*default release=cvs tag=RELENG_9_0
+src-all
+
+выглядит по концовке вот так:
+
+  1 *default host=cvsup3.ua.FreeBSD.org
+  2 *default base=/var/db
+  3 *default prefix=/usr
+  4 *default release=cvs tag=RELENG_9_1 # можно ставить RELENG_9 - будет самая свежая 9-я версия, и так и нужно делать! так как в моем случае я не скачал пару последних фиксов
+  5 *default delete use-rel-suffix
+  6 
+  7 *default compress
+  8 
+  9 src-all
+ 10 
+ 11 *default release=cvs tag=.
+ 12 ports-all
+
+cvsup -g -L 2 /etc/supfile
+
+В файле, /usr/src/UPDATING - содежит инфу по версиям ядра - очень важно его посмотреть, так как там частенько указывают что может отвалиться после обновления!
+
+По сути мы сделали тот же portsnap и freebsd-update #homework - посмотреть как через freebsd-update обновить исходники
+
+cvsup по ходу самый классный так как не занимается выкачкой всего и вся, а выкачивает только дельты - поверх того что уже есть
+
+Утилита make - надстройка над сс(ompiler) собирает все скомпилированные файлы в бинарик по правилам описаным в конфиге
+
+/etc/make.conf - глобальные настройки для make
+
+в папке может лежать файл Makefile - содержащий локальные настройки
+
+В /usr/src, для make есть важные комманды: kernel и world - позволяющие скомпилировать и установить ядро, там же в описании есть 11 шагов для обновления системы!
+
+Обновление, системы, пример:
+cd /usr/src
+make buildworld
+#make buildkernel KERNCONF=GENERIC
+#make installkernel KERNCONF=GENERIC
+make kernel # вместо двух предыдущих
+reboot
+mergemaster -p # мерджит конфиги
+make installworld
+make delete-old
+mergemaster
+reboot
+make delete-old-libs
+
+portupdate
+----------
+
+cd /usr/ports/ports-mgmt/portupgrade
+make install clean
+
+make install clean # запускает по очереди все config, fetch, checksum, etc...
+
+# Чтобы на перед все скачать и настроить делаем так:
+make fetch-recursive # стянуть все
+make config-recursive # понастраивать все
+make install clean
+
+
+# VPS - сообщения об inode'ах - это не ограничение по месту на диске, а ограничение по количеству файлов
+
+
+Конфиг ядра
+vim /usr/src/sys/i386/conf/GENERIC
+
+cp /usr/src/sys/i386/conf/GENERIC /root/MYKERN
+
+ln -s /root/MYKERN /usr/src/sys/i386/conf/
+
+# почему симлинком? - для того чтобы после очередного ядра не потерять конфиг
+
+GENERIC - максимально совместимое ядро
+NOTES - ядро в котором включено все и вся, оно как правило не рабочее но пользуется для того чтобы посмотреть какие есть опции (системно зависимый - зависит от версии, то есть не просто все все все опции - а все опции для i386 (в нашем случае))
+/usr/src/sys/conf/NOTES - системно не зависимые заметки
+
+
+dmesg - там куча сообщений, как правило типа le2: ....., так вот le - удалять из ядра нельзя!
+
+домашка: заполнить /root/MYKERN
+
+в линуксе ядро конфигуюрируется с помощю make menuconfig или make xconfig
+
+http://www.freebsd.org/doc/en/books/handbook/kernelconfig-config.html
+
+include GENERIC
+ident MYKERNEL
+
+options         IPFIREWALL
+options         DUMMYNET
+options         IPFIREWALL_DEFAULT_TO_ACCEPT
+options         IPDIVERT
