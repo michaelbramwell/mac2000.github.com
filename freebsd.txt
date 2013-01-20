@@ -44,6 +44,17 @@ Example
 homework: newfs, tunefs
 
 
+Locale UTF-8
+
+/etc/csh.cshrc
+
+    setenv LANG en_US.UTF-8
+    setenv LC_ALL en_US.UTF-8
+    setenv EDITOR /usr/local/bin/vim
+
+to check run `locale`
+
+
 Для работы с диском рекомендую установить /usr/ports/sysutils/linuxfdisk
 
 
@@ -1297,7 +1308,7 @@ sudo cp /usr/share/examples/cvsup/ports-supfile /etc/supfile
 
 ports-all # обновляет все и вся, но если мы хотим мы можем обновить только нужны нам порты
 
-так же добавляем 
+так же добавляем
 
 *default release=cvs tag=RELENG_9_0
 src-all
@@ -1309,11 +1320,11 @@ src-all
   3 *default prefix=/usr
   4 *default release=cvs tag=RELENG_9_1 # можно ставить RELENG_9 - будет самая свежая 9-я версия, и так и нужно делать! так как в моем случае я не скачал пару последних фиксов
   5 *default delete use-rel-suffix
-  6 
+  6
   7 *default compress
-  8 
+  8
   9 src-all
- 10 
+ 10
  11 *default release=cvs tag=.
  12 ports-all
 
@@ -1364,6 +1375,7 @@ make install clean
 # VPS - сообщения об inode'ах - это не ограничение по месту на диске, а ограничение по количеству файлов
 
 
+
 Конфиг ядра
 vim /usr/src/sys/i386/conf/GENERIC
 
@@ -1397,3 +1409,5 @@ options         IPDIVERT
 
 portupgrade -aPPR # do a massive network binary upgrade
 
+
+	dmesg | egrep "^\[.*\] [a-z0-9]+:" | cut -d":" -f 1 | cut -d"]" -f 2 | sed 's/^ *//' | sort | uniq
