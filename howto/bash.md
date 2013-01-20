@@ -155,3 +155,8 @@ packages
 	dpkg --get-selections # show installed packages
 	sudo dpkg -i app.dep # install package
 	sudo dpkg -r app # uninstall package, run sudo apt-get autoremove after
+
+change default editor
+---------------------
+
+	sudo update-alternatives --config editor
