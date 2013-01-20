@@ -148,3 +148,10 @@ Remote to local
 
 Notice semicolon before path to remote file.
 Under windows you can use `pscp.exe` wich comes with putty.
+
+packages
+--------
+
+	dpkg --get-selections # show installed packages
+	sudo dpkg -i app.dep # install package
+	sudo dpkg -r app # uninstall package, run sudo apt-get autoremove after
