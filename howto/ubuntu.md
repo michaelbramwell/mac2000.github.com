@@ -45,3 +45,16 @@ Node.js
     sudo add-apt-repository ppa:chris-lea/node.js
     sudo apt-get update
     sudo apt-get install nodejs npm
+
+MongoDB
+-------
+
+    sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+
+Create a `/etc/apt/sources.list.d/10gen.list` file and include the following line for the 10gen repository.
+
+    deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
+
+    sudo apt-get update
+    sudo apt-get install mongodb-10gen
+s
