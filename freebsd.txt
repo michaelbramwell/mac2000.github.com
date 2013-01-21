@@ -1412,3 +1412,10 @@ portupgrade -aPPR # do a massive network binary upgrade
 
 
 	dmesg | egrep "^\[.*\] [a-z0-9]+:" | cut -d":" -f 1 | cut -d"]" -f 2 | sed 's/^ *//' | sort | uniq
+
+
+build kernel fix
+
+    auditdistd:*:78:77::0:0:Auditdistd unprivileged user:/var/empty:/usr/sbin/nologin
+
+
