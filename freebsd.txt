@@ -1207,8 +1207,9 @@ new-session
 
 ~/.cshrc
 
-/usr/local/bin/tmux attach
-
+if ($?SSH_TTY) then
+    /usr/local/bin/tmux attach
+endif
 
 
 
