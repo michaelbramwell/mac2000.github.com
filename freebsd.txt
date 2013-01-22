@@ -766,6 +766,12 @@ pw groupmod teamtwo -M mac # изменяет группу, -M перечисл�
 pw groupmod teamtwo -m mac # добавляет пользователя mac в группу
 id mac # выводит инфу о пользователе
 
+skel
+----
+
+/usr/share/skel
+
+сюда можно сложить файлы которые будут скопированны пользователям
 
 
 VIM
@@ -1411,6 +1417,7 @@ options         IPDIVERT
 portupgrade -aPPR # do a massive network binary upgrade
 
 
+    dmesg | egrep "^[a-z0-9]+:" | cut -d":" -f 1 | sort | uniq
 	dmesg | egrep "^\[.*\] [a-z0-9]+:" | cut -d":" -f 1 | cut -d"]" -f 2 | sed 's/^ *//' | sort | uniq
 
 
