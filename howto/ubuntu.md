@@ -18,6 +18,15 @@ Here is how to check what mime types are opened by default gedit:
 
 	cat /usr/share/applications/defaults.list | grep gedit
 
+To open sublime text from console and detach it add following to your `.bashrc`:
+
+    # usage: sl my.txt
+    function sl(){
+        /usr/bin/subl $1 &
+    }
+
+
+
 Skype
 -----
 
