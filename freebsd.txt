@@ -1359,11 +1359,19 @@ make buildworld
 make kernel # вместо двух предыдущих
 reboot
 mergemaster -p # мерджит конфиги
-make installworld
+make installworld # рекомендуется делать в сингл юзер моде, чтобы ничего не поломать
 make delete-old
 mergemaster
 reboot
 make delete-old-libs
+
+/rescume/mount -a
+
+mergemaster -U # мерджит все что сможет
+
+uname -a # чтобы посмотреть что все ок
+
+
 
 portupdate
 ----------
@@ -1424,5 +1432,189 @@ portupgrade -aPPR # do a massive network binary upgrade
 build kernel fix
 
     auditdistd:*:78:77::0:0:Auditdistd unprivileged user:/var/empty:/usr/sbin/nologin
+
+
+mergemaster -p
+выбираем m для мерджа
+потом он по очереди спрашивает для каждой строки и мы выбираем r или l для правой или левой стороны
+
+Networking
+==========
+
+для нормальной работы сети нужно проверить три вещи
+
+ifconfig - должен быть ip адресс и он должен пинговаться
+
+netstat -rn - должен быть дефолтный гейт и он должен пинговаться
+
+cat /etc/resolv.conf - там указан сервер имен и он тоже должен пинговаться, и должен работать nslookup
+
+
+Настройка
+---------
+
+ifconfig - выдает\устанавливает инфу
+
+le0 - название сетевухи, 0 - номер
+
+flags=8842<расшифровка кодов,> - флаги, цифры это коды
+
+metric 0 - нулевая метрика - так как растояние до нее 0 - она прям в системнике, можно эти делом играться, так как маршрутизация учитывает ээто дело и если две сетевухи можно гнать трафик через ту у которой меньше метрика
+
+broadcast - адресс для широковещательных запросов
+
+plip0 - интерфейс для шифрования
+
+lo0 - петля, localhost
+
+пример конфига:
+
+ifconfig le1 192.168.3.12/24
+
+можно прицепить alias - позволяет повесить несколько ip на одну сетевуху, например
+
+ifconfig le1 192.168.3.13/32 alias
+
+почему маска 32 - не рекомендуется чтобы на одном интерфейсе были 24 - так как они могут уйти в цикл посылая друг другу бродкаст сообщения
+
+для удаления используем -alias, например:
+
+ifconfig le1 192.168.3.13/32 -alias
+
+конфиги правяться в rc.conf, пример:
+
+ifconfig_le1="inet 192.168.3.12/24"
+
+примеры в /etc/defaults/rc.conf
+
+Для применения настроек:
+
+ifconfig le1 down
+
+cat /etc/netstart # показывает статус сетевой подсистемы
+
+http://www.freebsd.org/doc/ru/books/handbook/network-routing.html
+
+Маршрутизация
+-------------
+
+route add 192.168.2.0/24 gw 192.168.3.1
+
+netstat -rn - показывает текущие роуты
+
+удалить так же только вместо add доабвляем del
+
+в конфиге rc.conf:
+
+static_routes="net1 net2"
+route_net1="-net 192.168.0.0/24 192.168.0.1"
+route_net2="-net 192.168.1.0/24 192.168.1.1"
+
+/etc/rc.local - эдакий autorun.bat :)
+
+DNS
+---
+
+/etc/resolv.conf
+
+nameserver 8.8.8.8
+domain ru # домен по умолчанию, после этого мы можем делать вот так: ping ya и оно будет пинговать ya.ru
+search ua # то же самое что и domain, если в первом не найдено ищет во втором
+
+dig ya.ru # aka nslookup but better
+
+ping -f 192.168.1.1 # для рута, ping flood
+
+traceroute ya.ru
+
+windowый tracert пользует icmp пакеты которые могут быть закрыты
+
+unix traceroute использует udp пакеты, опция -I позволяет использовать icmp
+
+опция -P tcp позволяет гнать через tcp
+
+traceroute -P tcp -p 80 ya.ru
+
+DHCP
+----
+
+dhclient le2 # утилита позволяющая получать по dhcp настройки
+
+
+arp -a # показывает таблицу мак адресов
+
+arp -ad # удалить все адреса
+
+
+mtr ya.ru # ping + traceroute !!!
+tcpdump ?
+
+trafshow - показывает в реальном времени пакеты на интерфейсе !!!!!! tcpdump - то же самое но без интерфейса
+
+sockstat - показывает инфу по соккетам
+netstat - по интерфейсам и портам
+
+netstat -l # слушамые порты
+netstat -r # маршрутизация
+
+sockstat -l # показывает какие порты слушаем
+
+tcpdump -i em0
+trafshow 
+
+
+nc # швейцарский нож - эдакий навороченные клиен-сервер как телнет
+
+homework: nc
+
+FIREWALL
+========
+
+DMZ - это сервера которыми управляем мы но которым мы не доверяем (веб, почта, dns и т.п.)
+
+IPFW
+----
+
+...
+
+DHCP, NTP
+=========
+
+ntp
+---
+
+управление временем
+
+npdate pool.ntp.org
+
+ntpd - демон постоянно обновляющий время на сервере
+
+/etc/rc.d/ntpd start
+
+homework: как быть с датами на сервере? что ставить зону где стоит сервер или свою?
+
+http://www.pool.ntp.org/zone/ua - 78 серверов на украине :)
+
+DHCP
+====
+
+isc-dhcpd # default dhcp for freebsd from creators of bind
+
+pkg_add -r isc-dhcp42-server
+
+add to /etc/rc.conf
+
+dhcpd_enable="YES"                          # dhcpd enabled?
+dhcpd_flags="-q"                            # command option(s)
+dhcpd_conf="/usr/local/etc/dhcpd.conf"      # configuration file
+dhcpd_ifaces=""                             # ethernet interface(s)
+dhcpd_withumask="022"                       # file creation mask
+
+
+Файл конфига:
+
+/usr/local/etc/dhcpd.conf
+
+
 
 
