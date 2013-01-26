@@ -1420,6 +1420,8 @@ portupgrade -aPPR # do a massive network binary upgrade
     dmesg | egrep "^[a-z0-9]+:" | cut -d":" -f 1 | sort | uniq
 	dmesg | egrep "^\[.*\] [a-z0-9]+:" | cut -d":" -f 1 | cut -d"]" -f 2 | sed 's/^ *//' | sort | uniq
 
+    dmesg | egrep "^\w+:" | cut -d":" -f 1 | sort | uniq
+
 
 build kernel fix
 
