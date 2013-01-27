@@ -1371,6 +1371,19 @@ mergemaster -U # мерджит все что сможет
 
 uname -a # чтобы посмотреть что все ок
 
+freebsd-update
+--------------
+
+# Step 1. Update current system
+freebsd-update fetch
+freebsd-update install
+
+# Step 2. Upgrade system
+freebsd-update upgrade -r 9.1-RELEASE
+freebsd-update install
+reboot
+freebsd-update install
+
 
 
 portupdate
@@ -1562,7 +1575,7 @@ netstat -r # маршрутизация
 sockstat -l # показывает какие порты слушаем
 
 tcpdump -i em0
-trafshow 
+trafshow
 
 
 nc # швейцарский нож - эдакий навороченные клиен-сервер как телнет
@@ -1617,6 +1630,10 @@ dhcpd_withumask="022"                       # file creation mask
 
 /usr/local/etc/dhcpd.conf
 
+
+http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-adding.html
+http://www.freebsd.org/releases/9.1R/installation.html
+http://www.freebsd.org/doc/handbook/pkgng-intro.html
 
 
 
