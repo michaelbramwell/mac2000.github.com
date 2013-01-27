@@ -1631,9 +1631,46 @@ dhcpd_withumask="022"                       # file creation mask
 /usr/local/etc/dhcpd.conf
 
 
-http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-adding.html
+
 http://www.freebsd.org/releases/9.1R/installation.html
 http://www.freebsd.org/doc/handbook/pkgng-intro.html
+
+Добавление диска
+================
+
+http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-adding.html
+
+Подключаем диск, включаемся, проверяем вывод `dmesg` на наличие нового диска.
+
+Запускаем `sysinstall` идем в `Configure \ Fdisk`, выбираем добавленный диск, жмем `A` (использовать весь диск), `W` (записать изменения), на вопрос о менеджере загрузки отвечаем `None`, далее выходим из fdisk `Q` и **обязательно** из sysintall.
+
+Запускаем `sysinstall` заново и идем в `Configure \ Label`, снова выбираем наш диск, давим `C` для создания раздела (когда спросит о размере просто давим ENTER для того чтобы использовать весь диск, на вопрос о типе файловой ссиетмы отвечаем: FS, точку монтирования пишем любую, например: `/mnt`, дело в том что sysinstall не будет добавлять записей в fstab (на замоунтит диск) по этому не важно что мы напишем, главное чтобы не корень), далее `W` (write), `Q` (quit) и выходим из sysinstall.
+
+Далее, по необходимости копируем в наш новоиспеченный диск нужные данные и добавляем запись в `/etc/fstab`
+
+Коммандой `mount` можно посмотреть текущие примонтированные разделы и самое главное как обзывается новосозданный раздел.
+
+Single user mode
+----------------
+
+`/sbin/dmesg` - проверяем наличие нового винта
+
+`/rescue/mount -a` - монтируем наши файловые системы
+
+`setenv TERM cons25` - нужно для нормального запуска sysinstall
+
+`/usr/sbin/sysinstall` - делаем все то же самое, единственное что вывалиться сообщение с ошибкой: invalid argument
+
+`/sbin/newfs /dev/ada2s1d` - создаем файловую систему
+
+`/rescue/mount /dev/ada2s1d /mnt` - монтируем новосозданный раздел
+
+`cp -R /var/* /mnt` - копируем все необходимые данные
+
+и добавляем в `/etc/fstab` строку вида:
+
+    /dev/ada2s1d /var ufs rw 1 0
+
 
 
 
