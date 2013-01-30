@@ -160,3 +160,8 @@ change default editor
 ---------------------
 
 	sudo update-alternatives --config editor
+
+get top 404 urls from access.log
+--------------------------------
+
+    cat access.log | awk '{ if($9 == 404) { print $7 } }' | sort | uniq -c | sort -r | head -10
