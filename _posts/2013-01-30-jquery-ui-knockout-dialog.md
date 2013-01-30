@@ -41,6 +41,8 @@ Extending jQuery UI dialog with knockout model plus callback.
 	            $.ui.dialog.prototype._create.call(this);
 
 	            this.options.model = new this.options.model();
+	            this.options.model.element = this.element;
+	            this.options.model.dialog = this;
 	            ko.applyBindings(this.options.model, this.element[0]);
 	        },
 	        destroy:function () {
@@ -74,15 +76,16 @@ Usage example:
 
 	<script type="text/javascript">
 	    $('#dlg').knockoutdialog({
-	        model: function(){ // knockout model
+	        model: function(){
 	            this.name = ko.observable();
 	        },
 	        callback: function(model){
 	            return model.name().length > 0;
 	        }
 	    });
-	    // Access to model
-	    // $('#dlg').knockoutdialog('option', 'model').name('Hello');
+	    // $('#dlg').knockoutdialog('option', 'model').name('Hello'); // access model
+	    // $('#dlg').knockoutdialog('option', 'model').element.knockoutdialog('close'); // access dialog from model
+	    // $('#dlg').knockoutdialog('option', 'model').dialog.close(); // access dialog from model
 	</script>
 	</body>
 	</html>
