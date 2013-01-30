@@ -165,3 +165,5 @@ get top 404 urls from access.log
 --------------------------------
 
     cat access.log | awk '{ if($9 == 404) { print $7 } }' | sort | uniq -c | sort -r | head -10
+
+    grep ' 404 ' access.log | cut -d ' ' -f 7 |sort |uniq -c |sort -n
