@@ -25,29 +25,31 @@ DRY. If you have many dialogs with same settings, but different content and save
 	            cancelButtonText: 'Cancel'
 	        },
 	        _create:function () {
-	        	// Here we are adding our buttons
-	            if(this.options.saveButtonText) {
-	                this.options.buttons.push({
-	                    text: this.options.saveButtonText,
-	                    click:function () {
-	                    	// And here it is!
-	                    	// We are calling our callback
-	                    	// and if all ok - closing dialog
-	                        if ($(this).callbackdialog('option', 'callback')()) {
-	                            $(this).callbackdialog('close');
-	                        }
-	                    }
-	                });
-	            }
+	        	if(this.options.buttons.length === 0) {
+		        	// Here we are adding our buttons
+		            if(this.options.saveButtonText) {
+		                this.options.buttons.push({
+		                    text: this.options.saveButtonText,
+		                    click:function () {
+		                    	// And here it is!
+		                    	// We are calling our callback
+		                    	// and if all ok - closing dialog
+		                        if ($(this).callbackdialog('option', 'callback')()) {
+		                            $(this).callbackdialog('close');
+		                        }
+		                    }
+		                });
+		            }
 
-	            if(this.options.cancelButtonText) {
-	                this.options.buttons.push({
-	                    text: this.options.cancelButtonText,
-	                    click:function () {
-	                        $(this).callbackdialog('close');
-	                    }
-	                });
-	            }
+		            if(this.options.cancelButtonText) {
+		                this.options.buttons.push({
+		                    text: this.options.cancelButtonText,
+		                    click:function () {
+		                        $(this).callbackdialog('close');
+		                    }
+		                });
+		            }
+		        }
 
 	            $.ui.dialog.prototype._create.call(this);
 	        },
