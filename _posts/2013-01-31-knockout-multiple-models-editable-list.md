@@ -142,7 +142,8 @@ And here is commented code:
 	            },
 	            _create:function () {
 	                // before calling parents constructor we are adding dialog buttons with our code
-	                if(this.options.buttons.length === 0) {
+	                if (!this.options.buttons.length) {
+	                    this.options.buttons = [];
 	                    if(this.options.saveButtonText) {
 	                        this.options.buttons.push({
 	                            text: this.options.saveButtonText,
