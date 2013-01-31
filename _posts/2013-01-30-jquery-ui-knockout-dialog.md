@@ -17,26 +17,28 @@ Extending jQuery UI dialog with knockout model plus callback.
 	            cancelButtonText: 'Cancel'
 	        },
 	        _create:function () {
-	            if(this.options.saveButtonText) {
-	                this.options.buttons.push({
-	                    text: this.options.saveButtonText,
-	                    click:function () {
-	                        if ($(this).knockoutdialog('option', 'callback')($(this).knockoutdialog('option', 'model'))) {
+	            if(this.options.buttons.length === 0) {
+		            if(this.options.saveButtonText) {
+		                this.options.buttons.push({
+		                    text: this.options.saveButtonText,
+		                    click:function () {
+		                        if ($(this).knockoutdialog('option', 'callback')($(this).knockoutdialog('option', 'model'))) {
 
-	                            $(this).knockoutdialog('close');
-	                        }
-	                    }
-	                });
-	            }
+		                            $(this).knockoutdialog('close');
+		                        }
+		                    }
+		                });
+		            }
 
-	            if(this.options.cancelButtonText) {
-	                this.options.buttons.push({
-	                    text: this.options.cancelButtonText,
-	                    click:function () {
-	                        $(this).knockoutdialog('close');
-	                    }
-	                });
-	            }
+		            if(this.options.cancelButtonText) {
+		                this.options.buttons.push({
+		                    text: this.options.cancelButtonText,
+		                    click:function () {
+		                        $(this).knockoutdialog('close');
+		                    }
+		                });
+		            }
+		        }
 
 	            $.ui.dialog.prototype._create.call(this);
 
