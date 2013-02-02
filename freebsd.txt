@@ -1672,5 +1672,251 @@ Single user mode
     /dev/ada2s1d /var ufs rw 1 0
 
 
+IPFW
+====
+
+ipfw - default freebsd firewall
+packet filter - from openbsd (harder but better)
+
+/etc/rc.firewall
+/defaults/rc.conf # search for firewall
+
+/etc/rc.conf
+
+    firewall_enable="YES"
+    firewall_script="/etc/rc.firewall"
+    #firewall_type="SIMPLE"
+    #fireall_quiet="YES"
+    firewall_nat_enable="YES"
+    firewall_loggin="YES"
+
+
+open - allow all
+client - protect current machine
+simple - protect local network
+closed - close all except lo0
+workstation - statefull protection for current machine
+UNKNOWN - do not load firewall rules
+filename - load rules from given path
+
+create own config file /etc/firewall.rc
+
+${fwcmd}
+add - add rule
+200 - number
+pass - allow
+all - all kind of traffic 
+from any - going from any (all, me)
+to any - going to any
+via lo0 - via interface
+
+
+порты можно только с конкретно tcp или udp
+
+
+....
+
+chmod +x /etc/firewall.rc
+/etc/firewall.rc
+
+kldstat # показывает включенные модули
+
+/etc/rc.d/ipfw start
+
+
+vim /etc/rc.d/ipfw
+
+
+почему то они не грузят нужный нам libalias можуль
+
+
+ kldunload ipfw_nat
+ kldunload libalias
+ kldunload ipfw
+
+
+# текущие правила:
+
+ipfw show
+
+
+# правило для логирования не пропускаемых пакетов
+${fwcmd} add deny log all from any to any
+# логи лежат тут: /var/log/security
+
+/etc/rc.conf
+
+gateway_enable="YES"
+
+sysctl -a | grep forw
+
+если хотим блокировать кого то из внутренней сети то нужно это делать до того
+как занатили, после ната у нас пакет завернут в наш внешний ip адрес
+
+// !!! имя резолвиться и добавляются ВСЕ ip 
+${fwcmd} add deny all from ${inet} to vk.com
+add deny all from 192.168.1.145 to not me # запретили все кроме себя
+
+allow http queries
+${fwcmd} add pass tcp from me to any 80,443 setup
+${fwcmd} add pass tcp from me to any 23 setup
+${fwcmd} add pass tcp from me to any 25 setup
+
+add pass ip from me to any keep-state # allow new connections from me
+
+для обновления ip адресов (резолвов) надо рестартовать файервол
+
+
+
+cat /etc/firewall.rc
+#!/bin/sh
+fwcmd="/sbin/ipfw -q"
+
+# Configuration:
+iif="le0"               #inside (internal) interface
+iip="192.168.1.41"      #inside (internal) ip address
+inet="192.168.1.0/24"   #inside (internal) net
+oif="le1"               #outside (external) interface
+oip="1.1.1.1"           #outside (external) ip address
+onet="1.1.1.0/24"       #outside (external) net
+
+# NAT configuration
+firewall_nat_interface="${oif}"
+firewall_nat_flags="ip ${oip}"  #for static external ip
+#firewall_nat_flags="if ${oif}" #for dynamic external ip
+
+
+
+
+############
+# Flush out the list before we begin.
+#
+${fwcmd} -f flush
+
+############
+# In case of problems rule, move it to problem place
+# ${fwcmd} add pass all from any to any
+
+############
+# Setup loopback antispoofing
+# Only in rare cases do you want to change these rules
+        ${fwcmd} add 100 pass all from any to any via lo0
+        ${fwcmd} add 200 deny all from any to 127.0.0.0/8
+        ${fwcmd} add 300 deny ip from 127.0.0.0/8 to any
+# Stop spoofing
+        ${fwcmd} add deny all from ${inet} to any in via ${oif}
+        ${fwcmd} add deny all from ${onet} to any in via ${iif}
+# Stop RFC1918 nets on the outside interface
+        ${fwcmd} add deny all from any to 10.0.0.0/8 via ${oif}
+        ${fwcmd} add deny all from any to 172.16.0.0/12 via ${oif}
+        ${fwcmd} add deny all from any to 192.168.0.0/16 via ${oif}
+# Stop draft-manning-dsua-03.txt (1 May 2000) nets (includes RESERVED-1,
+# DHCP auto-configuration, NET-TEST, MULTICAST (class D), and class E)
+# on the outside interface
+        ${fwcmd} add deny all from any to 0.0.0.0/8 via ${oif}
+        ${fwcmd} add deny all from any to 169.254.0.0/16 via ${oif}
+        ${fwcmd} add deny all from any to 192.0.2.0/24 via ${oif}
+        ${fwcmd} add deny all from any to 224.0.0.0/4 via ${oif}
+        ${fwcmd} add deny all from any to 240.0.0.0/4 via ${oif}
+
+############
+# Block if needed some local users to nat access here
+        ${fwcmd} add deny all from ${inet} to 10.10.10.10 #vk.com
+        ${fwcmd} add deny all from 192.168.1.145 to not me # Vasya Pupkin
+
+############
+# NAT
+        ${fwcmd} nat 123 config log ${firewall_nat_flags}
+        ${fwcmd} add nat 123 ip4 from ${inet} to any via ${firewall_nat_interface}
+
+############
+# Stop RFC1918 nets on the outside interface
+        ${fwcmd} add deny all from 10.0.0.0/8 to any via ${oif}
+        ${fwcmd} add deny all from 172.16.0.0/12 to any via ${oif}
+        ${fwcmd} add deny all from 192.168.0.0/16 to any via ${oif}
+
+# Stop draft-manning-dsua-03.txt (1 May 2000) nets (includes RESERVED-1,
+# DHCP auto-configuration, NET-TEST, MULTICAST (class D), and class E)
+# on the outside interface
+        ${fwcmd} add deny all from 0.0.0.0/8 to any via ${oif}
+        ${fwcmd} add deny all from 169.254.0.0/16 to any via ${oif}
+        ${fwcmd} add deny all from 192.0.2.0/24 to any via ${oif}
+        ${fwcmd} add pass tcp from any to me 25 setup
+
+# Allow access to our DNS
+        ${fwcmd} add pass tcp from any to me 53 setup
+        ${fwcmd} add pass udp from any to me 53
+        ${fwcmd} add pass udp from me 53 to any
+
+# Allow access to our WWW
+        ${fwcmd} add pass tcp from any to me 80 setup
+
+# Allow access to our proxy server Squid
+        ${fwcmd} add pass tcp from any to ${iip} 3128 setup
+
+# Allow echo request and reply
+         ${fwcmd} add pass icmp from any to any icmptypes 0,8,11
+
+############
+# Allow DNS queries out in the world
+        ${fwcmd} add pass udp from me to any 53 keep-state
+
+# Allow NTP queries out in the world
+        ${fwcmd} add pass udp from me to any 123 keep-state
+
+# Allow http queries out in the world
+        ${fwcmd} add pass tcp from me to any  80,443 setup
+
+# Allow http queries out in the world
+        ${fwcmd} add pass tcp from me to any 23 setup
+
+#allow to send mail out in the world
+        ${fwcmd} add pass tcp from me to any 25 setup
+
+# Allow any new connection from me to any, use for your own risk
+#        ${fwcmd} add pass ip from me to any keep-state
+
+############
+# Reject&Log all setup of incoming connections from the outside
+        ${fwcmd} add deny log all from any to any #in via ${oif} setup proto tcp
+
+
+
+ SQUID
+ =====
+
+ suid_ldap_auth
+ delay_pools
+
+
+ DNS
+ ===
+
+ vim /etc/namedb/named.conf
+
+ listen-on - ip на которых он слушает, можно закоментить - он будет слушать на всех ip
+
+ forwarders { 8.8.8.8; }; - передавать запросы длаьше вверх
+
+ forward only; - если нужно чтобы сервак только форвардил и ничего больше
+
+ named_auto_forward=yes in /etc/rc.conf - to get forwarders from dhcp
+
+ vi /etc/resolv.conf
+ #nameserver 192.168.1.1
+ nameserver 127.0.0.1
+
+
+ cp /etc/namedb/master/localhost-forward.db /etc/namedb/master/firma.ua
+ cp /etc/namedb/master/localhost-reverse.db /etc/namedb/1.168.192-in.addr.arpa
+
+  
+
+
+
+
+
+
+
 
 
