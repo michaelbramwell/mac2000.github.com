@@ -562,6 +562,8 @@ apt-get update
 apt-get install pygmentize
 alias pcat='pygmentize'
 
+/usr/ports/textproc/source-highlight
+
 pkg install source-highlight-3.1.6
 src-hilite-lesspipe.sh test.php
 
@@ -1911,12 +1913,64 @@ ${fwcmd} -f flush
  cp /etc/namedb/master/localhost-reverse.db /etc/namedb/1.168.192-in.addr.arpa
 
   
+FreeBSD NAT server
+==================
 
+Minimal config without kernel rebuilding
 
+/etc/rc.conf
 
+	gateway_enable="YES" # to turn on ip forwarding
+	firewall_enable="YES" # to load ipfw kernel module
+	firewall_script="/etc/ipfw.conf" # rule set
+	firewall_nat_enable="YES" # to load ipfw_nat kernel module
+	firewall_quiet="YES"
+	#firewall_logging="YES"
 
+/etc/ipfw.conf
 
+	#!/bin/sh
 
+	fwcmd="/sbin/ipfw -q"
+	iif="em1"
+	iip="192.168.0.1"
+	inet="192.168.0.0/24"
+	oif="em0"
+	oip="192.168.27.111"
+	onet="192.168.27.0/24"
+	#nat="ip ${oip}" # for static external ip
+	nat="if ${oif}" # for dynamic external ip
 
+	${fwcmd} -f flush
+
+	${fwcmd} nat 123 config log ${nat}
+	${fwcmd} add nat 123 ip4 from any to any via ${oif}
+
+	${fwcmd} add pass all from any to any
+
+DHCP server
+===========
+
+/usr/ports/net/isc-dhcp42-server
+
+/etc/rc.conf
+
+	dhcpd_enable="YES"
+	dhcpd_iface="em1"
+
+/usr/local/etc/dhcpd.conf
+
+	option domain-name "vm.lan";
+	option domain-name-servers ns1.vm.lan, ns2.vm.lan;
+	default-lease-time 600;
+	max-lease-time 7200;
+
+	subnet 192.168.0.0 netmask 255.255.255.0 {
+	  range 192.168.0.100 192.168.0.110;
+	  option routers 192.168.0.1;
+	}
+
+DNS Server
+==========
 
 

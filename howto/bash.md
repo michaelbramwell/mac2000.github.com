@@ -125,6 +125,7 @@ You can use:
 
 	ssh example
 
+For Putty, navigate to `Connection \ SSH \ Auth` and select your generated file in `Private key file for authentication`
 
 screen
 ------
