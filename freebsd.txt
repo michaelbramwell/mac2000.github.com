@@ -1961,7 +1961,7 @@ DHCP server
 /usr/local/etc/dhcpd.conf
 
 	option domain-name "vm.lan";
-	option domain-name-servers ns1.vm.lan, ns2.vm.lan;
+	option domain-name-servers 192.168.0.1; // DNS server
 	default-lease-time 600;
 	max-lease-time 7200;
 
@@ -1972,5 +1972,134 @@ DHCP server
 
 DNS Server
 ==========
+
+16/02/2013
+==========
+
+named master file
+
+ttl - время жизни, для слейвов
+
+SOA - status of authority
+
+ns.vm.lan. ; main ns server
+alexandrm.vm.lan. ; mail
+
+42 - serial number (increment after each change), usually as date 2013021601
+1d - refresh for clients
+12h - retry after
+1w - expire - record will be delted
+3h - negative cache ttl (добавили домен, дергнули днс, тот ответил что нету такого - эта хрень кешируется на 3 часа)
+
+
+NS ns.firma.ua. - точка обязательна!!!!
+
+@ - превращаеться в имя домена
+
+ftp CNAME @
+
+
+NS, MX - нельзя использовать ip, Только домены
+
+
+TODO: horizont-splitting - разные пользователи будут получать разные ip!
+
+squid
+=====
+
+acl aclname acltype argument ...
+acl aclname acltype "file" ...
+
+acltypes:
+    src
+    dst
+    myip
+    arp
+
+Пример переменных:
+
+acl aclname src 192.168.0.0/24
+acl aclname myip 192.168.0.1/32
+
+acl aclname proxy_auth [-i] username ...
+
+
+
+
+vim /etc/services - список сервисов с их портами и протоколами
+vim /etc/protocols - список протоколов и их номеров
+
+
+acl tazik src 192.168.27.100
+ 627 acl ap src 192.168.27.1
+ 628 acl bad_user src 192.168.0.22
+ 629 acl goodsites dstdomain "freebsd.org"
+ 630 acl badsites dstdomain /usr/local/etc/squid/badsites.txt
+ 631 acl multimedia rep_mime_type audio/mpeg
+ 632 acl multimedia rep_mime_type video/mpeg
+
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+http_access allow goodsites
+ 672 http_access deny baduser
+ 673 http_access allow gooduser
+ 674 http_access deny badsites
+
+http_access allow localnet
+
+ cache_dir ufs /var/squid/cache 100 16 256
+
+
+squid -z # create swap directories
+
+squid -k reconfigure
+
+auto detect proxy settings from network
+
+в dns прописывается определенный адрес,
+
+"автоматический поиск прокси"
+http://ru.wikipedia.org/wiki/Web_Proxy_Autodiscovery_Protocol
+http://www.lissyara.su/articles/freebsd/trivia/proxy_auto_configuration/
+
+
+
+delay_pools - нарезать канал
+
+delay_pools 2 - две трубы
+delay_class 1 1
+delay_class 2 2
+
+delay_access 1 allow gooduser
+delay_access 1 deny all
+
+delay_access 1 allow localnet
+delay_access 2 deny all
+
+delay_parameters 1 -1/-1 (in/out)
+delay_parameters 2 32000/32000 8000/8000 600/8000
+
+нарезка канала, можно сделать так чтобы мелкие файлы не резались, а крупные резались
+
+
+cd /usr/ports/mail/postfix
+make install clean
+[*] MYSQL
+
+
+" Turn off mouse
+" set mouse=
+autocmd BufEnter * set mouse=
+
+
+
+
+tmux
+----
+
+ctrl+b, % (shift+5) - create vertical window
+ctrl+b, " (shift+') - create horizontal window
+ctrl+b, left(right, up, down) - move between windows
+ctrl+b, x - close window
+
 
 
