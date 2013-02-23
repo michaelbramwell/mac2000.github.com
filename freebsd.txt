@@ -2002,6 +2002,23 @@ ftp CNAME @
 NS, MX - нельзя использовать ip, Только домены
 
 
+/etc/namedb/master/vm.lan
+-------------------------
+
+    $TTL 3h
+    vm.lan. SOA ns.vm.lan. alexandrm.vm.lan. 43 1d 12h 1w 3h
+        NS  vm.lan.
+        MX 10 mail.vm.lan.
+
+         A  192.168.27.111
+    mail A  192.168.27.111
+    ns   A  192.168.27.111
+
+    ftp  CNAME @
+    www  CNAME @
+
+rndc reload
+
 TODO: horizont-splitting - разные пользователи будут получать разные ip!
 
 squid
@@ -2102,4 +2119,44 @@ ctrl+b, left(right, up, down) - move between windows
 ctrl+b, x - close window
 
 
+23/02/2013
+==========
+
+
+VPN
+===
+
+http://openvpn.net/index.php/open-source/documentation/howto.html
+http://lithium.opennet.ru/articles/openvpn/openvpn-howto.html
+
+/usr/ports/security/openvpn
+
+/etc/rc.conf
+------------
+
+    openvpn_enable="YES"
+
+/usr/local/etc/openvpn/
+
+vim /usr/local/etc/rc.d/openvpn/openvpn.conf
+
+openvpn --genkey --secret /usr/local/etc/openvpn/static.key
+
+dev tun
+ifconfig 10.0.0.1 10.8.0.2
+secret static.key
+
+
+copy static.key to local machine and create client.ovpn
+
+remote 192.168.27.111
+dev tun
+ifconfig 10.8.0.2 10.8.0.1
+secret static.key
+route 192.168.0.0 255.255.255.0
+
+APACHE
+======
+
+http://allbsd.blogspot.com/2011/03/web-apache-22-php-53-php5-extensions-14.html
 
