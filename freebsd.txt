@@ -2160,3 +2160,275 @@ APACHE
 
 http://allbsd.blogspot.com/2011/03/web-apache-22-php-53-php5-extensions-14.html
 
+cd /usr/ports/mail/dovecot
+cd /usr/ports/mail/squirrelmail
+
+
+POSTFIX
+=======
+
+vim /usr/local/etc/postfix/master(main).cf
+
+master - do not touch
+main - config
+
+postconf - show current configuration
+
+/usr/local/etc/postfix/main.cf
+
+    #soft_bounce = no #  для работающей системы, не показывать свою неработоспособность
+
+    queue_directory = /var/spool/postfix # очередь доставки
+
+    mail_owner = postfix # юзер из под которого крутиться почта, важно чтобы все компоненты крутились под одной учеткой
+
+    myhostname = mail.local.com
+    mydomain = local.com
+    myorigin = $mydomain
+
+    mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain # какую почту будем получать
+
+    local_recipient_maps = unix:passwd.byname $alias_maps # получать почту для локальных пользователей
+
+    #mynetworks_style = host
+    mynetworks = 192.168.0.1/28, 127.0.0.0/8
+
+    alias_maps = hash:/etc/aliases
+    alias_database = hash:/etc/aliases
+
+    home_mailbox = Maildir/
+
+vim /etc/aliases
+
+    root: mac
+
+    newaliases
+
+
+header_checks = pcre:$config_directory/header_checks.pcre
+
+       /usr/local/etc/postfix/header_checks.pcre:
+           /^Content-(Disposition|Type).*name\s*=\s*"?(.*(\.|=2E)(
+             ade|adp|asp|bas|bat|chm|cmd|com|cpl|crt|dll|exe|
+             hlp|ht[at]|
+             inf|ins|isp|jse?|lnk|md[betw]|ms[cipt]|nws|
+             \{[[:xdigit:]]{8}(?:-[[:xdigit:]]{4}){3}-[[:xdigit:]]{12}\}|
+             ops|pcd|pif|prf|reg|sc[frt]|sh[bsm]|swf|
+             vb[esx]?|vxd|ws[cfh]))(\?=)?"?\s*(;|$)/x
+               REJECT Attachment name "$2" may not end with ".$4"
+
+
+
+
+ /usr/ports/mail/postfixadmin/
+ make install clean
+
+
+DOVECOT
+=======
+
+ls /var/db/pkg/ - посмотреть версии установленныъ программ
+
+
+
+
+FILE
+====
+
+[14:07:00] УЦ Бейсик - FreeBsd: Постфикс админ настройка
+
+http://sourceforge.net/projects/postfixadmin/files/postfixadmin/postfixadmin-2.3.4/postfixadmin_2.3.4_all.deb/download  
+
+
+
+CREATE DATABASE postfix;
+CREATE USER 'postfix'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON `postfix` . * TO 'postfix'@'localhost';
+
+Исправляем config.inc.php
+
+меняем значение на редактированно
+$CONF['configured'] = true;
+
+#Для пароля например 123456 значение строки
+$CONF['setup_password'] = 'c3e30cd648056edfc03d20a0cb8c92fd:beda600d02358c7b1f97ac413a09795d21db0eed';
+
+
+находим и меняем пароль для коннекта к базе
+$CONF['database_password'] = '123';
+
+Меняем настройки вашего домена по желанию 
+$CONF['admin_email'] = 'postmaster@firma.ua';
+и там еще много таких домен тлд
+
+
+Меняем на ес чтобы папки пользователей хранились в папках доменов  (так аккуратнее)
+//   YES: /usr/local/virtual/domain.tld/username@domain.tld
+//   NO:  /usr/local/virtual/username@domain.tld
+$CONF['domain_path'] = 'YES';
+
+Меняем на НОУ если не хотим чтобы имя папки пользователя выгледело как домен
+// Examples:
+//   YES: /usr/local/virtual/domain.tld/username@domain.tld
+//   NO:  /usr/local/virtual/domain.tld/username
+// Note: If $CONF['domain_path'] is set to NO, this setting will be forced to YES.
+$CONF['domain_in_mailbox'] = 'NO';
+
+// Default Domain Values
+// Specify your default values below. Quota in MB.
+Убираем странные ограничения на количество ящиков и алиасов по умолчанию в домене ну иквоту за одно в безлимит тоже пока
+
+$CONF['aliases'] = '0';
+$CONF['mailboxes'] = '0';
+$CONF['maxquota'] = '0';
+
+
+////Уже не актуально////
+из-за ошибки в файле upgrade.php 
+меняем 
+date timestamp(14) на date timestamp
+ 
+
+запускаем http://firma.ua/postfixadmin/setup.php
+
+создаем виртуального домена и там какого-то юзера в постфикс админе
+
+
+
+Настраиваем Постфикс
+Правим main.cf
+virtual_alias_maps = mysql:/usr/local/etc/postfix/mysql_virtual_alias_maps.cf
+virtual_mailbox_domains = mysql:/usr/local/etc/postfix/mysql_virtual_domains_maps.cf
+virtual_mailbox_maps = mysql:/usr/local/etc/postfix/mysql_virtual_mailbox_maps.cf
+
+
+#1006 - это ИД пользователя постфикс в моей системе, у вас может быть другой
+virtual_uid_maps = static:1006
+virtual_gid_maps = static:1006
+virtual_minimum_uid = 1006
+
+virtual_mailbox_base = /var/mail/vmail
+virtual_transport = virtual
+
+
+ATTNN!!!! MYSQL иногда не понимает localhost и вместо этого нужно прописать 127,0,0,1!!!!!!
+наблюдается на дебиан базед системах!
+
+
+
+файл mysql_virtual_alias_maps.cf
+
+user = postfix
+password = 123
+hosts = localhost
+dbname = postfix
+table = alias
+select_field = goto
+where_field = address
+
+
+
+файл mysql_virtual_domains_maps.cf
+
+user = postfix
+password = 123
+hosts = localhost
+dbname = postfix
+table = domain
+select_field = domain
+where_field = domain
+additional_conditions = and backupmx = '0' and active = '1'
+
+
+
+файл mysql_virtual_mailbox_maps.cf
+
+user = postfix
+password = 123
+hosts = localhost
+dbname = postfix
+table = mailbox
+select_field = maildir
+where_field = username
+
+убеждаемся что у вас в домены не встречаются одновременно в mydestination и virtual_mailbox_domains
+# убираем из mydestination $domain, чтобы было вот так: mydestination = $myhostname, localhost.$mydomain, localhost
+
+создаем папку для виртуальной доставки почты
+mkdir /var/mail/vmail
+chown postfix:mail /var/mail/vmail/
+
+Выполняем комманду newaliases потому как без нее постфикс не любит работать
+
+
+проверяем работу настроек 
+postmap -q firma.ua mysql:/usr/local/etc/postfix/mysql_virtual_domains_maps.cf
+postmap -q blondinko@firma.ua mysql:/usr/local/etc/postfix/mysql_virtual_mailbox_maps.cf
+postmap -q info@firma.ua mysql:/usr/local/etc/postfix/mysql_virtual_alias_maps.cf
+
+
+
+
+dovecot
+/usr/local/share/doc/dovecot/example-config/
+#/etc/dovecot/dovecot-sql.conf
+driver = mysql
+connect = host=127.0.0.1 dbname=postfix user=postfix password=thmqeWnaGpBp6EL9
+password_query = SELECT password FROM mailbox WHERE username = '%u'
+user_query = SELECT maildir, 106 AS uid, 110 AS gid FROM mailbox WHERE username = '%u'
+--- !!!! ПОМЕНЯТЬ 106 и 110 - на соотв. uid и gid postfix'а
+
+
+Файл: это минимальная конфигурация
+Если там есть еще что-то разкомментированное можно оставить, мешать не будет
+
+cat /usr/local/etc/dovecot.conf | | grep -v "^#" | grep -v "^[[:space:]]#" | grep -v '^$'
+cat /etc/dovecot/dovecot.conf |grep -E '^[[:space:]]*[^[:space:]#]'
+
+# 2.1.7: /etc/dovecot/dovecot.conf
+# OS: Linux 2.6.32-5-686 i686 Debian 6.0.6 ext3
+auth_mechanisms = plain login
+disable_plaintext_auth = no
+first_valid_uid = 106
+mail_location = maildir:/var/mail/vmail/%d/%n
+passdb {
+  args = /etc/dovecot/dovecot-sql.conf
+  driver = sql
+}
+protocols = pop3
+service auth {
+  user = root
+}
+ssl = no
+userdb {
+  args = /etc/dovecot/dovecot-sql.conf
+  driver = sql
+}
+
+
+
+
+squirrelmail
+пхп должен біть собран со следующими флагами
+USE="xml apache2 ctype mysql" emerge -v php
+USE="mysql" emerge -v squirrelmail
+
+Если вылезает куча варнингов 
+В /usr/local/etc/php.ini попробуйте прописать
+Код:
+date.timezone =Europe/Kiev
+и перезапустить apache
+
+
+
+
+
+sudo mv /usr/share/squirrelmail/ /var/www/mail.firma.ua/
+sudo cp /etc/apache2/sites-available/firma.ua /etc/apache2/sites-available/mail.firma.ua
+sudo ln -s /etc/apache2/sites-available/mail.firma.ua /etc/apache2/sites-enabled/
+
+odmin@teacher:~$ sudo vim /etc/apache2/sites-available/mail.firma.ua
+
+
+
+Mar  2 17:03:57 freebsd postfix/trivial-rewrite[41587]: warning: do not list domain local.com in BOTH mydestination and virtual_mailbox_domains
