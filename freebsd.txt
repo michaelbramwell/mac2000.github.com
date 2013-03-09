@@ -2432,3 +2432,108 @@ odmin@teacher:~$ sudo vim /etc/apache2/sites-available/mail.firma.ua
 
 
 Mar  2 17:03:57 freebsd postfix/trivial-rewrite[41587]: warning: do not list domain local.com in BOTH mydestination and virtual_mailbox_domains
+
+
+vvchik@gmail.com
+
+
+NAMED BACK RESOLV
+=================
+
+named.conf
+
+    zone "0.168.192.in-addr.arpa" {
+        type master;
+        file "/etc/namedb/master/0.168.192.in-addr.arpa";
+    }
+
+master/0.168.192.in-addr.arpa
+
+$TTL 3h
+@ SOA ns.local.com. alexandrm.local.com. 44 1d 12h 1w 3h
+        NS      local.com.
+
+111   PTR     local.com.
+
+// @ - ссылка на всю зону
+// Все что после SOA - просто копируем
+// NS копируем
+// 111 - это ip последняя цифра
+
+
+rndc reload
+nslookup 192.168.0.111
+
+
+
+
+ZFS - стоит почитать!
+
+NEW HDD
+-------
+
+Запускаем в сингл-юзер моде
+
+    /rescue/mount -a
+
+    setenv TERM cons25 # нужно для запуска 
+
+    /usr/sbin/sysinstall
+
+    configure \ fdist \ ad1
+
+    A - use entire dist
+    W - write
+    None - no partition
+
+/rescue/mount -t ufs /dev/ad1s1d /mnt
+
+# /rescue/mount -a -orw # !!!! вот в чем весь трабл был - не, эт было на всякий случай
+
+/sbin/newfs /dev/ad1s1d
+
+/rescue/mount -t ufs /dev/ad1s1d /mnt
+
+cp -a /var/*  /mnt # перегоняем все данные на новый веник, пытаясь сохранить при этом все атрибуты файлов
+
+vi /etc/fstab
+    меняем адрес устройства там где подключается /var
+
+/rescue/reboot
+
+http://www.freebsd.org/doc/en/books/handbook/
+
+rosetta stone for unix - сервис показывающий аналоги команд между linux\freebsd
+
+nagios - средство мониторинга
+zabbix - чуть более продвинутый и мололдой
+scom - microsoft
+
+
+CUPS - common unix printing system, демон печати
+
+
+Тест окончен
+FreeBSD
+
+EASY
+Правильно ответов 14 из 20
+Тест сдан. Поздравляем!
+Код теста: 5078728
+
+MED
+Правильно ответов 15 из 20
+Тест сдан. Поздравляем!
+Код теста: 6046031
+
+HARD
+Правильно ответов 15 из 20
+Тест сдан. Поздравляем!
+Код теста: 4976871
+
+2.  Перечислить на расчетный счет: 
+СПД Мельнік О.І. 
+ЄДРПОУ 2865313569 
+Р/р 26001799958163 в ПАТКБ "Правекс-Банк" 
+МФО 380838 
+ВАЖНО! В графе "Назначение платежа" необходимо указать: оплата за сертификат. 
