@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Windows 2012: DNS Server dynamic forwarders
+title: Windows 2012 DNS Server dynamic forwarders
 tags: [windows, 2012, dns, dhcp, forwarders]
 ---
 
@@ -35,15 +35,15 @@ Set network adapter to use static DNS
 Set network adapter to use dynamic DNS
 --------------------------------------
 
-	Set-DnsClientServerAddress –InterfaceAlias "wifi0" -ResetServerAddresses
+	Set-DnsClientServerAddress â€“InterfaceAlias "wifi0" -ResetServerAddresses
 
 Events
 ------
 
-Look in **Event Viewer** for events under 
+Look in **Event Viewer** for events under
 
 	Event Viewer \ Applications and Services Logs \ Microsoft \ Windows \ NetworkProfile \ Operational
-	
+
 There is two kind of events with IDs 10000 for connect and 10001 for disconnect so we can use them for scheduled tasks.
 
 	Event Viewer \ Applications and Services Logs \ Microsoft \ Windows \ WLAN-AutoConfig \ Operational
@@ -76,7 +76,7 @@ disconnect.ps1
 	Set-DnsServerForwarder -IPAddress "8.8.8.8"
 
 	# Set network adapter to use DHCP to retrieve DNS settings
-	Set-DnsClientServerAddress –InterfaceAlias $NetworkAdapterName -ResetServerAddresses
+	Set-DnsClientServerAddress â€“InterfaceAlias $NetworkAdapterName -ResetServerAddresses
 
 Links
 -----
