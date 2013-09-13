@@ -41,3 +41,14 @@ tags: [centos, filter, firewall, iptables, linux, netstat, ubuntu]
 
     #list rules
     /sbin/iptables -L -v
+
+
+Another variant is to:
+
+    apt-get install iptables-persistent
+
+Now run all commands above to add firewall rules, and run:
+
+    iptables-save > /etc/iptables/rules
+
+If you will add new rule laterm do not forget to add them using command above
