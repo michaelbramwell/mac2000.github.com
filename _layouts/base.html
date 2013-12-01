@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="cache.appcache">
+<html manifest="/cache.appcache">
 <head>
     <meta charset="utf-8">
 
@@ -13,28 +13,23 @@
     {% if page.tags.length > 0 %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
 </head>
 <body>
-    <a name="top"></a>
-    {{content}}
-    <footer>
-        <nav>
-            <ul>
-                <li><a href="#top"><i class="icon-arrow-up"></i><span>Top</span></a></li>
-                <li><a href="/"><i class="icon-home"></i><span>Home</span></a></li>
-                <li><a href="/tags.html"><i class="icon-tags"></i><span>Tags</span></a></li>
-                <li><a href="/search.html"><i class="icon-search"></i><span>Search</span></a></li>
-                {% if page.url == '/index.html' %}<li><a href="//plus.google.com/114259064191790696813?rel=author"><i class="icon-google-plus"></i><span>Google+</span></a></li>
-                <li><a href="//www.facebook.com/marchenko.alexandr"><i class="icon-facebook"></i><span>Facebook</span></a></li>
-                <li><a href="//twitter.com/alexandrm"><i class="icon-twitter"></i><span>Twitter</span></a></li>
-                <li><a href="//youtube.com/user/marchenkoalexandr"><i class="icon-youtube"></i><span>Youtube</span></a></li>
-                <li><a href="//github.com/mac2000"><i class="icon-github-alt"></i><span>GitHub</span></a></li>
-                <li><a href="callto://mac2000-skype"><i class="icon-skype"></i><span>mac2000-skype</span></a></li>
-                <li><a href="mailto:marchenko.alexandr@gmail.com"><i class="icon-envelope-alt"></i><span>marchenko.alexandr@gmail.com</span></a></li>
-                <li><a href="//about.me/alexandrmarchenko"><i class="icon-info"></i><span>About.me</span></a></li>
-                <li><a href="//feeds.feedburner.com/org/baFo"><i class="icon-rss"></i><span>Rss</span></a></li>{% endif %}
-            </ul>
-        </nav>
-    </footer>
-    {% if page.url != '/index.html' %}<script src="/js/prettify/prettify.js"></script>{% endif %}
-    <script src="/js/scripts.min.js"></script>
+<a name="top"></a>
+{{content}}
+<footer>
+    <a href="#top" class="icon-arrow-up"></a>
+    <a href="/" class="icon-home"></a>
+    <a href="/tags.html" class="icon-tags"></a>
+    <a href="/search.html" class="icon-search"></a>
+    {% if page.url == '/index.html' %}<a href="//plus.google.com/114259064191790696813?rel=author" class="icon-google-plus"></a>
+    <a href="//www.facebook.com/marchenko.alexandr" class="icon-facebook"></a>
+    <a href="//twitter.com/alexandrm" class="icon-twitter"></a>
+    <a href="//youtube.com/user/marchenkoalexandr" class="icon-youtube"></a>
+    <a href="//github.com/mac2000" class="icon-github-alt"></a>
+    <a href="callto://mac2000-skype" class="icon-skype"></a>
+    <a href="mailto:marchenko.alexandr@gmail.com" class="icon-envelope-alt"></a>
+    <a href="//about.me/alexandrmarchenko" class="icon-info"></a>
+    <a href="//feeds.feedburner.com/org/baFo" class="icon-rss"></a>{% endif %}
+</footer>
+<script src="/js/scripts.js"></script>
 </body>
 </html>

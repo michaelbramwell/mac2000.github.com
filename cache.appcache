@@ -1,8 +1,7 @@
 CACHE MANIFEST
-# Version 1
+# Version 8
 
 css/styles.css
-js/prettify/prettify.js
-js/scripts.min.js
+js/scripts.js
 fonts/icomoon.ttf
 fonts/icomoon.eot

@@ -29,7 +29,8 @@ code {
 }
 
 pre, pre.prettyprint {    
-    display: block;
+    @include inline-block;
+    min-width:100%;
     padding:1em 2em;
     margin:1em -2em;
     border:none;
@@ -70,36 +71,14 @@ img {
 footer {
     clear: both;
     text-align:center;
-    margin-top:1em;
-    padding-top:1em;
+    margin:0 auto;
+    padding-top:2em;
     @include clearfix;
 
-    ul {
-        @include inline-list;
-    }
-
-    nav {
-        margin:1em auto;
-
-        ul {
-            li {
-                margin: 0 .5em;
-                
-                a {
-                    text-decoration:none;
-                    @include transition-property(color);
-                    @include transition-duration(.5s);
-                    @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
-
-                    i {
-                        font-size:2em;
-                    }
-                    span {
-                        display:none;
-                    }
-                }
-            }
-        }
+    a {
+        font-size:2em;
+        margin: 0 .5em;
+        text-decoration:none;
     }
 }
 
