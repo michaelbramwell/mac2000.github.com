@@ -8,7 +8,7 @@
     <meta name="Author" content="Marchenko Alexandr, marchenko.alexandr@gmail.com">
     <meta name="Generator" content="Jekyll 0.5.2">
     <meta name="Date" content="{{ page.date }}">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/org/baFo">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="//feeds.feedburner.com/org/baFo">
     <link rel="stylesheet" href="/css/styles.css">
     {% if page.tags.length > 0 %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
 </head>
@@ -21,21 +21,18 @@
                 <li><a href="#top"><i class="icon-arrow-up"></i><span>Top</span></a></li>
                 <li><a href="/"><i class="icon-home"></i><span>Home</span></a></li>
                 <li><a href="/tags.html"><i class="icon-tags"></i><span>Tags</span></a></li>
-                <li><a href="https://plus.google.com/114259064191790696813?rel=author"><i class="icon-google-plus"></i><span>Google+</span></a></li>
-                <li><a href="http://www.facebook.com/marchenko.alexandr"><i class="icon-facebook"></i><span>Facebook</span></a></li>
-                <li><a href="https://twitter.com/#!/alexandrm"><i class="icon-twitter"></i><span>Twitter</span></a></li>
-                <li><a href="https://github.com/mac2000"><i class="icon-github-alt"></i><span>GitHub</span></a></li>
+                <li><a href="/search.html"><i class="icon-search"></i><span>Search</span></a></li>
+                {% if page.url == '/index.html' %}<li><a href="//plus.google.com/114259064191790696813?rel=author"><i class="icon-google-plus"></i><span>Google+</span></a></li>
+                <li><a href="//www.facebook.com/marchenko.alexandr"><i class="icon-facebook"></i><span>Facebook</span></a></li>
+                <li><a href="//twitter.com/alexandrm"><i class="icon-twitter"></i><span>Twitter</span></a></li>
+                <li><a href="//youtube.com/user/marchenkoalexandr"><i class="icon-youtube"></i><span>Youtube</span></a></li>
+                <li><a href="//github.com/mac2000"><i class="icon-github-alt"></i><span>GitHub</span></a></li>
                 <li><a href="callto://mac2000-skype"><i class="icon-skype"></i><span>mac2000-skype</span></a></li>
-                <li><a href="http://about.me/alexandrmarchenko"><i class="icon-info"></i><span>About.me</span></a></li>
-                <li><a href="http://feeds.feedburner.com/org/baFo"><i class="icon-rss"></i><span>Rss</span></a></li>
+                <li><a href="mailto:marchenko.alexandr@gmail.com"><i class="icon-envelope-alt"></i><span>marchenko.alexandr@gmail.com</span></a></li>
+                <li><a href="//about.me/alexandrmarchenko"><i class="icon-info"></i><span>About.me</span></a></li>
+                <li><a href="//feeds.feedburner.com/org/baFo"><i class="icon-rss"></i><span>Rss</span></a></li>{% endif %}
             </ul>
         </nav>
-        <aside>
-            <ul>
-                <li title="Phone"><i class="icon-phone"></i> +3 8(044) 360-78-85 or <a title="Skype" href="callto://mac2000-skype">mac2000-skype</a></li>
-                <li title="Generated"><i class="icon-time"></i> {{ site.time | date: "%Y-%m-%d" }}</li>
-            </ul>
-        </aside>
     </footer>
     {% if page.url != '/index.html' %}<script src="/js/prettify/prettify.js"></script>{% endif %}
     <script src="/js/scripts.min.js"></script>
