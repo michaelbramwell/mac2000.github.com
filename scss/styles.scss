@@ -2,7 +2,7 @@
 @import "normalize";
 
 @include normalize;
-@import "font-awesome";
+@import "icomoon";
 @import "prettify";
 
 body {
@@ -71,17 +71,21 @@ footer {
         margin:1em auto;
 
         ul {
-            a {
-                text-decoration:none;
-                @include transition-property(color);
-                @include transition-duration(.5s);
-                @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
+            li {
+                margin: 0 .5em;
+                
+                a {
+                    text-decoration:none;
+                    @include transition-property(color);
+                    @include transition-duration(.5s);
+                    @include link-colors(#356AA0,#4096EE,#CC0000,#999999,#CC0000);
 
-                i {
-                    font-size:2em;
-                }
-                span {
-                    display:none;
+                    i {
+                        font-size:2em;
+                    }
+                    span {
+                        display:none;
+                    }
                 }
             }
         }
