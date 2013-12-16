@@ -56,15 +56,15 @@ TerminalID=E7881019
 
 Переходим на страницу https://secure.upc.ua/ecgtest/merchant/ и меняем пароль на странице профиля.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image3.png)
+![screenshot](http://mac-blog.org.ua/images/wp/image3.png)
 
 На странице "Терминалы" выбираем наш сайт и указываем URL, для страниц успешной и неудачных транзакций.
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image2.png)
+![screenshot](http://mac-blog.org.ua/images/wp/image2.png)
 
 Так же необходимо сгенерировать и выслать им сертификат, для этого качаем openssl http://www.slproweb.com/products/Win32OpenSSL.html и прописываем путь к папке bin в PATH, далее в консоли переходим к папке batch (приатаченой к письму) и запускаем run.bat `#MERCHANT_ID#` (с правами администратора)
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image0.png)
+![screenshot](http://mac-blog.org.ua/images/wp/image0.png)
 
 Теперь необходимо выслать файл 1753019.crt на [ec@upc.ua](mailto:ec@upc.ua) и дождаться ответа от них (пока не будет ответа, ничего работать не будет).
 
@@ -213,7 +213,7 @@ test-server.cert - файл который они выслали в письм�
 
 В идеале на странице `success.php` должна будет выглядеть так:
 
-![screenshot](http://mac-blog.org.ua/wp-content/uploads/image1.png)
+![screenshot](http://mac-blog.org.ua/images/wp/image1.png)
 
 Шаг 4. Страница ошибки
 ----------------------
