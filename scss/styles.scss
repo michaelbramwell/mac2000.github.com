@@ -17,6 +17,19 @@ body {
     margin: 0;
 }
 
+h1, h2 {
+	font-weight: normal;
+	font-family:monospace;
+}
+
+h1 {
+	font-size:4em;
+}
+
+h2 {
+	font-size:3em;
+}
+
 code, pre, pre.prettyprint {
     background:#ebebeb;    
     font-family: monospace, serif;
