@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Curl first login then get example
-
 tags: [automate, curl, php, login, authorize, auth]
 ---
 
