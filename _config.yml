@@ -3,7 +3,7 @@ safe: true
 lsi: false
 pygments: false
 markdown: kramdown
-exclude: ["scss", "README.md", "config.rb"]
+exclude: ["vendor", "scss", "README.md", "config.rb"]
 
 title: My notes
 production_url: http://mac-blog.org.ua
