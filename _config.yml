@@ -1,6 +1,9 @@
 permalink: /:title/
 safe: true
-exclude: ["scss", "README.md", "config.rb", "_inspect.rb"]
+lsi: false
+pygments: false
+markdown: kramdown
+exclude: ["scss", "README.md", "config.rb"]
 
 title: My notes
 production_url: http://mac-blog.org.ua
