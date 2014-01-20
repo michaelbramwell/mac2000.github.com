@@ -168,3 +168,8 @@ get top 404 urls from access.log
     cat access.log | awk '{ if($9 == 404) { print $7 } }' | sort | uniq -c | sort -r | head -10
 
     grep ' 404 ' access.log | cut -d ' ' -f 7 |sort |uniq -c |sort -n
+
+who tried root access via ssh
+-----------------------------
+
+cat auth.log | grep "Failed password for root from" | cut -d ' ' -f 11 | sort | uniq -c | sort -n
