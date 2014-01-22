@@ -24,7 +24,7 @@ To generate png image from it.
 
 Here is sample code to do it in ashx:
 
-	<%@ WebHandler Language="C#" Class="dot" %>
+	{% raw %}<%@ WebHandler Language="C#" Class="dot" %>
 
 	using System;
 	using System.Web;
@@ -165,7 +165,7 @@ Here is sample code to do it in ashx:
 				return false;
 			}
 		}
-	}
+	}{% endraw %}
 
 This code expects to retrieve two tables from `spTagMaster_Structure` stored procedure, one of which should have ID, Name columns and second - ParentID, ChildID.
 
