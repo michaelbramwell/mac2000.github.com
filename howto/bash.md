@@ -173,3 +173,10 @@ who tried root access via ssh
 -----------------------------
 
 cat auth.log | grep "Failed password for root from" | cut -d ' ' -f 11 | sort | uniq -c | sort -n
+
+prepend file
+------------
+
+    sed -i -e '1i TEXT' FILE
+
+will add string "TEXT" to FILE
