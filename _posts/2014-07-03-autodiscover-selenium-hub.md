@@ -131,3 +131,29 @@ You should add public network to vm definition if you are using virtualbox, but 
     SELENIUM_HUB_IP=`python /vagrant/Scripts/HubDiscover.py`
     nohup java -jar /usr/local/bin/selenium-server-standalone.jar -role node -hub http://$SELENIUM_HUB_IP:4444/grid/register -browser "browserName=firefox, maxInstances=2" &
 
+**Scripts/HubDiscover.py**
+
+    #!/usr/bin/env python
+
+    import socket
+    import sys
+    import os
+
+
+    # Send broadcast message
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    client.sendto('', ('<broadcast>' , 4444))
+    client.close()
+
+
+    # Catch response
+    client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    client.bind(('', 4444))
+    message , address = client.recvfrom(4444)
+    client.close()
+
+
+    print address[0]
