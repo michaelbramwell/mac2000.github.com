@@ -185,3 +185,6 @@ memory usage per process
 ------------------------
 
 ps axo user,pid,%mem,rss,cmd --sort -rss | head
+
+# Same but cut long commands
+ps axo user,pid,%mem,rss,cmd --sort -rss | head | cut -c1-$(stty size </dev/tty | cut -d' ' -f2)
