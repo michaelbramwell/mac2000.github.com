@@ -180,3 +180,8 @@ prepend file
     sed -i -e '1i TEXT' FILE
 
 will add string "TEXT" to FILE
+
+memory usage per process
+------------------------
+
+ps axo user,pid,%mem,rss,cmd --sort -rss | head
