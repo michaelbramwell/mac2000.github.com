@@ -77,3 +77,28 @@ To make this work, do not forget to install castle by typing:
     Install-Package Castle.Windsor
 
 Project site: http://docs.castleproject.org/Windsor.MainPage.ashx
+
+
+Here is more, you can automatically register all classes, and specify only needed implementations:
+
+    public class UpperCaseConsoleLogger : ILogger
+    {
+        public void Info(String message)
+        {
+            Console.Write(message.ToUpper());
+        }
+    }
+
+    public class RepositoriesInstaller : IWindsorInstaller
+    {
+        public void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+            //container.Register(Component.For<Main>());
+            //container.Register(Component.For<ILogger>().ImplementedBy<ConsoleLogger>());
+            //container.Register(Component.For<INotifier>().ImplementedBy<ConsoleNotifier>());
+
+            container.Register(Component.For<ILogger>().ImplementedBy<UpperCaseConsoleLogger>()); // concrete
+            container.Register(Classes.FromThisAssembly().Where(type => type.IsPublic).WithService.DefaultInterfaces());
+        }
+    }
+
