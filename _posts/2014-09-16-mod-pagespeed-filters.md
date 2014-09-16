@@ -150,3 +150,12 @@ Ended up with following addition to [HTML 5 boilerplate .htaccess](https://raw.g
     </IfModule>
 
 Here is all code: [mod_pagespeed.zip](/examples/mod_pagespeed.zip)
+
+Clear (flush) mod_pagespeed cache
+---------------------------------
+
+    sudo touch /var/cache/mod_pagespeed/cache.flush
+
+After opening pages you can delete if
+
+    sudo rm -rf /var/cache/mod_pagespeed/cache.flush
