@@ -16,7 +16,7 @@ So, here is simplified implementtion without regex and any other complex data:
     public override void Write(byte[] buffer, int offset, int count)
     {
         char symbol;
-        bool betweenTags = true;
+        bool betweenTags = false;
 
         for (long i = 0; i < buffer.Length; i++)
         {
