@@ -15,7 +15,7 @@ Unidirectional
 
 One object store other
 
-![Unidirectional Association](http://yuml.me/diagram/scruffy/class/[Car|-engine:Engine]has-[Engine].svg)
+![Unidirectional Association](/examples/uml_basics/Association/Unidirectional/UML.svg)
 
     class Engine {}
 
@@ -32,7 +32,7 @@ Bidirectional
 
 Both objects know about each other
 
-![Bidirectional Association](http://yuml.me/diagram/scruffy/class/[Person|-books:Books]has-has[Book|-person:Person].svg)
+![Bidirectional Association](/examples/uml_basics/Association/Bidirectional/UML.svg)
 
     class Book {
         /**
@@ -54,7 +54,7 @@ Composition
 
 Coupling (dependency) - object not only knowing about its dependency but also creates it. Todays trend is Dependency Injection which expects that all that objects will be passed to constructors or methods (Dependency Association)
 
-![Composition Association](http://yuml.me/diagram/scruffy/class/[Slim|-container:Set|__construct();getContainer()]owns++-[Set].svg)
+![Composition Association](/examples/uml_basics/Association/Composition/UML.svg)
 
     class Set {}
 
@@ -87,7 +87,7 @@ Aggregation
 
 Object knows about its children but does not create them, it recieves them through methods and/or constructor
 
-![Aggregation Association](http://yuml.me/diagram/scruffy/class/[Swift_Mailer|-transport:Swift_Transport|__constructor(transport:Swift_Transport);newInstance(transport:Swift_Transport)]has<>-[Swift_Transport].svg)
+![Aggregation Association](/examples/uml_basics/Association/Aggregation/UML.svg)
 
     class Swift_Transport {}
 
@@ -123,7 +123,7 @@ Dependency
 
 One object uses another, but not store it
 
-![Dependency](http://yuml.me/diagram/scruffy/class/[HomeController|indexAction(request:Request)]uses-.->[Request].svg)
+![Dependency](/examples/uml_basics/Dependency/UML.svg)
 
     class Request {}
 
@@ -135,7 +135,7 @@ One object uses another, but not store it
 Realization (Implementation)
 ============================
 
-![Implementation](http://yuml.me/diagram/scruffy/class/[<<LoggerInterface>>]^-.-realizes[ConsoleLogger].svg)
+![Implementation](/examples/uml_basics/Realization/UML.svg)
 
     interface LoggerInterface {}
 
@@ -145,7 +145,7 @@ Realization (Implementation)
 Generalization (Inheritance)
 ============================
 
-![Inheritance](http://yuml.me/diagram/scruffy/class/[Response]^-is a[HttpResponse].svg)
+![Inheritance](/examples/uml_basics/Generalization/UML.svg)
 
     class Response {}
 

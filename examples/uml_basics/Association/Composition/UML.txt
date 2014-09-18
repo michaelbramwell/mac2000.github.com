@@ -1,0 +1,13 @@
+@startuml
+namespace UML.Basics.Association.Composition {
+    class Slim {
+        -container : Set
+        __
+        +__construct()
+        .. OR ..
+        +getContainer()
+    }
+
+    Slim *.. Set : owns
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+namespace UML.Basics.Association.Aggregation {
+    class Swift_Mailer {
+        -transport : Swift_Transport
+        __
+        +__constructor(transport : Swift_Transport)
+        .. OR ..
+        +{static} newInstance(transport : Swift_Transport)
+    }
+
+    Swift_Mailer o.. Swift_Transport : has
+}
+@enduml

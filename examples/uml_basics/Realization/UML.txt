@@ -1,0 +1,5 @@
+@startuml
+namespace UML.Basics.Realization {
+    interface LoggerInterface <|.. ConsoleLogger : realizes
+}
+@enduml
