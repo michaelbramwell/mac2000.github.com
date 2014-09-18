@@ -38,3 +38,7 @@ Get host name by ip
 
     nbtstat -a 192.168.5.42
 
+ssh copy id
+-----------
+
+    type  id_rsa.pub | plink.exe -l checker -pw ****** -P 22 example.com "umask 077; test -d .ssh || mkdir .ssh ; cat >> .ssh/authorized_keys"
