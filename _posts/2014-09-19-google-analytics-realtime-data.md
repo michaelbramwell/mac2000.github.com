@@ -43,3 +43,6 @@ And here is working example:
     $activeVisitors = $results->rows[0][0];
 
     echo $activeVisitors . PHP_EOL; // 2356
+
+
+'ga:*******' - can be found under Administrator\View settings (3d column)
