@@ -7,28 +7,30 @@
     <meta name="Author" content="Marchenko Alexandr, marchenko.alexandr@gmail.com">
     <meta name="Date" content="{{ page.date }}">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="//feeds.feedburner.com/org/baFo">
-    <link rel="stylesheet" href="/css/styles.css">
+    {% comment %}<link rel="stylesheet" href="/css/styles.css">{% endcomment %}
+    <style>{% include styles.css %}</style>
+    <link rel="stylesheet" href="/css/print.css" media="print">
     {% if page.tags.length > 0 %}<meta name="keywords" content="{{ page.tags | sort | join: ', ' | downcase }}">{% endif %}
 </head>
 <body>
-<a name="top"></a>
-{{content}}
-<footer>
-    <a href="#top" class="icon-arrow-up"></a>
-    <a href="/" class="icon-home"></a>
-    <a href="/tags.html" class="icon-tags"></a>
-    <a href="/search.html" class="icon-search"></a>
-    {% if page.url == '/index.html' %}<a href="//plus.google.com/114259064191790696813?rel=author" class="icon-google-plus"></a>
-    <a href="//www.facebook.com/marchenko.alexandr" class="icon-facebook"></a>
-    <a href="//twitter.com/alexandrm" class="icon-twitter"></a>
-    <a href="//youtube.com/user/marchenkoalexandr" class="icon-youtube"></a>
-    <a href="//github.com/mac2000" class="icon-github-alt"></a>
-    <a href="callto://mac2000-skype" class="icon-skype"></a>
-    <a href="mailto:marchenko.alexandr@gmail.com" class="icon-envelope-alt"></a>
-    <a href="//about.me/alexandrmarchenko" class="icon-info"></a>
-    <a href="//feeds.feedburner.com/org/baFo" class="icon-rss"></a>{% endif %}
-</footer>
-<script src="/js/scripts.js"></script>
-<a href="https://plus.google.com/114259064191790696813?rel=author" style="display:none">Google</a>
+    <a name="top"></a>
+    {{content}}
+    <footer>
+        <a href="#top" class="icon-arrow-up"></a>
+        <a href="/" class="icon-home"></a>
+        <a href="/tags.html" class="icon-tags"></a>
+        <a href="/search.html" class="icon-search"></a>
+        {% if page.url == '/index.html' %}<a href="//plus.google.com/114259064191790696813?rel=author" class="icon-google-plus"></a>
+        <a href="//www.facebook.com/marchenko.alexandr" class="icon-facebook"></a>
+        <a href="//twitter.com/alexandrm" class="icon-twitter"></a>
+        <a href="//youtube.com/user/marchenkoalexandr" class="icon-youtube"></a>
+        <a href="//github.com/mac2000" class="icon-github-alt"></a>
+        <a href="callto://mac2000-skype" class="icon-skype"></a>
+        <a href="mailto:marchenko.alexandr@gmail.com" class="icon-envelope-alt"></a>
+        <a href="//about.me/alexandrmarchenko" class="icon-info"></a>
+        <a href="//feeds.feedburner.com/org/baFo" class="icon-rss"></a>{% endif %}
+        <a href="https://plus.google.com/114259064191790696813?rel=author" style="display:none">Google</a>
+    </footer>
+    <script src="/js/scripts.js" async></script>
 </body>
 </html>

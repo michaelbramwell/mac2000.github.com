@@ -3,11 +3,7 @@
 @import "prettify";
 
 html {
-    margin: 0;
-    padding: 0;
     font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -31,7 +27,7 @@ h2 {
 }
 
 code, pre, pre.prettyprint {
-    background:#ebebeb;    
+    background:#ebebeb;
     font-family: monospace, serif;
     font-size: 1em;
 }
@@ -41,7 +37,7 @@ code {
     border:none;
 }
 
-pre, pre.prettyprint {    
+pre, pre.prettyprint {
     @include inline-block;
     min-width:100%;
     padding:1em 2em;
@@ -86,7 +82,6 @@ footer {
     text-align:center;
     margin:0 auto;
     padding-top:2em;
-    @include clearfix;
 
     a {
         font-size:2em;
@@ -95,50 +90,15 @@ footer {
     }
 }
 
-@media print{
-    html, body {
-        padding: 0;
-        margin: 0;
+@media only screen and (max-width: 600px){
+    h1 {
+        font-size:2em;
     }
-    body{
-        width:auto;
-        background: none;
-        color:black;
-    }
-    footer, aside {
-        display:none;
-    }
-    a:link:after, a:visited:after {
-        content: " [" attr(href) "] ";
-    }
-    code, pre, pre.prettyprint {
-        background:none;
-        border:none;
-        padding:0;
-        margin:0;
-    }
-    pre, pre.prettyprint {
-        margin:1em 0;
-        padding:1em 0;
-        border-top:1px solid #000;
-        border-bottom:1px solid #000;
 
-        & * {
-            color:#000!important;
-            font-weight:normal!important;
-        }
+    h2, footer {
+        font-size:1.5em;
     }
-}
 
-@media only screen and (min-width:768px) and (max-width:959px){
-    .recent, .howto {
-        float:none;
-        display:block;
-        width:auto;
-    }
-}
-
-@media only screen and (max-width:767px){
     .recent, .howto {
         float:none;
         display:block;
