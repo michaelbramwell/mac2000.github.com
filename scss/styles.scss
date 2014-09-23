@@ -118,5 +118,14 @@ footer {
         float:none;
         display:block;
         width:auto;
+
+        a {
+            display: inline-block;
+            line-height: 2;
+        }
+
+        li {
+            margin: 5px 0;
+        }
     }
 }
