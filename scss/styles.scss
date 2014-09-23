@@ -91,11 +91,24 @@ footer {
 }
 
 @media only screen and (max-width: 600px){
+    body, pre, pre.prettyprint {
+        padding: 5px;
+    }
+
+    pre, pre.prettyprint {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    pre code, pre.prettyprint code {
+        white-space: pre-wrap;
+    }
+
     h1 {
         font-size:2em;
     }
 
-    h2, footer {
+    h2, footer a {
         font-size:1.5em;
     }
 
