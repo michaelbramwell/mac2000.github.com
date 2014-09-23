@@ -101,7 +101,9 @@ footer {
     }
 
     pre code, pre.prettyprint code {
-        white-space: pre-wrap;
+        max-width: 100%;
+        overflow-x: auto;
+        //white-space: pre-wrap;
     }
 
     h1 {
