@@ -17,7 +17,7 @@ One object store other
 
 ![Unidirectional Association](/examples/uml_basics/Association/Unidirectional/UML.svg)
 
-```php
+{% highlight php %}
 class Engine {}
 
 class Car {
@@ -26,7 +26,7 @@ class Car {
     */
     protected $engine;
 }
-```
+{% endhighlight %}
 
 Bidirectional
 -------------
