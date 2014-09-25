@@ -17,16 +17,14 @@ One object store other
 
 ![Unidirectional Association](/examples/uml_basics/Association/Unidirectional/UML.svg)
 
-{% highlight php %}
-class Engine {}
+    class Engine {}
 
-class Car {
-    /**
-    * @var Engine
-    */
-    protected $engine;
-}
-{% endhighlight %}
+    class Car {
+        /**
+        * @var Engine
+        */
+        protected $engine;
+    }
 
 Bidirectional
 -------------
