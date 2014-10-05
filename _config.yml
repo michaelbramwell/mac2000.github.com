@@ -1,6 +1,7 @@
 permalink: /:title/
 safe: true
 lsi: false
+pygments: false
 markdown: kramdown
 exclude: ["vendor", "scss", "README.md", "config.rb"]
 

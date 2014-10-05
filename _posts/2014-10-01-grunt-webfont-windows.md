@@ -12,57 +12,53 @@ Requirements: Virtualbox, Vagrant
 
 **Vagrantfile**
 
-```ruby
-Vagrant.configure("2") do |config|
-    config.vm.box = "ubuntu/trusty64"
-    config.vm.provision :shell, path: "Provision.sh"
-end
-```
+    Vagrant.configure("2") do |config|
+        config.vm.box = "ubuntu/trusty64"
+        config.vm.provision :shell, path: "Provision.sh"
+    end
 
 **Provision.sh**
 
-```
-#!/usr/bin/env bash
+    #!/usr/bin/env bash
 
-# Use closest mirrors available
-sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-backports main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
-echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
+    # Use closest mirrors available
+    sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-backports main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
+    echo "deb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse" | sudo tee --append /etc/apt/sources.list
 
-# Node JS
-sudo add-apt-repository -y ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install -y nodejs fontforge
+    # Node JS
+    sudo add-apt-repository -y ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install -y nodejs fontforge
 
-# ttfautohint - there is trouble with 0.9.7
-# *** Error in `ttfautohint': malloc(): memory corruption: 0x000000000153de20 ***
-# so we need to install new one from sources instead of packages
-sudo apt-get install -y autoconf automake bison flex git libtool perl build-essential libharfbuzz-dev pkg-config libfreetype6-dev libfreetype6
+    # ttfautohint - there is trouble with 0.9.7
+    # *** Error in `ttfautohint': malloc(): memory corruption: 0x000000000153de20 ***
+    # so we need to install new one from sources instead of packages
+    sudo apt-get install -y autoconf automake bison flex git libtool perl build-essential libharfbuzz-dev pkg-config libfreetype6-dev libfreetype6
 
-git clone git://repo.or.cz/ttfautohint.git
-cd ttfautohint
-git checkout v1.1
-./bootstrap
-./configure --with-qt=no --with-doc=no
-make
-sudo make install
-cd ..
-rm -rfv ttfautohint/
-sudo ln -s /usr/local/bin/ttfautohint /usr/bin/
+    git clone git://repo.or.cz/ttfautohint.git
+    cd ttfautohint
+    git checkout v1.1
+    ./bootstrap
+    ./configure --with-qt=no --with-doc=no
+    make
+    sudo make install
+    cd ..
+    rm -rfv ttfautohint/
+    sudo ln -s /usr/local/bin/ttfautohint /usr/bin/
 
 
-sudo npm install --global grunt-cli
+    sudo npm install --global grunt-cli
 
-ln -s /vagrant/package.json /home/vagrant/
-ln -s /vagrant/Gruntfile.js /home/vagrant/
+    ln -s /vagrant/package.json /home/vagrant/
+    ln -s /vagrant/Gruntfile.js /home/vagrant/
 
-cd /home/vagrant
+    cd /home/vagrant
 
-npm install
-grunt
-```
+    npm install
+    grunt
 
 
 This two files will create and provision virtual machine and install all required software on it.
