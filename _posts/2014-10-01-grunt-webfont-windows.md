@@ -12,16 +12,16 @@ Requirements: Virtualbox, Vagrant
 
 **Vagrantfile**
 
-{% highlight ruby %}
+```ruby
 Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
     config.vm.provision :shell, path: "Provision.sh"
 end
-{% endhighlight %}
+```
 
 **Provision.sh**
 
-{% highlight %}
+```
 #!/usr/bin/env bash
 
 # Use closest mirrors available
@@ -62,7 +62,7 @@ cd /home/vagrant
 
 npm install
 grunt
-{% endhighlight %}
+```
 
 
 This two files will create and provision virtual machine and install all required software on it.
