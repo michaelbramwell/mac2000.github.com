@@ -107,3 +107,185 @@ NOT SPAM
 Все это дело можно очень просто сделать на любом языке, вот пример (не претендующий на крутость, просто чтобы показать и запомнить как оно работает) http://mac-blog.org.ua/examples/bayes.html
 
 Все это дело расковыривалось в процессе ресерча возможности заюзать встроенный в SQL Server классификатор документов (там все это работает из коробки), но к сожалению оказалось что тамошний term extract и term lookup умеют работать только с английским языком, что свело на нет все надежды.
+
+
+Нет повести печальнее на свете
+------------------------------
+
+Реализация алготма на SQL или когда стоит посмотреть в сторону Mongodb
+
+    DROP TABLE IF EXISTS words;
+    DROP TABLE IF EXISTS documents;
+
+    CREATE TABLE IF NOT EXISTS documents (
+        uid INT UNSIGNED NOT NULL,
+        total INT UNSIGNED NOT NULL DEFAULT 0,
+        spam INT UNSIGNED NOT NULL DEFAULT 0,
+        PRIMARY KEY (uid)
+    );
+
+    CREATE TABLE IF NOT EXISTS words (
+        uid INT UNSIGNED NOT NULL,
+        word VARCHAR(100) NOT NULL,
+        spam INT UNSIGNED NOT NULL DEFAULT 0,
+        ham INT UNSIGNED NOT NULL DEFAULT 0,
+        PRIMARY KEY (uid, word),
+        FOREIGN KEY (uid)
+            REFERENCES documents(uid)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+    );
+
+    DROP PROCEDURE IF EXISTS IncrementWordStats;
+    DELIMITER $$
+    CREATE PROCEDURE IncrementWordStats(input_uid INT UNSIGNED, input_word VARCHAR(100), input_spam INT, input_ham INT)
+    BEGIN
+
+        SELECT COUNT(uid), spam, ham INTO @has_word, @old_spam, @old_ham FROM words WHERE words.uid = input_uid AND words.word = input_word LIMIT 1;
+
+        IF @has_word = 0 THEN
+            INSERT INTO words VALUES (input_uid, input_word, input_spam, input_ham);
+        ELSE
+            UPDATE words SET spam = @old_spam + input_spam, ham = @old_ham + input_ham WHERE words.uid = input_uid AND words.word = input_word;
+        END IF;
+
+    END$$
+    DELIMITER ;
+
+    DROP PROCEDURE IF EXISTS AddDocument;
+    DELIMITER $$
+    CREATE PROCEDURE AddDocument(input_uid INT UNSIGNED, input_text TEXT, is_spam INT(1))
+    BEGIN
+
+        SELECT COUNT(*), total, spam INTO @has_uid, @old_total, @old_spam FROM documents WHERE documents.uid = input_uid;
+
+        IF @has_uid = 0 THEN
+            INSERT INTO documents VALUES(input_uid, 1, is_spam);
+        ELSE
+            UPDATE documents SET total = @old_total + 1, spam = IF(is_spam = 1, @old_spam + 1, @old_spam) WHERE documents.uid = input_uid;
+        END IF;
+
+        SET @separator = ',';
+        SET @separator_length = CHAR_LENGTH(@separator);
+
+        WHILE input_text != '' > 0 DO
+            SET @current_value = SUBSTRING_INDEX(input_text, @separator, 1);
+            CALL IncrementWordStats(input_uid, @current_value, is_spam, IF (is_spam = 1, 0, 1));
+            SET input_text = SUBSTRING(input_text, CHAR_LENGTH(@current_value) + @separator_length + 1);
+        END WHILE;
+
+    END$$
+    DELIMITER ;
+
+    DROP PROCEDURE IF EXISTS CheckDocument;
+    DELIMITER $$
+    CREATE PROCEDURE CheckDocument(input_uid INT UNSIGNED, input_text TEXT)
+    BEGIN
+
+        SELECT total INTO @D FROM documents WHERE documents.uid = input_uid;
+        SELECT spam INTO @Dc_spam FROM documents WHERE documents.uid = input_uid;
+        SELECT total - spam INTO @Dc_ham FROM documents WHERE documents.uid = input_uid;
+        SELECT COUNT(*) INTO @V FROM words WHERE words.uid = input_uid;
+        SELECT COUNT(*) INTO @Lc_spam  FROM words WHERE words.uid = input_uid AND spam <> 0;
+        SELECT COUNT(*) INTO @Lc_ham  FROM words WHERE words.uid = input_uid AND ham <> 0;
+
+        SET @spam = LOG(@Dc_spam / @D);
+        SET @ham = LOG(@Dc_ham / @D);
+
+        SET @separator = ',';
+        SET @separator_length = CHAR_LENGTH(@separator);
+
+        WHILE input_text != '' > 0 DO
+            SET @current_value = SUBSTRING_INDEX(input_text, @separator, 1);
+
+            SELECT COUNT(*) INTO @Wc_spam FROM words WHERE words.uid = input_uid AND words.word = @current_value AND spam <> 0;
+            SELECT COUNT(*) INTO @Wc_ham FROM words WHERE words.uid = input_uid AND words.word = @current_value AND ham <> 0;
+
+            SET @spam = @spam + LOG( (@Wc_spam + 1) / ( @V + @Lc_spam ) );
+            SET @ham = @ham + LOG( (@Wc_ham + 1) / ( @V + @Lc_ham ) );
+
+            SET input_text = SUBSTRING(input_text, CHAR_LENGTH(@current_value) + @separator_length + 1);
+        END WHILE;
+
+        SELECT @spam, @ham;
+
+    END$$
+    DELIMITER ;
+
+    START TRANSACTION;
+    CALL AddDocument(1, 'предоставляю,услуги,бухгалтера', 1);
+    CALL AddDocument(1, 'спешите,купить,виагру', 1);
+    CALL AddDocument(1, 'надо,купить,молоко', 0);
+    COMMIT;
+
+    -- SELECT * FROM words;
+    -- SELECT * FROM documents;
+
+    CALL CheckDocument(1, 'надо,купить,сигареты'); -- @spam = -7.63, @ham = -6.90
+
+В тестовом примере добавленно поле uid (user id), но суть от этого не меняеться. Задача немного не стандартная и на SQL решаеться, скажем так, не очень красиво.
+
+В табличку words нам надо не просто писать данные, а инкриментить их, что вызывает неудобства, а теперь гвоздь программы mongodb:
+
+    db.words.findAndModify({
+        query: {uid: 1, word: 'buy'}, // найди мне запись с uid = 1 AND word = 'buy'
+        update: { $inc: { spam: 1, ham: 0 } }, // проикрименти поля spam и ham на соотв, значения
+        upsert: true // если ничего не найдешь - вставь новую запись
+    });
+
+
+Ну и вот более полная реализация:
+
+    ['предоставляю', 'услуги', 'бухгалтера'].forEach(function(word){
+        db.words.findAndModify({
+            query: {uid: 1, word: word},
+            update: { $inc: { spam: 1, ham: 0 } },
+            upsert: true
+        });
+    });
+
+    ['спешите', 'купить', 'виагру'].forEach(function(word){
+        db.words.findAndModify({
+            query: {uid: 1, word: word},
+            update: { $inc: { spam: 1, ham: 0 } },
+            upsert: true
+        });
+    });
+
+    ['надо', 'купить', 'молоко'].forEach(function(word){
+        db.words.findAndModify({
+            query: {uid: 1, word: word},
+            update: { $inc: { spam: 0, ham: 1 } },
+            upsert: true
+        });
+    });
+
+    db.documents.findAndModify({
+        query: {uid: 1},
+        update: { $set: { total: 3, spam: 2 } },
+        upsert: true
+    });
+
+
+
+    var D = db.documents.findOne({uid: 1}).total;
+    var Dc_spam = db.documents.findOne({uid: 1}).spam;
+    var Dc_ham = D - Dc_spam;
+
+    var V = db.words.find({uid: 1}).count();
+    var Lc_spam = db.words.find({uid: 1, spam: {$gt: 0}}).count();
+    var Lc_ham = db.words.find({uid: 1, ham: {$gt: 0}}).count();
+
+    var spam = Math.log(Dc_spam / D);
+    var ham = Math.log(Dc_ham / D);
+
+    ['надо', 'купить', 'сигареты'].forEach(function(word){
+        var Wc_spam = db.words.find({uid: 1, word: word, spam: {$gt: 0}}).count();
+        var Wc_ham = db.words.find({uid: 1, word: word, ham: {$gt: 0}}).count();
+
+        spam = spam + Math.log( (Wc_spam + 1) / (V + Lc_spam) );
+        ham = ham + Math.log( (Wc_ham + 1) / (V + Lc_ham) );
+    });
+
+    print(spam); // -7.62
+    print(ham); // -6.90
