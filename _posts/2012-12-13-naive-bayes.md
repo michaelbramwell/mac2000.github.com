@@ -147,6 +147,29 @@ NOT SPAM
     END$$
     DELIMITER ;
 
+    DROP PROCEDURE IF EXISTS explode;
+    DELIMITER $$
+    CREATE PROCEDURE explode(input TEXT)
+    BEGIN
+
+        DROP TEMPORARY TABLE IF EXISTS explode;
+        CREATE TEMPORARY TABLE explode(
+            item VARCHAR(200) NOT NULL
+        ) ENGINE=Memory;
+
+
+        SET @separator = ',';
+        SET @separator_length = CHAR_LENGTH(@separator);
+
+        WHILE input != '' > 0 DO
+            SET @current_value = SUBSTRING_INDEX(input, @separator, 1);
+            INSERT INTO explode VALUES(@current_value);
+            SET input = SUBSTRING(input, CHAR_LENGTH(@current_value) + @separator_length + 1);
+        END WHILE;
+
+    END; $$
+    DELIMITER ;
+
     DROP PROCEDURE IF EXISTS AddDocument;
     DELIMITER $$
     CREATE PROCEDURE AddDocument(input_uid INT UNSIGNED, input_text TEXT, is_spam INT(1))
@@ -155,16 +178,13 @@ NOT SPAM
         INSERT INTO documents (uid, total, spam) VALUES(input_uid, 1, is_spam)
         ON DUPLICATE KEY UPDATE total = total + 1, spam = IF(is_spam = 1, spam + 1,spam);
 
-        SET @separator = ',';
-        SET @separator_length = CHAR_LENGTH(@separator);
+        CALL explode(input_text);
 
-        WHILE input_text != '' > 0 DO
-            SET @current_value = SUBSTRING_INDEX(input_text, @separator, 1);
-            CALL IncrementWordStats(input_uid, @current_value, is_spam, IF (is_spam = 1, 0, 1));
-            SET input_text = SUBSTRING(input_text, CHAR_LENGTH(@current_value) + @separator_length + 1);
-        END WHILE;
+        INSERT INTO words (uid, word, spam, ham)
+        SELECT input_uid AS uid, item AS word, is_spam AS spam, IF(is_spam = 1, 0, 1) AS ham FROM explode
+        ON DUPLICATE KEY UPDATE spam = spam + VALUES(spam), ham = ham + VALUES(ham);
 
-    END$$
+    END; $$
     DELIMITER ;
 
     DROP PROCEDURE IF EXISTS CheckDocument;
