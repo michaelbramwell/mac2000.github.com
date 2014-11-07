@@ -167,7 +167,7 @@ NOT SPAM
             SET input = SUBSTRING(input, CHAR_LENGTH(@current_value) + @separator_length + 1);
         END WHILE;
 
-    END; $$
+    END$$
     DELIMITER ;
 
     DROP PROCEDURE IF EXISTS AddDocument;
@@ -184,7 +184,7 @@ NOT SPAM
         SELECT input_uid AS uid, item AS word, is_spam AS spam, IF(is_spam = 1, 0, 1) AS ham FROM explode
         ON DUPLICATE KEY UPDATE spam = spam + VALUES(spam), ham = ham + VALUES(ham);
 
-    END; $$
+    END$$
     DELIMITER ;
 
     DROP PROCEDURE IF EXISTS CheckDocument;
