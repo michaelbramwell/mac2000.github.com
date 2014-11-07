@@ -199,25 +199,18 @@ NOT SPAM
         SELECT COUNT(*) INTO @Lc_spam  FROM words WHERE words.uid = input_uid AND spam <> 0;
         SELECT COUNT(*) INTO @Lc_ham  FROM words WHERE words.uid = input_uid AND ham <> 0;
 
-        SET @spam = LOG(@Dc_spam / @D);
-        SET @ham = LOG(@Dc_ham / @D);
+        CALL explode(input_text);
 
-        SET @separator = ',';
-        SET @separator_length = CHAR_LENGTH(@separator);
 
-        WHILE input_text != '' > 0 DO
-            SET @current_value = SUBSTRING_INDEX(input_text, @separator, 1);
-
-            SELECT COUNT(*) INTO @Wc_spam FROM words WHERE words.uid = input_uid AND words.word = @current_value AND spam <> 0;
-            SELECT COUNT(*) INTO @Wc_ham FROM words WHERE words.uid = input_uid AND words.word = @current_value AND ham <> 0;
-
-            SET @spam = @spam + LOG( (@Wc_spam + 1) / ( @V + @Lc_spam ) );
-            SET @ham = @ham + LOG( (@Wc_ham + 1) / ( @V + @Lc_ham ) );
-
-            SET input_text = SUBSTRING(input_text, CHAR_LENGTH(@current_value) + @separator_length + 1);
-        END WHILE;
-
-        SELECT @spam, @ham;
+        SELECT
+            LOG(@Dc_spam / @D) + SUM(LOG( (Wc_spam + 1) / ( @V + @Lc_spam ) )) AS spam,
+            LOG(@Dc_ham / @D) + SUM(LOG( (Wc_ham + 1) / ( @V + @Lc_ham ) )) AS ham
+        FROM (
+            SELECT
+                (SELECT COUNT(*) FROM words WHERE words.uid = input_uid AND words.word = item AND spam <> 0) AS Wc_spam,
+                (SELECT COUNT(*) FROM words WHERE words.uid = input_uid AND words.word = item AND ham <> 0) AS Wc_ham
+            FROM explode
+        ) AS q;
 
     END$$
     DELIMITER ;
