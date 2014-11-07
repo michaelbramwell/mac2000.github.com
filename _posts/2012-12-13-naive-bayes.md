@@ -141,13 +141,8 @@ NOT SPAM
     CREATE PROCEDURE IncrementWordStats(input_uid INT UNSIGNED, input_word VARCHAR(100), input_spam INT, input_ham INT)
     BEGIN
 
-        SELECT COUNT(uid), spam, ham INTO @has_word, @old_spam, @old_ham FROM words WHERE words.uid = input_uid AND words.word = input_word LIMIT 1;
-
-        IF @has_word = 0 THEN
-            INSERT INTO words VALUES (input_uid, input_word, input_spam, input_ham);
-        ELSE
-            UPDATE words SET spam = @old_spam + input_spam, ham = @old_ham + input_ham WHERE words.uid = input_uid AND words.word = input_word;
-        END IF;
+        INSERT INTO words (uid, word, spam, ham) VALUES (input_uid, input_word, input_spam, input_ham)
+        ON DUPLICATE KEY UPDATE spam = spam + input_spam, ham = ham + input_ham;
 
     END$$
     DELIMITER ;
@@ -157,13 +152,8 @@ NOT SPAM
     CREATE PROCEDURE AddDocument(input_uid INT UNSIGNED, input_text TEXT, is_spam INT(1))
     BEGIN
 
-        SELECT COUNT(*), total, spam INTO @has_uid, @old_total, @old_spam FROM documents WHERE documents.uid = input_uid;
-
-        IF @has_uid = 0 THEN
-            INSERT INTO documents VALUES(input_uid, 1, is_spam);
-        ELSE
-            UPDATE documents SET total = @old_total + 1, spam = IF(is_spam = 1, @old_spam + 1, @old_spam) WHERE documents.uid = input_uid;
-        END IF;
+        INSERT INTO documents (uid, total, spam) VALUES(input_uid, 1, is_spam)
+        ON DUPLICATE KEY UPDATE total = total + 1, spam = IF(is_spam = 1, spam + 1,spam);
 
         SET @separator = ',';
         SET @separator_length = CHAR_LENGTH(@separator);
