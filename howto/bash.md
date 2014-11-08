@@ -188,3 +188,22 @@ ps axo user,pid,%mem,rss,cmd --sort -rss | head
 
 # Same but cut long commands
 ps axo user,pid,%mem,rss,cmd --sort -rss | head | cut -c1-$(stty size </dev/tty | cut -d' ' -f2)
+
+Multiline echo into file
+------------------------
+
+    sudo cat >> /etc/supervisor/supervisord.conf << EOL
+    [include]
+    files = conf.d/*.conf
+    EOL
+
+Use `cat >>` to append to file and `cat >` to overwrite whole file
+
+Another way for permission denied files:
+
+    cat << EOF | sudo tee -a /etc/supervisor/supervisord.conf
+    [include]
+    files = conf.d/*.conf
+    EOF
+
+Use `tee -a` to append to file and `tee` to overwrite whole file
