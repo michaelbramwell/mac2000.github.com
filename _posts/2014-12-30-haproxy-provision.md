@@ -9,10 +9,6 @@ Here is simple example of HAproxy
 **Vagrantfile**
 
     Vagrant.configure("2") do |config|
-      config.vm.provider :hyperv do |hv|
-        config.vm.synced_folder ".", "/vagrant", type: "smb", smb_username: "Alexandr", smb_password: "henohn29"
-      end
-
       config.vm.define "web1" do |node|
         node.vm.hostname = "web1"
         node.vm.box = "wildetech/hyper-u1404"
