@@ -153,3 +153,36 @@ And yet another example for memcached servers:
     EOF
 
     sudo service haproxy restart
+
+
+Same thing but with docker containers:
+
+    docker run --name mem1 -d -p 11212:11211 memcached
+    docker run --name mem2 -d -p 11213:11211 memcached
+
+    docker run -d --name ha -p 1936:1936 -p 11211:11211 --link mem1:mem1 --link mem2:mem2 -v /vagrant/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro haproxy
+
+and its haproxy config:
+
+    global
+        maxconn 4096
+        #daemon #must be commented
+
+    defaults
+        mode http
+        timeout connect 2000ms
+        timeout client 2000ms
+        timeout server 2000ms
+
+    listen memcached
+        bind *:11211
+        mode tcp
+        balance leastconn
+        server mem1 ${MEM1_PORT_11211_TCP_ADDR}:${MEM1_PORT_11211_TCP_PORT} check
+        server mem2 ${MEM2_PORT_11211_TCP_ADDR}:${MEM2_PORT_11211_TCP_PORT} check
+
+    listen stats *:1936
+        mode http
+        stats enable
+        stats uri /
+        stats auth vagrant:vagrant
