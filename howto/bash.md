@@ -207,3 +207,12 @@ Another way for permission denied files:
     EOF
 
 Use `tee -a` to append to file and `tee` to overwrite whole file
+
+Sudo without password
+---------------------
+
+    sudo visudo
+
+add to end of the file:
+
+    mac ALL=(ALL) NOPASSWD: ALL
