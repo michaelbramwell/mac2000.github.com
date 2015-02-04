@@ -36,7 +36,7 @@ Here is way you can retrieve Google Analytics Realtime report charts:
 	//});
 
 	// Navigate to Realtime report
-	casper.thenOpen('https://www.google.com/analytics/web/?hl=ru&pli=1#realtime/rt-overview/a799647w2234650p2266524/');
+	casper.thenOpen('https://www.google.com/analytics/web/?hl=ru&pli=1#realtime/rt-overview/YOUR_ID_HERE/');
 
 	// Wait for data & save screenshots
 	casper.waitFor(function check() {		
