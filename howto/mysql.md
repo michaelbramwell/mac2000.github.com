@@ -228,3 +228,15 @@ Dissalow user change data
 
     REVOKE INSERT, UPDATE, DELETE ON sakila.payment FROM username@host
 
+Change column type from string to decimal
+-----------------------------------------
+
+	DROP TABLE IF EXISTS test;
+	CREATE TABLE test LIKE zapornoregulirujushchajaarmatura;
+	INSERT test SELECT * FROM zapornoregulirujushchajaarmatura;
+	ALTER TABLE test ADD COLUMN price2 DECIMAL(20, 2) DEFAULT NULL;
+	UPDATE test SET price2 =  CAST(REPLACE(price, ' $', '') AS DECIMAL(20, 2));
+	SELECT price, price2 FROM test;
+	ALTER TABLE test DROP COLUMN price;
+	ALTER TABLE test CHANGE COLUMN price2 price DECIMAL(20, 2) DEFAULT NULL;
+
