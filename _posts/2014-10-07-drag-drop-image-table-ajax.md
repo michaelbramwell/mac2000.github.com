@@ -209,7 +209,7 @@ Suppose you are building some kind of shop with products list table. One of your
             // request.addEventListener('load', function() {
             //  if (this.status >= 200 && this.status < 400){
             //      var data = JSON.parse(this.response);
-                    
+
             //      var img = node.querySelector('img');
             //      img.src = data.image;
 
@@ -217,7 +217,7 @@ Suppose you are building some kind of shop with products list table. One of your
             //  }
             // });
             // request.send(data);
-            
+
 
             // Example draw local image
             var reader = new FileReader();
@@ -239,3 +239,39 @@ Suppose you are building some kind of shop with products list table. One of your
 <a href="http://jsfiddle.net/mac2000/q5jxLumq/1/">Sources on jsfiddle</a>
 
 Also if you are using jquery example can be minified preatty well, but i was wondering to make it with native javascript.
+
+Simple Generic Handler for ASP.NET:
+
+    using System;
+    using System.Web;
+    using ImageResizer;
+    using ImageResizer.Util;
+
+    public class Upload : IHttpHandler
+    {
+        public void ProcessRequest(HttpContext context)
+        {
+            context.Response.ContentType = "text/plain";
+
+            //TODO: For this to work run: Install-Package ImageResizer
+            //TODO: Read desired dimensions from request
+
+            var imageJob = (new ImageJob(
+                context.Request.Files["Image"],
+                "~/Uploads/" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/<guid>.<ext>",
+                new Instructions("width=150&height=150&mode=crop"))
+            {
+                CreateParentDirectory = true
+            }).Build();
+
+            context.Response.Write(PathUtils.ResolveAppRelativeAssumeAppRelative(PathUtils.GuessVirtualPath(imageJob.FinalPath)));
+        }
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
+            }
+        }
+    }
