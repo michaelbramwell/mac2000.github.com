@@ -58,7 +58,7 @@ Search with default analyzers
 				'retrievable' = $True
 			}
 		)
-    
+
 	}
 	Invoke-RestMethod -Method Post -Uri 'https://testrus.search.windows.net/indexes?api-version=2015-02-28-Preview' -Headers $Headers -Body ($IndexDefinition | ConvertTo-Json -Depth 10)
 
@@ -69,33 +69,33 @@ Search with default analyzers
 		'value' = @(
 			@{
 				'VacancyId' = '1'
-				'Position' = 'Менеджер по продажам в Киеве' # Translation: Sales manager in Kiev
+				'Position' = 'РњРµРЅРµРґР¶РµСЂ РїРѕ РїСЂРѕРґР°Р¶Р°Рј РІ РљРёРµРІРµ' # Translation: Sales manager in Kiev
 			},
 			@{
 				'VacancyId' = '2'
-				'Position' = '1-С Программист Киев' # Translation: 1-C programmer Kiev
+				'Position' = '1-РЎ РџСЂРѕРіСЂР°РјРјРёСЃС‚ РљРёРµРІ' # Translation: 1-C programmer Kiev
 			},
 			@{
 				'VacancyId' = '3'
-				'Position' = '1-С Программист во Львове' # Translation: 1-C programmer Lviv
+				'Position' = '1-РЎ РџСЂРѕРіСЂР°РјРјРёСЃС‚ РІРѕ Р›СЊРІРѕРІРµ' # Translation: 1-C programmer Lviv
 			},
 			@{
 				'VacancyId' = '4'
-				'Position' = 'Acme ищет менеджера по продажам' # Translation: Acme search sales manager
+				'Position' = 'Acme РёС‰РµС‚ РјРµРЅРµРґР¶РµСЂР° РїРѕ РїСЂРѕРґР°Р¶Р°Рј' # Translation: Acme search sales manager
 			}
 		)
 	}
 	Invoke-RestMethod -Method Post -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs/index?api-version=2015-02-28-Preview' -Headers $Headers -Body ([System.Text.Encoding]::UTf8.GetBytes(($Documents | ConvertTo-Json -Depth 10)))
 
-Notice that first two vacancies has `Киев` word at the end (It is capital city of Ukraine) and notice that first vacancy has additional letter `е` at the end
+Notice that first two vacancies has `РљРёРµРІ` word at the end (It is capital city of Ukraine) and notice that first vacancy has additional letter `Рµ` at the end
 
-So, what I want is to perform search over `киеве` and get two first vacancies (search request and index should be stemmed)
+So, what I want is to perform search over `РєРёРµРІРµ` and get two first vacancies (search request and index should be stemmed)
 
-	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=киеве' -Headers $Headers | select -ExpandProperty value
+	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=РєРёРµРІРµ' -Headers $Headers | select -ExpandProperty value
 
-	@search.score VacancyId Position                    
-	------------- --------- --------                    
-	   0,74075186 1         Менеджер по продажам в Киеве
+	@search.score VacancyId Position
+	------------- --------- --------
+	   0,74075186 1         РњРµРЅРµРґР¶РµСЂ РїРѕ РїСЂРѕРґР°Р¶Р°Рј РІ РљРёРµРІРµ
 
 But there is only one :(
 
@@ -132,7 +132,7 @@ Azure Search provides us ability to use preconfigured Lucene analyzers
 				'analyzer' = 'ru.lucene' # <--- Here is tricky part
 			}
 		)
-    
+
 	}
 	Invoke-RestMethod -Method Post -Uri 'https://testrus.search.windows.net/indexes?api-version=2015-02-28-Preview' -Headers $Headers -Body ($IndexDefinition | ConvertTo-Json -Depth 10)
 
@@ -140,12 +140,12 @@ Do not forget to delete index first, otherwise you will get error `Cannot create
 
 Now we can insert data absolutely like before and try run our search again
 
-	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=киеве' -Headers $Headers | select -ExpandProperty value | ft -AutoSize
+	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=РєРёРµРІРµ' -Headers $Headers | select -ExpandProperty value | ft -AutoSize
 
 
-	@search.score VacancyId Position                    
-	------------- --------- --------                    
-		0,8465736 1         Менеджер по продажам в Киеве
+	@search.score VacancyId Position
+	------------- --------- --------
+		0,8465736 1         РњРµРЅРµРґР¶РµСЂ РїРѕ РїСЂРѕРґР°Р¶Р°Рј РІ РљРёРµРІРµ
 
 
 So here is funny stuff, from one side Azure giving us serious analyzer tool, but only with preconfigured options which is not working :)
@@ -181,19 +181,19 @@ Thank to gods Azure provide to us another probably even cooler way to analyze ou
 				'analyzer' = 'ru.microsoft' # <--- Microsoft NLP can stemm russian words
 			}
 		)
-    
+
 	}
 	Invoke-RestMethod -Method Post -Uri 'https://testrus.search.windows.net/indexes?api-version=2015-02-28-Preview' -Headers $Headers -Body ($IndexDefinition | ConvertTo-Json -Depth 10)
 
 As usual do not forget delete old index first, and now magic happens:
 
-	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=киеве' -Headers $Headers | select -ExpandProperty value | ft -AutoSize
+	Invoke-RestMethod -Method Get -Uri 'https://testrus.search.windows.net/indexes/vacancies/docs?api-version=2015-02-28-Preview&search=РєРёРµРІРµ' -Headers $Headers | select -ExpandProperty value | ft -AutoSize
 
 
-	@search.score VacancyId Position                    
-	------------- --------- --------                    
-	   0,30007723 1         Менеджер по продажам в Киеве
-	   0,30007723 2         1-С Программист Киев 
+	@search.score VacancyId Position
+	------------- --------- --------
+	   0,30007723 1         РњРµРЅРµРґР¶РµСЂ РїРѕ РїСЂРѕРґР°Р¶Р°Рј РІ РљРёРµРІРµ
+	   0,30007723 2         1-РЎ РџСЂРѕРіСЂР°РјРјРёСЃС‚ РљРёРµРІ
 
 At last, we got our two documents and all seems to work right
 
@@ -238,7 +238,7 @@ There is always something wrong when all seems to be good :)
 				'sourceFields' = @('Position')
 			}
 		)
-    
+
 	}
 	Invoke-RestMethod -Method Post -Uri 'https://testrus.search.windows.net/indexes?api-version=2015-02-28-Preview' -Headers $Headers -Body ($IndexDefinition | ConvertTo-Json -Depth 10)
 
