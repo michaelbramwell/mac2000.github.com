@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ASP.NET find unused controls
+title: NDepend find unused controls in ASP.NET WebForms site
 tags: [asp, webforms, unused, cleanup, ndepend]
 ---
 
@@ -20,7 +20,7 @@ Notice: If you will get circular reference errors or something like this, try tu
 
 It helped me a lot at least to get my project to be compiled
 
-And now here is pretty part - **ndepend is awesome!**
+And now here is pretty part - **ndepend is awesome!** it can not only show you 100500 things you event do not know about, but run custom queries over your code
 
 Just look what it can do in response to folloging query:
 
