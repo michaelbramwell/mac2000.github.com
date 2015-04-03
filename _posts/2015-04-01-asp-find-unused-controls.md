@@ -63,3 +63,11 @@ After playing with ndepend created few feature requests, if you are reading this
 ability-to-export-dependency-graph-as-svg)
 
 [Support for Web Sites (WebForms/MVC)](https://ndepend.uservoice.com/forums/226344-ndepend-user-voice/suggestions/7442068-support-for-web-sites-webforms-mvc)
+
+
+Here is how at this moment I am removing unused controls from project:
+
+    from t in Application.Types
+    let p = t.TypesUsingMe.Where(p => t.IsClass && !t.IsGeneratedByCompiler && !p.Name.StartsWith("FastObjectFactory"))
+    where p.Count() == 0 && t.IsClass && !t.IsGeneratedByCompiler && t.Name.Contains("ascx") && !t.Name.StartsWith("FastObjectFactory") && !t.Name.Contains("cvbuilder_popups")
+    select new{t,p}
