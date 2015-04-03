@@ -71,39 +71,3 @@ Here is how at this moment I am removing unused controls from project:
     let p = t.TypesUsingMe.Where(p => t.IsClass && !t.IsGeneratedByCompiler && !p.Name.StartsWith("FastObjectFactory"))
     where p.Count() == 0 && t.IsClass && !t.IsGeneratedByCompiler && t.Name.Contains("ascx") && !t.Name.StartsWith("FastObjectFactory") && !t.Name.Contains("cvbuilder_popups")
     select new{t,p}
-
-Find unused methods insibe WebForms Controls
---------------------------------------------
-
-    from m in Application.Methods
-    where
-
-       m.NbMethodsCallingMe == 0
-    && m.ParentAssembly.Name.Contains("ascx")
-    && !m.IsGeneratedByCompiler
-    && !m.IsConstructor
-    && !m.ParentType.Name.Contains("FastObjectFactory")
-    && !m.IsExplicitInterfaceImpl
-    && !m.IsClassConstructor
-    && !m.IsVirtual
-
-    //TODO: events?
-    && !m.IsEventAdder
-    && !m.IsEventRemover
-
-    && !m.ParentType.IsDelegate
-
-    && !m.Name.StartsWithAny("Page_", "zz")
-
-    && !m.IsPropertyGetter
-    && !m.IsPropertySetter
-
-    select new { m, m.NbMethodsCallingMe }
-
-
-Find unsued fields inside WebFroms Controls
--------------------------------------------
-
-    from f in Application.Fields
-    where f.NbMethodsUsingMe == 0 && f.ParentAssembly.Name.Contains("ascx")
-    select new { f, f.NbMethodsUsingMe }
