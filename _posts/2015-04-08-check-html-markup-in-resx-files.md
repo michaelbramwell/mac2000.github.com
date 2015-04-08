@@ -85,3 +85,41 @@ Found 52 errors
 The reason why I so excited about this stuf - think how could such script to be used to detect broken html in asp webforms user controls!
 
 Note: for this to work you will need [HtmlAgilityPack.dll](http://htmlagilitypack.codeplex.com/), also do not forget to change path to root folder of your porject
+
+
+
+Check broken HTML in WebForms User Controls
+-------------------------------------------
+
+```PowerShell
+[System.Reflection.Assembly]::LoadFrom((Join-Path $PSScriptRoot -ChildPath 'HtmlAgilityPack.dll')) | Out-Null
+$doc = New-Object HtmlAgilityPack.HtmlDocument
+
+
+$files = Get-ChildItem -Path C:\Rabota.UA\trunk\Version\Rabota2.WebUI -File -Include *.ascx, *.aspx, *.master -Recurse -ErrorAction SilentlyContinue
+
+$errors = @()
+foreach($file in $files) {
+    Write-Verbose $file.FullName
+
+    $doc.LoadHtml((Get-Content $file.FullName -Encoding UTF8))
+
+    if($doc.ParseErrors.Count -gt 0) {
+        Write-Host $file.FullName -ForegroundColor Yellow
+
+        $doc.ParseErrors | ft -AutoSize
+
+        $errors += $doc.ParseErrors
+    }
+
+    Write-Progress -Activity 'Checking HTML' -Status $file.FullName -PercentComplete ( [Array]::IndexOf($files, $file) / $files.Count * 100 )
+}
+
+if($errors.Count -gt 0) {
+    Write-Host ('Found ' + $errors.Count + ' errors') -ForegroundColor Red
+} else {
+    Write-Host 'All seems to be OK' -ForegroundColor Green
+}
+```
+
+What you should be avare of - it is not silver bullet and can not find matchin tags for stuffs like Repeater > Header(Footer)Template
