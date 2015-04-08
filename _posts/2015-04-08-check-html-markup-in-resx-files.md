@@ -21,12 +21,14 @@ $errors = @()
 foreach($file in $files) {
     Write-Verbose $file.FullName
 
-    $items = ([xml]$xml = Get-Content $file.FullName -Encoding UTF8).root.data.value
+    $items = ([xml]$xml = Get-Content $file.FullName -Encoding UTF8).root.data
 
     foreach($item in $items) {
-        $doc.LoadHtml($item)
+        $doc.LoadHtml($item.value)
         if($doc.ParseErrors.Count -gt 0) {
-            Write-Host $file.FullName -ForegroundColor Yellow
+            Write-Host $file.FullName -ForegroundColor Yellow -NoNewline
+            Write-Host (' ' + $item.name) -ForegroundColor Cyan
+
             $doc.ParseErrors | ft -AutoSize
 
             $errors += $doc.ParseErrors
@@ -46,7 +48,7 @@ if($errors.Count -gt 0) {
 and its output:
 
 ```
-C:\Rabota.UA\trunk\Version\Rabota2.WebUI\App_GlobalResources\cvbuilder.en.resx
+C:\Rabota.UA\trunk\Version\Rabota2.WebUI\App_GlobalResources\cvbuilder.en.resx FinanceSkillsRightExample
 
         Code Line LinePosition Reason                      SourceText StreamPosition
         ---- ---- ------------ ------                      ---------- --------------
@@ -54,7 +56,7 @@ TagNotClosed    3            1 End tag </ul> was not found                      
 TagNotClosed    7           57 End tag </ul> was not found                       266
 
 
-C:\Rabota.UA\trunk\Version\Rabota2.WebUI\App_GlobalResources\cvbuilder.en.resx
+C:\Rabota.UA\trunk\Version\Rabota2.WebUI\App_GlobalResources\cvbuilder.en.resx ITSkillsRightExample
 
         Code Line LinePosition Reason                      SourceText StreamPosition
         ---- ---- ------------ ------                      ---------- --------------
@@ -63,14 +65,14 @@ TagNotClosed    7           57 End tag </ul> was not found                      
 
 ...
 
-C:\Rabota.UA\trunk\Version\Rabota2.WebUI\Controls\CvBuilder\App_LocalResources\StepThree.ascx.resx
+C:\Rabota.UA\trunk\Version\Rabota2.WebUI\Controls\CvBuilder\App_LocalResources\StepThree.ascx.resx Incomplete2
 
              Code Line LinePosition Reason                      SourceText StreamPosition
              ---- ---- ------------ ------                      ---------- --------------
 EndTagNotRequired    1           41 End tag </> is not required <                      40
 
 
-C:\Rabota.UA\trunk\Version\Rabota2.WebUI\Controls\CvBuilder\App_LocalResources\StepThree.ascx.uk.resx
+C:\Rabota.UA\trunk\Version\Rabota2.WebUI\Controls\CvBuilder\App_LocalResources\StepThree.ascx.uk.resx Incomplete2
 
              Code Line LinePosition Reason                      SourceText StreamPosition
              ---- ---- ------------ ------                      ---------- --------------
