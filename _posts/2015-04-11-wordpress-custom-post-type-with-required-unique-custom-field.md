@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Wordpress: Custom Post Type with Required, Unique Custom Field
+title: Wordpress Custom Post Type with Required Unique Custom Field
 tags: [wordpress, add_meta_box, wp_insert_post_data, redirect_post_location, admin_notices]
 ---
 
