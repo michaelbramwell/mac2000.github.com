@@ -188,5 +188,3 @@ The first thing you will ask - why the heck `wp_insert_post_data` and `admin_not
 If you need required **and** unique custom field you should combine them, but if you need only required field just use first part, as I sad it is just proof of concept and not production code (probably it all should be rewriten in some cleaner OOP way but seems to be too heavy for small note)
 
 Full code can be found here: https://gist.github.com/mac2000/68721ed47567c469fc83
-
-<script src="https://gist.github.com/mac2000/68721ed47567c469fc83.js"></script>
