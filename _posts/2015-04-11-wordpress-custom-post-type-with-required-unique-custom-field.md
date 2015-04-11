@@ -35,7 +35,7 @@ We have some constants that we are using later in code, just for not being messi
     define('CPTWRCF_NOT_VALID_QUERY_STRING_KEY', 'cptwrcfn_not_valid');
     define('CPTWRCF_NOT_UNIQUE_QUERY_STRING_KEY', 'cptwrcfn_not_unique');
 
-    define('CPTWRCF_SQL', 'SELECT * FROM wp_postmeta WHERE meta_key = %s AND meta_value = %s AND post_id <> %d');
+    define('CPTWRCF_SQL', "SELECT * FROM $wpdb->postmeta WHERE meta_key = %s AND meta_value = %s AND post_id <> %d");
 
 First things first we are going to create custom post type
 
