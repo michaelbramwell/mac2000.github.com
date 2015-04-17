@@ -205,18 +205,18 @@ Top 10 vacancies by region
 
 ![Top 10 vacancies by region](http://goo.gl/qFJBEv)
 
-    Name          Count
-    ----          -----
-    UK              512
-    CA              479
-    Deutschland     373
-    allows remote   291
-    NY              290
-    Netherlands     195
-    Germany         190
-    WA              123
-    Canada          114
-    Sweden           95
+Name          | Count
+------------- | -----
+UK            | 512
+CA            | 479
+Deutschland   | 373
+allows remote | 291
+NY            | 290
+Netherlands   | 195
+Germany       | 190
+WA            | 123
+Canada        | 114
+Sweden        | 95
 
 Top 10 vacancies by category
 
