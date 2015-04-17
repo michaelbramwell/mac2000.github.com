@@ -68,3 +68,7 @@ and here is how it looks like:
 ![Pygmentize default colorscheme](/images/pygmentize/after.png)
 
 now values are bright, keys are grayed and tokens are almost not visible, I bed you can do it event more readable ;)
+
+In my case usage was something like this:
+
+    ps.cmd -method get -uri /_cat/indices |
