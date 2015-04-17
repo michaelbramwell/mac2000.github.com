@@ -203,7 +203,7 @@ Top 10 vacancies by region
 
     $items | Group-Object Region | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize 
 
-![Top 10 vacancies by region](https://chart.googleapis.com/chart?cht=p&chs=600x200&chd=t:512,479,373,291,290&chl=UK - 512|CA - 479|Deutschland - 373|allows remote - 291|NY - 290)
+![Top 10 vacancies by region](https://chart.googleapis.com/chart?cht=p&chs=600x200&chd=t:512,479,373,291,290&chl=UK%20-%20512|CA%20-%20479|Deutschland%20-%20373|allows%20remote%20-%20291|NY%20-%20290)
 
     Name          Count
     ----          -----
