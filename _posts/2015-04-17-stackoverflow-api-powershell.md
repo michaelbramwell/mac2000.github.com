@@ -203,7 +203,7 @@ Top 10 vacancies by region
 
     $items | Group-Object Region | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize 
 
-![Top 10 vacancies by region](https://chart.googleapis.com/chart?cht=p&chs=600x200&chd=t:512,479,373,291,290&chl=UK%20-%20512|CA%20-%20479|Deutschland%20-%20373|allows%20remote%20-%20291|NY%20-%20290)
+![Top 10 vacancies by region](http://goo.gl/qFJBEv)
 
     Name          Count
     ----          -----
@@ -221,6 +221,8 @@ Top 10 vacancies by region
 Top 10 vacancies by category
 
     $items | Group-Object Category | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize
+
+![Top 10 vacancies by region](http://goo.gl/8Y3Tzc)
 
     Name       Count
     ----       -----
@@ -252,3 +254,10 @@ Top 10 vacancies by both region and category
     UK            c#            20
     UK            php           20
 
+
+Google Pie chart can be made from PowerShell with that piece of code:
+
+    $chart = $items | Group-Object Region | select Name, Count | Sort-Object Count -Descending | select -First 5
+    $chd = 't:' + (($chart | select -ExpandProperty Count) -join ',')
+    $chl=($chart | select @{n='Label';e={ $_.Name + ' - ' + $_.Count }} | select -ExpandProperty Label) -join '|'
+    "https://chart.googleapis.com/chart?cht=p&chs=600x200&chd=$chd&chl=$chl"
