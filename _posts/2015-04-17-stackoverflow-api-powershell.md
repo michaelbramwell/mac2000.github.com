@@ -172,3 +172,83 @@ Here is list of "normal" main (not meta) sites:
     MathOverflow                   mathoverflow.net 
 
 To be able to make more requests you should [register](http://stackapps.com/apps/oauth/register) your app.
+
+Unfortunatelly there is not API for careers but there is [feed](http://careers.stackoverflow.com/jobs/feed) that contains interesting information, here is few samples what can be done:
+
+Firs of all we need retrieve feed itself and process it:
+
+    $xml = [xml](Invoke-WebRequest http://careers.stackoverflow.com/jobs/feed)
+
+    $items = @()
+    foreach($item in $xml.rss.channel.item) {
+        if($item.category) {
+            $parts = $item.title.Substring($item.title.LastIndexOf('(')).Trim(@(' ', '(', ')')).Split(',')
+            
+            $city = $parts | select -First 1
+            $region = $parts | select -Last 1
+
+            foreach($category in $item.category) {
+                $el = New-Object psobject
+                $el | Add-Member NoteProperty 'City' $city.Trim()
+                $el | Add-Member NoteProperty 'Region' $region.Trim()
+                $el | Add-Member NoteProperty 'Category' $category
+                $items += $el
+            }
+        }
+    }
+
+Now we can get some aggregated data
+
+Top 10 vacancies by region
+
+    $items | Group-Object Region | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize 
+
+![Top 10 vacancies by region](https://chart.googleapis.com/chart?cht=p&chs=600x200&chd=t:512,479,373,291,290&chl=UK - 512|CA - 479|Deutschland - 373|allows remote - 291|NY - 290)
+
+    Name          Count
+    ----          -----
+    UK              512
+    CA              479
+    Deutschland     373
+    allows remote   291
+    NY              290
+    Netherlands     195
+    Germany         190
+    WA              123
+    Canada          114
+    Sweden           95
+
+Top 10 vacancies by category
+
+    $items | Group-Object Category | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize
+
+    Name       Count
+    ----       -----
+    java         246
+    javascript   223
+    python       128
+    c#           108
+    php          107
+    c++          103
+    sql           84
+    linux         79
+    mysql         73
+    css           70
+
+Top 10 vacancies by both region and category
+
+    $items | Group-Object Region, Category | Sort-Object Count -Descending | select @{n='Region';e={ $_.Values[0] }}, @{n='Category';e={ $_.Values[1] }}, Count | select -First 10 | ft -AutoSize
+
+    Region        Category   Count
+    ------        --------   -----
+    UK            java          34
+    UK            javascript    33
+    CA            java          27
+    CA            javascript    26
+    NY            java          23
+    Deutschland   java          23
+    allows remote javascript    22
+    CA            python        22
+    UK            c#            20
+    UK            php           20
+
