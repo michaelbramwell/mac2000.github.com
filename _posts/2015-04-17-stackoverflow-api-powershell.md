@@ -199,26 +199,26 @@ Firs of all we need retrieve feed itself and process it:
 
 Now we can get some aggregated data
 
-Top 10 vacancies by region
+**Top 10 vacancies by region**
 
     $items | Group-Object Region | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize 
 
 ![Top 10 vacancies by region](http://goo.gl/qFJBEv)
 
-Name          | Count
-------------- | -----
-UK            | 512
-CA            | 479
-Deutschland   | 373
-allows remote | 291
-NY            | 290
-Netherlands   | 195
-Germany       | 190
-WA            | 123
-Canada        | 114
-Sweden        | 95
+    Name          Count
+    ----          -----
+    UK              512
+    CA              479
+    Deutschland     373
+    allows remote   291
+    NY              290
+    Netherlands     195
+    Germany         190
+    WA              123
+    Canada          114
+    Sweden           95
 
-Top 10 vacancies by category
+**Top 10 vacancies by category**
 
     $items | Group-Object Category | select Name, Count | Sort-Object Count -Descending | select -First 10 | ft -AutoSize
 
@@ -237,7 +237,7 @@ Top 10 vacancies by category
     mysql         73
     css           70
 
-Top 10 vacancies by both region and category
+**Top 10 vacancies by both region and category**
 
     $items | Group-Object Region, Category | Sort-Object Count -Descending | select @{n='Region';e={ $_.Values[0] }}, @{n='Category';e={ $_.Values[1] }}, Count | select -First 10 | ft -AutoSize
 
