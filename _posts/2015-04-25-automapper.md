@@ -236,8 +236,8 @@ And here is yet another more full example mapping sql query results to objects i
     P.Name AS ProfLevel,
     R.AddDate AS Created,
     R.UpdateDate AS Updated,
-    CASE WHEN R.Photo = '' THEN NULL ELSE R.Photo END AS Photo,
-    R.Link AS Link,
+    CASE WHEN R.Photo = '' THEN 'http://img1.rabota.com.ua/static/2013/11/img/nophoto.png' ELSE 'http://rabota.ua/cvphotos/' + R.Photo END AS Photo,
+    'http://rabota.ua/cv/' + R.Link AS Link,
     CASE WHEN R.CurrencyId = 1 THEN R.Salary
          WHEN R.CurrencyId = 2 THEN 25 * R.Salary
          ELSE NULL
@@ -305,8 +305,6 @@ And here is yet another more full example mapping sql query results to objects i
             public Repository()
             {
                 Mapper.CreateMap<ResumeDto, Resume>()
-                    .ForMember(destination => destination.Link, member => member.MapFrom(source => string.Format("http://rabota.ua/cv/{0}", source.Link)))
-                    .ForMember(destination => destination.Photo, member => member.MapFrom(source => source.Photo == null ? "http://img1.rabota.com.ua/static/2013/11/img/nophoto.png" : string.Format("http://rabota.ua/cvphotos/{0}.jpg", source.Photo)))
                     .ForMember(destination => destination.Rubrics, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.Rubrics))
                     .ForMember(destination => destination.SubRubrics, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.SubRubrics))
                     .ForMember(destination => destination.Keywords, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.Keywords))
@@ -334,3 +332,5 @@ And here is yet another more full example mapping sql query results to objects i
             }
         }
     }
+
+BTW: [How do you embed sql queries in c#](http://stackoverflow.com/questions/7064214/how-do-you-embed-sql-queries-in-c-sharp) gives nice recommendation to store SQL queries in embedded sql files.
