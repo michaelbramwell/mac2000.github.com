@@ -150,3 +150,187 @@ Automapper usage example
         }
     }
 
+And here is yet another more full example mapping sql query results to objects in C#:
+
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+    using System.Linq;
+    using AutoMapper;
+
+    namespace AutomapperExample
+    {
+        class ResumeDto
+        {
+            public int Id { get; set; }
+            public string Rubrics { get; set; }
+            public string SubRubrics { get; set; }
+            public string FullName { get; set; }
+            public DateTime BirthDate { get; set; }
+            public int Age { get; set; }
+            public string Sex { get; set; }
+            public string Speciality { get; set; }
+            public string Keywords { get; set; }
+            public string City { get; set; }
+            public string Schedule { get; set; }
+            public string Education { get; set; }
+            public string ProfLevel { get; set; }
+            public DateTime Created { get; set; }
+            public DateTime Updated { get; set; }
+            public string Photo { get; set; }
+            public string Link { get; set; }
+            public int Salary { get; set; }
+            public string Description { get; set; }
+            public string Country { get; set; }
+            public string Province { get; set; }
+            public decimal Latitude { get; set; }
+            public decimal Longitude { get; set; }
+        }
+
+        class Storage : DbContext
+        {
+            public Storage()
+                : base("Default")
+            {
+                Database.SetInitializer<Storage>(null);
+            }
+
+            public DbSet<ResumeDto> Resumes { get; set; }
+
+            public IEnumerable<ResumeDto> GetResumes()
+            {
+                return Resumes.SqlQuery(@"
+    SELECT
+    TOP 10
+    R.Id AS Id,
+    STUFF((
+              SELECT DISTINCT ',' + R1.Name
+              FROM TESTSRV13.RabotaUA2.dbo.ResumeRubricNEW AS RR
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric2Level R2 ON RR.RubricID2 = R2.ID
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric1To2 R12 ON R12.RubricID2 = R2.ID
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric1Level R1 ON R1.ID = R12.RubricID1
+              WHERE RR.ResumeID = R.Id
+              FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '') AS Rubrics,
+
+    STUFF((
+              SELECT DISTINCT ',' + R2.Name
+              FROM TESTSRV13.RabotaUA2.dbo.ResumeRubricNEW AS RR
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric2Level R2 ON RR.RubricID2 = R2.ID
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric1To2 R12 ON R12.RubricID2 = R2.ID
+              INNER JOIN TESTSRV13.RabotaUA2.dbo.Rubric1Level R1 ON R1.ID = R12.RubricID1
+              WHERE RR.ResumeID = R.Id
+              FOR XML PATH(''), TYPE).value('.', 'NVARCHAR(MAX)'), 1, 1, '') AS SubRubrics,
+
+    RTRIM(R.Surname + ' '  + R.Name + ' ' + R.FatherName) AS FullName,
+    R.BirthDate as BirthDate,
+    DATEDIFF(year, R.BirthDate, GETDATE()) AS Age,
+    CASE WHEN R.Sex = 1 THEN 'Мужчина' 
+         WHEN R.Sex = 0 THEN 'Женщина' 
+         ELSE NULL
+         END AS Sex,
+    R.Speciality AS Speciality,
+    R.AlternativeName as Keywords,
+    C.Name AS City,
+    S.Name AS Schedule,
+    E.Name AS Education,
+    P.Name AS ProfLevel,
+    R.AddDate AS Created,
+    R.UpdateDate AS Updated,
+    CASE WHEN R.Photo = '' THEN NULL ELSE R.Photo END AS Photo,
+    R.Link AS Link,
+    CASE WHEN R.CurrencyId = 1 THEN R.Salary
+         WHEN R.CurrencyId = 2 THEN 25 * R.Salary
+         ELSE NULL
+         END AS Salary,
+    R.Description AS Description,
+
+    DC.CountryName AS Country,
+    DC.AdministrativeAreaName AS Province,
+    DC.Latitude AS Latitude,
+    DC.Longitude AS Longitude
+
+    FROM TESTSRV13.RabotaUA2.dbo.Resume AS R
+    INNER JOIN TESTSRV13.RabotaUA2.dbo.ResumeExtra AS RE ON R.Id = RE.ResumeId AND IsModerated = 1 AND IsModeratedRubric = 1 /* только отмодерированные резюме */
+    INNER JOIN TESTSRV13.RabotaUA2.dbo.Notebook AS N ON R.NotebookId = N.Id AND NotebookStateId NOT IN (4 /* черный список */)
+    LEFT JOIN TESTSRV13.RabotaUA2.dbo.City AS C ON R.CityId = C.Id
+    LEFT JOIN TESTSRV13.RabotaUA2.dbo.Schedule AS S ON R.ScheduleId = S.Id
+    LEFT JOIN TESTSRV13.RabotaUA2.dbo.Education AS E ON R.EducationId = E.Id
+    LEFT JOIN TESTSRV13.RabotaUA2.dbo.Proflevel AS P ON R.ProfLevelID = P.Id
+    LEFT JOIN Dictionaries.Cities AS DC ON R.CityId = DC.CityId
+    WHERE R.State = 1 AND R.IsProfessional = 1 AND R.Speciality LIKE '%PHP%'
+    ORDER BY R.UpdateDate DESC");
+            }
+        }
+
+
+        class Resume
+        {
+            public int Id { get; set; }
+            public string[] Rubrics { get; set; }
+            public string[] SubRubrics { get; set; }
+            public string FullName { get; set; }
+            public DateTime BirthDate { get; set; }
+            public int Age { get; set; }
+            public string Sex { get; set; }
+            public string Speciality { get; set; }
+            public string[] Keywords { get; set; }
+            public string City { get; set; }
+            public string Schedule { get; set; }
+            public string Education { get; set; }
+            public string ProfLevel { get; set; }
+            public DateTime Created { get; set; }
+            public DateTime Updated { get; set; }
+            public string Photo { get; set; }
+            public string Link { get; set; }
+            public int Salary { get; set; }
+            public string Description { get; set; }
+            public string Country { get; set; }
+            public string Province { get; set; }
+            public decimal Latitude { get; set; }
+            public decimal Longitude { get; set; }
+        }
+
+        class CommaSeparatedListResolver : ValueResolver<string, string[]>
+        {
+            protected override string[] ResolveCore(string source)
+            {
+                return (source ?? "").Split(',').Select(item => item.Trim()).Where(item => !string.IsNullOrEmpty(item)).OrderBy(item => item).Distinct().ToArray();
+            }
+        }
+
+        class Repository
+        {
+            private readonly Storage _storage = new Storage();
+
+            public Repository()
+            {
+                Mapper.CreateMap<ResumeDto, Resume>()
+                    .ForMember(destination => destination.Link, member => member.MapFrom(source => string.Format("http://rabota.ua/cv/{0}", source.Link)))
+                    .ForMember(destination => destination.Photo, member => member.MapFrom(source => source.Photo == null ? "http://img1.rabota.com.ua/static/2013/11/img/nophoto.png" : string.Format("http://rabota.ua/cvphotos/{0}.jpg", source.Photo)))
+                    .ForMember(destination => destination.Rubrics, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.Rubrics))
+                    .ForMember(destination => destination.SubRubrics, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.SubRubrics))
+                    .ForMember(destination => destination.Keywords, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.Keywords))
+                    ;
+            }
+
+            public IEnumerable<Resume> GetResumes()
+            {
+                return Mapper.Map<IEnumerable<Resume>>(_storage.GetResumes());
+            }
+        }
+
+        class Program
+        {
+            static readonly Repository Repository = new Repository();
+
+            static void Main(string[] args)
+            {
+                foreach (var resume in Repository.GetResumes())
+                {
+                    Console.WriteLine("{0}, {1} ({2})", resume.Speciality, resume.FullName, resume.Age);
+                }
+
+                Console.ReadKey();
+            }
+        }
+    }
