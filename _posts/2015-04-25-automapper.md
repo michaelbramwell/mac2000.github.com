@@ -23,6 +23,8 @@ Automapper usage example
             public string Skills { get; set; } // comma separated list
             public string BirthDate { get; set; } // should be casted to date time, inputs will be something like: 1985-03-11
             public int Sex { get; set; } // 1 or 2 should be resolved to proper enum, can be null
+            public double Latitude { get; set; } // both Latitude and Longitude should be mapped to GeoPoint object
+            public double Longitude { get; set; }
         }
 
         // Destination class to which we want map our source class
@@ -37,6 +39,8 @@ Automapper usage example
 
             public Sex Sex { get; set; }
 
+            public GeoPoint Location { get; set; }
+
             public string FullName
             {
                 get { return string.Format("{0} {1}", FirstName, LastName); }
@@ -45,6 +49,17 @@ Automapper usage example
             public int Age
             {
                 get { return BirthDate.HasValue ? DateTime.Now.Year - BirthDate.Value.Year : 0; }
+            }
+        }
+
+        class GeoPoint
+        {
+            public double Latitude { get; set; }
+            public double Longitude { get; set; }
+
+            public override string ToString()
+            {
+                return string.Format("{0}, {1}", Latitude, Longitude);
             }
         }
 
@@ -105,6 +120,7 @@ Automapper usage example
                     // Inline mappings
                     .ForMember(destination => destination.FirstName, member => member.MapFrom(source => source.FullName.Split(' ').FirstOrDefault()))
                     .ForMember(destination => destination.LastName, member => member.MapFrom(source => source.FullName.Split(' ').LastOrDefault()))
+                    .ForMember(destination => destination.Location, member => member.MapFrom(source => new GeoPoint { Latitude = source.Latitude, Longitude = source.Longitude }))
                     // Custom resolvers
                     .ForMember(destination => destination.Skills, member => member.ResolveUsing<CommaSeparatedListResolver>().FromMember(source => source.Skills))
                     .ForMember(destination => destination.BirthDate, member => member.ResolveUsing<DateResolver>().FromMember(source => source.BirthDate))
@@ -114,6 +130,8 @@ Automapper usage example
                 {
                     FullName = "Alexandr Marchenko",
                     Skills = " php, js,c#,,js ",
+                    Latitude = 50.450097,
+                    Longitude = 30.523397
                     //Sex = 1
                 };
 
@@ -126,7 +144,31 @@ Automapper usage example
                 Console.WriteLine("BirthDate: {0}", person.BirthDate.HasValue ? person.BirthDate.Value.ToShortDateString() : "NULL"); // NULL
                 Console.WriteLine("Age: {0}", person.Age); // 0
                 Console.WriteLine("Sex: {0}", person.Sex); // Undefined
+                Console.WriteLine("Location: {0}", person.Location); // 50,450097, 30,523397
                 Console.ReadKey();
             }
         }
+
+        /*class Resume
+        {
+            public int ResumeId { get; set; }
+        }
+
+        class Database : DbContext
+        {
+            public DbSet<Resume> Resumes { get; set; }
+        }
+
+        class Program
+        {
+            static void Main(string[] args)
+            {
+                var db = new Database();
+
+
+
+                Console.ReadKey();
+            }
+        }*/
     }
+
