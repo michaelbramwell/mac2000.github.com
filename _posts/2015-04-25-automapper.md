@@ -148,27 +148,5 @@ Automapper usage example
                 Console.ReadKey();
             }
         }
-
-        /*class Resume
-        {
-            public int ResumeId { get; set; }
-        }
-
-        class Database : DbContext
-        {
-            public DbSet<Resume> Resumes { get; set; }
-        }
-
-        class Program
-        {
-            static void Main(string[] args)
-            {
-                var db = new Database();
-
-
-
-                Console.ReadKey();
-            }
-        }*/
     }
 
