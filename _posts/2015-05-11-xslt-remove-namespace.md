@@ -1,6 +1,6 @@
 ---
 layout: post
-title: XSLT Remove Namespace
+title: XSLT Remove Namespace and Move Attributes to Elements
 tags: [xslt, xml, namespace]
 ---
 
@@ -106,3 +106,49 @@ And processed version of it:
             </item>
         </channel>
     </rss>
+
+Attributes to Elements
+----------------------
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output indent="yes" method="xml" encoding="utf-8"/>
+        <xsl:strip-space elements="*" />
+
+        <xsl:template match="@* | node()">
+            <xsl:copy>
+                <xsl:apply-templates select="@* | node()"/>
+            </xsl:copy>
+        </xsl:template>
+
+        <xsl:template match="@*">
+            <xsl:element name="{name()}">
+                <xsl:value-of select="."/>
+            </xsl:element>
+        </xsl:template>
+
+    </xsl:stylesheet>
+
+such xslt will transform xml like this one:
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <users>
+        <user id="1" blog-url="http://mac-blog.org.ua">
+            <firstName>Alexandr</firstName>
+            <lastName>Marchenko</lastName>
+        </user>
+    </users>
+
+to:
+
+<?xml version="1.0" encoding="utf-8"?>
+<users>
+    <user>
+        <id>1</id>
+        <blog-url>http://mac-blog.org.ua</blog-url>
+        <firstName>Alexandr</firstName>
+        <lastName>Marchenko</lastName>
+    </user>
+</users>
+
+Both styleshets may be used with something like [jms/serializer](https://packagist.org/packages/jms/serializer) to deserialize almost any kind of xml with almost without effort.
