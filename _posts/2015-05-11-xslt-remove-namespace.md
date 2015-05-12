@@ -141,14 +141,14 @@ such xslt will transform xml like this one:
 
 to:
 
-<?xml version="1.0" encoding="utf-8"?>
-<users>
-    <user>
-        <id>1</id>
-        <blog-url>http://mac-blog.org.ua</blog-url>
-        <firstName>Alexandr</firstName>
-        <lastName>Marchenko</lastName>
-    </user>
-</users>
+    <?xml version="1.0" encoding="utf-8"?>
+    <users>
+        <user>
+            <id>1</id>
+            <blog-url>http://mac-blog.org.ua</blog-url>
+            <firstName>Alexandr</firstName>
+            <lastName>Marchenko</lastName>
+        </user>
+    </users>
 
 Both styleshets may be used with something like [jms/serializer](https://packagist.org/packages/jms/serializer) to deserialize almost any kind of xml with almost without effort.
