@@ -1,10 +1,11 @@
 permalink: /:title/
 safe: true
 lsi: false
+timezone: Europe/Kiev
+encoding: utf-8
 pygments: false
 markdown: kramdown
 exclude: ["vendor", "scss", "README.md", "config.rb"]
-
 title: My notes
 production_url: http://mac-blog.org.ua
 author:
