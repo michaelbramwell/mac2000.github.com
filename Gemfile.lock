@@ -55,7 +55,6 @@ GEM
     safe_yaml (0.9.7)
     toml (0.1.0)
       parslet (~> 1.5.0)
-    wdm (0.1.0)
     yajl-ruby (1.1.0)
     yajl-ruby (1.1.0-x86-mingw32)
 
@@ -65,4 +64,3 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  wdm
