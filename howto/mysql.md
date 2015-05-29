@@ -240,3 +240,18 @@ Change column type from string to decimal
 	ALTER TABLE test DROP COLUMN price;
 	ALTER TABLE test CHANGE COLUMN price2 price DECIMAL(20, 2) DEFAULT NULL;
 
+Command line client options
+---------------------------
+
+For mysql command line to be abble to connect to local server without warnings and without entering passwords again and again create `C:\my.ini` file with following content:
+
+    [client]
+    user=root
+    password=root
+
+Explain and cost
+----------------
+
+    SELECT * FROM film WHERE film_id BETWEEN 1 AND 10;
+    SHOW STATUS LIKE 'Last_Query_Cost';
+    EXPLAIN SELECT * FROM film WHERE film_id BETWEEN 1 AND 10;
