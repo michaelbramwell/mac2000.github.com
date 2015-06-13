@@ -732,3 +732,138 @@ Here is error:
 
     Msg 6926, Level 16, State 1, Line 100
     XML Validation: Invalid simple type value: 'http://example.com/photo1'. Location: /*:items[1]/*:item[1]/*:photo[1]
+
+
+XSLT your XML right inside SQL
+------------------------------
+
+Here is awesomeness
+
+    -- NOTICE that class is not wrapped in namespace
+    /*
+    using System.Data.SqlTypes;
+    using System.IO;
+    using System.Text;
+    using System.Xml;
+    using System.Xml.Xsl;
+
+    public class XSLTTransform
+    {
+        public static SqlXml Transform(SqlXml inputDataXML, SqlXml inputTransformXML)
+        {
+            MemoryStream memoryXml = new MemoryStream();
+            XslCompiledTransform xslt = new XslCompiledTransform();
+            XmlReader output = null;
+
+            xslt.Load(inputTransformXML.CreateReader());
+
+            // Output the newly constructed XML
+            XmlTextWriter outputWriter = new XmlTextWriter(memoryXml, Encoding.Default);
+            xslt.Transform(inputDataXML.CreateReader(), null, outputWriter, null);
+            memoryXml.Seek(0, SeekOrigin.Begin);
+            output = new XmlTextReader(memoryXml);
+
+            return new SqlXml(output);
+        }
+    }
+    */
+
+
+    -- STEP 1. Enable CLR
+    sp_configure 'clr enabled', 1
+    GO
+    RECONFIGURE
+    GO
+
+    -- STEP 2. reCREATE assembly and function
+    IF EXISTS (SELECT * FROM sys.objects WHERE name = 'ApplyXsltTransform') DROP FUNCTION ApplyXsltTransform
+    GO
+
+    IF EXISTS (SELECT * FROM sys.assemblies WHERE name = 'XSLTTransform') DROP ASSEMBLY XSLTTransform
+    GO
+
+    CREATE ASSEMBLY XSLTTransform FROM 'C:\Users\Alexandr\Documents\visual studio 2015\Projects\XSLTTransform\XSLTTransform\bin\Release\XSLTTransform.dll'
+    GO
+
+    CREATE FUNCTION ApplyXsltTransform(@inputXML xml, @inputTransform xml)
+    RETURNS XML
+    AS EXTERNAL NAME XSLTTransform.XSLTTransform.Transform
+    GO
+
+
+    -- STEP 3. Demo
+    DECLARE @xml XML = (
+        SELECT TOP 10 Date, AVG(TimeTaken) AS Value
+        FROM MAC.Play.dbo.IISLog
+        GROUP BY Date
+        ORDER BY Date
+        FOR XML PATH('Item'), ROOT('ArrayOfItem')
+    )
+    SELECT @xml
+
+    --DECLARE @xslt XML = (
+    --  SELECT BulkColumn FROM OPENROWSET(Bulk 'C:\Users\Alexandr\Documents\visual studio 2015\Projects\XSLTTransform\XSLTTransform\Chart.xslt', SINGLE_BLOB) AS x
+    --)
+    DECLARE @xslt XML = '<?xml version="1.0" encoding="UTF-8"?>
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output method="html" indent="yes"/>
+
+        <xsl:template match="/">
+            <html>
+                <body>
+                    <xsl:apply-templates/>
+                </body>
+            </html>
+        </xsl:template>
+        <xsl:template match="ArrayOfItem">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <xsl:for-each select="Item">
+                        <tr>
+                            <td>
+                                <xsl:value-of select="Date"/>
+                            </td>
+                            <td>
+                                <xsl:value-of select="Value"/>
+                            </td>
+                        </tr>
+                    </xsl:for-each>
+                </tbody>
+            </table>
+        </xsl:template>
+    </xsl:stylesheet>';
+    SELECT @xslt
+
+    SELECT dbo.ApplyXsltTransform(@xml, @xslt)
+
+And its output:
+
+    <html>
+      <body>
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2015-06-11T03:00:00</td><td>14</td></tr>
+            <tr><td>2015-06-11T03:00:02</td><td>182</td></tr>
+            <tr><td>2015-06-11T03:00:03</td><td>149</td></tr>
+            <tr><td>2015-06-11T03:00:04</td><td>43</td></tr>
+            <tr><td>2015-06-11T03:00:05</td><td>12</td></tr>
+            <tr><td>2015-06-11T03:00:07</td><td>181</td></tr>
+            <tr><td>2015-06-11T03:00:08</td><td>144</td></tr>
+            <tr><td>2015-06-11T03:00:09</td><td>141</td></tr>
+            <tr><td>2015-06-11T03:00:10</td><td>524</td></tr>
+            <tr><td>2015-06-11T03:00:11</td><td>2106</td></tr>
+          </tbody>
+        </table>
+      </body>
+    </html>
+
+For this to work you need to compile and connect assembly.
