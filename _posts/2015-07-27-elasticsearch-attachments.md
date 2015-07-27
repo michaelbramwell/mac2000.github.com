@@ -4,6 +4,8 @@ title: ElasticSearch search in attachments
 tags: [elasticsearch, tika]
 ---
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZDCBXX4S7uQ" frameborder="0" allowfullscreen></iframe>
+
 Here is simplest possible demo of what elasticsearch can do:
 
 **index.html**
@@ -92,7 +94,6 @@ Here is simplest possible demo of what elasticsearch can do:
                 } else {
                     self.icon = 'fa fa-file-text-o';
                 }
-                //file-pdf-o
             }
 
             function Model() {
