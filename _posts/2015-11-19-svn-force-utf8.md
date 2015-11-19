@@ -53,3 +53,21 @@ We are checking each file to be valid UTF-8, and if its not, we are writing then
 From now one if you will try to commit non utf8 files you will get something like this:
 
 ![TortoiseSVN Pre Commit Hook Error Message](/images/posts/force_utf8_tortoisesvn_error.png)
+
+Powershell check is there non UTF-8 files
+-----------------------------------------
+
+	Get-ChildItem -Path C:\Rabota.UA\trunk\Proj1, C:\Rabota.UA\trunk\Proj2 -Recurse -Include *.master, *.ascx, *.aspx, *.cs, *.ashx -ErrorAction SilentlyContinue | %{
+	    $Bytes1 = Get-Content -Path $_.FullName -Encoding Byte -Raw
+	    $Bytes2 = [System.Text.Encoding]::UTF8.GetBytes((Get-Content -Path $_.FullName -Encoding UTF8 -Raw))
+
+	    # UTF-8 with BOM
+	    if($Bytes1[0] -eq 239 -and $Bytes1[1] -eq 187 -and $Bytes1[2] -eq 191) {
+	        $Bytes1 = $Bytes1 | select -Skip 3
+	    }
+
+	    # No valid UTF-8
+	    if(Compare-Object $Bytes1 $Bytes2) {
+	        Write-Host $Path
+	    }
+	}
