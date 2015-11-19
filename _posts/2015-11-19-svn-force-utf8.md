@@ -15,13 +15,13 @@ Right click on your repository, navigate to TortoiseSVN \ Settings \ Hook Script
 
 ![TortoiseSVN Settings](/images/posts/force_utf8_tortoisesvn_settings.png)
 
-Hook Type: Pre-Commit Hook
+Hook Type: __Pre-Commit Hook__
 
 Working Copy Path: Path to your repository, e.g.: `C:\Users\Alexandr\Desktop\Sample`
 
 Command Line To Execute: `powershell -executionpolicy bypass -file C:\Users\Alexandr\Desktop\ForceUTF8.ps1`
 
-Check __Wait for the script to finish__ and __Hide the script while running__ checkboxes
+Check _Wait for the script to finish_ and _Hide the script while running_ checkboxes
 
 ![TortoiseSVN Adding Pre Commit Hook](/images/posts/force_utf8_tortoisesvn_add_hook.png)
 
@@ -52,4 +52,4 @@ We are checking each file to be valid UTF-8, and if its not, we are writing then
 
 From now one if you will try to commit non utf8 files you will get something like this:
 
-![TortoiseSVN Pre Commit Hook Error Message](/images/posts/force_utf8_tortoisesvn_settings.png)
+![TortoiseSVN Pre Commit Hook Error Message](/images/posts/force_utf8_tortoisesvn_error.png)
