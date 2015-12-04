@@ -216,3 +216,7 @@ Sudo without password
 add to end of the file:
 
     mac ALL=(ALL) NOPASSWD: ALL
+
+oneliner:
+
+    echo administrator ALL=NOPASSWD: ALL | sudo tee /etc/sudoers.d/administrator
