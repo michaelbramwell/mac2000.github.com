@@ -1,9 +1,0 @@
-@startuml
-namespace UML.Basics.Association.Unidirectional {
-    class Car {
-        -engine : Engine
-    }
-
-    Car -> Engine : has
-}
-@enduml

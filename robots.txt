@@ -1,3 +1,0 @@
-User-Agent: *
-Disallow: /tags.html
-Disallow: /search.html

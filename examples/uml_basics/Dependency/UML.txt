@@ -1,9 +1,0 @@
-@startuml
-namespace UML.Basics.Dependency {
-    class HomeController {
-        +indexAction(request : Request)
-    }
-
-    HomeController ..> Request : uses
-}
-@enduml

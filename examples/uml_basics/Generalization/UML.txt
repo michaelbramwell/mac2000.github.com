@@ -1,5 +1,0 @@
-@startuml
-namespace UML.Basics.Generalization {
-    Response <|-- HttpResponse : is a
-}
-@enduml
